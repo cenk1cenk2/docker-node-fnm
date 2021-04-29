@@ -1,0 +1,26 @@
+# set the node version, can be overwritten by nvm file in the root
+# version that can fnm or nvm can accept
+node_version: default
+# valid values npm, yarn
+package_manager: yarn
+force_install: false
+sync_wait: 10
+
+defaults:
+  before: false
+  logs: true
+  load_dotenv: true
+  command: yarn dev:start
+  environment:
+    SOME_ENVIRONMENT: true
+
+services:
+  - cwd: .
+    enable: true
+    before: false
+    logs: true
+    load_dotenv: true
+    command: yarn dev:start
+    sync: true
+    environment:
+      DEBUG_PORT: 9229

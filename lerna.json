@@ -1,0 +1,16 @@
+{
+  "packages": ["supervisor/*"],
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "message": "chore(release): publish",
+      "conventionalCommits": true,
+      "create-release": "github"
+    },
+    "version": {
+      "allowBranch": ["master"]
+    }
+  },
+  "version": "independent"
+}

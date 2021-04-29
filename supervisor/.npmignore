@@ -1,0 +1,7 @@
+**
+!dist/
+!dist/**
+!bin/
+!bin/**
+!config/
+!config/**

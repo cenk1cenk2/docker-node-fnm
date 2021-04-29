@@ -1,0 +1,11 @@
+node_version: NODE_VERSION
+use_fnm: USE_FNM
+package_manager: PACKAGE_MANAGER
+force_install: FORCE_INSTALL
+sync_wait: SYNC_WAIT
+
+defaults:
+  before: DEFAULTS_BEFORE
+  command: DEFAULTS_COMMAND
+  logs: DEFAULTS_LOGS
+  load_dotenv: DEFAULTS_LOAD_DOTENV
