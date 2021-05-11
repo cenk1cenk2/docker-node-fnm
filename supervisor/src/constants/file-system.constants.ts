@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { join } from 'path'
 
 export const MOUNTED_DATA_FOLDER = '/data'
 

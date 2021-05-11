@@ -1,21 +1,35 @@
-import { BaseCommand, deepMergeWithArrayOverwrite, checkExists, readFile, yamlExtensions } from '@cenk1cenk2/boilerplate-oclif'
+import { BaseCommand, checkExists, deepMergeWithArrayOverwrite, readFile } from '@cenk1cenk2/boilerplate-oclif'
+import { pipeProcessToLogger } from '@utils/pipe-through-logger'
 import config from 'config'
+import delay from 'delay'
+import execa from 'execa'
 import fs from 'fs'
-import { join, normalize } from 'node:path'
-import { check } from 'prettier'
+import pmap from 'p-map'
+import { join, normalize } from 'path'
+import { v4 as uuid } from 'uuid'
 
 import { InitCtx } from '@interfaces/commands/init.interface'
 import { SERVICE_EXTENSION_ENVIRONMENT_VARIABLES } from '@src/constants/environment-variables.constants'
-import { MOUNTED_CONFIG_PATH } from '@src/constants/file-system.constants'
+import { MOUNTED_CONFIG_PATH, MOUNTED_DATA_FOLDER } from '@src/constants/file-system.constants'
 import { DockerService, DockerServicesConfig } from '@src/interfaces/configs/docker-services.interface'
+import { ProcessManager } from '@src/utils/process-manager'
 
 export default class Init extends BaseCommand {
   static description = 'This command initiates the container and creates the required variables.'
+  private process = new ProcessManager(this)
 
   public async construct (): Promise<void> {
     this.tasks.options = {
       rendererSilent: true
     }
+
+    // register exit listener
+    process.on('SIGINT', async () => {
+      this.logger.fatal('Caught terminate signal.', { context: 'exit' })
+
+      // this is not guaranteed, best effort is enough
+      await this.process.kill().finally(() => process.exit(127))
+    })
   }
 
   public async run (): Promise<void> {
@@ -36,7 +50,10 @@ export default class Init extends BaseCommand {
 
           ctx.config = config.util.parseFile(join(ctx.configurationDirectory, 'default.yml'))
 
-          this.logger.debug('Configuration file defaults are loaded: %o', ctx.config, { custom: 'defaults' })
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { services: omit, ...rest } = ctx.config
+
+          this.logger.debug('Configuration file defaults are loaded: %o', rest, { custom: 'defaults' })
         }
       },
 
@@ -54,7 +71,10 @@ export default class Init extends BaseCommand {
         task: async (ctx): Promise<void> => {
           ctx.config = deepMergeWithArrayOverwrite(ctx.config, await readFile(normalize(MOUNTED_CONFIG_PATH)))
 
-          this.logger.debug('Merged mounted configuration to defaults: %o', ctx.config, { custom: 'config' })
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { services: omit, ...rest } = ctx.config
+
+          this.logger.debug('Merged mounted configuration to defaults: %o', rest, { custom: 'config' })
 
           this.logger.module(`Extended defaults with configuration file found at "${MOUNTED_CONFIG_PATH}".`, { custom: 'config' })
         }
@@ -92,9 +112,182 @@ export default class Init extends BaseCommand {
             this.logger.warn('No environment variables with "SERVICE_*" found to extend the services from, skipping merge.', { custom: 'environment' })
           }
         }
-      }
+      },
 
-      // run services
+      // normalize variables
+      {
+        task: async (ctx): Promise<void> => {
+          // sync wait to seconds
+          ctx.config.sync_wait = ctx.config.sync_wait * 1000
+
+          // service names
+          await Promise.all(
+            ctx.config.services.map(async (service) => {
+              service.id = uuid()
+            })
+          )
+
+          this.logger.debug('Services discovered: %o', ctx.config.services, { custom: 'services' })
+        }
+      },
+
+      // initiate fnm version
+      {
+        task: async (ctx): Promise<void> => {
+          if (ctx.config.node_version !== 'default') {
+            this.logger.module('Installing node version given from variables: %s', ctx.config.node_version, { custom: 'node' })
+
+            await pipeProcessToLogger.bind(this)({
+              instance: execa('fnm', [ 'install', ctx.config.node_version ], {
+                shell: '/bin/bash',
+                detached: false,
+                extendEnv: false
+              }),
+              options: { meta: [ { custom: 'fnm', trimEmptyLines: true } ] }
+            })
+          }
+        }
+      },
+
+      // load fnm version from the root of the thingy
+      {
+        skip: (): boolean => !checkExists(join(MOUNTED_DATA_FOLDER, '.nvmrc')) && !checkExists(join(MOUNTED_DATA_FOLDER, '.node-version')),
+        task: async (): Promise<void> => {
+          this.logger.module('Found overwrite file in the root directory of the data folder.', { custom: 'fnm' })
+
+          try {
+            await pipeProcessToLogger.bind(this)({
+              instance: execa('fnm', [ 'install' ], {
+                shell: '/bin/bash',
+                detached: false,
+                extendEnv: false,
+                cwd: MOUNTED_DATA_FOLDER
+              }),
+              options: { meta: [ { custom: 'fnm', trimEmptyLines: true } ] }
+            })
+          } catch {
+            this.logger.fatal('Can not use the workspace version with FNM.', { custom: 'fnm' })
+
+            process.exit(120)
+          }
+        }
+      },
+
+      // check all the given cwds exists
+      {
+        skip: true,
+        task: async (ctx): Promise<void> => {
+          const errors: string[] = []
+
+          await Promise.all(
+            ctx.config.services.map(async (service, i) => {
+              const dir = join(MOUNTED_DATA_FOLDER, service.cwd)
+
+              try {
+                const stat = fs.statSync(dir)
+
+                if (!stat.isDirectory()) {
+                  errors.push(`Specified directory "${dir}" is not a directory for service ${i}.`)
+                }
+              } catch {
+                errors.push(`Specified directory "${dir}" does not exists for service ${i}.`)
+              }
+            })
+          )
+
+          if (errors.length > 0) {
+            errors.forEach((error) => this.logger.fatal(error, { custom: 'services' }))
+
+            process.exit(120)
+          }
+        }
+      },
+
+      // run preliminary services
+      {
+        task: async (ctx): Promise<void> => {
+          const preliminary = ctx.config.services.filter((service) => service.sync === true && service.enable === true)
+
+          this.logger.debug('Synchronous services: %o', preliminary, { custom: 'sync-services' })
+
+          await pmap(
+            preliminary,
+            async (service) => {
+              if (Array.isArray(service.before)) {
+                this.logger.debug('Running before commands of synchronous service: %s', service.cwd, { context: 'sync-services' })
+
+                try {
+                  await pmap(
+                    service.before,
+                    (command) => {
+                      return this.process.add(
+                        service.id,
+                        pipeProcessToLogger.bind(this)({
+                          instance: execa.command(command, {
+                            shell: '/bin/bash',
+                            detached: false,
+                            extendEnv: false,
+                            stdin: 'ignore',
+                            cwd: join(MOUNTED_DATA_FOLDER, service.cwd)
+                          }),
+                          options: {
+                            start: true,
+                            exitCode: true,
+                            meta: [ { custom: service.cwd } ]
+                          }
+                        })
+                      )
+                    },
+                    { concurrency: 1 }
+                  )
+                } catch {
+                  this.logger.fatal('Encountered an error while executing before commands of service: "%s"', service.cwd)
+                } finally {
+                  this.process.flush(service.id)
+                }
+              }
+
+              const wait = delay(ctx.config.sync_wait)
+
+              this.logger.debug('Running synchronous service: %s', service.cwd, { context: 'sync-services' })
+
+              this.process.add(
+                service.id,
+                pipeProcessToLogger.bind(this)({
+                  instance: execa.command(service.command, {
+                    shell: '/bin/bash',
+                    detached: false,
+                    extendEnv: false,
+                    env: service.environment,
+                    stdin: 'ignore',
+                    cwd: join(MOUNTED_DATA_FOLDER, service.cwd)
+                  }),
+                  options: {
+                    start: true,
+                    exitCode: true,
+                    meta: [ { custom: service.cwd } ]
+                  }
+                }),
+                { retry: true }
+              )
+
+              this.logger.warn('Waiting for %i seconds for starting another service...', ctx.config.sync_wait / 1000, { custom: 'supervisor' })
+
+              await wait
+            },
+            { concurrency: 1 }
+          )
+        }
+      },
+
+      // wait for all active services
+      {
+        task: async (): Promise<void> => {
+          this.logger.debug('All services are initiated, now waiting for them.', { context: 'supervisor' })
+
+          await this.process.fetchInstances()
+        }
+      }
     ])
   }
 

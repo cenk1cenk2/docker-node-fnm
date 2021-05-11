@@ -8,9 +8,11 @@
       "@src/*": ["*"],
       "@commands/*": ["commands/*"],
       "@helpers/*": ["helpers/*"],
+      "@constants/*": ["constants/*"],
       "@interfaces/*": ["interfaces/*"],
       "@context/*": ["interfaces/commands/*"],
-      "@templates/*": ["templates/*"]
+      "@templates/*": ["templates/*"],
+      "@utils/*": ["utils/*"]
     }
   },
   "include": ["src"],

@@ -18,6 +18,7 @@ export interface DockerServicesConfig {
 
 export interface DockerService {
   cwd: string
+  id: string
   enable?: boolean
   logs?: 'prefix'
   load_dotenv?: boolean

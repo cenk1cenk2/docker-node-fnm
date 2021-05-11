@@ -1,0 +1,7 @@
+**
+!supervisor
+!supervisor/bin
+!supervisor/config
+!supervisor/dist
+!supervisor/package.json
+
