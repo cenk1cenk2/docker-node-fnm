@@ -1,11 +1,29 @@
 node_version: NODE_VERSION
-use_fnm: USE_FNM
 package_manager: PACKAGE_MANAGER
 force_install: FORCE_INSTALL
-sync_wait: SYNC_WAIT
+sync_wait:
+  __name: SYNC_WAIT
+  __format: json
+check_directories:
+  __name: CHECK_DIRECTORIES
+  __format: json
 
+# default settings will be injected to all the services
 defaults:
-  before: DEFAULTS_BEFORE
+  enable: DEFAULTS_ENABLE
+  before:
+    __name: DEFAULTS_BEFORE
+    __format: json
+  logs:
+    __name: DEFAULTS_LOGS
+    __format: json
+  load_dotenv:
+    __name: DEFAULTS_LOAD_DOTENV
+    __format: json
   command: DEFAULTS_COMMAND
-  logs: DEFAULTS_LOGS
-  load_dotenv: DEFAULTS_LOAD_DOTENV
+  sync:
+    __name: DEFAULTS_SYNC
+    __format: json
+  environment:
+    __name: DEFAULTS_ENVIRONMENT
+    __format: json

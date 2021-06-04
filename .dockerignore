@@ -2,6 +2,10 @@
 !supervisor
 !supervisor/bin
 !supervisor/config
+!supervisor/templates
 !supervisor/dist
 !supervisor/package.json
+!cont-init.d/
+!services.d/
+
 

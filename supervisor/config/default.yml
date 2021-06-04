@@ -1,4 +1,4 @@
-loglevel: debug
+loglevel: info
 logcolor: true
 logcolorAll: false
 configDir: '.config/boilerplate-oclif'

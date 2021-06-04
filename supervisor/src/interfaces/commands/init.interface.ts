@@ -2,5 +2,8 @@ import { DockerServicesConfig } from '@interfaces/configs/docker-services.interf
 
 export interface InitCtx {
   config: DockerServicesConfig
-  configurationDirectory: string
+  fileSystem: {
+    config: string
+    templates: string
+  }
 }

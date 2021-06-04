@@ -1,42 +1,24 @@
-# set the node version, can be overwritten by nvm file in the root
-# version that can fnm or nvm can accept
-node_version: default
-# valid values npm, yarn
-package_manager: yarn
-force_install: false
-sync_wait: 10
+# global settings
+node_version: default # set the node version, overwrites the nvmrc file in the root. version that can fnm or nvm can accept
+package_manager: yarn # valid values npm, yarn
+force_install: false # to add --force flag to the package manager for initial start
+sync_wait: 10 # wait between the services a pre-given time if sync is true
+check_directories: true # whether to check the given cwd directories to exist or not
 
+# default settings will be injected to all the services
 defaults:
-  before: false
-  logs: true
-  load_dotenv: true
-  command: yarn dev:start
-  environment:
-    SOME_ENVIRONMENT: true
+  enable: true # enables or disables a service
+  before: false # a command to run before the task, can be an array of commands or false
+  logs: false # logs can be 'true' for logging the service, 'false' for disabling the logs and 'prefix' for prefixing all services with their cwd
+  load_dotenv: true # if the flag is set, this will load the .env file in the service.cwd
+  command: yarn dev:start # default command to run
+  sync: false # this will run the sync flagged services first and one-by-one with the sync_wait and run the others afterwards
+  # Object for passing in environment variables to services
+  # environment:
 
+# definition of the services, will overwrite the defaults for each service
+# you can use the same settings in the defaults here as well
 services:
-  - cwd: .
-    enable: true
-    before:
-      - ls
-      - echo test
-      - ls
-    logs: true
-    load_dotenv: true
-    command: echo 'I am runniung' && sleep 5 && exit 20
-    sync: true
-    environment:
-      DEBUG_PORT: 9229
-
-  - cwd: .
-    enable: true
-    before:
-      - ls
-      - echo test
-      - ls
-    logs: true
-    load_dotenv: true
-    command: echo 'I am runniung' && sleep 10 && exit 20
-    sync: true
-    environment:
-      DEBUG_PORT: 9229
+  - cwd: . # current working directory relative to /data
+    # name: # you can give a friendly name to the service, if empty it will use the cwd
+    command: yarn dev:start

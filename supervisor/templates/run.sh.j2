@@ -1,0 +1,91 @@
+#!/bin/bash
+
+source /.env
+source /root/.bashrc
+
+set -eo pipefail
+
+source /scripts/logger.sh
+
+SERVICE_ID="{{ service.id }}"
+
+# If execution order is set
+while [[ -f /.lock ]]; do
+  source /.lock
+
+  if [[ "${PRELIMINARY_SERVICES[0]}" == "${SERVICE_ID}" ]]; then
+    # next in line is this service
+    {% raw %}
+    if [[ "${#PRELIMINARY_SERVICES[@]}" -eq 1 ]]; then
+    {% endraw %}
+      # this is the last service, so remove the lock file
+      rm /.lock
+
+      log_this "Removing lock file. Queue is empty." "${CYAN}SUPERVISOR${RESET}" "LIFETIME" "top"
+    else
+      # there is still services to go so just remove this service from the queue
+      echo "PRELIMINARY_SERVICES=(${PRELIMINARY_SERVICES[@]:1})" >/.lock
+
+      break
+    fi
+  else
+    log_wait '{{ service.name }} for {{ config.sync_wait }} seconds.' 'top'
+
+    s6-sleep {{ config.sync_wait }}
+  fi
+done
+
+{% if config.node_version != 'default' %}
+log_this "Config node version is not set as default using: {{ config.node_version }}" "${CYAN}{{ service.name }}${RESET}" "WARN"
+fnm use {{ config.node_version }}
+{% else %}
+if [ -f /data/.nvmrc ] || [ -f /data/.node-version ]; then
+  cd /data
+
+  log_this "Node version file found, using with fnm." "${CYAN}{{ service.name }}${RESET}" "WARN"
+
+  fnm use
+fi
+{% endif %}
+
+# Change directory to package
+cd /data/{{ service.cwd }}
+
+{% if service.load_dotenv %}
+# Get directory env variables if exists
+if [[ -f .env ]]; then
+  log_this "{{ service.name }}/.env for given scope." "${CYAN}SOURCE${RESET}" "INFO"
+  source .env
+fi
+{% endif %}
+
+# show start message
+log_start '{{ service.name }}' 'top'
+
+{% if service.before is iterable and service.before | length > 0 %}
+# before tasks
+{% for command in service.before %}
+log_this "Running before task: {{ command }}" "{{ service.name }}" "INFO"
+{{ command }}
+
+{% endfor %}
+{% endif %}
+# Package start command
+{% if service.logs == False %}
+log_this 'NO_LOG' '${CYAN}{{ service.name }}${RESET}' 'WARN'
+fdmove -c 2 1 /bin/bash -c "{{ service.parsed_command }} > /dev/null 2&>1"
+{% elif service.logs == True %}
+fdmove -c 2 1 /bin/bash -c "{{ service.parsed_command }}"
+{% else %}
+fdmove -c 2 1 /bin/bash -c "{{ service.parsed_command }} | awk '{print \"[${GREEN}{{ service.name }}${RESET}] \" \$0}'
+{% endif %}
+
+# for run in band on crash
+if [[ -f /.lock ]]; then
+  source /.lock
+  echo "PRELIMINARY_SERVICES=( ${SERVICE_ID} ${PRELIMINARY_SERVICES[@]} )" >/.lock
+fi
+
+# show finish message
+log_this 'CRASHED' '${RED}{{ service.name }}${RESET}' 'ERROR' 'top'
+s6-sleep 5

@@ -1,29 +1,25 @@
 export interface DockerServicesConfig {
   node_version: 'default' | string
-  use_fnm: boolean
   package_manager: 'yarn' | 'npm'
   force_install: boolean
   sync_wait: number
+  check_directories: boolean
 
-  defaults: {
-    enable: boolean
-    logs: boolean | 'prefix'
-    load_dotenv: boolean
-    before: boolean | string[]
-    command: string
-  }
+  defaults: Pick<DockerService, 'enable' | 'logs' | 'load_dotenv' | 'before' | 'command' | 'sync' | 'environment'>
 
   services: DockerService[]
 }
 
 export interface DockerService {
-  cwd: string
   id: string
+  name: string
+  cwd: string
   enable?: boolean
-  logs?: 'prefix'
+  logs?: 'prefix' | boolean
   load_dotenv?: boolean
-  before?: boolean | string[]
+  before?: false | string[]
   command?: string
+  parsed_command?: string
   sync?: boolean
   environment?: Record<string, string>
 }

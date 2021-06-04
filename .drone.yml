@@ -1,4 +1,5 @@
 kind: pipeline
+type: docker
 name: default
 
 trigger:
@@ -6,6 +7,7 @@ trigger:
     - master
   event:
     - push
+    - cron
 
 steps:
   - name: install
@@ -21,26 +23,16 @@ steps:
   - name: build
     image: node:current-alpine
     commands:
-      - yarn command build --scope "@cenk1cenk2/boilerplate-oclif"
+      - yarn command build
 
-  - name: semantic-release
-    image: cenk1cenk2/drone-semantic-release
+  - name: publish
+    image: plugins/docker
     settings:
-      git_method: gh
-      add_modules:
-        - semantic-release-monorepo
-      override: npx --no-install lerna exec --scope "@cenk1cenk2/boilerplate-oclif" --concurrency 1 -- npx --no-install semantic-release -e semantic-release-monorepo
-      git_user_email:
-        from_secret: github_username
-      github_token:
-        from_secret: github_token
-      npm_token:
-        from_secret: npm_token
-    when:
-      branch:
-        - master
-      event:
-        - push
+      repo: cenk1cenk2/node-fnm
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
 
 image_pull_secrets:
   - dockerconfigjson

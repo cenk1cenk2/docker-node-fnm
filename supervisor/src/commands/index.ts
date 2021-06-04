@@ -1,22 +1,19 @@
-import { BaseCommand, checkExists, deepMergeWithArrayOverwrite, readFile } from '@cenk1cenk2/boilerplate-oclif'
+import { BaseCommand, checkExists, deepMergeWithArrayOverwrite, LogLevels, readFile, readRaw, writeFile } from '@cenk1cenk2/boilerplate-oclif'
 import { pipeProcessToLogger } from '@utils/pipe-through-logger'
 import config from 'config'
-import delay from 'delay'
 import execa from 'execa'
-import fs from 'fs'
-import pmap from 'p-map'
+import fs from 'fs-extra'
 import { join, normalize } from 'path'
 import { v4 as uuid } from 'uuid'
 
 import { InitCtx } from '@interfaces/commands/init.interface'
 import { SERVICE_EXTENSION_ENVIRONMENT_VARIABLES } from '@src/constants/environment-variables.constants'
-import { MOUNTED_CONFIG_PATH, MOUNTED_DATA_FOLDER } from '@src/constants/file-system.constants'
+import { CONTAINER_ENV_FILE, CONTAINER_LOCK_FILE, MOUNTED_CONFIG_PATH, MOUNTED_DATA_FOLDER, S6_FOLDERS, TEMPLATES, TEMPLATE_FOLDER } from '@src/constants/file-system.constants'
 import { DockerService, DockerServicesConfig } from '@src/interfaces/configs/docker-services.interface'
-import { ProcessManager } from '@src/utils/process-manager'
+import { jinja } from '@src/utils/jinja'
 
 export default class Init extends BaseCommand {
   static description = 'This command initiates the container and creates the required variables.'
-  private process = new ProcessManager(this)
 
   public async construct (): Promise<void> {
     this.tasks.options = {
@@ -26,18 +23,18 @@ export default class Init extends BaseCommand {
     // register exit listener
     process.on('SIGINT', async () => {
       this.logger.fatal('Caught terminate signal.', { context: 'exit' })
-
-      // this is not guaranteed, best effort is enough
-      await this.process.kill().finally(() => process.exit(127))
     })
   }
 
   public async run (): Promise<void> {
     this.tasks.add<InitCtx>([
-      // set configuration directory
+      // set defaults for context
       {
         task: async (ctx): Promise<void> => {
-          ctx.configurationDirectory = join(this.config.root, 'config', 'defaults')
+          ctx.fileSystem = {
+            config: join(this.config.root, 'config', 'defaults'),
+            templates: join(this.config.root, TEMPLATE_FOLDER)
+          }
 
           this.logger.debug('Set defaults for context: %o', ctx)
         }
@@ -48,7 +45,7 @@ export default class Init extends BaseCommand {
         task: async (ctx): Promise<void> => {
           this.logger.verbose('Loading default configuration.', { custom: 'defaults' })
 
-          ctx.config = config.util.parseFile(join(ctx.configurationDirectory, 'default.yml'))
+          ctx.config = config.util.parseFile(join(ctx.fileSystem.config, 'default.yml'))
 
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { services: omit, ...rest } = ctx.config
@@ -83,7 +80,7 @@ export default class Init extends BaseCommand {
       // extend configuration with environment variables
       {
         task: (ctx): void => {
-          const envVars = config.util.getCustomEnvVars<DockerServicesConfig>(ctx.configurationDirectory, [ 'yml' ])
+          const envVars = config.util.getCustomEnvVars<DockerServicesConfig>(ctx.fileSystem.config, [ 'yml' ])
 
           if (Object.keys(envVars).length > 0) {
             ctx.config = deepMergeWithArrayOverwrite(ctx.config, envVars)
@@ -102,7 +99,7 @@ export default class Init extends BaseCommand {
 
           if (Object.keys(servicesFromEnvVars).length > 0) {
             Object.entries(servicesFromEnvVars).forEach(([ i, value ]) => {
-              ctx.config.services[i] = deepMergeWithArrayOverwrite(ctx.config.defaults, ctx.config?.services?.[i], value)
+              ctx.config.services[i] = deepMergeWithArrayOverwrite(ctx.config?.services?.[i], value)
 
               this.logger.debug(`Merged environment for service ${i}: %o`, ctx.config.services[i], { custom: 'environment' })
             })
@@ -114,16 +111,36 @@ export default class Init extends BaseCommand {
         }
       },
 
+      {
+        task: (ctx): void => {
+          ctx.config.services = ctx.config.services.map((service) => {
+            return deepMergeWithArrayOverwrite(ctx.config.defaults, service) as DockerService
+          })
+
+          this.logger.debug('Merged default configuration to all services: %o', ctx.config.defaults)
+        }
+      },
+
       // normalize variables
       {
         task: async (ctx): Promise<void> => {
-          // sync wait to seconds
-          ctx.config.sync_wait = ctx.config.sync_wait * 1000
-
           // service names
           await Promise.all(
             ctx.config.services.map(async (service) => {
               service.id = uuid()
+              service.name = service.name ?? service.cwd
+
+              // append the environment variables to command
+              if (typeof service.environment === 'object' && Object.keys(service.environment).length > 0) {
+                service.parsed_command = `${Object.entries(service.environment).reduce((o, [ envKey, envValue ]) => {
+                  return `${envKey}=${envValue} ${o}`
+                }, service.command)}`
+              } else {
+                service.parsed_command = service.command
+              }
+
+              // we wrap this inside "" so have to escape it all
+              service.parsed_command = service.parsed_command.replaceAll('"', '\\"')
             })
           )
 
@@ -133,10 +150,11 @@ export default class Init extends BaseCommand {
 
       // initiate fnm version
       {
+        skip: (ctx): boolean => ctx.config.node_version === 'default',
         task: async (ctx): Promise<void> => {
-          if (ctx.config.node_version !== 'default') {
-            this.logger.module('Installing node version given from variables: %s', ctx.config.node_version, { custom: 'node' })
+          this.logger.module('Installing node version given from variables: %s', ctx.config.node_version, { custom: 'node' })
 
+          try {
             await pipeProcessToLogger.bind(this)({
               instance: execa('fnm', [ 'install', ctx.config.node_version ], {
                 shell: '/bin/bash',
@@ -145,15 +163,22 @@ export default class Init extends BaseCommand {
               }),
               options: { meta: [ { custom: 'fnm', trimEmptyLines: true } ] }
             })
+          } catch (e) {
+            this.logger.fatal('Can not use the given version with FNM.', { custom: 'fnm' })
+
+            this.logger.error('%o', e, { custom: 'fnm' })
+
+            process.exit(120)
           }
         }
       },
 
       // load fnm version from the root of the thingy
       {
-        skip: (): boolean => !checkExists(join(MOUNTED_DATA_FOLDER, '.nvmrc')) && !checkExists(join(MOUNTED_DATA_FOLDER, '.node-version')),
+        skip: (ctx): boolean =>
+          ctx.config.node_version === 'default' && !checkExists(join(MOUNTED_DATA_FOLDER, '.nvmrc')) && !checkExists(join(MOUNTED_DATA_FOLDER, '.node-version')),
         task: async (): Promise<void> => {
-          this.logger.module('Found overwrite file in the root directory of the data folder.', { custom: 'fnm' })
+          this.logger.module('Found node version override file in the root directory of the data folder.', { custom: 'node' })
 
           try {
             await pipeProcessToLogger.bind(this)({
@@ -165,8 +190,10 @@ export default class Init extends BaseCommand {
               }),
               options: { meta: [ { custom: 'fnm', trimEmptyLines: true } ] }
             })
-          } catch {
+          } catch (e) {
             this.logger.fatal('Can not use the workspace version with FNM.', { custom: 'fnm' })
+
+            this.logger.error('%o', e, { custom: 'fnm' })
 
             process.exit(120)
           }
@@ -175,7 +202,7 @@ export default class Init extends BaseCommand {
 
       // check all the given cwds exists
       {
-        skip: true,
+        skip: (ctx): boolean => !ctx.config.check_directories,
         task: async (ctx): Promise<void> => {
           const errors: string[] = []
 
@@ -203,92 +230,76 @@ export default class Init extends BaseCommand {
         }
       },
 
-      // run preliminary services
+      // init variables for s6
       {
         task: async (ctx): Promise<void> => {
-          const preliminary = ctx.config.services.filter((service) => service.sync === true && service.enable === true)
+          switch (this.constants.loglevel) {
+          case LogLevels.debug:
+            await writeFile(CONTAINER_ENV_FILE, 'LOG_LEVEL="DEBUG"', true)
+            break
+          default:
+            await writeFile(CONTAINER_ENV_FILE, 'LOG_LEVEL="INFO"', true)
+          }
 
-          this.logger.debug('Synchronous services: %o', preliminary, { custom: 'sync-services' })
+          const variables = [
+            { name: 'PACKAGE_MANAGER', value: ctx.config.package_manager },
+            { name: 'FORCE_INSTALL', value: ctx.config.force_install }
+          ]
 
-          await pmap(
-            preliminary,
-            async (service) => {
-              if (Array.isArray(service.before)) {
-                this.logger.debug('Running before commands of synchronous service: %s', service.cwd, { context: 'sync-services' })
-
-                try {
-                  await pmap(
-                    service.before,
-                    (command) => {
-                      return this.process.add(
-                        service.id,
-                        pipeProcessToLogger.bind(this)({
-                          instance: execa.command(command, {
-                            shell: '/bin/bash',
-                            detached: false,
-                            extendEnv: false,
-                            stdin: 'ignore',
-                            cwd: join(MOUNTED_DATA_FOLDER, service.cwd)
-                          }),
-                          options: {
-                            start: true,
-                            exitCode: true,
-                            meta: [ { custom: service.cwd } ]
-                          }
-                        })
-                      )
-                    },
-                    { concurrency: 1 }
-                  )
-                } catch {
-                  this.logger.fatal('Encountered an error while executing before commands of service: "%s"', service.cwd)
-                } finally {
-                  this.process.flush(service.id)
-                }
-              }
-
-              const wait = delay(ctx.config.sync_wait)
-
-              this.logger.debug('Running synchronous service: %s', service.cwd, { context: 'sync-services' })
-
-              this.process.add(
-                service.id,
-                pipeProcessToLogger.bind(this)({
-                  instance: execa.command(service.command, {
-                    shell: '/bin/bash',
-                    detached: false,
-                    extendEnv: false,
-                    env: service.environment,
-                    stdin: 'ignore',
-                    cwd: join(MOUNTED_DATA_FOLDER, service.cwd)
-                  }),
-                  options: {
-                    start: true,
-                    exitCode: true,
-                    meta: [ { custom: service.cwd } ]
-                  }
-                }),
-                { retry: true }
-              )
-
-              this.logger.warn('Waiting for %i seconds for starting another service...', ctx.config.sync_wait / 1000, { custom: 'supervisor' })
-
-              await wait
-            },
-            { concurrency: 1 }
-          )
+          for (const data of variables) {
+            await writeFile(CONTAINER_ENV_FILE, `${data.name}=${data.value}`, true)
+          }
         }
       },
 
-      // wait for all active services
+      // init services for s6 supervisor
       {
-        task: async (): Promise<void> => {
-          this.logger.debug('All services are initiated, now waiting for them.', { context: 'supervisor' })
+        task: async (ctx): Promise<void> => {
+          const enabled = ctx.config.services.filter((service) => service.enable === true)
+          const disabled = ctx.config.services.filter((service) => service.enable === false)
+          const preliminary = enabled.filter((service) => service.sync === true)
 
-          await this.process.fetchInstances()
+          if (disabled.length > 0) {
+            this.logger.warn('Some services are disabled by configuration: %s', disabled.map((d) => d.cwd).join(', '), { context: 'services' })
+          }
+
+          if (preliminary.length > 0) {
+            await fs.writeFile(CONTAINER_LOCK_FILE, `PRELIMINARY_SERVICES=( ${preliminary.map((s) => s.id).join(' ')} )`)
+
+            this.logger.debug('Wrote lock file for preliminary services.', { custom: 'sync-services' })
+          }
+
+          if (enabled.length < 1) {
+            this.logger.fatal('No service is enabled at the moment.')
+
+            process.exit(120)
+          }
+
+          await this.createRunScriptForService(ctx, enabled)
         }
       }
     ])
+  }
+
+  private async createRunScriptForService (ctx: InitCtx, services: DockerService[]): Promise<void> {
+    const templatePath = join(ctx.fileSystem.templates, TEMPLATES.run)
+    const template = await readRaw(templatePath)
+
+    await Promise.all(
+      services.map(async (service) => {
+        const s6ServiceRunTemplate = jinja(ctx.fileSystem.templates).renderString(template, { service, config: ctx.config })
+        const s6ServiceDir = join(S6_FOLDERS.service, service.id)
+        const s6ServiceRunScriptPath = join(s6ServiceDir, S6_FOLDERS.runScriptName)
+
+        await fs.mkdirp(s6ServiceDir)
+
+        await writeFile(s6ServiceRunScriptPath, s6ServiceRunTemplate)
+
+        await fs.chmod(s6ServiceRunScriptPath, '0764')
+
+        this.logger.debug('Initiated service run script for directory "%s": %s', service.cwd, s6ServiceRunScriptPath, { context: 'services' })
+      })
+    )
   }
 
   private getEnvVariablesForService (base: DockerServicesConfig): Record<number, DockerService> {
@@ -339,7 +350,8 @@ export default class Init extends BaseCommand {
           }
 
           // typechecks for environment variables
-          if (variable.type && typeof service[variable.key] !== variable.type) {
+          if (variable.validate) {
+            variable.validate(services[variable.key])
             this.logger.fatal(`Given variable "${name}" was supposed to be a "${variable.type}" while it is "${typeof services[variable.key]}".`, { custom: 'environment' })
 
             process.exit(127)
