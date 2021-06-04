@@ -112,6 +112,14 @@ services:
 
 ### Services
 
+### Passing in a Base
+
+| Environment Variable | Format | description   |
+| -------------------- | ------ | ------------- |
+| SERVICES             | json   | in array form |
+
+### Extending per Service
+
 Service extension variables can be defined in the form of `SERVICE_${serviceNumberInsideTheArray}_${variable.name}`.
 
 So if you want to modify a property from the 0th service in the services array it should be like `SERVICE_0_PROPERTY`.

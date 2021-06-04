@@ -8,7 +8,6 @@ check_directories:
   __name: CHECK_DIRECTORIES
   __format: json
 
-# default settings will be injected to all the services
 defaults:
   enable: DEFAULTS_ENABLE
   before:
@@ -27,3 +26,7 @@ defaults:
   environment:
     __name: DEFAULTS_ENVIRONMENT
     __format: json
+
+services:
+  __name: SERVICES
+  __format: json

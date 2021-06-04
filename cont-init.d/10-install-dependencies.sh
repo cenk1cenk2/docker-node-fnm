@@ -14,7 +14,9 @@ if [ -n "${INSTALL_DEPENDENCIES}" ]; then
 	elif [ "${PACKAGE_MANAGER}" == "npm" ]; then
 		npm i
 	else
-		log_fatal "Package manager unknown."
+		log_error "Package manager unknown."
+
+		log_debug "$(cat /.env)"
 
 		exit 127
 	fi

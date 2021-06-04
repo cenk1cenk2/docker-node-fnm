@@ -24,7 +24,7 @@ export const SERVICE_EXTENSION_ENVIRONMENT_VARIABLES: {
     parser: 'json',
     validate (variable, name): void {
       if (typeof variable !== 'boolean') {
-        this.logger.fatal(`Variable ${name} should be an boolean.`)
+        this.logger.fatal(`Variable ${name} should be an boolean. Type is %s.`, typeof variable)
 
         process.exit(120)
       }

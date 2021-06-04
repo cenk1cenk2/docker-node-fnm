@@ -36,7 +36,7 @@ export default class Init extends BaseCommand {
             templates: join(this.config.root, TEMPLATE_FOLDER)
           }
 
-          this.logger.debug('Set defaults for context: %o', ctx)
+          this.logger.debug('Set defaults for context: %o', ctx, { context: 'context' })
         }
       },
 
