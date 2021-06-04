@@ -13,9 +13,7 @@ defaults:
   before:
     __name: DEFAULTS_BEFORE
     __format: json
-  logs:
-    __name: DEFAULTS_LOGS
-    __format: json
+  logs: DEFAULTS_LOGS
   load_dotenv:
     __name: DEFAULTS_LOAD_DOTENV
     __format: json

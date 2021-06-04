@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source /root/.bashrc
 source /scripts/logger.sh
 source /.env
 
@@ -15,8 +16,6 @@ if [ -n "${INSTALL_DEPENDENCIES}" ]; then
 		npm i
 	else
 		log_error "Package manager unknown."
-
-		log_debug "$(cat /.env)"
 
 		exit 127
 	fi

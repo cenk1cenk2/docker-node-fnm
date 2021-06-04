@@ -1,8 +1,12 @@
 import { BaseCommand, checkExists, deepMergeWithArrayOverwrite, LogLevels, readFile, readRaw, writeFile } from '@cenk1cenk2/boilerplate-oclif'
 import { pipeProcessToLogger } from '@utils/pipe-through-logger'
+import { plainToClass } from 'class-transformer'
+import { transformAndValidate } from 'class-transformer-validator'
+import { validate } from 'class-validator'
 import config from 'config'
 import execa from 'execa'
 import fs from 'fs-extra'
+import { EOL } from 'os'
 import { join, normalize } from 'path'
 import { v4 as uuid } from 'uuid'
 
@@ -117,7 +121,7 @@ export default class Init extends BaseCommand {
             return deepMergeWithArrayOverwrite(ctx.config.defaults, service) as DockerService
           })
 
-          this.logger.debug('Merged default configuration to all services: %o', ctx.config.defaults)
+          this.logger.debug('Merged default configuration to all services: %o', ctx.config.defaults, { context: 'DEFAULTS' })
         }
       },
 
@@ -145,6 +149,19 @@ export default class Init extends BaseCommand {
           )
 
           this.logger.debug('Services discovered: %o', ctx.config.services, { custom: 'services' })
+        }
+      },
+
+      // validate all variables
+      {
+        task: async (ctx): Promise<void> => {
+          try {
+            ctx.config = await transformAndValidate(DockerServicesConfig, ctx.config, { validator: { skipMissingProperties: true, whitelist: false }, transformer: {} })
+
+            this.logger.debug('Validation succeeded.')
+          } catch (e) {
+            this.logger.fatal('Given configuration is not valid: %o', e)
+          }
         }
       },
 
@@ -235,10 +252,10 @@ export default class Init extends BaseCommand {
         task: async (ctx): Promise<void> => {
           switch (this.constants.loglevel) {
           case LogLevels.debug:
-            await writeFile(CONTAINER_ENV_FILE, 'LOG_LEVEL="DEBUG"', true)
+            await writeFile(CONTAINER_ENV_FILE, 'LOG_LEVEL=DEBUG' + EOL, true)
             break
           default:
-            await writeFile(CONTAINER_ENV_FILE, 'LOG_LEVEL="INFO"', true)
+            await writeFile(CONTAINER_ENV_FILE, 'LOG_LEVEL=INFO' + EOL, true)
           }
 
           const variables = [
@@ -247,7 +264,7 @@ export default class Init extends BaseCommand {
           ]
 
           for (const data of variables) {
-            await writeFile(CONTAINER_ENV_FILE, `${data.name}=${data.value}`, true)
+            await writeFile(CONTAINER_ENV_FILE, `${data.name}=${data.value}` + EOL, true)
           }
         }
       },
@@ -264,7 +281,8 @@ export default class Init extends BaseCommand {
           }
 
           if (preliminary.length > 0) {
-            await fs.writeFile(CONTAINER_LOCK_FILE, `PRELIMINARY_SERVICES=( ${preliminary.map((s) => s.id).join(' ')} )`)
+            await writeFile(CONTAINER_LOCK_FILE, `PRELIMINARY_SERVICES=( ${preliminary.map((s) => s.id).join(' ')} )` + EOL, true)
+            await writeFile(CONTAINER_LOCK_FILE, 'FIRST_SERVICE=true' + EOL, true)
 
             this.logger.debug('Wrote lock file for preliminary services.', { custom: 'sync-services' })
           }
@@ -347,11 +365,6 @@ export default class Init extends BaseCommand {
             }
           } else {
             service[variable.key] = String(env)
-          }
-
-          // typechecks for environment variables
-          if (variable.validate) {
-            variable.validate.bind(this)(services[variable.key], name)
           }
         }
       })

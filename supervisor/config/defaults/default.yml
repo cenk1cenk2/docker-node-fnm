@@ -9,7 +9,7 @@ check_directories: true # whether to check the given cwd directories to exist or
 defaults:
   enable: true # enables or disables a service
   before: false # a command to run before the task, can be an array of commands or false
-  logs: false # logs can be 'true' for logging the service, 'false' for disabling the logs and 'prefix' for prefixing all services with their cwd
+  logs: prefix # logs can be 'true' for logging the service, 'false' for disabling the logs and 'prefix' for prefixing all services with their cwd
   load_dotenv: true # if the flag is set, this will load the .env file in the service.cwd
   command: yarn dev:start # default command to run
   sync: false # this will run the sync flagged services first and one-by-one with the sync_wait and run the others afterwards

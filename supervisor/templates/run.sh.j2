@@ -1,11 +1,11 @@
 #!/bin/bash
 
-source /.env
 source /root/.bashrc
+source /scripts/logger.sh
+source /.env
 
 set -eo pipefail
 
-source /scripts/logger.sh
 
 SERVICE_ID="{{ service.id }}"
 
@@ -14,22 +14,30 @@ while [[ -f /.lock ]]; do
   source /.lock
 
   if [[ "${PRELIMINARY_SERVICES[0]}" == "${SERVICE_ID}" ]]; then
+
+    log_debug "This service with id {{ service.id }} and {{ service.cwd }} is next."
+
     # next in line is this service
     {% raw %}
     if [[ "${#PRELIMINARY_SERVICES[@]}" -eq 1 ]]; then
     {% endraw %}
+      s6-sleep {{ config.sync_wait }}
+
       # this is the last service, so remove the lock file
       rm /.lock
 
-      log_this "Removing lock file. Queue is empty." "${CYAN}SUPERVISOR${RESET}" "LIFETIME" "top"
+      log_this "Removing lock file. Queue is empty." "${CYAN}SUPERVISOR${RESET}" "LIFETIME"
     else
-      # there is still services to go so just remove this service from the queue
+    # there is still services to go so just remove this service from the queue
+
+      log_debug "Remaining preliminary services: ${PRELIMINARY_SERVICES[@]:1}"
+
       echo "PRELIMINARY_SERVICES=(${PRELIMINARY_SERVICES[@]:1})" >/.lock
 
       break
     fi
   else
-    log_wait '{{ service.name }} for {{ config.sync_wait }} seconds.' 'top'
+    log_wait "{{ service.name }} for {{ config.sync_wait }} seconds."
 
     s6-sleep {{ config.sync_wait }}
   fi
@@ -37,14 +45,17 @@ done
 
 {% if config.node_version != 'default' %}
 log_this "Config node version is not set as default using: {{ config.node_version }}" "${CYAN}{{ service.name }}${RESET}" "WARN"
-fnm use {{ config.node_version }}
+fdmove -c 2 1 /bin/bash -c "fnm use {{ config.node_version }} | awk '{print \"[${GREEN}{{ service.name }}${RESET}] \" \$0}'"
+
+log_debug "Using default node version for service with {{ service.id }} and {{ service.cwd }}."
 {% else %}
 if [ -f /data/.nvmrc ] || [ -f /data/.node-version ]; then
   cd /data
 
-  log_this "Node version file found, using with fnm." "${CYAN}{{ service.name }}${RESET}" "WARN"
+  fdmove -c 2 1 /bin/bash -c "fnm use > /dev/null 2&>1"
 
-  fnm use
+  log_debug "Using nvmrc node version for service with {{ service.id }} and {{ service.cwd }}."
+
 fi
 {% endif %}
 
@@ -60,7 +71,7 @@ fi
 {% endif %}
 
 # show start message
-log_start '{{ service.name }}' 'top'
+log_start "{{ service.name }}"
 
 {% if service.before is iterable and service.before | length > 0 %}
 # before tasks
@@ -71,21 +82,25 @@ log_this "Running before task: {{ command }}" "{{ service.name }}" "INFO"
 {% endfor %}
 {% endif %}
 # Package start command
-{% if service.logs == False %}
-log_this 'NO_LOG' '${CYAN}{{ service.name }}${RESET}' 'WARN'
+{% if service.logs == false %}
+log_this "${YELLOW}NO_LOG${RESET}" "${CYAN}{{ service.name }}${RESET}" "WARN"
 fdmove -c 2 1 /bin/bash -c "{{ service.parsed_command }} > /dev/null 2&>1"
-{% elif service.logs == True %}
+{% elif service.logs == true %}
 fdmove -c 2 1 /bin/bash -c "{{ service.parsed_command }}"
 {% else %}
-fdmove -c 2 1 /bin/bash -c "{{ service.parsed_command }} | awk '{print \"[${GREEN}{{ service.name }}${RESET}] \" \$0}'
+fdmove -c 2 1 /bin/bash -c "{{ service.parsed_command }}" | awk -v GREEN="${GREEN}" -v RESET="${RESET}" '{printf "[%s{{ service.name }}%s] %s\n",GREEN,RESET,$0}'
 {% endif %}
 
 # for run in band on crash
 if [[ -f /.lock ]]; then
   source /.lock
-  echo "PRELIMINARY_SERVICES=( ${SERVICE_ID} ${PRELIMINARY_SERVICES[@]} )" >/.lock
+
+  log_debug "{{ service.id }} in {{ service.cwd }} has crashed will add it back to lock file."
+
+  echo "PRELIMINARY_SERVICES=(${SERVICE_ID} ${PRELIMINARY_SERVICES[@]})" >/.lock
 fi
 
 # show finish message
-log_this 'CRASHED' '${RED}{{ service.name }}${RESET}' 'ERROR' 'top'
+log_error "{{ service.name }}"
+
 s6-sleep 5
