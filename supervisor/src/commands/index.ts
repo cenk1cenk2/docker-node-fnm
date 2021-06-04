@@ -351,10 +351,7 @@ export default class Init extends BaseCommand {
 
           // typechecks for environment variables
           if (variable.validate) {
-            variable.validate(services[variable.key])
-            this.logger.fatal(`Given variable "${name}" was supposed to be a "${variable.type}" while it is "${typeof services[variable.key]}".`, { custom: 'environment' })
-
-            process.exit(127)
+            variable.validate.bind(this)(services[variable.key], name)
           }
         }
       })

@@ -6,12 +6,9 @@
 
 Docker container with `fnm` installed that is capable of running monorepos in one container through `s6-overlay`.
 
----
-
-# Navigation
-
 <!-- toc -->
 
+- [Methodology](#methodology)
 - [Use Case](#use-case)
 - [Configuration](#configuration)
   - [Configuration File](#configuration-file)
@@ -23,6 +20,8 @@ Docker container with `fnm` installed that is capable of running monorepos in on
 - [Deploy](#deploy)
 
 <!-- tocstop -->
+
+---
 
 # Methodology
 
