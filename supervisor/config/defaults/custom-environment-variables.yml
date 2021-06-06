@@ -4,6 +4,9 @@ force_install: FORCE_INSTALL
 sync_wait:
   __name: SYNC_WAIT
   __format: json
+restart_wait:
+  __name: RESTART_WAIT
+  __format: json
 check_directories:
   __name: CHECK_DIRECTORIES
   __format: json
@@ -13,9 +16,7 @@ defaults:
   before:
     __name: DEFAULTS_BEFORE
     __format: json
-  logs:
-    __name: DEFAULTS_LOGS
-    __format: json
+  logs: DEFAULTS_LOGS
   load_dotenv:
     __name: DEFAULTS_LOAD_DOTENV
     __format: json

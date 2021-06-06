@@ -58,13 +58,14 @@ node_version: default # set the node version, overwrites the nvmrc file in the r
 package_manager: yarn # valid values npm, yarn
 force_install: false # to add --force flag to the package manager for initial start
 sync_wait: 10 # wait between the services a pre-given time if sync is true
+restart_wait: 3 # wait before restarting the service, if crashed, max 5 seconds
 check_directories: true # whether to check the given cwd directories to exist or not
 
 # default settings will be injected to all the services
 defaults:
   enable: true # enables or disables a service
   before: false # a command to run before the task, can be an array of commands or false
-  logs: false # logs can be 'true' for logging the service, 'false' for disabling the logs and 'prefix' for prefixing all services with their cwd
+  logs: prefix # logs can be 'true' for logging the service, 'false' for disabling the logs and 'prefix' for prefixing all services with their cwd
   load_dotenv: true # if the flag is set, this will load the .env file in the service.cwd
   command: yarn dev:start # default command to run
   sync: false # this will run the sync flagged services first and one-by-one with the sync_wait and run the others afterwards
@@ -96,6 +97,7 @@ services:
 | PACKAGE_MANAGER      | 'yarn' \| 'npm' |
 | FORCE_INSTALL        | boolean         |
 | SYNC_WAIT            | number          | in seconds  |
+| RESTART_WAIT         | number          | in seconds  |
 | CHECK_DIRECTORIES    | boolean         |
 
 ### Defaults
@@ -141,3 +143,7 @@ So if you want to modify a property from the 0th service in the services array i
 Image name: `cenk1cenk2/node-fnm`
 
 Mount your application root to `/data` in the container. [Check configuration](#configuration) for defining your services.
+
+For example configurations:
+
+- [yarn workspaces monorepo](https://github.com/cenk1cenk2/nestjs-tools/blob/master/docker-compose.yml)
