@@ -177,7 +177,7 @@ Proxy works in two ways:
 
 - All the commands you give will be proxied to the container like: `./cli.sh yarn install` will run `yarn install` inside the container in the mounted directory of `/data`.
 
-### `PROXY_WORKSPACE_ONLY` set to true
+### `PROXY_WORKSPACE_ONLY` set to false
 
 - First argument should be your relative path to `/data`, so imagine where you have a package called `some-package` and you have set `PROXY_PACKAGES_FOLDER` to `packages`, it will proxy the command to the `/data/packages/some-package`.
 - If you want to run anything outside of the package folder and in the root directory of `/data`, you can use the package keywords for it `root`, `.`, `ws`. So if you say `./cli.sh . ls`, it will just `ls` the `/data`.
