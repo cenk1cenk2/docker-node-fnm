@@ -23,7 +23,7 @@ Docker container with `fnm` installed that is capable of running monorepos in on
 - [Proxy Script](#proxy-script)
   - [Usage](#usage)
     - [`PROXY_WORKSPACE_ONLY` set to true](#proxy_workspace_only-set-to-true)
-    - [`PROXY_WORKSPACE_ONLY` set to true](#proxy_workspace_only-set-to-true-1)
+    - [`PROXY_WORKSPACE_ONLY` set to false](#proxy_workspace_only-set-to-false)
   - [Environment Variables](#environment-variables-1)
 
 <!-- tocstop -->
