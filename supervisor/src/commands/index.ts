@@ -11,7 +11,16 @@ import { v4 as uuid } from 'uuid'
 import 'reflect-metadata'
 import { InitCtx } from '@interfaces/commands/init.interface'
 import { SERVICE_EXTENSION_ENVIRONMENT_VARIABLES } from '@src/constants/environment-variables.constants'
-import { CONTAINER_ENV_FILE, CONTAINER_LOCK_FILE, MOUNTED_CONFIG_PATH, MOUNTED_DATA_FOLDER, S6_FOLDERS, TEMPLATES, TEMPLATE_FOLDER } from '@src/constants/file-system.constants'
+import {
+  CONFIG_FILES,
+  CONTAINER_ENV_FILE,
+  CONTAINER_LOCK_FILE,
+  MOUNTED_CONFIG_PATH,
+  MOUNTED_DATA_FOLDER,
+  S6_FOLDERS,
+  TEMPLATES,
+  TEMPLATE_FOLDER
+} from '@src/constants/file-system.constants'
 import { DockerService, DockerServicesConfig } from '@src/interfaces/configs/docker-services.interface'
 import { createEnvFile } from '@src/utils/env-file'
 import { jinja } from '@src/utils/jinja'
@@ -23,11 +32,6 @@ export default class Init extends BaseCommand {
     this.tasks.options = {
       rendererSilent: true
     }
-
-    // register exit listener
-    process.on('SIGINT', async () => {
-      this.logger.fatal('Caught terminate signal.', { context: 'exit' })
-    })
   }
 
   public async run (): Promise<void> {
@@ -36,7 +40,7 @@ export default class Init extends BaseCommand {
       {
         task: async (ctx): Promise<void> => {
           ctx.fileSystem = {
-            config: join(this.config.root, 'config', 'defaults'),
+            config: join(this.config.root, 'config', CONFIG_FILES.index),
             templates: join(this.config.root, TEMPLATE_FOLDER)
           }
 

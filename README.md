@@ -147,3 +147,40 @@ Mount your application root to `/data` in the container. [Check configuration](#
 For example configurations:
 
 - [yarn workspaces monorepo](https://github.com/cenk1cenk2/nestjs-tools/blob/master/docker-compose.yml)
+
+# Proxy Script
+
+Container has a inbuilt CLI script to proxy commands through the packages. You can add a basic shell script to your package root called `cli.sh` and proxy commands through the container.
+
+```bash
+#!/bin/bash
+
+CONTAINER_NAME=monorepo
+
+docker-compose exec "${CONTAINER_NAME}" /bin/bash -c "source /root/.bashrc && docker-node-fnm-init proxy ${*}"
+```
+
+There is also a gist available [here](https://gist.github.com/cenk1cenk2/0446f3be22a39c9f5fe5ee1cfb3cca63#file-cli-fnm-sh).
+
+## Usage
+
+Proxy works in two ways:
+
+### `PROXY_WORKSPACE_ONLY` set to true
+
+- All the commands you give will be proxied to the container like: `./cli.sh yarn install` will run `yarn install` inside the container in the mounted directory of `/data`.
+
+### `PROXY_WORKSPACE_ONLY` set to true
+
+- First argument should be your relative path to `/data`, so imagine where you have a package called `some-package` and you have set `PROXY_PACKAGES_FOLDER` to `packages`, it will proxy the command to the `/data/packages/some-package`.
+- If you want to run anything outside of the package folder and in the root directory of `/data`, you can use the package keywords for it `root`, `.`, `ws`. So if you say `./cli.sh . ls`, it will just `ls` the `/data`.
+
+## Environment Variables
+
+Proxy script has its own sets of environment variables for configuration but you can append those to your docker-compose file.
+
+| Environment Variable  | Format  | default |
+| --------------------- | ------- | ------- |
+| PROXY_WORKSPACE_ONLY  | boolean | false   |
+| PROXY_PACKAGES_FOLDER | string  | .       |
+| PROXY_LOAD_DOT_ENV    | boolean | true    |

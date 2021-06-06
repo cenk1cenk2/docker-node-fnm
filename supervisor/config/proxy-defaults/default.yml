@@ -1,0 +1,5 @@
+workspace_only: false # can run the command only in the workspace directory, will not ask for first variable package
+
+packages_folder: . # packages folder to not write the all path like packages/something
+
+load_dotenv: true # loads the dot env file in the given cwd

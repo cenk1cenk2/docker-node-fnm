@@ -21,3 +21,8 @@ export const S6_FOLDERS = {
   runScriptName: 'run',
   finishScriptName: 'finish'
 }
+
+export const CONFIG_FILES = {
+  index: 'defaults',
+  proxy: 'proxy-defaults'
+}

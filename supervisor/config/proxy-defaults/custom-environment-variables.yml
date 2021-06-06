@@ -1,0 +1,9 @@
+workspace_only:
+  __name: PROXY_WORKSPACE_ONLY
+  __format: json
+
+packages_folder: PROXY_PACKAGES_FOLDER
+
+load_dotenv:
+  __name: PROXY_LOAD_DOT_ENV
+  __format: json
