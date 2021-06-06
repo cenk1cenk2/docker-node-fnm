@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface, ValidationArguments, isSemVer, isEnum } from 'class-validator'
+import { isEnum, isSemVer, registerDecorator, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator'
 
 @ValidatorConstraint({ async: true })
 export class IsSemverOrDefaultConstraint implements ValidatorConstraintInterface {
