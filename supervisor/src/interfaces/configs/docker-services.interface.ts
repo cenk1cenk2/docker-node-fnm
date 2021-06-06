@@ -14,13 +14,16 @@ export class DockerServicesConfig {
   @IsPositive()
   sync_wait: number
 
+  @IsPositive()
+  restart_wait: number
+
   @IsBoolean()
   check_directories: boolean
 
   @ValidateNested()
   defaults: Pick<DockerService, 'enable' | 'logs' | 'load_dotenv' | 'before' | 'command' | 'sync' | 'environment'>
 
-  @ValidateNested()
+  @ValidateNested({ each: true })
   services: DockerService[]
 }
 
@@ -37,13 +40,13 @@ export class DockerService {
   @IsBoolean()
   enable?: boolean
 
-  @IsEnum([ 'prefix', true, false ])
+  @IsEnum([ 'prefix', true, false, 'true', 'false' ])
   logs?: 'prefix' | boolean
 
   @IsBoolean()
   load_dotenv?: boolean
 
-  @IsString()
+  @IsString({ each: true })
   before?: false | string[]
 
   @IsString()
@@ -57,4 +60,7 @@ export class DockerService {
 
   @IsObject()
   environment?: Record<string, string>
+
+  @IsString()
+  parsed_environment?: string
 }

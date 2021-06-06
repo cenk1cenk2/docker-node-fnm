@@ -1,8 +1,6 @@
 import { BaseCommand, checkExists, deepMergeWithArrayOverwrite, LogLevels, readFile, readRaw, writeFile } from '@cenk1cenk2/boilerplate-oclif'
 import { pipeProcessToLogger } from '@utils/pipe-through-logger'
-import { plainToClass } from 'class-transformer'
 import { transformAndValidate } from 'class-transformer-validator'
-import { validate } from 'class-validator'
 import config from 'config'
 import execa from 'execa'
 import fs from 'fs-extra'
@@ -10,10 +8,12 @@ import { EOL } from 'os'
 import { join, normalize } from 'path'
 import { v4 as uuid } from 'uuid'
 
+import 'reflect-metadata'
 import { InitCtx } from '@interfaces/commands/init.interface'
 import { SERVICE_EXTENSION_ENVIRONMENT_VARIABLES } from '@src/constants/environment-variables.constants'
 import { CONTAINER_ENV_FILE, CONTAINER_LOCK_FILE, MOUNTED_CONFIG_PATH, MOUNTED_DATA_FOLDER, S6_FOLDERS, TEMPLATES, TEMPLATE_FOLDER } from '@src/constants/file-system.constants'
 import { DockerService, DockerServicesConfig } from '@src/interfaces/configs/docker-services.interface'
+import { createEnvFile } from '@src/utils/env-file'
 import { jinja } from '@src/utils/jinja'
 
 export default class Init extends BaseCommand {
@@ -134,17 +134,15 @@ export default class Init extends BaseCommand {
               service.id = uuid()
               service.name = service.name ?? service.cwd
 
-              // append the environment variables to command
-              if (typeof service.environment === 'object' && Object.keys(service.environment).length > 0) {
-                service.parsed_command = `${Object.entries(service.environment).reduce((o, [ envKey, envValue ]) => {
-                  return `${envKey}=${envValue} ${o}`
-                }, service.command)}`
-              } else {
-                service.parsed_command = service.command
+              // we wrap this inside "" so have to escape it all
+              service.parsed_command = service.command.replaceAll('"', '\\"')
+              if (Array.isArray(service.before) && service.before.length > 0) {
+                service.before = service.before.map((b) => b.replaceAll('"', '\\"'))
               }
 
-              // we wrap this inside "" so have to escape it all
-              service.parsed_command = service.parsed_command.replaceAll('"', '\\"')
+              if (service.environment && Object.keys(service.environment).length > 0) {
+                service.parsed_environment = Object.entries(service.environment).reduce((o, [ envKey, envValue ]) => o + `export ${envKey}=${envValue}` + EOL, '')
+              }
             })
           )
 
@@ -156,11 +154,22 @@ export default class Init extends BaseCommand {
       {
         task: async (ctx): Promise<void> => {
           try {
-            ctx.config = await transformAndValidate(DockerServicesConfig, ctx.config, { validator: { skipMissingProperties: true, whitelist: false }, transformer: {} })
+            // @TODO: This part of validating and deserializing incoming config does not work properly with class validator.
+            ctx.config = await transformAndValidate(DockerServicesConfig, ctx.config, {
+              validator: {
+                skipMissingProperties: true,
+                whitelist: false,
+                always: true,
+                enableDebugMessages: true
+              },
+              transformer: { enableImplicitConversion: true }
+            })
 
-            this.logger.debug('Validation succeeded.')
+            this.logger.debug('Validation succeeded.', { context: 'validation' })
           } catch (e) {
-            this.logger.fatal('Given configuration is not valid: %o', e)
+            this.logger.fatal('Given configuration is not valid: %o', e, { context: 'validation' })
+
+            process.exit(120)
           }
         }
       },
@@ -247,24 +256,26 @@ export default class Init extends BaseCommand {
         }
       },
 
+      // clean prior instance
+      {
+        task: async (): Promise<void> => {
+          await Promise.all([ S6_FOLDERS.service, CONTAINER_ENV_FILE, CONTAINER_LOCK_FILE ].map((f) => fs.remove(f)))
+
+          await fs.mkdirp(S6_FOLDERS.service)
+        }
+      },
+
       // init variables for s6
       {
         task: async (ctx): Promise<void> => {
+          await createEnvFile(CONTAINER_ENV_FILE, { PACKAGE_MANAGER: ctx.config.package_manager, FORCE_INSTALL: ctx.config.force_install })
+
           switch (this.constants.loglevel) {
           case LogLevels.debug:
-            await writeFile(CONTAINER_ENV_FILE, 'LOG_LEVEL=DEBUG' + EOL, true)
+            await createEnvFile(CONTAINER_ENV_FILE, { LOG_LEVEL: 5 }, true)
             break
           default:
-            await writeFile(CONTAINER_ENV_FILE, 'LOG_LEVEL=INFO' + EOL, true)
-          }
-
-          const variables = [
-            { name: 'PACKAGE_MANAGER', value: ctx.config.package_manager },
-            { name: 'FORCE_INSTALL', value: ctx.config.force_install }
-          ]
-
-          for (const data of variables) {
-            await writeFile(CONTAINER_ENV_FILE, `${data.name}=${data.value}` + EOL, true)
+            await createEnvFile(CONTAINER_ENV_FILE, { LOG_LEVEL: 4 }, true)
           }
         }
       },
@@ -281,14 +292,13 @@ export default class Init extends BaseCommand {
           }
 
           if (preliminary.length > 0) {
-            await writeFile(CONTAINER_LOCK_FILE, `PRELIMINARY_SERVICES=( ${preliminary.map((s) => s.id).join(' ')} )` + EOL, true)
-            await writeFile(CONTAINER_LOCK_FILE, 'FIRST_SERVICE=true' + EOL, true)
+            await createEnvFile(CONTAINER_LOCK_FILE, { PRELIMINARY_SERVICES: `(${preliminary.map((s) => s.id).join(' ')})`, FIRST_SERVICE: true })
 
-            this.logger.debug('Wrote lock file for preliminary services.', { custom: 'sync-services' })
+            this.logger.debug('Wrote lock file for preliminary services.', { custom: 'preliminary-services' })
           }
 
           if (enabled.length < 1) {
-            this.logger.fatal('No service is enabled at the moment.')
+            this.logger.fatal('No service is enabled at the moment. Please check the configuration.')
 
             process.exit(120)
           }
@@ -300,22 +310,27 @@ export default class Init extends BaseCommand {
   }
 
   private async createRunScriptForService (ctx: InitCtx, services: DockerService[]): Promise<void> {
-    const templatePath = join(ctx.fileSystem.templates, TEMPLATES.run)
-    const template = await readRaw(templatePath)
+    const runTemplatePath = join(ctx.fileSystem.templates, TEMPLATES.run)
+    const runTemplate = await readRaw(runTemplatePath)
+    const finishTemplatePath = join(ctx.fileSystem.templates, TEMPLATES.finish)
+    const finishTemplate = await readRaw(finishTemplatePath)
 
     await Promise.all(
       services.map(async (service) => {
-        const s6ServiceRunTemplate = jinja(ctx.fileSystem.templates).renderString(template, { service, config: ctx.config })
-        const s6ServiceDir = join(S6_FOLDERS.service, service.id)
-        const s6ServiceRunScriptPath = join(s6ServiceDir, S6_FOLDERS.runScriptName)
+        const runScriptTemplate = jinja(ctx.fileSystem.templates).renderString(runTemplate, { service, config: ctx.config })
+        const finishScriptTemplate = jinja(ctx.fileSystem.templates).renderString(finishTemplate, { service, config: ctx.config })
 
-        await fs.mkdirp(s6ServiceDir)
+        const serviceDir = join(S6_FOLDERS.service, service.id)
+        const runScriptPath = join(serviceDir, S6_FOLDERS.runScriptName)
+        const finishScriptPath = join(serviceDir, S6_FOLDERS.finishScriptName)
 
-        await writeFile(s6ServiceRunScriptPath, s6ServiceRunTemplate)
+        await fs.mkdirp(serviceDir)
 
-        await fs.chmod(s6ServiceRunScriptPath, '0764')
+        await Promise.all([ writeFile(runScriptPath, runScriptTemplate), writeFile(finishScriptPath, finishScriptTemplate) ])
 
-        this.logger.debug('Initiated service run script for directory "%s": %s', service.cwd, s6ServiceRunScriptPath, { context: 'services' })
+        await Promise.all([ fs.chmod(runScriptPath, '0777'), fs.chmod(finishScriptPath, '0777') ])
+
+        this.logger.debug('Initiated service scripts for "%s" in directory: %s', service.cwd, serviceDir, { context: 'services' })
       })
     )
   }
@@ -363,6 +378,8 @@ export default class Init extends BaseCommand {
 
               throw e
             }
+          } else if (typeof variable.parser === 'function') {
+            service[variable.key] = variable.parser(env, name)
           } else {
             service[variable.key] = String(env)
           }

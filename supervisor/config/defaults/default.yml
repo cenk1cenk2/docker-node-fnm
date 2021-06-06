@@ -3,6 +3,7 @@ node_version: default # set the node version, overwrites the nvmrc file in the r
 package_manager: yarn # valid values npm, yarn
 force_install: false # to add --force flag to the package manager for initial start
 sync_wait: 10 # wait between the services a pre-given time if sync is true
+restart_wait: 3 # wait before restarting the service, if crashed, max 5 seconds
 check_directories: true # whether to check the given cwd directories to exist or not
 
 # default settings will be injected to all the services

@@ -58,6 +58,7 @@ node_version: default # set the node version, overwrites the nvmrc file in the r
 package_manager: yarn # valid values npm, yarn
 force_install: false # to add --force flag to the package manager for initial start
 sync_wait: 10 # wait between the services a pre-given time if sync is true
+restart_wait: 3 # wait before restarting the service, if crashed, max 5 seconds
 check_directories: true # whether to check the given cwd directories to exist or not
 
 # default settings will be injected to all the services
@@ -96,6 +97,7 @@ services:
 | PACKAGE_MANAGER      | 'yarn' \| 'npm' |
 | FORCE_INSTALL        | boolean         |
 | SYNC_WAIT            | number          | in seconds  |
+| RESTART_WAIT         | number          | in seconds  |
 | CHECK_DIRECTORIES    | boolean         |
 
 ### Defaults
@@ -141,3 +143,7 @@ So if you want to modify a property from the 0th service in the services array i
 Image name: `cenk1cenk2/node-fnm`
 
 Mount your application root to `/data` in the container. [Check configuration](#configuration) for defining your services.
+
+For example configurations:
+
+- [yarn workspaces monorepo](https://github.com/cenk1cenk2/nestjs-tools/blob/master/docker-compose.yml)

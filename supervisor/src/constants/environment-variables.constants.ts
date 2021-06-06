@@ -3,7 +3,7 @@ import { DockerService } from '@src/interfaces/configs/docker-services.interface
 export const SERVICE_EXTENSION_ENVIRONMENT_VARIABLES: {
   required?: boolean
   name: string
-  parser?: 'json'
+  parser?: 'json' | ((value: any, name: string) => any)
   key: keyof DockerService
 }[] = [
   {
@@ -28,7 +28,13 @@ export const SERVICE_EXTENSION_ENVIRONMENT_VARIABLES: {
   {
     name: 'LOGS',
     key: 'logs',
-    parser: 'json'
+    parser: (value): boolean | string => {
+      if (value === 'true' || value === 'false') {
+        return JSON.parse(value)
+      } else {
+        return String(value)
+      }
+    }
   },
   {
     name: 'LOAD_DOTENV',

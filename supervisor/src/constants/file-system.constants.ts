@@ -9,7 +9,8 @@ export const MOUNTED_CONFIG_PATH = join(MOUNTED_CONFIG_FOLDER, 'services.yml')
 export const TEMPLATE_FOLDER = 'templates'
 
 export const TEMPLATES = {
-  run: 'run.sh.j2'
+  run: 'run.sh.j2',
+  finish: 'finish.sh.j2'
 }
 
 export const CONTAINER_ENV_FILE = '/.env'
@@ -17,5 +18,6 @@ export const CONTAINER_LOCK_FILE = '/.lock'
 
 export const S6_FOLDERS = {
   service: '/etc/services.d',
-  runScriptName: 'run'
+  runScriptName: 'run',
+  finishScriptName: 'finish'
 }

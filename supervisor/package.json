@@ -16,6 +16,7 @@
     "build": "tsc -p tsconfig.build.json",
     "postbuild": "tscpaths -p tsconfig.paths.json -s ./dist -o ./dist",
     "dev:build": "yarn prebuild && tsc -p tsconfig.json && yarn postbuild",
+    "dev:build:container": "docker build ../. -t cenk1cenk2/node-fnm:test",
     "dev:start": "yarn dev:build && TS_NODE_PROJECT='tsconfig.paths.json' tsc-watch --noClear --onSuccess \"yarn postbuild\"",
     "lint": "prettier --write src/ --loglevel warn && eslint --ext .json,.ts,.js --fix src/",
     "lint:check": "eslint --ext .json,.ts,.js src/",
@@ -79,6 +80,7 @@
     "listr2": "^3.9.0",
     "nunjucks": "^3.2.3",
     "object-path": "^0.11.5",
+    "reflect-metadata": "^0.1.13",
     "through": "^2.3.8",
     "tslib": "^2.2.0",
     "uuid": "^8.3.2"

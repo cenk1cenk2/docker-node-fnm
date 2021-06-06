@@ -1,0 +1,25 @@
+#!/bin/bash
+
+source /root/.bashrc
+source /.env
+source /scripts/logger.sh
+
+SERVICE_ID="{{ service.id }}"
+
+# for run in band on crash
+if [[ -f /.lock ]]; then
+source /.lock
+
+  if [ -n "${PRELIMINARY_SERVICES}" ]; then
+    log_debug "${SERVICE_ID} in {{ service.cwd }} has crashed will add it back to lock file."
+
+    echo "PRELIMINARY_SERVICES=(${SERVICE_ID} ${PRELIMINARY_SERVICES[@]:0})" >/.lock
+
+    log_debug "Lock file modified: $(cat /.lock)"
+  fi
+fi
+
+# show finish message
+log_error "{{ service.name }} has crashed. Restarting in {{ config.restart_wait }} seconds."
+
+s6-sleep {{ config.restart_wait }}

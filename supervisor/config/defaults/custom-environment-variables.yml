@@ -4,6 +4,9 @@ force_install: FORCE_INSTALL
 sync_wait:
   __name: SYNC_WAIT
   __format: json
+restart_wait:
+  __name: RESTART_WAIT
+  __format: json
 check_directories:
   __name: CHECK_DIRECTORIES
   __format: json

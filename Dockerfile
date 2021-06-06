@@ -13,8 +13,8 @@ WORKDIR /tmp
 # Install s6 overlay
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-amd64.tar.gz /tmp/
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
-	# create directories
-	mkdir -p /etc/services.d && mkdir -p /etc/cont-init.d && mkdir -p /s6-bin
+  # create directories
+  mkdir -p /etc/services.d && mkdir -p /etc/cont-init.d && mkdir -p /s6-bin
 
 # Install fnm and initiate it
 RUN apt-get update && apt-get install -y curl unzip && \
@@ -56,7 +56,7 @@ WORKDIR /data
 RUN mkdir -p /scripts
 
 # Copy scripts
-ADD https://gist.githubusercontent.com/cenk1cenk2/e03d8610534a9c78f755c1c1ed93a293/raw/logger.sh /scripts/logger.sh
+ADD https://gist.githubusercontent.com/cenk1cenk2/e03d8610534a9c78f755c1c1ed93a293/raw/2e22e9a5ff34a49f0f5338cd7d137456ba56086f/logger.sh /scripts/logger.sh
 RUN chmod +x /scripts/*.sh
 
 # Move s6 supervisor files inside the container
@@ -70,4 +70,4 @@ ENV S6_KEEP_ENV 1
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS 2
 ENV S6_FIX_ATTRS_HIDDEN 1
 
-ENTRYPOINT ["/init"]
+ENTRYPOINT ["/bin/bash", "-c", "/init"]
