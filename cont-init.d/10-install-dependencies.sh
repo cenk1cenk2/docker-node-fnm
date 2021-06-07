@@ -10,6 +10,12 @@ cd /data
 [ "${FORCE_INSTALL}" == "true" ] && log_warn "Force installing dependencies is defined. Will install dependencies." && INSTALL_DEPENDENCIES=true
 
 if [ -n "${INSTALL_DEPENDENCIES}" ]; then
+	if [ "${NODE_VERSION}" != "default" ]; then
+		fnm use ${NODE_VERSION}
+	elif [ -f ".nvmrc" ] || [ -f ".node-version" ]; then
+		fnm use
+	fi
+
 	if [ "${PACKAGE_MANAGER}" == "yarn" ]; then
 		yarn
 	elif [ "${PACKAGE_MANAGER}" == "npm" ]; then

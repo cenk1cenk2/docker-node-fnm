@@ -272,7 +272,9 @@ export default class Init extends BaseCommand {
       // init variables for s6
       {
         task: async (ctx): Promise<void> => {
-          await createEnvFile(CONTAINER_ENV_FILE, { PACKAGE_MANAGER: ctx.config.package_manager, FORCE_INSTALL: ctx.config.force_install })
+          await createEnvFile(CONTAINER_ENV_FILE, {
+            PACKAGE_MANAGER: ctx.config.package_manager, FORCE_INSTALL: ctx.config.force_install, NODE_VERSION: ctx.config.node_version
+          })
 
           switch (this.constants.loglevel) {
           case LogLevels.debug:
