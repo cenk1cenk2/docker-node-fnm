@@ -22,4 +22,4 @@ defaults:
 services:
   - cwd: . # current working directory relative to /data
     # name: # you can give a friendly name to the service, if empty it will use the cwd
-    command: yarn dev:start
+    # command: yarn dev:start
