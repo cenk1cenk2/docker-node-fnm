@@ -39,7 +39,9 @@ RUN apt-get update && apt-get install -y curl unzip && \
   /bin/bash -c "source /root/.bashrc && node -v" && \
   /bin/bash -c "source /root/.bashrc && npm -v" && \
   /bin/bash -c "source /root/.bashrc && yarn -v" && \
-  mkdir -p /data
+  mkdir -p /data && \
+  # Add running dependencies
+  apt-get install -y git
 
 # Copy the supervisor
 COPY ./supervisor /cli
