@@ -119,22 +119,34 @@ export default class Init extends BaseCommand {
           const command = this.argv.join(' ')
           this.logger.info('%s : $ %s', ctx.root, command, { context: 'run' })
 
-          let environment: Record<string, any>
+          let environment: Record<string, any> = {}
           const envPath = join(ctx.root, '.env')
           if (ctx.config.load_dotenv && fs.existsSync(envPath)) {
             try {
               environment = dotenv.parse(fs.readFileSync(envPath))
+
+              this.logger.info('Environment file imported.', { context: 'environment' })
             } catch {
               this.logger.fatal('Error while parsing environment file: %s', envPath)
             }
           }
 
-          await execa.command(`source /root/.bashrc && ${command}`, {
-            shell: '/bin/bash',
-            stdio: 'inherit',
-            cwd: ctx.root,
-            env: environment
-          })
+          this.logger.debug('%o', environment, { context: 'environment' })
+
+          try {
+            await execa.command(`source /root/.bashrc && fnm use --install-if-missing && cd ${ctx.root} && ${command}`, {
+              shell: '/bin/bash',
+              stdio: 'inherit',
+              env: environment,
+              extendEnv: false
+            })
+          } catch (e) {
+            this.logger.fatal(command)
+
+            this.logger.debug(e)
+
+            process.exit(127)
+          }
         }
       }
     ])
