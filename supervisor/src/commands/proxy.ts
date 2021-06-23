@@ -116,7 +116,7 @@ export default class Init extends BaseCommand {
       // run command
       {
         task: async (ctx): Promise<void> => {
-          const command = this.argv.join(' ')
+          let command = this.argv.join(' ')
           this.logger.info('%s : $ %s', ctx.root, command, { context: 'run' })
 
           let environment: Record<string, any> = {}
@@ -132,6 +132,9 @@ export default class Init extends BaseCommand {
           }
 
           this.logger.debug('%o', environment, { context: 'environment' })
+
+          command = this.isVerbose ? command + ' ' + '--verbose' : command
+          command = this.isDebug ? command + ' ' + '--debug' : command
 
           try {
             await execa.command(`source /root/.bashrc && fnm use --install-if-missing && cd ${ctx.root} && ${command}`, {
