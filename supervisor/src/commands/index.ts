@@ -140,6 +140,7 @@ export default class Init extends BaseCommand {
 
               // we wrap this inside "" so have to escape it all
               service.parsed_command = service.command.replaceAll('"', '\\"')
+
               if (Array.isArray(service.before) && service.before.length > 0) {
                 service.before = service.before.map((b) => b.replaceAll('"', '\\"'))
               }

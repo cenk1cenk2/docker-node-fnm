@@ -20,6 +20,6 @@ source /.lock
 fi
 
 # show finish message
-log_error "{{ service.name }} has crashed. Restarting in {{ config.restart_wait }} seconds."
+log_error "{{ service.name }} has crashed or killed. Trying to restarting in {{ config.restart_wait }} seconds."
 
 s6-sleep {{ config.restart_wait }}
