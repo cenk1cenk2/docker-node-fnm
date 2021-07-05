@@ -26,13 +26,13 @@ RUN apt-get update && apt-get install -y curl unzip && \
   rm -rf /tmp/* && \
   # clean up dependencies
   apt-get remove -y curl unzip && apt-get autoremove -y && \
-  # add fnm for bash
-  printf 'eval "$(fnm env --shell bash)"\nalias yarn="/opt/fnm/aliases/default/bin/yarn"'>> /root/.bashrc && \
   # smoke test for fnm
   /bin/bash -c "fnm -V" && \
   # install latest node version as default
   /bin/bash -c "fnm install ${FNM_INSTALL_VERSION}" && \
   /bin/bash -c "fnm alias default ${FNM_INSTALL_VERSION}" && \
+  # add fnm for bash
+  printf 'eval "$(fnm env --shell bash)"\nalias yarn="/opt/fnm/aliases/default/bin/yarn"'>> /root/.bashrc && \
   /bin/bash -c "source /root/.bashrc && fnm use default" && \
   /bin/bash -c "source /root/.bashrc && npm -g i yarn" && \
   # smoke test
