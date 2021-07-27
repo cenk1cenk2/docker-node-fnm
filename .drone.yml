@@ -1,3 +1,4 @@
+---
 kind: pipeline
 type: docker
 name: default
@@ -17,21 +18,15 @@ steps:
 
   - name: lint
     image: node:current-alpine
-    depends_on:
-      - install
     commands:
       - yarn command lint:check
 
   - name: build
     image: node:current-alpine
-    depends_on:
-      - install
     commands:
       - yarn command build
 
   - name: semantic-release
-    depends_on:
-      - build
     image: cenk1cenk2/drone-semantic-release
     settings:
       semantic_release: false
@@ -50,8 +45,6 @@ steps:
 
   - name: publish-buildx
     image: docker:dind
-    depends_on:
-      - semantic-release
     volumes:
       - name: dockersock
         path: /var/run
