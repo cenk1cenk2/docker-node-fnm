@@ -73,9 +73,6 @@ steps:
       DOCKER_PASSWORD:
         from_secret: docker_password
       DOCKER_IMAGE_TAG: -t cenk1cenk2/node-fnm:latest
-    when:
-      event:
-        - push
 
 services:
   - name: docker
@@ -86,9 +83,6 @@ services:
     volumes:
       - name: dockersock
         path: /var/run
-    when:
-      event:
-        - push
 
 volumes:
   - name: dockersock
