@@ -1,4 +1,3 @@
----
 kind: pipeline
 type: docker
 name: default
@@ -18,21 +17,15 @@ steps:
 
   - name: lint
     image: node:current-alpine
-    depends_on:
-      - install
     commands:
       - yarn command lint:check
 
   - name: build
     image: node:current-alpine
-    depends_on:
-      - install
     commands:
       - yarn command build
 
   - name: semantic-release
-    depends_on:
-      - build
     image: cenk1cenk2/drone-semantic-release
     settings:
       semantic_release: false
@@ -49,45 +42,14 @@ steps:
         from_secret: docker_password
       docker_repo: cenk1cenk2/node-fnm
 
-  - name: publish-buildx
-    image: docker:dind
-    depends_on:
-      - semantic-release
-    volumes:
-      - name: dockersock
-        path: /var/run
-    commands:
-      - docker version
-      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-      - apk add curl --no-cache --no-progress
-      - mkdir -p ~/.docker/cli-plugins
-      - curl -sSLo ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/$BUILDX_VERSION/buildx-$BUILDX_VERSION.linux-amd64
-      - chmod +x ~/.docker/cli-plugins/docker-buildx
-      - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-      - docker buildx create --use --name builder
-      - docker buildx inspect --bootstrap
-      - docker buildx build --platform linux/amd64,linux/arm64 $DOCKER_IMAGE_TAG --push .
-    environment:
-      BUILDX_VERSION: v0.5.1
-      DOCKER_USERNAME:
+  - name: publish
+    image: plugins/docker
+    settings:
+      repo: cenk1cenk2/node-fnm
+      username:
         from_secret: docker_username
-      DOCKER_PASSWORD:
+      password:
         from_secret: docker_password
-      DOCKER_IMAGE_TAG: -t cenk1cenk2/node-fnm:latest
-
-services:
-  - name: docker
-    image: docker:dind
-    privileged: true
-    command:
-      - --experimental
-    volumes:
-      - name: dockersock
-        path: /var/run
-
-volumes:
-  - name: dockersock
-    temp: {}
 
 image_pull_secrets:
   - dockerconfigjson
