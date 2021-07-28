@@ -67,6 +67,7 @@ force_install: false # to add --force flag to the package manager for initial st
 sync_wait: 10 # wait between the services a pre-given time if sync is true
 restart_wait: 3 # wait before restarting the service, if crashed, max 5 seconds
 check_directories: true # whether to check the given cwd directories to exist or not
+before_all: false # runs something before running anything else, can be an array of command or false
 
 # default settings will be injected to all the services
 defaults:
@@ -98,14 +99,15 @@ services:
 
 ### Global Settings
 
-| Environment Variable | Format          | description |
-| -------------------- | --------------- | ----------- |
+| Environment Variable | Format          | description              |
+| -------------------- | --------------- | ------------------------ |
 | NODE_VERSION         | string          |
 | PACKAGE_MANAGER      | 'yarn' \| 'npm' |
 | FORCE_INSTALL        | boolean         |
-| SYNC_WAIT            | number          | in seconds  |
-| RESTART_WAIT         | number          | in seconds  |
+| SYNC_WAIT            | number          | in seconds               |
+| RESTART_WAIT         | number          | in seconds               |
 | CHECK_DIRECTORIES    | boolean         |
+| BEFORE_ALL           | json            | array of commands to run |
 
 ### Defaults
 

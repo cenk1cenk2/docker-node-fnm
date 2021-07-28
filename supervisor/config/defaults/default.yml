@@ -5,6 +5,7 @@ force_install: false # to add --force flag to the package manager for initial st
 sync_wait: 10 # wait between the services a pre-given time if sync is true
 restart_wait: 3 # wait before restarting the service, if crashed, max 5 seconds
 check_directories: true # whether to check the given cwd directories to exist or not
+before_all: false # runs something before running anything else, can be an array of command or false
 
 # default settings will be injected to all the services
 defaults:

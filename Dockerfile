@@ -17,29 +17,31 @@ RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
   mkdir -p /etc/services.d && mkdir -p /etc/cont-init.d && mkdir -p /s6-bin
 
 # Install fnm and initiate it
-RUN apt-get update && apt-get install -y curl unzip && \
+RUN apt-get update && apt-get install -y curl unzip gnupg2 && \
   # install fnm
   curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "/opt/fnm" --skip-shell && \
   ln -s /opt/fnm/fnm /usr/bin/ && chmod +x /usr/bin/fnm && \
-  # clean up build dependencies
-  # clean up tmp
-  rm -rf /tmp/* && \
-  # clean up dependencies
-  apt-get remove -y curl unzip && apt-get autoremove -y && \
   # smoke test for fnm
   /bin/bash -c "fnm -V" && \
   # install latest node version as default
   /bin/bash -c "fnm install ${FNM_INSTALL_VERSION}" && \
   /bin/bash -c "fnm alias default ${FNM_INSTALL_VERSION}" && \
   # add fnm for bash
-  printf 'eval "$(fnm env --shell bash)"\nalias yarn="/opt/fnm/aliases/default/bin/yarn"'>> /root/.bashrc && \
+  printf 'eval "$(fnm env --shell bash)"'>> /root/.bashrc && \
   /bin/bash -c "source /root/.bashrc && fnm use default" && \
-  /bin/bash -c "source /root/.bashrc && npm -g i yarn" && \
+  /bin/bash -c "curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -" && \
+  /bin/bash -c 'echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list' && \
+  /bin/bash -c 'apt-get update && apt-get install -y yarn' && \
   # smoke test
   /bin/bash -c "source /root/.bashrc && node -v" && \
   /bin/bash -c "source /root/.bashrc && npm -v" && \
   /bin/bash -c "source /root/.bashrc && yarn -v" && \
   mkdir -p /data && \
+  # clean up build dependencies
+  # clean up tmp
+  rm -rf /tmp/* && \
+  # clean up dependencies
+  apt-get remove -y curl unzip gnupg2 && apt-get autoremove -y && \
   # Add running dependencies
   apt-get install -y git
 

@@ -159,7 +159,6 @@ export default class Init extends BaseCommand {
       {
         task: async (ctx): Promise<void> => {
           try {
-            // @TODO: This part of validating and deserializing incoming config does not work properly with class validator.
             ctx.config = await transformAndValidate(DockerServicesConfig, ctx.config, {
               validator: {
                 skipMissingProperties: true,
@@ -274,7 +273,9 @@ export default class Init extends BaseCommand {
       {
         task: async (ctx): Promise<void> => {
           await createEnvFile(CONTAINER_ENV_FILE, {
-            PACKAGE_MANAGER: ctx.config.package_manager, FORCE_INSTALL: ctx.config.force_install, NODE_VERSION: ctx.config.node_version
+            PACKAGE_MANAGER: ctx.config.package_manager,
+            FORCE_INSTALL: ctx.config.force_install,
+            NODE_VERSION: ctx.config.node_version
           })
 
           switch (this.constants.loglevel) {
@@ -311,6 +312,27 @@ export default class Init extends BaseCommand {
           }
 
           await this.createRunScriptForService(ctx, enabled)
+        }
+      },
+
+      // run pre scripts
+      {
+        skip: (ctx): boolean => !ctx.config.before_all,
+        task: async (ctx): Promise<void> => {
+          this.logger.info('before_all is defined, running commands before starting services.', { custom: 'before-all' })
+
+          for (const command of ctx.config.before_all as string[]) {
+            this.logger.info(`$ ${command}`, { custom: 'before-all' })
+
+            await pipeProcessToLogger.bind(this)({
+              instance: execa.command(command, {
+                shell: '/bin/bash',
+                detached: false,
+                extendEnv: false
+              }),
+              options: { meta: [ { custom: 'before-all', trimEmptyLines: true } ] }
+            })
+          }
         }
       }
     ])

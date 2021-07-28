@@ -10,6 +10,9 @@ restart_wait:
 check_directories:
   __name: CHECK_DIRECTORIES
   __format: json
+before_all:
+  __name: BEFORE_ALL
+  __format: json
 
 defaults:
   enable: DEFAULTS_ENABLE

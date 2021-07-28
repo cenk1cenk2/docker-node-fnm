@@ -20,6 +20,9 @@ export class DockerServicesConfig {
   @IsBoolean()
   check_directories: boolean
 
+  @IsString({ each: true })
+  before_all?: false | string[]
+
   @ValidateNested()
   defaults: Pick<DockerService, 'enable' | 'logs' | 'load_dotenv' | 'before' | 'command' | 'sync' | 'environment'>
 
