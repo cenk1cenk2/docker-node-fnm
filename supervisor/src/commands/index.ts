@@ -328,7 +328,8 @@ export default class Init extends BaseCommand {
               instance: execa.command(command, {
                 shell: '/bin/bash',
                 detached: false,
-                extendEnv: false
+                extendEnv: false,
+                cwd: MOUNTED_DATA_FOLDER
               }),
               options: { meta: [ { custom: 'before-all', trimEmptyLines: true } ] }
             })
