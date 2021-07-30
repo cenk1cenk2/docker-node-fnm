@@ -1,4 +1,4 @@
-import { IsSemverOrDefault } from '@utils/validator'
+import { IsFalseOrStringArray, IsSemverOrDefault } from '@utils/validator'
 import { IsBoolean, IsEnum, IsObject, IsPositive, IsString, IsUUID, ValidateNested } from 'class-validator'
 
 export class DockerServicesConfig {
@@ -20,7 +20,7 @@ export class DockerServicesConfig {
   @IsBoolean()
   check_directories: boolean
 
-  @IsString({ each: true })
+  @IsFalseOrStringArray()
   before_all?: false | string[]
 
   @ValidateNested()
@@ -49,7 +49,7 @@ export class DockerService {
   @IsBoolean()
   load_dotenv?: boolean
 
-  @IsString({ each: true })
+  @IsFalseOrStringArray()
   before?: false | string[]
 
   @IsString()
