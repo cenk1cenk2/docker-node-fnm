@@ -315,6 +315,38 @@ export default class Init extends BaseCommand {
         }
       },
 
+      // run install scripts if required
+      {
+        skip: (ctx): boolean => fs.existsSync(join(MOUNTED_DATA_FOLDER, 'node_modules')) && !ctx.config.force_install,
+        task: async (ctx): Promise<void> => {
+          if (ctx.config.force_install) {
+            this.logger.info('force_install is defined, running dependency installation.', { custom: 'dependencies' })
+          } else {
+            this.logger.info('node_modules is not found in the root of the mounted folder, running dependency installation.', { custom: 'dependencies' })
+          }
+
+          let command: string
+
+          if (ctx.config.package_manager === 'yarn') {
+            command = 'yarn install'
+          } else if (ctx.config.package_manager === 'npm') {
+            command = 'npm install'
+          } else {
+            this.logger.fatal('Package manager value is not known: %s', ctx.config.package_manager, { custom: 'dependencies' })
+          }
+
+          await pipeProcessToLogger.bind(this)({
+            instance: execa.command(`fnm use && ${command}`, {
+              shell: '/bin/bash',
+              detached: false,
+              extendEnv: false,
+              cwd: MOUNTED_DATA_FOLDER
+            }),
+            options: { meta: [ { custom: ctx.config.package_manager, trimEmptyLines: true } ] }
+          })
+        }
+      },
+
       // run pre scripts
       {
         skip: (ctx): boolean => !ctx.config.before_all,
