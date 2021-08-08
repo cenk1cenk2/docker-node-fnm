@@ -9,6 +9,9 @@ export class DockerServicesConfig {
   package_manager: 'yarn' | 'npm'
 
   @IsBoolean()
+  dont_install: boolean
+
+  @IsBoolean()
   force_install: boolean
 
   @IsPositive()
@@ -17,7 +20,7 @@ export class DockerServicesConfig {
   @IsPositive()
   restart_wait: number
 
-  @IsBoolean()
+  @IsEnum([ true, false, 'true', 'false' ])
   check_directories: boolean
 
   @IsFalseOrStringArray()

@@ -317,7 +317,13 @@ export default class Init extends BaseCommand {
 
       // run install scripts if required
       {
-        skip: (ctx): boolean => fs.existsSync(join(MOUNTED_DATA_FOLDER, 'node_modules')) && !ctx.config.force_install,
+        skip: (ctx): boolean => {
+          if (ctx.config.dont_install) {
+            this.logger.warn('dont_install is defined, will not install any dependencies in any case.')
+          }
+
+          return fs.existsSync(join(MOUNTED_DATA_FOLDER, 'node_modules')) && !ctx.config.force_install && !ctx.config.dont_install
+        },
         task: async (ctx): Promise<void> => {
           if (ctx.config.force_install) {
             this.logger.info('force_install is defined, running dependency installation.', { custom: 'dependencies' })

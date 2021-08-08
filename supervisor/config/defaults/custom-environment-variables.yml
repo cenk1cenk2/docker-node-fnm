@@ -1,6 +1,11 @@
 node_version: NODE_VERSION
 package_manager: PACKAGE_MANAGER
-force_install: FORCE_INSTALL
+dont_install:
+  __name: DONT_INSTALL
+  __format: json
+force_install:
+  __name: FORCE_INSTALL
+  __format: json
 sync_wait:
   __name: SYNC_WAIT
   __format: json

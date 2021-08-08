@@ -63,6 +63,7 @@ A yaml configuration file can be mounted to container at `/config/services.yml`.
 # global settings
 node_version: default # set the node version, overwrites the nvmrc file in the root. version that can fnm or nvm can accept
 package_manager: yarn # valid values npm, yarn
+dont_install: false # disables the initial install process where node_modules is not found
 force_install: false # to add --force flag to the package manager for initial start
 sync_wait: 10 # wait between the services a pre-given time if sync is true
 restart_wait: 3 # wait before restarting the service, if crashed, max 5 seconds
@@ -103,6 +104,7 @@ services:
 | -------------------- | --------------- | ------------------------ |
 | NODE_VERSION         | string          |
 | PACKAGE_MANAGER      | 'yarn' \| 'npm' |
+| DONT_INSTALL         | boolean         |
 | FORCE_INSTALL        | boolean         |
 | SYNC_WAIT            | number          | in seconds               |
 | RESTART_WAIT         | number          | in seconds               |
