@@ -341,8 +341,14 @@ export default class Init extends BaseCommand {
             this.logger.fatal('Package manager value is not known: %s', ctx.config.package_manager, { custom: 'dependencies' })
           }
 
+          if (checkExists(join(MOUNTED_DATA_FOLDER, '.nvmrc')) || checkExists(join(MOUNTED_DATA_FOLDER, '.node-version'))) {
+            this.logger.debug('Node version file is found. appending to command.')
+
+            command = 'fnm use && ' + command
+          }
+
           await pipeProcessToLogger.bind(this)({
-            instance: execa.command(`fnm use && ${command}`, {
+            instance: execa.command(`${command}`, {
               shell: '/bin/bash',
               detached: false,
               extendEnv: false,
