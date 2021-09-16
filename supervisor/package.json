@@ -80,7 +80,7 @@
     "js-yaml": "^4.1.0",
     "listr2": "^3.12.1",
     "nunjucks": "^3.2.3",
-    "object-path": "^0.11.7",
+    "object-path": "^0.11.8",
     "reflect-metadata": "^0.1.13",
     "through": "^2.3.8",
     "tslib": "^2.3.1",
