@@ -309,26 +309,26 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cenk1cenk2/boilerplate-oclif@1.10.4":
-  version "1.10.4"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/boilerplate-oclif/-/boilerplate-oclif-1.10.4.tgz#7f47f3459f66567516f63a59dcd241aa8d335e71"
-  integrity sha512-1ULjghCxZ1wH3h9SY1r9lBBNnSBxCKHf0uEIuyePtEEuY2bLAbkklc59xBgMtfrUEvBckfbgTxr8TmX1b2rB9Q==
+"@cenk1cenk2/boilerplate-oclif@1.10.5":
+  version "1.10.5"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/boilerplate-oclif/-/boilerplate-oclif-1.10.5.tgz#c1b5c07caa9488d021dd9365db925df047795d9e"
+  integrity sha512-Z85Xzn2kUGwExvdXchnnLOXnJOHGLiWZSEsfmjMileUfCyjzB7XJ+T9ExbwIqcsLiQ9N3cZh1e9I7gOwOp32wA==
   dependencies:
     chalk "^4.1.2"
     config "^3.3.6"
     deepmerge "^4.2.2"
     figures "^3.2.0"
-    object-path-immutable "^4.1.1"
+    object-path-immutable "^4.1.2"
     table "^6.7.1"
     tslib "^2.3.1"
     types "^0.1.1"
     winston "^3.3.3"
     yaml "^1.10.2"
 
-"@cenk1cenk2/cz-cc@^1.4.6":
-  version "1.4.6"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.4.6.tgz#03421d20cad22897ed474496a1dfff77aa9fb8a5"
-  integrity sha512-8tDftbMOr/nWCe9BNshw2Dq6sM7GF7HRmOKIv3JbM2sglF3AysxOna9RpJAHODPh5vCPCeR/0k9i8eY2aKn0VQ==
+"@cenk1cenk2/cz-cc@^1.4.7":
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.4.7.tgz#843c591cf6d876c93b4aee3d06e9fd88f2aa60ba"
+  integrity sha512-WaTlqInKuAKXgTIoZFz/MBHgfFC99KYJGgkWOm4hYFJw2rUEsgXL2xStF9LFeA1SST0LvNvAXlWioEEM4tSF2Q==
   dependencies:
     colorette "^1.4.0"
     commitizen "^4.2.4"
@@ -337,7 +337,7 @@
     enquirer-editor "^1.0.0"
     enquirer-prompt-editor "^2.0.1"
     find-git-root "^1.0.4"
-    listr2 "^3.12.1"
+    listr2 "^3.12.2"
     lodash.map "^4.6.0"
     word-wrap "^1.2.3"
   optionalDependencies:
@@ -5828,7 +5828,20 @@ lint-staged@^11.1.2:
     string-argv "0.3.1"
     stringify-object "^3.3.0"
 
-listr2@^3.12.1, listr2@^3.8.2:
+listr2@^3.12.2:
+  version "3.12.2"
+  resolved "https://registry.yarnpkg.com/listr2/-/listr2-3.12.2.tgz#2d55cc627111603ad4768a9e87c9c7bb9b49997e"
+  integrity sha512-64xC2CJ/As/xgVI3wbhlPWVPx0wfTqbUAkpb7bjDi0thSWMqrf07UFhrfsGoo8YSXmF049Rp9C0cjLC8rZxK9A==
+  dependencies:
+    cli-truncate "^2.1.0"
+    colorette "^1.4.0"
+    log-update "^4.0.0"
+    p-map "^4.0.0"
+    rxjs "^6.6.7"
+    through "^2.3.8"
+    wrap-ansi "^7.0.0"
+
+listr2@^3.8.2:
   version "3.12.1"
   resolved "https://registry.yarnpkg.com/listr2/-/listr2-3.12.1.tgz#75e515b86c66b60baf253542cc0dced6b60fedaf"
   integrity sha512-oB1DlXlCzGPbvWhqYBZUQEPJKqsmebQWofXG6Mpbe3uIvoNl8mctBEojyF13ZyqwQ91clCWXpwsWp+t98K4FOQ==
@@ -6642,7 +6655,7 @@ object-keys@^1.0.12, object-keys@^1.1.1:
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
 
-object-path-immutable@^4.1.1:
+object-path-immutable@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/object-path-immutable/-/object-path-immutable-4.1.2.tgz#d78e3587f03c9a41f83dd6465cfef5a9eb390bb4"
   integrity sha512-Bfrox46OegMkQXL872EzEjofMyBxk/2hgiy99NkCkYFegn6Dm9FvV2jY2Tnp9qLj2QL0TLii12CuPpzonkjJrA==
