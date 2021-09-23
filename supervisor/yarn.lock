@@ -309,16 +309,16 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cenk1cenk2/boilerplate-oclif@1.10.4":
-  version "1.10.4"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/boilerplate-oclif/-/boilerplate-oclif-1.10.4.tgz#7f47f3459f66567516f63a59dcd241aa8d335e71"
-  integrity sha512-1ULjghCxZ1wH3h9SY1r9lBBNnSBxCKHf0uEIuyePtEEuY2bLAbkklc59xBgMtfrUEvBckfbgTxr8TmX1b2rB9Q==
+"@cenk1cenk2/boilerplate-oclif@1.10.5":
+  version "1.10.5"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/boilerplate-oclif/-/boilerplate-oclif-1.10.5.tgz#c1b5c07caa9488d021dd9365db925df047795d9e"
+  integrity sha512-Z85Xzn2kUGwExvdXchnnLOXnJOHGLiWZSEsfmjMileUfCyjzB7XJ+T9ExbwIqcsLiQ9N3cZh1e9I7gOwOp32wA==
   dependencies:
     chalk "^4.1.2"
     config "^3.3.6"
     deepmerge "^4.2.2"
     figures "^3.2.0"
-    object-path-immutable "^4.1.1"
+    object-path-immutable "^4.1.2"
     table "^6.7.1"
     tslib "^2.3.1"
     types "^0.1.1"
@@ -4117,6 +4117,19 @@ listr2@^3.12.1, listr2@^3.8.2:
     through "^2.3.8"
     wrap-ansi "^7.0.0"
 
+listr2@^3.12.2:
+  version "3.12.2"
+  resolved "https://registry.yarnpkg.com/listr2/-/listr2-3.12.2.tgz#2d55cc627111603ad4768a9e87c9c7bb9b49997e"
+  integrity sha512-64xC2CJ/As/xgVI3wbhlPWVPx0wfTqbUAkpb7bjDi0thSWMqrf07UFhrfsGoo8YSXmF049Rp9C0cjLC8rZxK9A==
+  dependencies:
+    cli-truncate "^2.1.0"
+    colorette "^1.4.0"
+    log-update "^4.0.0"
+    p-map "^4.0.0"
+    rxjs "^6.6.7"
+    through "^2.3.8"
+    wrap-ansi "^7.0.0"
+
 load-json-file@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-4.0.0.tgz#2f5f45ab91e33216234fd53adab668eb4ec0993b"
@@ -4512,7 +4525,7 @@ object-keys@^1.0.12, object-keys@^1.1.1:
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
 
-object-path-immutable@^4.1.1:
+object-path-immutable@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/object-path-immutable/-/object-path-immutable-4.1.2.tgz#d78e3587f03c9a41f83dd6465cfef5a9eb390bb4"
   integrity sha512-Bfrox46OegMkQXL872EzEjofMyBxk/2hgiy99NkCkYFegn6Dm9FvV2jY2Tnp9qLj2QL0TLii12CuPpzonkjJrA==
