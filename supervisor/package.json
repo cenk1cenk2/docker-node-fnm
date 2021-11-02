@@ -78,7 +78,7 @@
     "fs-extra": "^10.0.0",
     "globby": "^11.0.4",
     "js-yaml": "^4.1.0",
-    "listr2": "^3.13.1",
+    "listr2": "^3.13.3",
     "nunjucks": "^3.2.3",
     "object-path": "^0.11.8",
     "reflect-metadata": "^0.1.13",
