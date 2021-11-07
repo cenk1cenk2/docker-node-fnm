@@ -98,7 +98,7 @@
     "@types/through": "^0.0.30",
     "@types/uuid": "^8.3.1",
     "enquirer": "^2.3.6",
-    "eslint": "^8.1.0",
+    "eslint": "^8.2.0",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
     "lint-staged": "^11.2.6",
