@@ -35,6 +35,9 @@ defaults:
   exit_on_error:
     __name: DEFAULTS_EXIT_ON_ERROR
     __format: json
+  run_once:
+    __name: DEFAULTS_RUN_ONCE
+    __format: json
   environment:
     __name: DEFAULTS_ENVIRONMENT
     __format: json

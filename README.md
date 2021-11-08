@@ -78,6 +78,7 @@ defaults:
   load_dotenv: true # if the flag is set, this will load the .env file in the service.cwd
   command: yarn dev:start # default command to run
   sync: false # this will run the sync flagged services first and one-by-one with the sync_wait and run the others afterwards
+  run_once: false # run the service once and do not try to restart
   exit_on_error: false # exit the whole container when there is a error with a given service
   # Object for passing in environment variables to services
   # environment:
@@ -122,6 +123,7 @@ services:
 | DEFAULTS_LOAD_DOTENV   | boolean                   |
 | DEFAULTS_COMMAND       | string                    |
 | DEFAULTS_SYNC          | boolean                   |
+| DEFAULTS_RUN_ONCE      | boolean                   |                |
 | DEFAULTS_EXIT_ON_ERROR | boolean                   |                |
 | DEFAULTS_ENVIRONMENT   | json                      | in object form |
 
@@ -149,6 +151,7 @@ So if you want to modify a property from the 0th service in the services array i
 | SERVICE\_${i}\_LOAD_DOTENV   | boolean                   |
 | SERVICE\_${i}\_COMMAND       | string                    |
 | SERVICE\_${i}\_SYNC          | boolean                   |
+| SERVICE\_${i}\_RUN_ONCE      | boolean                   |                |
 | SERVICE\_${i}\_EXIT_ON_ERROR | boolean                   |                |
 | SERVICE\_${i}\_ENVIRONMENT   | json                      | in object form |
 

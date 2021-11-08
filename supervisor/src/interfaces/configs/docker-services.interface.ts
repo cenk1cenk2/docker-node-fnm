@@ -27,7 +27,7 @@ export class DockerServicesConfig {
     before_all?: false | string[]
 
   @ValidateNested()
-    defaults: Pick<DockerService, 'enable' | 'logs' | 'load_dotenv' | 'before' | 'command' | 'sync' | 'exit_on_error' | 'environment'>
+    defaults: Pick<DockerService, 'enable' | 'logs' | 'load_dotenv' | 'before' | 'command' | 'sync' | 'run_once' | 'exit_on_error' | 'environment'>
 
   @ValidateNested({ each: true })
     services: DockerService[]
@@ -63,6 +63,9 @@ export class DockerService {
 
   @IsBoolean()
     sync?: boolean
+
+  @IsBoolean()
+    run_once?: boolean
 
   @IsBoolean()
     exit_on_error?: boolean

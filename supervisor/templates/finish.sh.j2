@@ -22,7 +22,12 @@ if [[ -f /.lock ]]; then
 fi
 
 # show finish message
+{% if service.run_once == true %}
+log_warn "{{ service.name }} is set to only run once."
+s6-svc -O /etc/services.d/{{ service.id }}
+{% else %}
 log_error "{{ service.name }} has crashed or killed. Trying to restarting in {{ config.restart_wait }} seconds."
+{% endif %}
 {% if service.exit_on_error == true %}
 
 if [ "${EXIT_CODE}" != "0" ]; then
