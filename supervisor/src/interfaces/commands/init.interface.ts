@@ -4,7 +4,7 @@ import { DockerServicesConfig } from '@interfaces/configs/docker-services.interf
 
 export declare class InitCtx {
   @ValidateNested()
-  config: DockerServicesConfig
+    config: DockerServicesConfig
 
   fileSystem: {
     config: string

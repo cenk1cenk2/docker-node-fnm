@@ -51,6 +51,17 @@ export const SERVICE_EXTENSION_ENVIRONMENT_VARIABLES: {
     parser: 'json'
   },
   {
+    name: 'EXIT_ON_ERROR',
+    key: 'exit_on_error',
+    parser: (value): boolean | string => {
+      if (value === 'true' || value === 'false') {
+        return JSON.parse(value)
+      } else {
+        return String(value)
+      }
+    }
+  },
+  {
     name: 'ENVIRONMENT',
     key: 'environment',
     parser: 'json'

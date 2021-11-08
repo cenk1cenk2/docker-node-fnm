@@ -2,11 +2,11 @@ import { IsBoolean, IsString } from 'class-validator'
 
 export class ProxyConfig {
   @IsBoolean()
-  workspace_only: boolean
+    workspace_only: boolean
 
   @IsString()
-  packages_folder: string
+    packages_folder: string
 
   @IsBoolean()
-  load_dotenv: boolean
+    load_dotenv: boolean
 }

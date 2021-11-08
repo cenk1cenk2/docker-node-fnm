@@ -3,70 +3,73 @@ import { IsBoolean, IsEnum, IsObject, IsPositive, IsString, IsUUID, ValidateNest
 
 export class DockerServicesConfig {
   @IsSemverOrDefault()
-  node_version: 'default' | string
+    node_version: 'default' | string
 
   @IsEnum([ 'yarn', 'npm' ])
-  package_manager: 'yarn' | 'npm'
+    package_manager: 'yarn' | 'npm'
 
   @IsBoolean()
-  dont_install: boolean
+    dont_install: boolean
 
   @IsBoolean()
-  force_install: boolean
+    force_install: boolean
 
   @IsPositive()
-  sync_wait: number
+    sync_wait: number
 
   @IsPositive()
-  restart_wait: number
+    restart_wait: number
 
   @IsEnum([ true, false, 'true', 'false' ])
-  check_directories: boolean
+    check_directories: boolean
 
   @IsFalseOrStringArray()
-  before_all?: false | string[]
+    before_all?: false | string[]
 
   @ValidateNested()
-  defaults: Pick<DockerService, 'enable' | 'logs' | 'load_dotenv' | 'before' | 'command' | 'sync' | 'environment'>
+    defaults: Pick<DockerService, 'enable' | 'logs' | 'load_dotenv' | 'before' | 'command' | 'sync' | 'exit_on_error' | 'environment'>
 
   @ValidateNested({ each: true })
-  services: DockerService[]
+    services: DockerService[]
 }
 
 export class DockerService {
   @IsUUID()
-  id: string
+    id: string
 
   @IsString()
-  name: string
+    name: string
 
   @IsString()
-  cwd: string
+    cwd: string
 
   @IsBoolean()
-  enable?: boolean
+    enable?: boolean
 
   @IsEnum([ 'prefix', true, false, 'true', 'false' ])
-  logs?: 'prefix' | boolean
+    logs?: 'prefix' | boolean
 
   @IsBoolean()
-  load_dotenv?: boolean
+    load_dotenv?: boolean
 
   @IsFalseOrStringArray()
-  before?: false | string[]
+    before?: false | string[]
 
   @IsString()
-  command?: string
+    command?: string
 
   @IsString()
-  parsed_command?: string
+    parsed_command?: string
 
   @IsBoolean()
-  sync?: boolean
+    sync?: boolean
+
+  @IsBoolean()
+    exit_on_error?: boolean
 
   @IsObject()
-  environment?: Record<string, string>
+    environment?: Record<string, string>
 
   @IsString()
-  parsed_environment?: string
+    parsed_environment?: string
 }

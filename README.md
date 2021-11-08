@@ -78,6 +78,7 @@ defaults:
   load_dotenv: true # if the flag is set, this will load the .env file in the service.cwd
   command: yarn dev:start # default command to run
   sync: false # this will run the sync flagged services first and one-by-one with the sync_wait and run the others afterwards
+  exit_on_error: false # exit the whole container when there is a error with a given service
   # Object for passing in environment variables to services
   # environment:
 
@@ -113,15 +114,16 @@ services:
 
 ### Defaults
 
-| Environment Variable | Format                    | description    |
-| -------------------- | ------------------------- | -------------- |
-| DEFAULTS_ENABLE      | boolean                   |
-| DEFAULTS_BEFORE      | json                      | in array form  |
-| DEFALTS_LOGS         | true \| false \| 'prefix' |
-| DEFAULTS_LOAD_DOTENV | boolean                   |
-| DEFAULTS_COMMAND     | string                    |
-| DEFAULTS_SYNC        | boolean                   |
-| DEFAULTS_ENVIRONMENT | json                      | in object form |
+| Environment Variable   | Format                    | description    |
+| ---------------------- | ------------------------- | -------------- |
+| DEFAULTS_ENABLE        | boolean                   |
+| DEFAULTS_BEFORE        | json                      | in array form  |
+| DEFALTS_LOGS           | true \| false \| 'prefix' |
+| DEFAULTS_LOAD_DOTENV   | boolean                   |
+| DEFAULTS_COMMAND       | string                    |
+| DEFAULTS_SYNC          | boolean                   |
+| DEFAULTS_EXIT_ON_ERROR | boolean                   |                |
+| DEFAULTS_ENVIRONMENT   | json                      | in object form |
 
 ### Services
 
@@ -137,17 +139,18 @@ Service extension variables can be defined in the form of `SERVICE_${serviceNumb
 
 So if you want to modify a property from the 0th service in the services array it should be like `SERVICE_0_PROPERTY`.
 
-| Environment Variable       | Format                    | description    |
-| -------------------------- | ------------------------- | -------------- |
-| SERVICE\_${i}\_CWD         | string                    | required       |
-| SERVICE\_${i}\_NAME        | string                    |
-| SERVICE\_${i}\_ENABLE      | boolean                   |
-| SERVICE\_${i}\_BEFORE      | json                      | in array form  |
-| SERVICE\_${i}\_LOGS        | true \| false \| 'prefix' |
-| SERVICE\_${i}\_LOAD_DOTENV | boolean                   |
-| SERVICE\_${i}\_COMMAND     | string                    |
-| SERVICE\_${i}\_SYNC        | boolean                   |
-| SERVICE\_${i}\_ENVIRONMENT | json                      | in object form |
+| Environment Variable         | Format                    | description    |
+| ---------------------------- | ------------------------- | -------------- |
+| SERVICE\_${i}\_CWD           | string                    | required       |
+| SERVICE\_${i}\_NAME          | string                    |
+| SERVICE\_${i}\_ENABLE        | boolean                   |
+| SERVICE\_${i}\_BEFORE        | json                      | in array form  |
+| SERVICE\_${i}\_LOGS          | true \| false \| 'prefix' |
+| SERVICE\_${i}\_LOAD_DOTENV   | boolean                   |
+| SERVICE\_${i}\_COMMAND       | string                    |
+| SERVICE\_${i}\_SYNC          | boolean                   |
+| SERVICE\_${i}\_EXIT_ON_ERROR | boolean                   |                |
+| SERVICE\_${i}\_ENVIRONMENT   | json                      | in object form |
 
 # Deploy
 

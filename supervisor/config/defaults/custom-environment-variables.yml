@@ -32,6 +32,9 @@ defaults:
   sync:
     __name: DEFAULTS_SYNC
     __format: json
+  exit_on_error:
+    __name: DEFAULTS_EXIT_ON_ERROR
+    __format: json
   environment:
     __name: DEFAULTS_ENVIRONMENT
     __format: json

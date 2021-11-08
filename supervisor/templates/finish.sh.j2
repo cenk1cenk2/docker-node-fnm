@@ -5,21 +5,33 @@ source /.env
 source /scripts/logger.sh
 
 SERVICE_ID="{{ service.id }}"
+EXIT_CODE="${1}"
+SIGNAL="${2}"
 
 # for run in band on crash
 if [[ -f /.lock ]]; then
-source /.lock
+	source /.lock
 
-  if [ -n "${PRELIMINARY_SERVICES}" ]; then
-    log_debug "${SERVICE_ID} in {{ service.cwd }} has crashed will add it back to lock file."
+	if [ -n "${PRELIMINARY_SERVICES}" ]; then
+		log_debug "${SERVICE_ID} in {{ service.cwd }} has crashed will add it back to lock file."
 
-    echo "PRELIMINARY_SERVICES=(${SERVICE_ID} ${PRELIMINARY_SERVICES[@]:0})" >/.lock
+		echo "PRELIMINARY_SERVICES=(${SERVICE_ID} ${PRELIMINARY_SERVICES[@]:0})" >/.lock
 
-    log_debug "Lock file modified: $(cat /.lock)"
-  fi
+		log_debug "Lock file modified: $(cat /.lock)"
+	fi
 fi
 
 # show finish message
 log_error "{{ service.name }} has crashed or killed. Trying to restarting in {{ config.restart_wait }} seconds."
+
+{% if service.exit_on_error == true %}
+log_error "{{ service.name }} has exit_on_error set to true, bringing down all the container."
+
+if [ s6-test "${EXIT_CODE}" -ne "0" ]; then
+	s6-svscanctl -t /var/run/s6/services
+else
+	log_info "{{ service.name }} exitted with code 0 already."
+fi
+{% endif %}
 
 s6-sleep {{ config.restart_wait }}

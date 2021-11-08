@@ -11,17 +11,15 @@
   "workspaces": [
     "supervisor/"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn command --concurrency 1 lint:staged",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
-    }
+  "simple-git-hooks": {
+    "pre-commit": "yarn command --concurrency 1 lint:staged",
+    "prepare-commit-msg": "[ -t 1 ] && exec < /dev/tty && git cz --hook || true"
   },
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^1.4.10",
     "commitizen": "^4.2.4",
-    "husky-v4": "^4.3.8",
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "simple-git-hooks": "^2.7.0"
   },
   "config": {
     "commitizen": {

@@ -94,6 +94,7 @@ export default class Init extends BaseCommand {
         task: (ctx): void => {
           let stat: Stats
           try {
+            /* eslint-disable-next-line prefer-const */
             stat = fs.statSync(ctx.root)
           } finally {
             if (!stat || !stat.isDirectory()) {

@@ -4,7 +4,7 @@ import { ProxyConfig } from '../configs/proxy.interface'
 
 export declare class ProxyCtx {
   @ValidateNested()
-  config: ProxyConfig
+    config: ProxyConfig
 
   root: string
 
