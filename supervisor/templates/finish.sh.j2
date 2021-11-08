@@ -23,14 +23,13 @@ fi
 
 # show finish message
 log_error "{{ service.name }} has crashed or killed. Trying to restarting in {{ config.restart_wait }} seconds."
-
 {% if service.exit_on_error == true %}
-log_error "{{ service.name }} has exit_on_error set to true, bringing down all the container."
 
 if [ "${EXIT_CODE}" != "0" ]; then
+	log_error "{{ service.name }} has exit_on_error set to true, bringing down all the container since exit code is: ${EXIT_CODE}"
 	s6-svscanctl -t /var/run/s6/services
 else
-	log_warn "{{ service.name }} exitted with code 0."
+	log_warn "{{ service.name }} exitted with code ${EXIT_CODE}."
 fi
 {% endif %}
 
