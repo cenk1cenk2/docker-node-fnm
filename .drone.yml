@@ -35,7 +35,7 @@ steps:
         from_secret: docker_password
 
   - name: update readme
-    image: cenk1cenk2/pipe-update-docker-readme
+    image: cenk1cenk2/pipe-update-docker-hub-readme
     settings:
       repo: cenk1cenk2/node-fnm
       docker_username:
