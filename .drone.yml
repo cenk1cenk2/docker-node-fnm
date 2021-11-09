@@ -45,8 +45,7 @@ steps:
       readme_repository: cenk1cenk2/node-fnm
       readme_file: ./README.md
       readme_description: |
-        A monorepo aimed node.js development container that hosts fnm (Fast Node Manager) in a container to install with any node version.
-      debug: 1
+        Monorepo aimed Node development container that hosts FNM in a container.
 
 image_pull_secrets:
   - dockerconfigjson

@@ -60,7 +60,7 @@ WORKDIR /data
 RUN mkdir -p /scripts
 
 # Copy scripts
-ADD https://gist.githubusercontent.com/cenk1cenk2/e03d8610534a9c78f755c1c1ed93a293/raw/2e22e9a5ff34a49f0f5338cd7d137456ba56086f/logger.sh /scripts/logger.sh
+ADD https://gist.githubusercontent.com/cenk1cenk2/e03d8610534a9c78f755c1c1ed93a293/raw/logger.sh /scripts/logger.sh
 RUN chmod +x /scripts/*.sh
 
 # Move s6 supervisor files inside the container
