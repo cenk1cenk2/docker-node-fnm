@@ -49,6 +49,9 @@ export class DockerService {
   @IsEnum([ 'prefix', true, false, 'true', 'false' ])
     logs?: 'prefix' | boolean
 
+  @IsSemverOrDefault()
+    node_version: 'default' | string
+
   @IsBoolean()
     load_dotenv?: boolean
 

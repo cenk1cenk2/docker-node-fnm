@@ -1,9 +1,9 @@
-import { isEnum, isSemVer, isString, registerDecorator, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator'
+import { isEnum, isNumber, isSemVer, isString, registerDecorator, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator'
 
 @ValidatorConstraint({ async: true })
 export class IsSemverOrDefaultConstraint implements ValidatorConstraintInterface {
   public validate (data: any): boolean {
-    return isSemVer(data) || isEnum(data, [ 'default' ])
+    return isSemVer(data) || isNumber(data) || isEnum(data, [ 'default' ])
   }
 }
 

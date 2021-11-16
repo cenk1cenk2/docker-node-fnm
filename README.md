@@ -146,6 +146,7 @@ So if you want to modify a property from the 0th service in the services array i
 | SERVICE\_${i}\_CWD           | string                    | required       |
 | SERVICE\_${i}\_NAME          | string                    |
 | SERVICE\_${i}\_ENABLE        | boolean                   |
+| SERVICE\_${i}\_NODE_VERSION  | string                    |
 | SERVICE\_${i}\_BEFORE        | json                      | in array form  |
 | SERVICE\_${i}\_LOGS          | true \| false \| 'prefix' |
 | SERVICE\_${i}\_LOAD_DOTENV   | boolean                   |

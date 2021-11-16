@@ -37,6 +37,10 @@ export const SERVICE_EXTENSION_ENVIRONMENT_VARIABLES: {
     }
   },
   {
+    name: 'NODE_VERSION',
+    key: 'node_version'
+  },
+  {
     name: 'LOAD_DOTENV',
     key: 'load_dotenv',
     parser: 'json'
