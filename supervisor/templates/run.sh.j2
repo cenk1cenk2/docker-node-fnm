@@ -50,17 +50,17 @@ log_start "{{ service.name }}"
 
 {% if service.node_version %}
 log_this "Service node version is set: {{ service.node_version }}" "${CYAN}{{ service.name }}${RESET}" "WARN"
-fnm use {{ service.node_version }} &> /dev/null
+fnm use {{ service.node_version }} --install-if-missing &> /dev/null
 {% elif config.node_version != 'default' %}
 log_this "Config node version is not set to default: {{ config.node_version }}" "${CYAN}{{ service.name }}${RESET}" "WARN"
-fnm use {{ config.node_version }} &> /dev/null
+fnm use {{ config.node_version }} --install-if-missing &> /dev/null
 
 log_debug "Using default node version for service with ${SERVICE_ID} and {{ service.cwd }}."
 {% else %}
 if [ -f /data/.nvmrc ] || [ -f /data/.node-version ]; then
   cd /data
 
-  fnm use &> /dev/null
+  fnm use --install-if-missing &> /dev/null
 
   log_debug "Using nvmrc node version for service with ${SERVICE_ID} and {{ service.cwd }}."
 fi
