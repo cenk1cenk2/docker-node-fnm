@@ -3882,7 +3882,7 @@ lint-staged@^11.2.6:
     stringify-object "3.3.0"
     supports-color "8.1.1"
 
-listr2@^3.12.2, listr2@^3.13.3:
+listr2@^3.12.2:
   version "3.13.3"
   resolved "https://registry.yarnpkg.com/listr2/-/listr2-3.13.3.tgz#d8f6095c9371b382c9b1c2bc33c5941d8e177f11"
   integrity sha512-VqAgN+XVfyaEjSaFewGPcDs5/3hBbWVaX1VgWv2f52MF7US45JuARlArULctiB44IIcEk3JF7GtoFCLqEdeuPA==
