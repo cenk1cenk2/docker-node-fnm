@@ -720,7 +720,7 @@
     eslint-plugin-unicorn "^37.0.1"
     eslint-plugin-vue "^7.20.0"
 
-"@oclif/command@^1.6.0", "@oclif/command@^1.8.0", "@oclif/command@^1.8.3":
+"@oclif/command@^1.6.0", "@oclif/command@^1.8.3":
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/@oclif/command/-/command-1.8.3.tgz#1f8bc2c4ecf94b6659a5134d95da179e1dffad9e"
   integrity sha512-OGjrhdVgTT2TAAj/2RrdXjwxaDoTm16c2LfAzrta1xIFe6/XhgQIYDmeRN/RptQoZQBX8e9Vv2JoQq+TbghJmw==
@@ -732,7 +732,7 @@
     debug "^4.1.1"
     semver "^7.3.2"
 
-"@oclif/config@^1.15.1", "@oclif/config@^1.17.0", "@oclif/config@^1.17.1":
+"@oclif/config@^1.15.1", "@oclif/config@^1.17.1":
   version "1.17.1"
   resolved "https://registry.yarnpkg.com/@oclif/config/-/config-1.17.1.tgz#383515f6715b91d8df5db8108214e93bb46e86ca"
   integrity sha512-UqV5qsN2np96TNlJspSNlRl7CpFmxYSrB0iLe3XV9NDkbFEE5prGP++h6w6xOR/FL3QV7BoqrbwGuJdJdFbidw==
@@ -744,16 +744,16 @@
     is-wsl "^2.1.1"
     tslib "^2.0.0"
 
-"@oclif/dev-cli@^1.26.0":
-  version "1.26.0"
-  resolved "https://registry.yarnpkg.com/@oclif/dev-cli/-/dev-cli-1.26.0.tgz#e3ec294b362c010ffc8948003d3770955c7951fd"
-  integrity sha512-272udZP+bG4qahoAcpWcMTJKiA+V42kRMqQM7n4tgW35brYb2UP5kK+p08PpF8sgSfRTV8MoJVJG9ax5kY82PA==
+"@oclif/dev-cli@^1.26.1":
+  version "1.26.1"
+  resolved "https://registry.yarnpkg.com/@oclif/dev-cli/-/dev-cli-1.26.1.tgz#88339547f57370b819bb33ec1e5b7e74aa18dcbc"
+  integrity sha512-WYJAhhh0Akhq6sWypSfWQbeHPRkfVv0DJj5HGsU2ZiERGwzyqLaG6s2usJsM0GJXXUXyWA2lzr2A6+JjUhRvqA==
   dependencies:
-    "@oclif/command" "^1.8.0"
-    "@oclif/config" "^1.17.0"
-    "@oclif/errors" "^1.3.3"
-    "@oclif/plugin-help" "^3.2.0"
-    cli-ux "^5.2.1"
+    "@oclif/command" "^1.8.3"
+    "@oclif/config" "^1.17.1"
+    "@oclif/errors" "^1.3.5"
+    "@oclif/plugin-help" "^3.2.5"
+    cli-ux "^5.6.3"
     debug "^4.1.1"
     find-yarn-workspace-root "^2.0.0"
     fs-extra "^8.1"
@@ -789,7 +789,7 @@
     chalk "^4.1.0"
     tslib "^2.0.0"
 
-"@oclif/plugin-help@^3.2.0", "@oclif/plugin-help@^3.2.4", "@oclif/plugin-help@^3.2.5":
+"@oclif/plugin-help@^3.2.4", "@oclif/plugin-help@^3.2.5":
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/@oclif/plugin-help/-/plugin-help-3.2.5.tgz#dab0f5e655971b2c49dd80ee472f97b6e69a1297"
   integrity sha512-fjkZTstvacCPicF2oaa3Lc+Yw3ocKEaW6x6O7doVqMLuoMUX6wBOQ+f1a3VFzO1fErqNeFPDlUlVUhwq9yMzQg==
@@ -1573,7 +1573,7 @@ cli-truncate@2.1.0, cli-truncate@^2.1.0:
     slice-ansi "^3.0.0"
     string-width "^4.2.0"
 
-cli-ux@^5.2.1:
+cli-ux@^5.6.3:
   version "5.6.3"
   resolved "https://registry.yarnpkg.com/cli-ux/-/cli-ux-5.6.3.tgz#eecdb2e0261171f2b28f2be6b18c490291c3a287"
   integrity sha512-/oDU4v8BiDjX2OKcSunGH0iGDiEtj2rZaGyqNuv9IT4CgcSMyVWAMfn0+rEHaOc4n9ka78B0wo1+N1QX89f7mw==
