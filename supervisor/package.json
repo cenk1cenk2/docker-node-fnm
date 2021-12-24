@@ -92,7 +92,7 @@
     "@types/config": "^0.0.40",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^16.11.12",
-    "@types/nunjucks": "^3.2.0",
+    "@types/nunjucks": "^3.2.1",
     "@types/object-path": "^0.11.1",
     "@types/through": "^0.0.30",
     "@types/uuid": "^8.3.3",
