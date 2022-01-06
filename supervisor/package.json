@@ -95,7 +95,7 @@
     "@types/nunjucks": "^3.2.1",
     "@types/object-path": "^0.11.1",
     "@types/through": "^0.0.30",
-    "@types/uuid": "^8.3.3",
+    "@types/uuid": "^8.3.4",
     "enquirer": "^2.3.6",
     "eslint": "^8.6.0",
     "jest": "^27.4.5",
