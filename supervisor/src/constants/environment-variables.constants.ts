@@ -1,4 +1,4 @@
-import { DockerService } from '@src/interfaces/configs/docker-services.interface'
+import type { DockerService } from '@src/interfaces/configs/docker-services.interface'
 
 export const SERVICE_EXTENSION_ENVIRONMENT_VARIABLES: {
   required?: boolean

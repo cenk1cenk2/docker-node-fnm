@@ -1,46 +1,7 @@
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
-  extends: [ '@cenk1cenk2/eslint-config/typescript' ],
+  extends: [ '../.eslintrc.js' ],
   rules: {
-    'import/order': [
-      'error',
-      {
-        pathGroups: [
-          {
-            pattern: '@src/**',
-            group: 'index'
-          },
-          {
-            pattern: '@commands/**',
-            group: 'index'
-          },
-          {
-            pattern: '@helpers/**',
-            group: 'index'
-          },
-          {
-            pattern: '@interfaces/**',
-            group: 'index'
-          },
-          {
-            pattern: '@context/**',
-            group: 'index'
-          },
-          {
-            pattern: '@templates/**',
-            group: 'index'
-          }
-        ],
-        pathGroupsExcludedImportTypes: [ 'builtin' ],
-        groups: [
-          [ 'builtin', 'external' ],
-          [ 'index', 'parent', 'sibling' ]
-        ],
-        'newlines-between': 'always',
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true
-        }
-      }
-    ]
+    ...require('@cenk1cenk2/eslint-config/utils').generateImportGroups({ tsconfigDir: __dirname })
   }
 }

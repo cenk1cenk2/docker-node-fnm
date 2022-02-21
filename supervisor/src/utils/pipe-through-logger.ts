@@ -1,8 +1,8 @@
-import { BaseCommand } from '@cenk1cenk2/boilerplate-oclif'
-import { ExecaChildProcess } from 'execa'
+import type { ExecaChildProcess } from 'execa'
 import through from 'through'
 
-import { PipeProcessToLoggerOptions } from './pipe-through-logger.interface'
+import type { PipeProcessToLoggerOptions } from './pipe-through-logger.interface'
+import type { BaseCommand } from '@cenk1cenk2/boilerplate-oclif'
 
 export function pipeProcessToLogger (this: BaseCommand, { instance, options }: { instance: ExecaChildProcess, options?: PipeProcessToLoggerOptions }): ExecaChildProcess {
   // default options
@@ -44,7 +44,7 @@ export function pipeProcessToLogger (this: BaseCommand, { instance, options }: {
   }
 
   if (options.exitCode) {
-    instance.on('exit', (code, signal) => {
+    void instance.on('exit', (code, signal) => {
       const exitMessage = `Process ended with code ${code}${signal ? ` and signal ${signal}` : ''}.`
 
       if (code > 0) {
@@ -60,7 +60,7 @@ export function pipeProcessToLogger (this: BaseCommand, { instance, options }: {
     })
   }
 
-  instance.on('error', (error) => {
+  void instance.on('error', (error) => {
     this.logger.error(error.message, ...options.meta)
 
     // callback for compatibility reasons with observable

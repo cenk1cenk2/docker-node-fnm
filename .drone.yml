@@ -47,5 +47,25 @@ steps:
       readme_description: |
         Monorepo aimed Node development container that hosts FNM in a container.
 
+  - name: inform
+    image: drillster/drone-email
+    depends_on:
+      - publish
+    settings:
+      host:
+        from_secret: smtp_host
+      port:
+        from_secret: smtp_port
+      username:
+        from_secret: smtp_username
+      password:
+        from_secret: smtp_password
+      from:
+        from_secret: smtp_username
+    when:
+      status:
+        - changed
+        - failure
+
 image_pull_secrets:
   - dockerconfigjson

@@ -1,14 +1,14 @@
-import { BaseCommand, deepMergeWithArrayOverwrite } from '@cenk1cenk2/boilerplate-oclif'
-import { CONFIG_FILES, MOUNTED_DATA_FOLDER } from '@constants/file-system.constants'
 import config from 'config'
 import dotenv from 'dotenv'
 import execa from 'execa'
-import { Stats } from 'fs'
+import type { Stats } from 'fs'
 import fs from 'fs-extra'
 import { dirname, join } from 'path'
 
-import { ProxyCtx } from '@interfaces/commands/proxy.interface'
-import { ProxyConfig } from '@interfaces/configs/proxy.interface'
+import { BaseCommand, deepMergeWithArrayOverwrite } from '@cenk1cenk2/boilerplate-oclif'
+import { CONFIG_FILES, MOUNTED_DATA_FOLDER } from '@constants/file-system.constants'
+import type { ProxyCtx } from '@interfaces/commands/proxy.interface'
+import type { ProxyConfig } from '@interfaces/configs/proxy.interface'
 import { PACKAGE_ROOT_DEFINITIONS } from '@src/constants/keywords.constants'
 import 'reflect-metadata'
 
@@ -93,6 +93,7 @@ export default class Init extends BaseCommand {
       {
         task: (ctx): void => {
           let stat: Stats
+
           try {
             /* eslint-disable-next-line prefer-const */
             stat = fs.statSync(ctx.root)
@@ -118,10 +119,12 @@ export default class Init extends BaseCommand {
       {
         task: async (ctx): Promise<void> => {
           let command = this.argv.join(' ')
+
           this.logger.info('%s : $ %s', ctx.root, command, { context: 'run' })
 
           let environment: Record<string, any> = {}
           const envPath = join(ctx.root, '.env')
+
           if (ctx.config.load_dotenv && fs.existsSync(envPath)) {
             try {
               environment = dotenv.parse(fs.readFileSync(envPath))
@@ -132,13 +135,13 @@ export default class Init extends BaseCommand {
             }
           }
 
-          this.logger.debug('%o', environment, { context: 'environment' })
+          this.logger.debug('%o', { FORCE_COLOR: 1, environment }, { context: 'environment' })
 
           command = this.isVerbose ? command + ' ' + '--verbose' : command
           command = this.isDebug ? command + ' ' + '--debug' : command
 
           try {
-            await execa.command(`source /root/.bashrc && fnm use --install-if-missing && cd ${ctx.root} && ${command}`, {
+            await execa.command(`source /etc/bash.bashrc && fnm use --install-if-missing && cd ${ctx.root} && ${command}`, {
               shell: '/bin/bash',
               stdio: 'inherit',
               env: environment,

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /root/.bashrc
+source /etc/bash.bashrc
 source /.env
 source /scripts/logger.sh
 
@@ -55,6 +55,8 @@ fnm use {{ service.node_version }} --install-if-missing &> /dev/null
 log_this "Config node version is not set to default: {{ config.node_version }}" "${CYAN}{{ service.name }}${RESET}" "WARN"
 fnm use {{ config.node_version }} --install-if-missing &> /dev/null
 
+USER_NODE_VERSION="{{ config.node_version }}"
+
 log_debug "Using default node version for service with ${SERVICE_ID} and {{ service.cwd }}."
 {% else %}
 if [ -f /data/.nvmrc ] || [ -f /data/.node-version ]; then
@@ -62,12 +64,25 @@ if [ -f /data/.nvmrc ] || [ -f /data/.node-version ]; then
 
   fnm use --install-if-missing &> /dev/null
 
+
+  if [ -f /data/.nvmrc ];  then
+    USER_NODE_VERSION="$(cat /data/.nvmrc)"
+  elif [ -f /data/.node-version ]; then
+    USER_NODE_VERSION="$(cat /data/.node-version)"
+  fi
+
   log_debug "Using nvmrc node version for service with ${SERVICE_ID} and {{ service.cwd }}."
 fi
 {% endif %}
 
 # Change directory to package
 cd /data/{{ service.cwd }}
+
+WHERE_IS=$(whereis node)
+NODE_VERSION=$(node -v)
+
+log_debug "${SERVICE_ID} and {{ service.cwd }} where: ${WHERE_IS}"
+log_debug "${SERVICE_ID} and {{ service.cwd }} node version: ${NODE_VERSION}"
 
 {% if service.load_dotenv %}
 # Get directory env variables if exists
@@ -86,7 +101,7 @@ log_debug "Environment variables are defined for \"{{ service.name }}\": \n{{ se
 # before tasks
 {% for command in service.before %}
 log_this "Running before task: $ {{ command }}" "${CYAN}{{ service.name }}${RESET}" "INFO"
-/bin/bash -c "{{ command }}"
+eval "{{ command }}"
 
 {% endfor %}
 {% endif %}
@@ -94,9 +109,9 @@ log_this "Running before task: $ {{ command }}" "${CYAN}{{ service.name }}${RESE
 log_debug "Running in \"{{ service.cwd }}\" for \"{{ service.name }}\": $ {{ service.parsed_command }}"
 {% if service.logs == false or service.logs == 'false' %}
 log_this "${YELLOW}Logging is disabled by configuration parameters.${RESET}" "${CYAN}{{ service.name }}${RESET}" "WARN"
-/bin/bash -c "{{ service.parsed_command }}" &> /dev/null
+eval "{{ service.parsed_command }}" &> /dev/null
 {% elif service.logs == true or service.logs == 'true' %}
-/bin/bash -c "{{ service.parsed_command }}"
+eval "{{ service.parsed_command }}"
 {% else %}
 fdmove -c 2 1 /bin/bash -c "{{ service.parsed_command }}" | eval "/usr/bin/mawk -W interactive '{print \"[${GREEN}{{ service.name }}${RESET}]\",\$0}'"
 {% endif %}

@@ -1,7 +1,8 @@
-import { toYaml } from '@cenk1cenk2/boilerplate-oclif'
 import fs from 'fs-extra'
 import Nunjucks from 'nunjucks'
 import { dirname, isAbsolute, join } from 'path'
+
+import { toYaml } from '@cenk1cenk2/boilerplate-oclif'
 
 export function jinja (path: string): Nunjucks.Environment {
   // some trickery because of the types of nunjucks

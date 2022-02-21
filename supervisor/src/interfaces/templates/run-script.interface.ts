@@ -1,4 +1,4 @@
-import { DockerService, DockerServicesConfig } from '../configs/docker-services.interface'
+import type { DockerService, DockerServicesConfig } from '../configs/docker-services.interface'
 
 export interface RunScriptTemplate {
   config: DockerServicesConfig

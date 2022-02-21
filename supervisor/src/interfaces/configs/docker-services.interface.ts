@@ -1,5 +1,6 @@
-import { IsFalseOrStringArray, IsSemverOrDefault } from '@utils/validator'
 import { IsBoolean, IsEnum, IsObject, IsPositive, IsString, IsUUID, ValidateNested } from 'class-validator'
+
+import { IsFalseOrStringArray, IsSemverOrDefault } from '@utils/validator'
 
 export class DockerServicesConfig {
   @IsSemverOrDefault()
