@@ -1,5 +1,4 @@
-import { BaseCommand, checkExists, deepMergeWithArrayOverwrite, LogLevels, readFile, readRaw, writeFile } from '@cenk1cenk2/boilerplate-oclif'
-import { pipeProcessToLogger } from '@utils/pipe-through-logger'
+import 'reflect-metadata'
 import { transformAndValidate } from 'class-transformer-validator'
 import config from 'config'
 import execa from 'execa'
@@ -8,8 +7,8 @@ import { EOL } from 'os'
 import { join, normalize } from 'path'
 import { v4 as uuid } from 'uuid'
 
-import 'reflect-metadata'
-import { InitCtx } from '@interfaces/commands/init.interface'
+import { BaseCommand, checkExists, deepMergeWithArrayOverwrite, LogLevels, readFile, readRaw, writeFile } from '@cenk1cenk2/boilerplate-oclif'
+import type { InitCtx } from '@interfaces/commands/init.interface'
 import { SERVICE_EXTENSION_ENVIRONMENT_VARIABLES } from '@src/constants/environment-variables.constants'
 import {
   CONFIG_FILES,
@@ -21,9 +20,11 @@ import {
   TEMPLATES,
   TEMPLATE_FOLDER
 } from '@src/constants/file-system.constants'
-import { DockerService, DockerServicesConfig } from '@src/interfaces/configs/docker-services.interface'
+import type { DockerService } from '@src/interfaces/configs/docker-services.interface'
+import { DockerServicesConfig } from '@src/interfaces/configs/docker-services.interface'
 import { createEnvFile } from '@src/utils/env-file'
 import { jinja } from '@src/utils/jinja'
+import { pipeProcessToLogger } from '@utils/pipe-through-logger'
 
 export default class Init extends BaseCommand {
   static description = 'This command initiates the container and creates the required variables.'
@@ -281,7 +282,9 @@ export default class Init extends BaseCommand {
           switch (this.constants.loglevel) {
           case LogLevels.debug:
             await createEnvFile(CONTAINER_ENV_FILE, { LOG_LEVEL: 5 }, true)
+
             break
+
           default:
             await createEnvFile(CONTAINER_ENV_FILE, { LOG_LEVEL: 4 }, true)
           }
@@ -425,6 +428,7 @@ export default class Init extends BaseCommand {
       const required = SERVICE_EXTENSION_ENVIRONMENT_VARIABLES.filter((variable) => variable.required)
 
       let shouldBreak: boolean
+
       required.forEach((variable) => {
         if (!process.env[`SERVICE_${i}_${variable.name}`] && !base.services?.[i]?.[variable.key]) {
           this.logger.verbose(`Required environment variable not found for service ${i}: "${variable.name}" with config key "${variable.key}"`, { custom: 'environment' })

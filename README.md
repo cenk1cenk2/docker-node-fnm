@@ -175,7 +175,7 @@ Container has a inbuilt CLI script to proxy commands through the packages. You c
 
 CONTAINER_NAME=monorepo
 
-docker-compose exec "${CONTAINER_NAME}" /bin/bash -c "source /root/.bashrc && docker-node-fnm-init proxy ${*}"
+docker-compose exec "${CONTAINER_NAME}" /bin/bash -c "docker-node-fnm-init proxy ${*}"
 ```
 
 There is also a gist available [here](https://gist.github.com/cenk1cenk2/0446f3be22a39c9f5fe5ee1cfb3cca63#file-cli-fnm-sh).

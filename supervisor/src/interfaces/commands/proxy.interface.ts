@@ -1,11 +1,8 @@
 import { ValidateNested } from 'class-validator'
 
-import { ProxyConfig } from '../configs/proxy.interface'
+import type { ProxyConfig } from '../configs/proxy.interface'
 
 export declare class ProxyCtx {
-  @ValidateNested()
-    config: ProxyConfig
-
   root: string
 
   package: string
@@ -13,4 +10,7 @@ export declare class ProxyCtx {
   fileSystem: {
     config: string
   }
+
+  @ValidateNested()
+    config: ProxyConfig
 }

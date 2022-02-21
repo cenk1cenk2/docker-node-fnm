@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-source /root/.bashrc
+source /etc/bash.bashrc
 
 docker-node-fnm-init
