@@ -34,7 +34,7 @@ steps:
       password:
         from_secret: docker_password
 
-  - name: update readme
+  - name: update-readme
     image: cenk1cenk2/pipe-update-docker-hub-readme
     settings:
       repo: cenk1cenk2/node-fnm
@@ -49,8 +49,6 @@ steps:
 
   - name: inform
     image: drillster/drone-email
-    depends_on:
-      - publish
     settings:
       host:
         from_secret: smtp_host
