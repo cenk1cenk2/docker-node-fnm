@@ -79,7 +79,7 @@ COPY ./supervisor /cli
 # Link and install dependencies
 WORKDIR /cli
 RUN \
-  /bin/bash -c "source /etc/bash.bashrc && yarn --production --frozen-lockfile && yarn link" && \
+  /bin/bash -c "source /etc/bash.bashrc && yarn --production && yarn link" && \
   # smoke test
   /bin/bash -c "source /etc/bash.bashrc && docker-node-fnm-init -v"
 

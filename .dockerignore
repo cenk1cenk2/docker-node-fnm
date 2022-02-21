@@ -7,6 +7,5 @@
 !/supervisor/templates
 !/supervisor/dist
 !/supervisor/package.json
-!/supervisor/yarn.lock
 !/cont-init.d/
 !/services.d/
