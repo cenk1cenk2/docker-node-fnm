@@ -42,8 +42,9 @@ RUN \
   /bin/bash -c "source /etc/bash.bashrc && fnm alias default ${FNM_INSTALL_VERSION}" && \
   # add fnm for bash
   /bin/bash -c "source /etc/bash.bashrc && fnm use default" && \
-  /bin/bash -c 'source /etc/bash.bashrc && /bin/ln -s "/opt/fnm/aliases/default/bin/node" /usr/bin/node'
-
+  /bin/bash -c 'source /etc/bash.bashrc && /bin/ln -s "/opt/fnm/aliases/default/bin/node" /usr/bin/node' && \
+  /bin/bash -c 'source /etc/bash.bashrc && /bin/ln -s "/opt/fnm/aliases/default/bin/npm" /usr/bin/npm' && \
+  /bin/bash -c 'source /etc/bash.bashrc && /bin/ln -s "/opt/fnm/aliases/default/bin/npx" /usr/bin/npx'
 
 RUN \
   # add yarn
