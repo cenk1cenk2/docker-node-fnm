@@ -2,8 +2,8 @@ FROM debian:stable-slim
 
 # Workdir for node package
 
-ENV FNM_VERSION=1.31.0
-ENV S6_VERSION 3.0.0.2
+ENV FNM_VERSION 1.31.0
+ENV S6_VERSION 3.1.0.1
 ENV FNM_DIR /opt/fnm
 ENV FNM_INTERACTIVE_CLI false
 ENV FNM_INSTALL_VERSION 16
@@ -13,15 +13,15 @@ WORKDIR /tmp
 COPY ./rootfs /
 
 # Install s6 overlay
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-noarch-${S6_VERSION}.tar.xz /tmp
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-x86_64-${S6_VERSION}.tar.xz /tmp
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-symlinks-noarch-${S6_VERSION}.tar.xz /tmp
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-noarch.tar.xz /tmp
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-x86_64.tar.xz /tmp
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-symlinks-noarch.tar.xz /tmp
 
 RUN \
   apt-get update && apt-get install -y xz-utils && \
-  tar -Jxpf /tmp/s6-overlay-noarch-${S6_VERSION}.tar.xz -C / && \
-  tar -Jxpf /tmp/s6-overlay-x86_64-${S6_VERSION}.tar.xz -C / && \
-  tar -Jxpf /tmp/s6-overlay-symlinks-noarch-${S6_VERSION}.tar.xz -C / && \
+  tar -Jxpf /tmp/s6-overlay-noarch.tar.xz -C / && \
+  tar -Jxpf /tmp/s6-overlay-x86_64.tar.xz -C / && \
+  tar -Jxpf /tmp/s6-overlay-symlinks-noarch.tar.xz -C / && \
   ## create directories
   mkdir -p /etc/services.d && mkdir -p /etc/cont-init.d && mkdir -p /s6-bin
 
