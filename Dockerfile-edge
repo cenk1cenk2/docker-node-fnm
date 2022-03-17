@@ -3,7 +3,7 @@ FROM debian:stable-slim
 # Workdir for node package
 
 ENV FNM_VERSION 1.31.0
-ENV S6_VERSION 2.2.0.3
+ENV S6_VERSION 3.1.0.1
 ENV FNM_DIR /opt/fnm
 ENV FNM_INTERACTIVE_CLI false
 ENV FNM_INSTALL_VERSION 16
@@ -13,16 +13,22 @@ WORKDIR /tmp
 COPY ./rootfs /
 
 # Install s6 overlay
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-amd64.tar.gz /tmp/
-RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
-  # create directories
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-noarch.tar.xz /tmp
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-x86_64.tar.xz /tmp
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-symlinks-noarch.tar.xz /tmp
+
+RUN \
+  apt-get update && apt-get install -y xz-utils && \
+  tar -Jxpf /tmp/s6-overlay-noarch.tar.xz -C / && \
+  tar -Jxpf /tmp/s6-overlay-x86_64.tar.xz -C / && \
+  tar -Jxpf /tmp/s6-overlay-symlinks-noarch.tar.xz -C / && \
+  ## create directories
   mkdir -p /etc/services.d && mkdir -p /etc/cont-init.d && mkdir -p /s6-bin
 
 SHELL ["/bin/bash", "-c"]
 
 # Install fnm and initiate it
 RUN \
-  apt-get update && \
   apt-get install -y curl unzip gnupg2 && \
   # install fnm
   curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "/opt/fnm" --skip-shell && \
