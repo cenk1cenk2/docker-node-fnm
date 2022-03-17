@@ -29,7 +29,7 @@ steps:
     depends_on:
       - install
 
-  - name: publish latest
+  - name: publish-latest
     image: plugins/docker
     settings:
       repo: cenk1cenk2/node-fnm
@@ -43,7 +43,7 @@ steps:
       - lint
       - build
 
-  - name: publish edge
+  - name: publish-edge
     image: plugins/docker
     settings:
       repo: cenk1cenk2/node-fnm
