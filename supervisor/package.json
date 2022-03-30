@@ -81,7 +81,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@anatine/esbuild-decorators": "^0.2.18",
+    "@anatine/esbuild-decorators": "^0.2.19",
     "@cenk1cenk2/cz-cc": "^1.5.2",
     "@cenk1cenk2/eslint-config": "^2.5.7",
     "@oclif/dev-cli": "^1.26.10",
