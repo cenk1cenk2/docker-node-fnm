@@ -100,7 +100,7 @@
     "rimraf": "^3.0.2",
     "source-map-support": "^0.5.21",
     "tsup": "^5.12.1",
-    "typescript": "^4.7.0-dev.20220330"
+    "typescript": "^4.7.0-dev.20220331"
   },
   "config": {
     "commitizen": {
