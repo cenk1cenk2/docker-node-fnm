@@ -99,8 +99,8 @@
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
     "source-map-support": "^0.5.21",
-    "tsup": "^5.12.2",
-    "typescript": "^4.7.0-dev.20220401"
+    "tsup": "^5.12.3",
+    "typescript": "^4.7.0-dev.20220402"
   },
   "config": {
     "commitizen": {
