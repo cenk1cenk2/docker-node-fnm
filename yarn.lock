@@ -3180,11 +3180,12 @@ defaults@^1.0.3:
     clone "^1.0.2"
 
 define-properties@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/define-properties/-/define-properties-1.1.3.tgz#cf88da6cbee26fe6db7094f61d870cbd84cee9f1"
-  integrity sha512-3MqfYKj2lLzdMSf8ZIZE/V+Zuy+BgD6f164e8K2w7dgnpKArBDerGYpM46IYYcjnkdPNMjPk9A6VFB8+3SKlXQ==
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/define-properties/-/define-properties-1.1.4.tgz#0b14d7bd7fbeb2f3572c3a7eda80ea5d57fb05b1"
+  integrity sha512-uckOqKcfaVvtBdsVkdPv3XjveQJsNQqmhXgRi8uhvWWuPYZCNlzT8qAyblUgNoXdHdjMTzAqeGjAoli8f+bzPA==
   dependencies:
-    object-keys "^1.0.12"
+    has-property-descriptors "^1.0.0"
+    object-keys "^1.1.1"
 
 delayed-stream@~1.0.0:
   version "1.0.0"
@@ -3322,9 +3323,9 @@ ejs@^3.1.6:
     jake "^10.6.1"
 
 electron-to-chromium@^1.4.84:
-  version "1.4.108"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.108.tgz#380b01ff68e958d2b9fdf4572e054020a506c568"
-  integrity sha512-/36KkMuL6+WTrodVlOjtHhH9Ro7BgRaQrh0bfKckwDtdRSjTBuZCOddeXxzK1PkwphoeTxGUFVT9xnmvQ7xEdw==
+  version "1.4.110"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.110.tgz#269208d7cf7e32123b1d87bf4e6e1fd9ac7ff51d"
+  integrity sha512-TvHZrkj9anfWkxgblHlNr4IMQdm2N6D0o8Wu1BDpSL/RKT4DHyUt/tvDFtApgZ+LGFL3U9EO4LRZ1eSlQ8xMYA==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -4388,6 +4389,13 @@ has-flag@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-4.0.0.tgz#944771fd9c81c81265c4d6941860da06bb59479b"
   integrity sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==
+
+has-property-descriptors@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/has-property-descriptors/-/has-property-descriptors-1.0.0.tgz#610708600606d36961ed04c196193b6a607fa861"
+  integrity sha512-62DVLZGoiEBDHQyqG4w9xCuZ7eJEwNmJRWw2VY84Oedb7WFcA27fiEVe8oUQx9hAUJ4ekurquucTGwsyO1XGdQ==
+  dependencies:
+    get-intrinsic "^1.1.1"
 
 has-symbols@^1.0.1, has-symbols@^1.0.2, has-symbols@^1.0.3:
   version "1.0.3"
@@ -5617,9 +5625,9 @@ lines-and-columns@^1.1.6:
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
 lint-staged@^12.3.7:
-  version "12.3.7"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-12.3.7.tgz#ad0e2014302f704f9cf2c0ebdb97ac63d0f17be0"
-  integrity sha512-/S4D726e2GIsDVWIk1XGvheCaDm1SJRQp8efamZFWJxQMVEbOwSysp7xb49Oo73KYCdy97mIWinhlxcoNqIfIQ==
+  version "12.3.8"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-12.3.8.tgz#ee3fe2e16c9d76f99d8348072900b017d6d76901"
+  integrity sha512-0+UpNaqIwKRSGAFOCcpuYNIv/j5QGVC+xUVvmSdxHO+IfIGoHbFLo3XcPmV/LLnsVj5EAncNHVtlITSoY5qWGQ==
   dependencies:
     cli-truncate "^3.1.0"
     colorette "^2.0.16"
@@ -6360,7 +6368,7 @@ object-inspect@^1.12.0, object-inspect@^1.9.0:
   resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.12.0.tgz#6e2c120e868fd1fd18cb4f18c31741d0d6e776f0"
   integrity sha512-Ho2z80bVIvJloH+YzRmpZVQe87+qASmBUKZDWgx9cu+KDrX2ZDH/3tMy+gXbZETVGs2M8YdxObOh7XAtim9Y0g==
 
-object-keys@^1.0.12, object-keys@^1.1.1:
+object-keys@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
@@ -7191,9 +7199,9 @@ rimraf@^3.0.0, rimraf@^3.0.2:
     glob "^7.1.3"
 
 rollup@^2.60.0:
-  version "2.70.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.70.1.tgz#824b1f1f879ea396db30b0fc3ae8d2fead93523e"
-  integrity sha512-CRYsI5EuzLbXdxC6RnYhOuRdtz4bhejPMSWjsFLfVM/7w/85n2szZv6yExqUXsBdz5KT8eoubeyDUDjhLHEslA==
+  version "2.70.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.70.2.tgz#808d206a8851628a065097b7ba2053bd83ba0c0d"
+  integrity sha512-EitogNZnfku65I1DD5Mxe8JYRUCy0hkK5X84IlDtUs+O6JRMpRciXTzyCUuX11b5L5pvjH+OmFXiQ3XjabcXgg==
   optionalDependencies:
     fsevents "~2.3.2"
 
@@ -8115,10 +8123,10 @@ typescript@^4.4.3:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.3.tgz#eefeafa6afdd31d725584c67a0eaba80f6fc6c6c"
   integrity sha512-yNIatDa5iaofVozS/uQJEl3JRWLKKGJKh6Yaiv0GLGSuhpFJe7P3SbHZ8/yjAHRQwKRoA6YZqlfjXWmVzoVSMw==
 
-typescript@^4.7.0-dev.20220408:
-  version "4.7.0-dev.20220408"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.0-dev.20220408.tgz#52a049ad6c3c78856935692c3fc69aec8a40ec6d"
-  integrity sha512-2KgXRQXrjFEbm+ismaGoR803nTRQuc03XQ1crnlxXvQYIXasPiidwiczLc9i0rTo33KXIN2M6YiNtn1tZihHgw==
+typescript@^4.7.0-dev.20220415:
+  version "4.7.0-dev.20220415"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.0-dev.20220415.tgz#4b473c8217fe62d41743c4eb996c71e8765abe11"
+  integrity sha512-z29SdimqisA560ODjUyM7ZYj5behBCzge6HmGBzkVr6zia28HTFeZORehCr37e8Hw1IlsULE4uz5oPwuck8h5Q==
 
 uglify-js@^3.1.4:
   version "3.15.4"
