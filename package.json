@@ -6,7 +6,9 @@
     "ls": "lerna la",
     "clean": "lerna clean -y && rimraf node_modules yarn.lock",
     "exec": "lerna exec --stream",
-    "command": "lerna run --stream"
+    "command": "lerna run --stream",
+    "lint": "yarn run command --concurrency 1 lint",
+    "lint:check": "yarn run command lint:check"
   },
   "workspaces": [
     "supervisor/"

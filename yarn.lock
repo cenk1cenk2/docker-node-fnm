@@ -8123,10 +8123,10 @@ typescript@^4.4.3:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.3.tgz#eefeafa6afdd31d725584c67a0eaba80f6fc6c6c"
   integrity sha512-yNIatDa5iaofVozS/uQJEl3JRWLKKGJKh6Yaiv0GLGSuhpFJe7P3SbHZ8/yjAHRQwKRoA6YZqlfjXWmVzoVSMw==
 
-typescript@^4.7.0-dev.20220415:
-  version "4.7.0-dev.20220415"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.0-dev.20220415.tgz#4b473c8217fe62d41743c4eb996c71e8765abe11"
-  integrity sha512-z29SdimqisA560ODjUyM7ZYj5behBCzge6HmGBzkVr6zia28HTFeZORehCr37e8Hw1IlsULE4uz5oPwuck8h5Q==
+typescript@^4.7.0-dev.20220417:
+  version "4.7.0-dev.20220417"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.0-dev.20220417.tgz#04e3b161e36b02c6188b08022bb5c8b72659a757"
+  integrity sha512-wK22mbVpNsm0NZFQzvSWO36tGjxJ2iQJ4dG169YfQmYlxcNZ5UqcQZ9SR2hynFYepXFjKPwdLHDRwxGPIbh+MQ==
 
 uglify-js@^3.1.4:
   version "3.15.4"
