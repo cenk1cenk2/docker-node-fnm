@@ -1,6 +1,6 @@
 # cenk1cenk2/node-fnm
 
-[![Build Status](https://drone.kilic.dev/api/badges/cenk1cenk2/docker-node-fnm/status.svg)](https://drone.kilic.dev/cenk1cenk2/docker-node-fnm) [![Docker Pulls](https://img.shields.io/docker/pulls/cenk1cenk2/node-fnm)](https://hub.docker.com/repository/docker/cenk1cenk2/node-fnm) [![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/cenk1cenk2/node-fnm)](https://hub.docker.com/repository/docker/cenk1cenk2/node-fnm) [![Docker Image Version (latest by date)](https://img.shields.io/docker/v/cenk1cenk2/node-fnm)](https://hub.docker.com/repository/docker/cenk1cenk2/node-fnm) [![GitHub last commit](https://img.shields.io/github/last-commit/cenk1cenk2/docker-node-fnm)](https://github.com/cenk1cenk2/docker-node-fnm)
+[![pipeline status](https://gitlab.kilic.dev/docker/node-fnm/badges/master/pipeline.svg)](https://gitlab.kilic.dev/docker-node-fnm/-/commits/master) [![Docker Pulls](https://img.shields.io/docker/pulls/cenk1cenk2/node-fnm)](https://hub.docker.com/repository/docker/cenk1cenk2/node-fnm) [![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/cenk1cenk2/node-fnm)](https://hub.docker.com/repository/docker/cenk1cenk2/node-fnm) [![Docker Image Version (latest by date)](https://img.shields.io/docker/v/cenk1cenk2/node-fnm)](https://hub.docker.com/repository/docker/cenk1cenk2/node-fnm) [![GitHub last commit](https://img.shields.io/github/last-commit/cenk1cenk2/docker-node-fnm)](https://github.com/cenk1cenk2/docker-node-fnm)
 
 # Description
 
