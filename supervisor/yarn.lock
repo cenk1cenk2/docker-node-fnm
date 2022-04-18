@@ -314,10 +314,10 @@
     winston "^3.3.3"
     yaml "^1.10.2"
 
-"@cenk1cenk2/cz-cc@^1.5.2":
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.5.2.tgz#e2e0597475b78f264240fc0d95d6d733d0eff9e9"
-  integrity sha512-CkJp8tryiqtRQzfzXaYfaDMjYrmbb8sowfB5BiK3PI0TQ/FfEpyPRUccqtOMALH9g/KGFimru81Bu1dEyYR2XA==
+"@cenk1cenk2/cz-cc@^1.5.3":
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.5.3.tgz#a5f2d525aae14b5d2ec5c91ab4b22171359fa1bf"
+  integrity sha512-c4aJsYFl06NhxFlhBvcpaWj11ASLnPbmF++4v7O0MeJeXmFkodOl0quydFSg+jJzfegDjwKqbP3Lnyt5LbFkOA==
   dependencies:
     colorette "^2.0.16"
     commitizen "^4.2.4"
@@ -329,7 +329,7 @@
     lodash.map "^4.6.0"
     word-wrap "^1.2.3"
   optionalDependencies:
-    "@commitlint/load" "^16.1.0"
+    "@commitlint/load" "^16.2.3"
 
 "@cenk1cenk2/eslint-config@^2.5.8":
   version "2.5.8"
@@ -359,10 +359,27 @@
   resolved "https://registry.yarnpkg.com/@commitlint/execute-rule/-/execute-rule-16.2.1.tgz#60be73be4b9af97a41546e7ce59fdd33787c65f8"
   integrity sha512-oSls82fmUTLM6cl5V3epdVo4gHhbmBFvCvQGHBRdQ50H/690Uq1Dyd7hXMuKITCIdcnr9umyDkr8r5C6HZDF3g==
 
-"@commitlint/load@>6.1.1", "@commitlint/load@^16.1.0":
+"@commitlint/load@>6.1.1":
   version "16.2.1"
   resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-16.2.1.tgz#301bda1bff66b3e40a85819f854eda72538d8e24"
   integrity sha512-oSpz0jTyVI/A1AIImxJINTLDOMB8YF7lWGm+Jg5wVWM0r7ucpuhyViVvpSRTgvL0z09oIxlctyFGWUQQpI42uw==
+  dependencies:
+    "@commitlint/config-validator" "^16.2.1"
+    "@commitlint/execute-rule" "^16.2.1"
+    "@commitlint/resolve-extends" "^16.2.1"
+    "@commitlint/types" "^16.2.1"
+    "@types/node" ">=12"
+    chalk "^4.0.0"
+    cosmiconfig "^7.0.0"
+    cosmiconfig-typescript-loader "^1.0.0"
+    lodash "^4.17.19"
+    resolve-from "^5.0.0"
+    typescript "^4.4.3"
+
+"@commitlint/load@^16.2.3":
+  version "16.2.3"
+  resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-16.2.3.tgz#7b2e85af25a6f736f080ba08e7165738cedf8c8f"
+  integrity sha512-Hb4OUlMnBUK6UxJEZ/VJ5k0LocIS7PtEMbRXEAA7eSpOgORIFexC4K/RaRpVd5UTtu3M0ST3ddPPijF9rdW6nw==
   dependencies:
     "@commitlint/config-validator" "^16.2.1"
     "@commitlint/execute-rule" "^16.2.1"
