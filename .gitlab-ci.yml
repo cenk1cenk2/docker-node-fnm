@@ -4,25 +4,17 @@ stages:
   - publish
   - post
 
-variables: {}
+variables:
+  DOCKER_IMAGE_NAME: cenk1cenk2/node-fnm
+  README_DESCRIPTION: |
+    Monorepo aimed Node development container that hosts FNM in a container.
 
 include:
   - project: devops/pipes
     file: /templates/node-build.gitlab-ci.yml
-    ref: main
 
   - project: devops/pipes
     file: /templates/update-docker-hub-readme.gitlab-ci.yml
-    ref: main
-
-.publish-docker-to-public:
-  stage: publish
-  trigger:
-    include:
-      - project: devops/pipes
-        file: /templates/docker-build-with-artifacts-dockerhub.gitlab-ci.yml
-        ref: main
-    strategy: depend
 
 build:
   variables:
@@ -31,14 +23,20 @@ build:
     paths:
       - supervisor/dist/
 
+.publish-docker-to-public:
+  stage: publish
+  trigger:
+    include:
+      - project: devops/pipes
+        file: /templates/docker-build-with-artifacts-dockerhub.gitlab-ci.yml
+    strategy: depend
+
 publish-node-fnm-latest:
   extends: .publish-docker-to-public
   variables:
     DOCKERFILE_CONTEXT: .
     DOCKERFILE_NAME: Dockerfile
-    IMAGE_NAME: cenk1cenk2/node-fnm
     IMAGE_TAGS: latest
-    NODE_BUILD_CWD: ./supervisor
   only:
     refs:
       - master
@@ -49,16 +47,8 @@ publish-node-fnm-edge:
   variables:
     DOCKERFILE_CONTEXT: .
     DOCKERFILE_NAME: Dockerfile-edge
-    IMAGE_NAME: cenk1cenk2/node-fnm
     IMAGE_TAGS: edge
   only:
     refs:
       - master
       - tags
-
-update-docker-hub-readme:
-  variables:
-    README_REPOSITORY: cenk1cenk2/node-fnm
-    README_FILE: ./README.md
-    README_DESCRIPTION: |
-      Monorepo aimed Node development container that hosts FNM in a container.
