@@ -5374,10 +5374,10 @@ typescript@^4.4.3:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.3.tgz#eefeafa6afdd31d725584c67a0eaba80f6fc6c6c"
   integrity sha512-yNIatDa5iaofVozS/uQJEl3JRWLKKGJKh6Yaiv0GLGSuhpFJe7P3SbHZ8/yjAHRQwKRoA6YZqlfjXWmVzoVSMw==
 
-typescript@^4.7.0-dev.20220423:
-  version "4.7.0-dev.20220423"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.0-dev.20220423.tgz#cf524a738ad8fff1d2dbe482c5c50ce85333f937"
-  integrity sha512-NxH+aoFQ+CiDnU74u7GIHMmwGugcKNmEUKTW+N/u+v+1glHcFUyNspC/AuZV1FZPUFFS5zA07L/+v7nSuSrckQ==
+typescript@^4.7.0-dev.20220424:
+  version "4.7.0-dev.20220424"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.0-dev.20220424.tgz#fb9cd9a4f7495248694ab1b9c8fd6cd350c7428c"
+  integrity sha512-oQrr51Qhxrgn/PTNoeRX4aNRV+jzb4egLCxW8EZ3nf/O50VckCME2hwS0hR4IPA6bn6CFPXhAY8rYVRIosua2Q==
 
 unbox-primitive@^1.0.1:
   version "1.0.1"
