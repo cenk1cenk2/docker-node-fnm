@@ -11,7 +11,7 @@ variables:
 
 include:
   - project: devops/pipes
-    file: /templates/node-build.gitlab-ci.yml
+    file: /templates/node.gitlab-ci.yml
 
   - project: devops/pipes
     file: /templates/update-docker-hub-readme.gitlab-ci.yml
