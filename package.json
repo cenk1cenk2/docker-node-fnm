@@ -20,7 +20,7 @@
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^1.5.3",
     "commitizen": "^4.2.4",
-    "lerna": "^5.1.5",
+    "lerna": "^5.1.6",
     "simple-git-hooks": "^2.8.0"
   },
   "config": {
