@@ -83,7 +83,7 @@
   "devDependencies": {
     "@anatine/esbuild-decorators": "^0.2.19",
     "@cenk1cenk2/cz-cc": "^1.5.3",
-    "@cenk1cenk2/eslint-config": "^2.5.20",
+    "@cenk1cenk2/eslint-config": "^2.5.21",
     "@oclif/dev-cli": "^1.26.10",
     "@types/config": "^0.0.41",
     "@types/fs-extra": "^9.0.13",
