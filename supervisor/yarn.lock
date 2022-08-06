@@ -811,9 +811,9 @@
     tslib "^2.3.1"
 
 "@oclif/core@^1.3.6":
-  version "1.13.2"
-  resolved "https://registry.yarnpkg.com/@oclif/core/-/core-1.13.2.tgz#6420039b0249280c08d35c1ced3131fe50f07680"
-  integrity sha512-DBTxPqigZLjZgpkSjdlXrPrEyVMDUr/8VP76ZHKFgZod0DEfP4U3NkBdcTcp12WknwovJ947py93/HNVukrjyQ==
+  version "1.13.3"
+  resolved "https://registry.yarnpkg.com/@oclif/core/-/core-1.13.3.tgz#7285dfa7b405b937b384d8285c31519ac27e47aa"
+  integrity sha512-X7aThMtE7WB0HHejp0A/YUzxitDu0SUBcHLqbo+dTcgA/aWRtLBHIlIIHJcIeXa0Cvj+2U9BVcPDftrvEE/N2Q==
   dependencies:
     "@oclif/linewrap" "^1.0.0"
     "@oclif/screen" "^3.0.2"
@@ -2948,7 +2948,7 @@ has-property-descriptors@^1.0.0:
   dependencies:
     get-intrinsic "^1.1.1"
 
-has-symbols@^1.0.1, has-symbols@^1.0.2, has-symbols@^1.0.3:
+has-symbols@^1.0.2, has-symbols@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/has-symbols/-/has-symbols-1.0.3.tgz#bb7b2c4349251dce87b125f7bdf874aa7c8b39f8"
   integrity sha512-l3LCuF6MgDNwTDKkdYGEihYjt5pRPbEg46rtlmnSPlUbgmB8LOIrKJbYYFBSbnPaJexMKtiPO8hmeRjRz2Td+A==
@@ -4188,13 +4188,13 @@ object-treeify@^1.1.33, object-treeify@^1.1.4:
   integrity sha512-EFVjAYfzWqWsBMRHPMAXLCDIJnpMhdWAqR7xG6M6a2cs6PMFpl/+Z20w9zDW4vkxOFfddegBKq9Rehd0bxWE7A==
 
 object.assign@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/object.assign/-/object.assign-4.1.2.tgz#0ed54a342eceb37b38ff76eb831a0e788cb63940"
-  integrity sha512-ixT2L5THXsApyiUPYKmW+2EHpXXe5Ii3M+f4e+aJFAHao5amFRW6J0OO6c/LU8Be47utCx2GL89hxGB6XSmKuQ==
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/object.assign/-/object.assign-4.1.3.tgz#d36b7700ddf0019abb6b1df1bb13f6445f79051f"
+  integrity sha512-ZFJnX3zltyjcYJL0RoCJuzb+11zWGyaDbjgxZbdV7rFEcHQuYxrZqhow67aA7xpes6LhojyFDaBKAFfogQrikA==
   dependencies:
-    call-bind "^1.0.0"
-    define-properties "^1.1.3"
-    has-symbols "^1.0.1"
+    call-bind "^1.0.2"
+    define-properties "^1.1.4"
+    has-symbols "^1.0.3"
     object-keys "^1.1.1"
 
 object.values@^1.1.5:
