@@ -1,21 +1,17 @@
-import config from 'config'
 import dotenv from 'dotenv'
 import execa from 'execa'
-import type { Stats } from 'fs'
-import fs from 'fs-extra'
 import { dirname, join } from 'path'
 
-import { BaseCommand, deepMergeWithArrayOverwrite } from '@cenk1cenk2/boilerplate-oclif'
-import { CONFIG_FILES, MOUNTED_DATA_FOLDER } from '@constants/file-system.constants'
+import { Command, config, fs, merge, MergeStrategy } from '@cenk1cenk2/oclif-common'
+import { CONFIG_FILES, DEFAULT_CONFIG_FILE, MOUNTED_DATA_FOLDER, YAML_FILE_EXT } from '@constants/file-system.constants'
+import { PACKAGE_ROOT_DEFINITIONS } from '@constants/keywords.constants'
 import type { ProxyCtx } from '@interfaces/commands/proxy.interface'
 import type { ProxyConfig } from '@interfaces/configs/proxy.interface'
-import { PACKAGE_ROOT_DEFINITIONS } from '@src/constants/keywords.constants'
-import 'reflect-metadata'
 
-export default class Init extends BaseCommand {
+export default class Proxy extends Command {
   static description = 'This command initiates the proxies commands to the underlying container and pipes the data.'
 
-  public async construct (): Promise<void> {
+  public async shouldRunBefore (): Promise<void> {
     this.tasks.options = {
       rendererSilent: true
     }
@@ -26,8 +22,8 @@ export default class Init extends BaseCommand {
       // set defaults for context
       {
         task: async (ctx): Promise<void> => {
-          ctx.fileSystem = {
-            config: join(this.config.root, 'config', CONFIG_FILES.proxy)
+          ctx.files = {
+            config: join(this.cs.defaults, CONFIG_FILES.PROXY)
           }
 
           this.logger.debug('Set defaults for context: %o', ctx, { context: 'defaults' })
@@ -37,23 +33,23 @@ export default class Init extends BaseCommand {
       // loads the default configuration
       {
         task: async (ctx): Promise<void> => {
-          this.logger.verbose('Loading configuration.', { custom: 'config' })
+          this.logger.verbose('Loading configuration.', { context: 'config' })
 
-          ctx.config = config.util.parseFile(join(ctx.fileSystem.config, 'default.yml'))
+          ctx.config = await this.cs.read<ProxyConfig>(MergeStrategy.OVERWRITE, join(ctx.files.config, DEFAULT_CONFIG_FILE))
 
-          this.logger.debug('Configuration file defaults is loaded: %o', ctx.config, { custom: 'defaults' })
+          this.logger.debug('Configuration file defaults is loaded: %o', ctx.config, { context: 'defaults' })
         }
       },
 
       // extend configuration with environment variables
       {
         task: (ctx): void => {
-          const envVars = config.util.getCustomEnvVars<ProxyConfig>(ctx.fileSystem.config, [ 'yml' ])
+          const envVars = config.util.getCustomEnvVars<ProxyConfig>(ctx.files.config, [ YAML_FILE_EXT ])
 
           if (Object.keys(envVars).length > 0) {
-            ctx.config = deepMergeWithArrayOverwrite(ctx.config, envVars)
+            ctx.config = merge(MergeStrategy.OVERWRITE, ctx.config, envVars)
 
-            this.logger.debug('Merged environment variables: %o', envVars, { custom: 'environment' })
+            this.logger.debug('Merged environment variables: %o', envVars, { context: 'environment' })
           }
         }
       },
@@ -65,7 +61,7 @@ export default class Init extends BaseCommand {
             if (this.argv.length < 1) {
               this.logger.fatal('At least a command should be given to run in the workspace.')
 
-              process.exit(115)
+              this.exit(115)
             }
 
             ctx.root = MOUNTED_DATA_FOLDER
@@ -73,7 +69,7 @@ export default class Init extends BaseCommand {
             if (this.argv.length < 2) {
               this.logger.fatal('Root directory should be given as the first argument and the command as the rest.')
 
-              process.exit(115)
+              this.exit(115)
             }
 
             ctx.package = this.argv.shift()
@@ -92,11 +88,11 @@ export default class Init extends BaseCommand {
       // check if root directory exists
       {
         task: (ctx): void => {
-          let stat: Stats
+          let stat: fs.Stats
 
           try {
             /* eslint-disable-next-line prefer-const */
-            stat = fs.statSync(ctx.root)
+            stat = this.fs.stats(ctx.root)
           } finally {
             if (!stat || !stat.isDirectory()) {
               this.logger.fatal(`Specified root "${ctx.root}" is not a directory.`)
@@ -109,7 +105,7 @@ export default class Init extends BaseCommand {
 
               this.logger.fatal(`Available directories are: ${directories}`)
 
-              process.exit(110)
+              this.exit(110)
             }
           }
         }
@@ -152,7 +148,7 @@ export default class Init extends BaseCommand {
 
             this.logger.debug(e)
 
-            process.exit(127)
+            this.exit(127)
           }
         }
       }

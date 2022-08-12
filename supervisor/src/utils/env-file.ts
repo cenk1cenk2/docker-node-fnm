@@ -1,13 +1,14 @@
 import { EOL } from 'os'
 
-import { writeFile } from '@cenk1cenk2/boilerplate-oclif'
+import { FileSystemService } from '@cenk1cenk2/oclif-common'
 
 export function createEnvFile (path: string, variables: Record<string, string | number | boolean>, append?: boolean): Promise<void> {
-  return writeFile(
+  const fs = new FileSystemService()
+
+  return fs[append ? 'append' : 'write'](
     path,
     Object.entries(variables)
       .map(([ k, v ]) => `${k}=${v}`)
-      .join(EOL) + EOL,
-    append
+      .join(EOL) + EOL
   )
 }

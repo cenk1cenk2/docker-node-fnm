@@ -7,7 +7,7 @@ export declare class ProxyCtx {
 
   package: string
 
-  fileSystem: {
+  files: {
     config: string
   }
 

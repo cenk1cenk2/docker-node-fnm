@@ -2,7 +2,7 @@ FROM debian:stable-slim
 
 # Workdir for node package
 
-ENV FNM_VERSION 1.31.0
+ENV FNM_VERSION 1.31.1
 ENV S6_VERSION 3.1.0.1
 ENV FNM_DIR /opt/fnm
 ENV FNM_INTERACTIVE_CLI false

@@ -1,4 +1,3 @@
-import { generateInitHook } from '@cenk1cenk2/boilerplate-oclif'
-import { logo } from '@templates/logo.template'
+import { initHook } from '@cenk1cenk2/oclif-common'
 
-export default generateInitHook({ logo })
+export default initHook

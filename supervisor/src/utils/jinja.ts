@@ -1,10 +1,11 @@
-import fs from 'fs-extra'
 import Nunjucks from 'nunjucks'
 import { dirname, isAbsolute, join } from 'path'
 
-import { toYaml } from '@cenk1cenk2/boilerplate-oclif'
+import { FileSystemService, YamlParser } from '@cenk1cenk2/oclif-common'
 
 export function jinja (path: string): Nunjucks.Environment {
+  const fs = new FileSystemService()
+
   // some trickery because of the types of nunjucks
   Nunjucks.installJinjaCompat()
 
@@ -17,7 +18,7 @@ export function jinja (path: string): Nunjucks.Environment {
         const dir = relative ? join(dirname(path), name) : name
 
         // async read does not work, dont waste 1 hour on it!
-        const buffer = fs.readFileSync(dir, 'utf-8')
+        const buffer = fs.readSync(dir)
 
         return {
           src: buffer,
@@ -34,9 +35,11 @@ export function jinja (path: string): Nunjucks.Environment {
     }
   )
 
+  const Yaml = new YamlParser()
+
   // add filters
   env.addFilter('to_nice_yaml', (data: string | string[] | Record<string, any>) => {
-    return toYaml(data).trim()
+    return Yaml.stringify(data).trim()
   })
 
   // add extensions

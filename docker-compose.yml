@@ -1,8 +1,11 @@
 version: '3.7'
 services:
   monorepo:
-    image: cenk1cenk2/lerna-dev:latest
+    image: cenk1cenk2/node-fnm:test
+    build:
+      context: .
     environment:
-      - SERVICES=supervisor
+      LOG_LEVEL: debug
+      SERVICE_0_CWD: supervisor
     volumes:
       - .:/data/app

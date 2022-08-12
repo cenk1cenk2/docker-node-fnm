@@ -2,7 +2,7 @@ FROM debian:stable-slim
 
 # Workdir for node package
 
-ENV FNM_VERSION 1.31.0
+ENV FNM_VERSION 1.31.1
 ENV S6_VERSION 2.2.0.3
 ENV FNM_DIR /opt/fnm
 ENV FNM_INTERACTIVE_CLI false
@@ -76,7 +76,7 @@ WORKDIR /cli
 RUN \
   /bin/bash -c "source /etc/bash.bashrc && yarn --production && yarn link" && \
   # smoke test
-  /bin/bash -c "source /etc/bash.bashrc && docker-node-fnm-init -v"
+  /bin/bash -c "source /etc/bash.bashrc && docker-node-fnm-init --version"
 
 WORKDIR /data
 
