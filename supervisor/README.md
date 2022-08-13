@@ -7,12 +7,12 @@ An empty and extended oclif boilerplate.
 # Navigation
 
 <!-- toc -->
-
-- [Description](#description)
-- [Navigation](#navigation)
-- [Further Development](#further-development)
-- [Usage](#usage)
-- [Commands](#commands)
+* [@cenk1cenk2/oclif-boilerplate](#cenk1cenk2oclif-boilerplate)
+* [Description](#description)
+* [Navigation](#navigation)
+* [Further Development](#further-development)
+* [Usage](#usage)
+* [Commands](#commands)
 <!-- tocstop -->
 
 # Further Development
@@ -26,66 +26,50 @@ While developing you must use `export TS_NODE=1` environment variable, since I d
 # Usage
 
 <!-- usage -->
-
 ```sh-session
-$ npm install -g @cenk1cenk2/oclif-boilerplate
-$ cenk1cenk2 COMMAND
+$ npm install -g docker-node-fnm-init
+$ docker-node-fnm-init COMMAND
 running command...
-$ cenk1cenk2 (-v|--version|version)
-@cenk1cenk2/oclif-boilerplate/0.0.0 linux-x64 node-v13.12.0
-$ cenk1cenk2 --help [COMMAND]
+$ docker-node-fnm-init (--version)
+docker-node-fnm-init/1.0.0 linux-x64 node-v18.7.0
+$ docker-node-fnm-init --help [COMMAND]
 USAGE
-  $ cenk1cenk2 COMMAND
+  $ docker-node-fnm-init COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
+* [`docker-node-fnm-init init`](#docker-node-fnm-init-init)
+* [`docker-node-fnm-init proxy`](#docker-node-fnm-init-proxy)
 
-- [`cenk1cenk2 config`](#cenk1cenk2-config)
-- [`cenk1cenk2 empty [FILE]`](#cenk1cenk2-empty-file)
-- [`cenk1cenk2 help [COMMAND]`](#cenk1cenk2-help-command)
+## `docker-node-fnm-init init`
 
-## `cenk1cenk2 config`
-
-Various ways to edit default configuration.
+This command initiates the container and creates the required variables.
 
 ```
 USAGE
-  $ cenk1cenk2 config
+  $ docker-node-fnm-init init
+
+DESCRIPTION
+  This command initiates the container and creates the required variables.
 ```
 
-## `cenk1cenk2 empty [FILE]`
+_See code: [dist/commands/init.ts](https://github.com/cenk1cenk2/boilerplate-oclif/blob/v1.0.0/dist/commands/init.ts)_
 
-describe the command here
+## `docker-node-fnm-init proxy`
 
-```
-USAGE
-  $ cenk1cenk2 empty [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help   show CLI help
-```
-
-## `cenk1cenk2 help [COMMAND]`
-
-display help for cenk1cenk2
+This command initiates the proxies commands to the underlying container and pipes the data.
 
 ```
 USAGE
-  $ cenk1cenk2 help [COMMAND]
+  $ docker-node-fnm-init proxy
 
-ARGUMENTS
-  COMMAND  command to show help for
-
-OPTIONS
-  --all  see all commands in CLI
+DESCRIPTION
+  This command initiates the proxies commands to the underlying container and pipes the data.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.0.1/src/commands/help.ts)_
-
+_See code: [dist/commands/proxy.ts](https://github.com/cenk1cenk2/boilerplate-oclif/blob/v1.0.0/dist/commands/proxy.ts)_
 <!-- commandsstop -->

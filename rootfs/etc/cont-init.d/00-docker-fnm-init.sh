@@ -2,4 +2,4 @@
 
 source /etc/bash.bashrc
 
-docker-node-fnm-init
+docker-node-fnm-init init

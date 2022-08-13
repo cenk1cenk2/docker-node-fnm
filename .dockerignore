@@ -6,6 +6,6 @@
 !/supervisor/config
 !/supervisor/templates
 !/supervisor/dist
+!/supervisor/oclif.manifest.json
 !/supervisor/package.json
-!/cont-init.d/
 !/services.d/

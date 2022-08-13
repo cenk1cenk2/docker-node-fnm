@@ -1,6 +1,1 @@
 loglevel: info
-logcolor: true
-logcolorAll: false
-configDir: '.config/boilerplate-oclif'
-localConfig: '.boilerplate-oclif.local.yml'
-lock: '.boilerplate-oclif.lock'

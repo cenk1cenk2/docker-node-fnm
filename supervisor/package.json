@@ -1,26 +1,35 @@
 {
   "name": "docker-node-fnm-init",
-  "description": "An empty cli to start from.",
+  "description": "Init controller for docker-node-fnm container.",
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
   "author": "Cenk Kilic <cenk@kilic.dev>",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "bin": {
-    "docker-node-fnm-init": "bin/run.js"
-  },
   "repository": "https://github.com/cenk1cenk2/boilerplate-oclif",
+  "main": "./dist/index.js",
+  "keywords": [
+    "cenk1cenk2"
+  ],
+  "bin": {
+    "docker-node-fnm-init": "./bin/run"
+  },
+  "files": [
+    "bin/",
+    "config/",
+    "dist/"
+  ],
   "scripts": {
-    "build": "tsc --noEmit -P tsconfig.build.json && tsup-node",
+    "dev": "./bin/dev",
+    "start": "./bin/run",
+    "prebuild": "yarn run manifest && yarn run docs:toc",
+    "build": "tsup-node",
     "dev:start": "tsup-node --watch",
     "dev:build:container": "yarn run build && docker build ../. -t cenk1cenk2/node-fnm:test",
-    "lint": "prettier --write src/ --loglevel warn && eslint --ext .json,.ts,.js --fix src/",
-    "lint:check": "eslint --ext .json,.ts,.js src/",
-    "lint:staged": "lint-staged",
-    "readme": "yarn oclif-dev readme",
-    "oclif": "oclif",
-    "oclif-dev": "node -r tsconfig-paths/register node_modules/@oclif/dev-cli/bin/run"
+    "clean": "rimraf oclif.manifset.json",
+    "lint": "prettier --write src/ --loglevel warn && eslint --ext .ts,.js,.tsx,.jsx --fix src/",
+    "lint:check": "eslint --ext .ts,.js,.tsx,.jsx src/",
+    "manifest": "oclif manifest",
+    "docs:toc": "oclif readme"
   },
   "simple-git-hooks": {
     "pre-commit": "lint-staged"
@@ -34,71 +43,40 @@
       "prettier --loglevel warn --write"
     ]
   },
-  "files": [
-    "bin/",
-    "config/",
-    "dist/"
-  ],
   "oclif": {
-    "commands": "./dist/commands",
     "bin": "docker-node-fnm-init",
-    "plugins": [
-      "@oclif/plugin-help"
-    ],
+    "dirname": "docker-node-fnm-init",
+    "commands": "./dist/commands",
+    "plugins": [],
     "hooks": {
-      "init": "./dist/hooks/init.hook",
-      "command_not_found": "./dist/hooks/not-found.hook",
-      "prerun": "./dist/hooks/prerun.hook"
-    }
+      "init": [],
+      "command_not_found": "./dist/hooks/not-found.hook"
+    },
+    "topicSeparator": " "
   },
   "engines": {
     "node": ">=16.0.0"
   },
-  "keywords": [
-    "oclif",
-    "cenk1cenk2"
-  ],
   "dependencies": {
-    "@cenk1cenk2/boilerplate-oclif": "1.10.6",
-    "@oclif/command": "^1.8.16",
-    "@oclif/config": "^1.18.3",
-    "@oclif/errors": "^1.3.5",
-    "@oclif/plugin-help": "^5.1.12",
+    "@cenk1cenk2/oclif-common": "^1.8.1",
+    "@oclif/core": "^1",
     "class-transformer": "^0.5.1",
-    "class-transformer-validator": "^0.9.1",
     "class-validator": "^0.13.2",
-    "config": "^3.3.7",
     "dotenv": "^16.0.1",
     "execa": "^5",
-    "fs-extra": "^10.1.0",
-    "globby": "^11",
-    "js-yaml": "^4.1.0",
-    "listr2": "^4.0.5",
     "nunjucks": "^3.2.3",
-    "object-path": "^0.11.8",
-    "reflect-metadata": "^0.1.13",
-    "through": "^2.3.8",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@anatine/esbuild-decorators": "^0.2.19",
-    "@cenk1cenk2/cz-cc": "^1.5.3",
-    "@cenk1cenk2/eslint-config": "^2.5.22",
-    "@oclif/dev-cli": "^1.26.10",
-    "@types/config": "^3.3.0",
-    "@types/fs-extra": "^9.0.13",
-    "@types/node": "^17.0.18",
+    "@types/node": "^18.7.3",
     "@types/nunjucks": "^3.2.1",
-    "@types/object-path": "^0.11.1",
-    "@types/through": "^0.0.30",
     "@types/uuid": "^8.3.4",
-    "enquirer": "^2.3.6",
-    "eslint": "^8.21.0",
-    "jest": "^28.1.3",
-    "lint-staged": "^13.0.3",
+    "eslint": "^8.20.0",
+    "globby": "^11",
+    "oclif": "^3",
     "prettier": "^2.7.1",
-    "rimraf": "^3.0.2",
-    "source-map-support": "^0.5.21",
+    "ts-node": "^10.2.1",
     "tsup": "^6.2.2",
     "typescript": "^4.7.4"
   },
