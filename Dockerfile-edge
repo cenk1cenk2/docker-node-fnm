@@ -91,12 +91,8 @@ RUN mkdir -p /scripts
 
 # Copy scripts
 ADD https://gist.githubusercontent.com/cenk1cenk2/e03d8610534a9c78f755c1c1ed93a293/raw/logger.sh /scripts/logger.sh
-RUN chmod +x /scripts/*.sh
-
-# Move s6 supervisor files inside the container
-COPY ./cont-init.d /etc/cont-init.d
-
-RUN chmod +x /etc/cont-init.d/*.sh
+RUN chmod +x /scripts/*.sh && \
+  chmod +x /etc/cont-init.d/*.sh
 
 # s6 behaviour, https://github.com/just-containers/s6-overlay
 ENV S6_KEEP_ENV 1

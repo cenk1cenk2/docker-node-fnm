@@ -1,3 +1,7 @@
 #!/usr/bin/env node
 
-require('@oclif/core').run().then(require('@oclif/core/flush')).catch(require('@oclif/core/handle'))
+const oclif = require('@oclif/core')
+
+require('@cenk1cenk2/oclif-common').setup()
+
+oclif.run().then(oclif.flush).catch(oclif.Errors.handle)

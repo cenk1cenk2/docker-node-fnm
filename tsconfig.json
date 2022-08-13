@@ -10,7 +10,7 @@
     "noUnusedLocals": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "incremental": true,
+    "incremental": false,
     "strictNullChecks": false,
     "esModuleInterop": true,
     "downlevelIteration": true,

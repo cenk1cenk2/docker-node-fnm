@@ -8,7 +8,8 @@
     "exec": "lerna exec --stream",
     "command": "lerna run --stream",
     "lint": "yarn run command --concurrency 1 lint",
-    "lint:check": "yarn run command lint:check"
+    "lint:check": "yarn run command lint:check",
+    "build": "yarn command build --include-dependencies"
   },
   "workspaces": [
     "supervisor/"

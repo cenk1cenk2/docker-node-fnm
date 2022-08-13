@@ -3,7 +3,7 @@ import { EOL } from 'os'
 import { join, normalize } from 'path'
 import { v4 as uuid } from 'uuid'
 
-import { Command, config, fs, LogLevels, merge, MergeStrategy, pipeProcessToLogger } from '@cenk1cenk2/oclif-common'
+import { Command, config, fs, Logger, LogLevels, merge, MergeStrategy, pipeProcessToLogger } from '@cenk1cenk2/oclif-common'
 import { SERVICE_EXTENSION_ENVIRONMENT_VARIABLES } from '@constants/environment-variables.constants'
 import {
   CONFIG_FILES,
@@ -168,7 +168,7 @@ export default class Init extends Command {
 
           try {
             await pipeProcessToLogger(
-              this.logger,
+              new Logger('fnm'),
               execa('fnm', [ 'install', ctx.config.node_version ], {
                 shell: '/bin/bash',
                 detached: false,
@@ -194,7 +194,7 @@ export default class Init extends Command {
 
           try {
             await pipeProcessToLogger(
-              this.logger,
+              new Logger('fnm'),
               execa('fnm', [ 'install' ], {
                 shell: '/bin/bash',
                 detached: false,
@@ -245,9 +245,17 @@ export default class Init extends Command {
       // clean prior instance
       {
         task: async (): Promise<void> => {
-          await Promise.all([ S6_FOLDERS.service, CONTAINER_ENV_FILE, CONTAINER_LOCK_FILE ].map((f) => this.fs.remove(f)))
+          try {
+            await Promise.all([ S6_FOLDERS.service, CONTAINER_ENV_FILE, CONTAINER_LOCK_FILE ].map((f) => this.fs.remove(f, { recursive: true })))
+          } catch (e) {
+            this.logger.debug(e.message)
+          }
 
-          await fs.mkdirp(S6_FOLDERS.service)
+          try {
+            await this.fs.mkdir(S6_FOLDERS.service)
+          } catch (e) {
+            this.logger.debug(e.message)
+          }
         }
       },
 
@@ -332,7 +340,7 @@ export default class Init extends Command {
           }
 
           await pipeProcessToLogger(
-            this.logger,
+            new Logger('fnm'),
             execa.command(`${command}`, {
               shell: '/bin/bash',
               detached: false,
@@ -353,7 +361,7 @@ export default class Init extends Command {
             this.logger.info(`$ ${command}`, { context: 'before-all' })
 
             await pipeProcessToLogger(
-              this.logger,
+              new Logger('before-all'),
               execa.command(command, {
                 shell: '/bin/bash',
                 detached: false,
@@ -382,7 +390,7 @@ export default class Init extends Command {
         const runScriptPath = join(serviceDir, S6_FOLDERS.runScriptName)
         const finishScriptPath = join(serviceDir, S6_FOLDERS.finishScriptName)
 
-        await fs.mkdirp(serviceDir)
+        await this.fs.mkdir(serviceDir)
 
         await Promise.all([ this.fs.write(runScriptPath, runScriptTemplate), this.fs.write(finishScriptPath, finishScriptTemplate) ])
 

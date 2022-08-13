@@ -16,6 +16,5 @@
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist"],
-  "files": ["./types/config.d.ts"]
+  "exclude": ["node_modules", "dist"]
 }

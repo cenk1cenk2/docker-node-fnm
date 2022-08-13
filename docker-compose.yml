@@ -5,7 +5,8 @@ services:
     build:
       context: .
     environment:
-      LOG_LEVEL: debug
+      LOG_LEVEL: trace
+      DEFAULTS_LOGS: 'true'
       SERVICE_0_CWD: supervisor
     volumes:
-      - .:/data/app
+      - .:/data
