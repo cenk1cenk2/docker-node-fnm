@@ -82,7 +82,7 @@ WORKDIR /cli
 RUN \
   /bin/bash -c "source /etc/bash.bashrc && yarn --production && yarn link" && \
   # smoke test
-  /bin/bash -c "source /etc/bash.bashrc && docker-node-fnm-init -v"
+  /bin/bash -c "source /etc/bash.bashrc && docker-node-fnm-init --version"
 
 WORKDIR /data
 
