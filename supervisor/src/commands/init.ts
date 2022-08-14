@@ -86,7 +86,7 @@ export default class Init extends Command {
       // extend configuration with environment variables
       {
         task: (ctx): void => {
-          const envVars = config.util.getCustomEnvVars<DockerServicesConfig>(ctx.files.config, [ YAML_FILE_EXT ])
+          const envVars = config.getCustomEnvVars<DockerServicesConfig>(ctx.files.config, [ YAML_FILE_EXT ])
 
           if (Object.keys(envVars).length > 0) {
             ctx.config = merge(MergeStrategy.OVERWRITE, ctx.config, envVars)
