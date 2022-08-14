@@ -4,6 +4,7 @@ services:
     image: cenk1cenk2/node-fnm:test
     build:
       context: .
+      dockerfile: Dockerfile
     environment:
       LOG_LEVEL: trace
       DEFAULTS_LOGS: 'true'
