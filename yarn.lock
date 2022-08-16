@@ -55,10 +55,10 @@
     eslint-plugin-import "^2.26.0"
     load-tsconfig "^0.2.3"
 
-"@cenk1cenk2/oclif-common@^1.9.2":
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/oclif-common/-/oclif-common-1.9.2.tgz#b4253585797bcd19ff393e52225e85e7f72453b0"
-  integrity sha512-Rq62d/SRa3zV3JuqI4C5VdaHN8kNY8Oyth9n9oeEY5y8XPLEz/DrDuoq66zkEwUYlCB9vHYHsH49O1Z7j/NBfw==
+"@cenk1cenk2/oclif-common@^1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/oclif-common/-/oclif-common-1.10.0.tgz#660f58a68f90df00684bbc61a6ff44e00cdd2ac9"
+  integrity sha512-dz/sbA+vIoLfB46j9o+P7fDMwTtkDH5Mqbxf3JuBY73pP4VG9xWxXC4VU4VFOey5Lth8S+pvkokNXz8o5ruEBw==
   dependencies:
     "@types/config" "^3.3.0"
     "@types/fs-extra" "^9.0.13"
