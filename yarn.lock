@@ -109,9 +109,9 @@
   integrity sha512-nVjL/w/zuqjCqSJm8UfpNaw66V9WzuJtQvEnCrK4jDw6qKTmZB+1JQ8m6BQVZbNBcwfYdDNKnhIhqI0Rk7lgpQ==
 
 "@commitlint/load@>6.1.1":
-  version "17.1.1"
-  resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-17.1.1.tgz#16f945d2cc4a5d4d75cccc3d7df8066ff152024b"
-  integrity sha512-jEgdDabfj58kFKZmB7rMtmQa7Feo7Ozh3KmvIlXWqrJmal5auO1RC0Iczfl52DlPn26Uo0goUDHrhoAFs2ze0Q==
+  version "17.1.2"
+  resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-17.1.2.tgz#19c88be570d8666bbd32f9b3d81925a08328bc13"
+  integrity sha512-sk2p/jFYAWLChIfOIp/MGSIn/WzZ0vkc3afw+l4X8hGEYkvDe4gQUUAVxjl/6xMRn0HgnSLMZ04xXh5pkTsmgg==
   dependencies:
     "@commitlint/config-validator" "^17.1.0"
     "@commitlint/execute-rule" "^17.0.0"
@@ -120,9 +120,10 @@
     "@types/node" "^14.0.0"
     chalk "^4.1.0"
     cosmiconfig "^7.0.0"
-    cosmiconfig-typescript-loader "^3.0.0"
+    cosmiconfig-typescript-loader "^4.0.0"
     lodash "^4.17.19"
     resolve-from "^5.0.0"
+    ts-node "^10.8.1"
     typescript "^4.6.4"
 
 "@commitlint/load@^16.2.3":
@@ -2027,9 +2028,9 @@ available-typed-arrays@^1.0.5:
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
 aws-sdk@^2.1116.0:
-  version "2.1204.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1204.0.tgz#6e0c5d0b4b50ff122b66772bb0ab5453009e6106"
-  integrity sha512-H3dRQBdgzAfZ/e/dfiW44fhQrgAuCfIzWhI5y5J9122caI4uZY6TEUd003UXP4nXq2eMfuPWg0bA/mPwbj8RkA==
+  version "2.1205.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1205.0.tgz#606d9317c57c7ec18ab3f89a5c856185fc107fd1"
+  integrity sha512-L/ndK2cwWfj1peFO1cMtXeey7rMrbE3bksiQjaa96TZi9C70qMYqhrBy4XKok1AC84dcTsHrEOjFTFWr8rvmdg==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -2171,9 +2172,9 @@ byte-size@^7.0.0:
   integrity sha512-crQdqyCwhokxwV1UyDzLZanhkugAgft7vt0qbbdt60C6Zf3CAiGmtUCylbtYwrU6loOUw3euGrNtW1J651ot1A==
 
 cac@^6.7.12:
-  version "6.7.12"
-  resolved "https://registry.yarnpkg.com/cac/-/cac-6.7.12.tgz#6fb5ea2ff50bd01490dbda497f4ae75a99415193"
-  integrity sha512-rM7E2ygtMkJqD9c7WnFU6fruFcN3xe4FM5yUmgxhZzIKJk4uHl9U/fhwdajGFQbQuv43FAUo1Fe8gX/oIKDeSA==
+  version "6.7.14"
+  resolved "https://registry.yarnpkg.com/cac/-/cac-6.7.14.tgz#804e1e6f506ee363cb0e3ccbb09cad5dd9870959"
+  integrity sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==
 
 cacache@^15.0.3, cacache@^15.0.5, cacache@^15.2.0:
   version "15.3.0"
@@ -2801,10 +2802,10 @@ cosmiconfig-typescript-loader@^2.0.0:
     cosmiconfig "^7"
     ts-node "^10.8.1"
 
-cosmiconfig-typescript-loader@^3.0.0:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/cosmiconfig-typescript-loader/-/cosmiconfig-typescript-loader-3.1.2.tgz#e147457854cabe1416152bdca55f53449b1f865d"
-  integrity sha512-rIwakk27LtK7vjSjGgs3FDbKkq41Byw3VHRGRuAkRQLfGla+O7s+cy1FXRkjLSZ2G9z1og1bcOIsELo1w4G0Kg==
+cosmiconfig-typescript-loader@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/cosmiconfig-typescript-loader/-/cosmiconfig-typescript-loader-4.0.0.tgz#4a6d856c1281135197346a6f64dfa73a9cd9fefa"
+  integrity sha512-cVpucSc2Tf+VPwCCR7SZzmQTQkPbkk4O01yXsYqXBIbjE1bhwqSyAgYQkRK1un4i0OPziTleqFhdkmOc4RQ/9g==
 
 cosmiconfig@^7, cosmiconfig@^7.0.0:
   version "7.0.1"
