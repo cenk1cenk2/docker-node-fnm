@@ -62,7 +62,7 @@
     "@oclif/core": "^1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
-    "dotenv": "^16.0.1",
+    "dotenv": "^16.0.2",
     "execa": "^5",
     "nunjucks": "^3.2.3",
     "uuid": "^8.3.2"
