@@ -65,7 +65,7 @@
     "dotenv": "^16.0.2",
     "execa": "^5",
     "nunjucks": "^3.2.3",
-    "uuid": "^8.3.2"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@anatine/esbuild-decorators": "^0.2.19",
