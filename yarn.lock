@@ -55,21 +55,18 @@
     eslint-plugin-import "^2.26.0"
     load-tsconfig "^0.2.3"
 
-"@cenk1cenk2/oclif-common@^1.10.0":
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/oclif-common/-/oclif-common-1.10.0.tgz#660f58a68f90df00684bbc61a6ff44e00cdd2ac9"
-  integrity sha512-dz/sbA+vIoLfB46j9o+P7fDMwTtkDH5Mqbxf3JuBY73pP4VG9xWxXC4VU4VFOey5Lth8S+pvkokNXz8o5ruEBw==
+"@cenk1cenk2/oclif-common@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/oclif-common/-/oclif-common-2.3.0.tgz#e888772559c7f43d5592003b3a4192de52a24a39"
+  integrity sha512-qtXkvSYp03HaE6U0uw+UQWVvtkFEgww27qKJpsz57DG3L0vT12f67T1eWkluMDBIK28wEQPQS5E5cABLK4Sl/g==
   dependencies:
     "@types/config" "^3.3.0"
     "@types/fs-extra" "^9.0.13"
-    "@types/through" "^0.0.30"
     colorette "^2.0.19"
     config "^3.3.7"
     deepmerge "^4.2.2"
-    enquirer "^2.3.6"
     figures "^3"
     fs-extra "^10.1.0"
-    listr2 "^5.0.2"
     object-path-immutable "^4.1.2"
     reflect-metadata "^0.1.13"
     through "^2.3.8"
@@ -1649,13 +1646,6 @@
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
   integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
-
-"@types/through@^0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@types/through/-/through-0.0.30.tgz#e0e42ce77e897bd6aead6f6ea62aeb135b8a3895"
-  integrity sha512-FvnCJljyxhPM3gkRgWmxmDZyAQSiBQQWLI0A0VFL0K7W1oRUrPJSqNO0NvTnLkBcotdlp3lKvaT0JrnyRDkzOg==
-  dependencies:
-    "@types/node" "*"
 
 "@types/uuid@^8.3.4":
   version "8.3.4"
@@ -5085,20 +5075,6 @@ listr2@^4.0.5:
     through "^2.3.8"
     wrap-ansi "^7.0.0"
 
-listr2@^5.0.2:
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/listr2/-/listr2-5.0.5.tgz#4651a940d12b984abecfae4450e40edd5695f808"
-  integrity sha512-DpBel6fczu7oQKTXMekeprc0o3XDgGMkD7JNYyX+X0xbwK+xgrx9dcyKoXKqpLSUvAWfmoePS7kavniOcq3r4w==
-  dependencies:
-    cli-truncate "^2.1.0"
-    colorette "^2.0.19"
-    log-update "^4.0.0"
-    p-map "^4.0.0"
-    rfdc "^1.3.0"
-    rxjs "^7.5.6"
-    through "^2.3.8"
-    wrap-ansi "^7.0.0"
-
 load-json-file@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-4.0.0.tgz#2f5f45ab91e33216234fd53adab668eb4ec0993b"
@@ -6847,7 +6823,7 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
-rxjs@^7.0.0, rxjs@^7.5.5, rxjs@^7.5.6:
+rxjs@^7.0.0, rxjs@^7.5.5:
   version "7.5.6"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.5.6.tgz#0446577557862afd6903517ce7cae79ecb9662bc"
   integrity sha512-dnyv2/YsXhnm461G+R/Pe5bWP41Nm6LBXEYWI6eiFP4fiwx6WRI/CD0zbdVAudd9xwLEF2IDcKXLHit0FYjUzw==
