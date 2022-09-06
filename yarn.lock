@@ -1219,19 +1219,19 @@
     read-package-json-fast "^2.0.3"
     which "^2.0.2"
 
-"@nrwl/cli@14.6.4":
-  version "14.6.4"
-  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-14.6.4.tgz#b2af7d2713c535dd9017def5236fa46e9d27cfbc"
-  integrity sha512-VkS2L3O2MOCgqYg6Fubv7FfJ4D39iKGSKYhTom6ZJLPEcQrPXTvrD1hIzMJ4Cehal5P6DYw7ZEjcJgiTATcSYA==
+"@nrwl/cli@14.6.5":
+  version "14.6.5"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-14.6.5.tgz#6751d7c48fff78095fb19874bda6a1f786e47ce8"
+  integrity sha512-sjT4/oMk1F4+dTpCp08IVE8hfqKsokebUECzC1hTu4pCeFo0oviIi7bQTuCIbG9w4iiHLioa6QmLRXBwVJEr9w==
   dependencies:
-    nx "14.6.4"
+    nx "14.6.5"
 
-"@nrwl/tao@14.6.4":
-  version "14.6.4"
-  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-14.6.4.tgz#fdc2f14d4fac9b0a62a9c32cfc8b98bbf075e642"
-  integrity sha512-xSfcXeU8AyEbmTGiGPCwej2eK+36gU9o6smUQxcK00Yii6vb5I87n8U77jTF5tJ85TkDW0I1VoHm0Nd8f1d9Cw==
+"@nrwl/tao@14.6.5":
+  version "14.6.5"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-14.6.5.tgz#202d9ed3e13cb873dd7f218c0622ba8972ba8cd6"
+  integrity sha512-sSbTSN4Bfh4vQR2iCl9arNzEhJztG6paY2j+k/GwQZdN+QssX9xV32jLWYIC3rDmPJWaZ11uD3TgAyr3X7GXhw==
   dependencies:
-    nx "14.6.4"
+    nx "14.6.5"
 
 "@oclif/color@^1.0.0":
   version "1.0.1"
@@ -1368,9 +1368,9 @@
     universal-user-agent "^6.0.0"
 
 "@octokit/endpoint@^7.0.0":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@octokit/endpoint/-/endpoint-7.0.1.tgz#cb0d03e62e8762f3c80e52b025179de81899a823"
-  integrity sha512-/wTXAJwt0HzJ2IeE4kQXO+mBScfzyCkI0hMtkIaqyXd9zg76OpOfNQfHL9FlaxAV2RsNiOXZibVWloy8EexENg==
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@octokit/endpoint/-/endpoint-7.0.2.tgz#11ee868406ba7bb1642e61bbe676d641f79f02be"
+  integrity sha512-8/AUACfE9vpRpehE6ZLfEtzkibe5nfsSwFZVMsG8qabqRt1M81qZYUFRZa1B8w8lP6cdfDJfRq9HWS+MbmR7tw==
   dependencies:
     "@octokit/types" "^7.0.0"
     is-plain-object "^5.0.0"
@@ -2029,9 +2029,9 @@ available-typed-arrays@^1.0.5:
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
 aws-sdk@^2.1116.0:
-  version "2.1209.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1209.0.tgz#fd7b9efd4047ab6b45bba2c890529d4c296a4b85"
-  integrity sha512-m4Dd0HtyKeKBjwzP9rhe+NcmsRKR0wW+QXfpepu6vgXYhmcJuOB9TLUoeB7jiNDPimmwU+KxtL6eonRfeFhANw==
+  version "2.1210.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1210.0.tgz#3e52047901bcf726bb34bac0d3ea2b835f78d9cb"
+  integrity sha512-cMrQoic+xJhAVgbaWawUflUp9fUd5h38+rjCdiakqKj12gFpVvvwyvYso8kG5MgRUlxNH+v+7sWRe82xHJsrsg==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -5881,13 +5881,13 @@ nunjucks@^3.2.3:
     asap "^2.0.3"
     commander "^5.1.0"
 
-nx@14.6.4, "nx@>=14.6.1 < 16":
-  version "14.6.4"
-  resolved "https://registry.yarnpkg.com/nx/-/nx-14.6.4.tgz#471379334efc8258a47ec80db0915667d29aace3"
-  integrity sha512-AbUH3xQVL6faSXSMB7kPFcRtnz+FNUt4xR0UtfBBCqNSItq5kMOlHK10G7aN+VWtw8ScNy7qkWIeQ6VezvUW8A==
+nx@14.6.5, "nx@>=14.6.1 < 16":
+  version "14.6.5"
+  resolved "https://registry.yarnpkg.com/nx/-/nx-14.6.5.tgz#13524e7355803a8247278374063d8e82b845a621"
+  integrity sha512-egV8Zrec+0m+27wTENe9W/JKRMkBDx1N0xaFzKjL0WKj5WIe4asao5uwTJEwqi9iQyiijExxUFVU5MNGuF2c+A==
   dependencies:
-    "@nrwl/cli" "14.6.4"
-    "@nrwl/tao" "14.6.4"
+    "@nrwl/cli" "14.6.5"
+    "@nrwl/tao" "14.6.5"
     "@parcel/watcher" "2.0.4"
     chalk "4.1.0"
     chokidar "^3.5.1"
@@ -5970,9 +5970,9 @@ object.values@^1.1.5:
     es-abstract "^1.19.1"
 
 oclif@^3:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/oclif/-/oclif-3.1.2.tgz#9a26384f1a2a2201ee51281a5376acc4c84dfdf5"
-  integrity sha512-zxKiCOWKLlFGCwPbajxyC1HLSudwTjgSujOf5oR4dsxHkNIRCvJ9VAQWCPG4BW+p/+n0G9E2OnEM8Y25nfJwuw==
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/oclif/-/oclif-3.2.0.tgz#2760e97803bf35771103e20b50697b99f574ba0d"
+  integrity sha512-OknO1OGKNzdrE0Hz2/4nz60dLXJ0FKHGJ1mkC7GBWSMW3SMgGBsbfiWyiAXBLoBfva3W8R32CE8n8rBXiH3U2Q==
   dependencies:
     "@oclif/core" "^1.9.9"
     "@oclif/plugin-help" "^5.1.12"
@@ -7365,9 +7365,9 @@ supports-color@^8.1.0, supports-color@^8.1.1:
     has-flag "^4.0.0"
 
 supports-hyperlinks@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/supports-hyperlinks/-/supports-hyperlinks-2.2.0.tgz#4f77b42488765891774b70c79babd87f9bd594bb"
-  integrity sha512-6sXEzV5+I5j8Bmq9/vUphGRM/RJNT9SCURJLjwfOg51heRtguGWDzcaBlgAzKhQa0EVNpPEKzQuBwZ8S8WaCeQ==
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/supports-hyperlinks/-/supports-hyperlinks-2.3.0.tgz#3943544347c1ff90b15effb03fc14ae45ec10624"
+  integrity sha512-RpsAZlpWcDwOPQA22aCH4J0t7L8JmAvsCxfOSEwm7cQs3LshN36QaTkwd70DnBOXDWGssw2eUoc8CaRWT0XunA==
   dependencies:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
