@@ -73,7 +73,7 @@
     "@types/nunjucks": "^3.2.1",
     "@types/uuid": "^8.3.4",
     "eslint": "^8.23.0",
-    "globby": "^11",
+    "globby": "^13",
     "oclif": "^3",
     "prettier": "^2.7.1",
     "ts-node": "^10.9.1",
