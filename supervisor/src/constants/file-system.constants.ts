@@ -15,8 +15,6 @@ export const TEMPLATES = {
 
 export const CONTAINER_ENV_FILE = '/.env'
 export const CONTAINER_LOCK_FILE = '/.lock'
-export const YAML_FILE_EXT = 'yml'
-export const DEFAULT_CONFIG_FILE = 'default.yml'
 
 export const S6_FOLDERS = {
   service: '/etc/services.d',
@@ -25,6 +23,8 @@ export const S6_FOLDERS = {
 }
 
 export const CONFIG_FILES = {
-  INIT: 'init',
-  PROXY: 'proxy'
+  INIT: 'init.yml',
+  INIT_ENV: 'init.env.yml',
+  PROXY: 'proxy.yml',
+  PROXY_ENV: 'proxy.env.yml'
 }

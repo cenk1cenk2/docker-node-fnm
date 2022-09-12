@@ -51,7 +51,17 @@ This command initiates the container and creates the required variables.
 
 ```
 USAGE
-  $ docker-node-fnm-init init
+  $ docker-node-fnm-init init [--log-level
+    SILENT|DIRECT|FATAL|ERROR|WARN|INFO|VERBOSE|DEBUG|TRACE|silent|direct|fatal|error|warn|info|verbose|debug|trace]
+    [--ci]
+
+CLI FLAGS
+  --ci
+      Instruct whether this is running the CI/CD configuration.
+
+  --log-level=(SILENT|DIRECT|FATAL|ERROR|WARN|INFO|VERBOSE|DEBUG|TRACE|silent|direct|fatal|error|warn|info|verbose|debug
+  |trace)
+      [default: INFO] Set the log level of the application.
 
 DESCRIPTION
   This command initiates the container and creates the required variables.
@@ -65,7 +75,17 @@ This command initiates the proxies commands to the underlying container and pipe
 
 ```
 USAGE
-  $ docker-node-fnm-init proxy
+  $ docker-node-fnm-init proxy [--log-level
+    SILENT|DIRECT|FATAL|ERROR|WARN|INFO|VERBOSE|DEBUG|TRACE|silent|direct|fatal|error|warn|info|verbose|debug|trace]
+    [--ci]
+
+CLI FLAGS
+  --ci
+      Instruct whether this is running the CI/CD configuration.
+
+  --log-level=(SILENT|DIRECT|FATAL|ERROR|WARN|INFO|VERBOSE|DEBUG|TRACE|silent|direct|fatal|error|warn|info|verbose|debug
+  |trace)
+      [default: INFO] Set the log level of the application.
 
 DESCRIPTION
   This command initiates the proxies commands to the underlying container and pipes the data.

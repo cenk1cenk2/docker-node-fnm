@@ -2,28 +2,29 @@ import dotenv from 'dotenv'
 import execa from 'execa'
 import { dirname, join } from 'path'
 
-import { Command, config, fs, merge, MergeStrategy } from '@cenk1cenk2/oclif-common'
-import { CONFIG_FILES, DEFAULT_CONFIG_FILE, MOUNTED_DATA_FOLDER, YAML_FILE_EXT } from '@constants/file-system.constants'
+import { Command, fs } from '@cenk1cenk2/oclif-common'
+import { CONFIG_FILES, MOUNTED_DATA_FOLDER } from '@constants/file-system.constants'
 import { PACKAGE_ROOT_DEFINITIONS } from '@constants/keywords.constants'
 import type { ProxyCtx } from '@interfaces/commands/proxy.interface'
 import type { ProxyConfig } from '@interfaces/configs/proxy.interface'
 
-export default class Proxy extends Command {
+export default class Proxy extends Command<ProxyCtx> {
   static description = 'This command initiates the proxies commands to the underlying container and pipes the data.'
 
-  public async shouldRunBefore (): Promise<void> {
+  public async shouldRunBefore(): Promise<void> {
     this.tasks.options = {
       rendererSilent: true
     }
   }
 
-  public async run (): Promise<void> {
-    this.tasks.add<ProxyCtx>([
+  public async run(): Promise<void> {
+    this.tasks.add([
       // set defaults for context
       {
         task: async (ctx): Promise<void> => {
           ctx.files = {
-            config: join(this.cs.defaults, CONFIG_FILES.PROXY)
+            config: join(this.cs.defaults, CONFIG_FILES.PROXY),
+            env: join(this.cs.defaults, CONFIG_FILES.PROXY_ENV)
           }
 
           this.logger.debug('Set defaults for context: %o', ctx, { context: 'defaults' })
@@ -35,7 +36,7 @@ export default class Proxy extends Command {
         task: async (ctx): Promise<void> => {
           this.logger.verbose('Loading configuration.', { context: 'config' })
 
-          ctx.config = await this.cs.read<ProxyConfig>(MergeStrategy.OVERWRITE, join(ctx.files.config, DEFAULT_CONFIG_FILE))
+          ctx.config = await this.cs.read<ProxyConfig>(ctx.files.config)
 
           this.logger.debug('Configuration file defaults is loaded: %o', ctx.config, { context: 'defaults' })
         }
@@ -43,14 +44,8 @@ export default class Proxy extends Command {
 
       // extend configuration with environment variables
       {
-        task: (ctx): void => {
-          const envVars = config.getCustomEnvVars<ProxyConfig>(ctx.files.config, [ YAML_FILE_EXT ])
-
-          if (Object.keys(envVars).length > 0) {
-            ctx.config = merge(MergeStrategy.OVERWRITE, ctx.config, envVars)
-
-            this.logger.debug('Merged environment variables: %o', envVars, { context: 'environment' })
-          }
+        task: async (ctx): Promise<void> => {
+          ctx.config = await this.cs.env(ctx.files.env, ctx.config)
         }
       },
 
@@ -133,8 +128,8 @@ export default class Proxy extends Command {
 
           this.logger.debug('%o', { FORCE_COLOR: 1, environment }, { context: 'environment' })
 
-          command = this.isVerbose ? command + ' ' + '--verbose' : command
-          command = this.isDebug ? command + ' ' + '--debug' : command
+          command = this.cs.isVerbose ? command + ' ' + '--verbose' : command
+          command = this.cs.isDebug ? command + ' ' + '--debug' : command
 
           try {
             await execa.command(`source /etc/bash.bashrc && fnm use --install-if-missing && cd ${ctx.root} && ${command}`, {

@@ -5,9 +5,10 @@ import type { DockerServicesConfig } from '@interfaces/configs/docker-services.i
 export declare class InitCtx {
   files: {
     config: string
+    env: string
     templates: string
   }
 
   @ValidateNested()
-    config: DockerServicesConfig
+  config: DockerServicesConfig
 }

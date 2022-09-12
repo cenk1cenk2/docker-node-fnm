@@ -3,19 +3,17 @@ import { EOL } from 'os'
 import { join, normalize } from 'path'
 import { v4 as uuid } from 'uuid'
 
-import { Command, config, fs, Logger, LogLevels, merge, MergeStrategy, pipeProcessToLogger } from '@cenk1cenk2/oclif-common'
+import { Command, fs, Logger, LogLevels, merge, MergeStrategy, pipeProcessToLogger } from '@cenk1cenk2/oclif-common'
 import { SERVICE_EXTENSION_ENVIRONMENT_VARIABLES } from '@constants/environment-variables.constants'
 import {
   CONFIG_FILES,
   CONTAINER_ENV_FILE,
   CONTAINER_LOCK_FILE,
-  DEFAULT_CONFIG_FILE,
   MOUNTED_CONFIG_PATH,
   MOUNTED_DATA_FOLDER,
   S6_FOLDERS,
   TEMPLATES,
-  TEMPLATE_FOLDER,
-  YAML_FILE_EXT
+  TEMPLATE_FOLDER
 } from '@constants/file-system.constants'
 import type { InitCtx } from '@interfaces/commands/init.interface'
 import type { DockerService } from '@interfaces/configs/docker-services.interface'
@@ -23,22 +21,23 @@ import { DockerServicesConfig } from '@interfaces/configs/docker-services.interf
 import { createEnvFile } from '@utils/env-file'
 import { jinja } from '@utils/jinja'
 
-export default class Init extends Command {
+export default class Init extends Command<InitCtx> {
   static description = 'This command initiates the container and creates the required variables.'
 
-  public async shouldRunBefore (): Promise<void> {
+  public async shouldRunBefore(): Promise<void> {
     this.tasks.options = {
       rendererSilent: true
     }
   }
 
-  public async run (): Promise<void> {
-    this.tasks.add<InitCtx>([
+  public async run(): Promise<void> {
+    this.tasks.add([
       // set defaults for context
       {
         task: async (ctx): Promise<void> => {
           ctx.files = {
             config: join(this.cs.defaults, CONFIG_FILES.INIT),
+            env: join(this.cs.defaults, CONFIG_FILES.INIT_ENV),
             templates: join(this.cs.oclif.root, TEMPLATE_FOLDER)
           }
 
@@ -51,7 +50,7 @@ export default class Init extends Command {
         task: async (ctx): Promise<void> => {
           this.logger.verbose('Loading default configuration.', { context: 'defaults' })
 
-          ctx.config = await this.cs.read<DockerServicesConfig>(MergeStrategy.OVERWRITE, join(ctx.files.config, DEFAULT_CONFIG_FILE))
+          ctx.config = await this.cs.read<DockerServicesConfig>(ctx.files.config)
 
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { services: omit, ...rest } = ctx.config
@@ -72,7 +71,7 @@ export default class Init extends Command {
           }
         },
         task: async (ctx): Promise<void> => {
-          ctx.config = merge(MergeStrategy.OVERWRITE, ctx.config, await this.cs.read(MergeStrategy.OVERWRITE, normalize(MOUNTED_CONFIG_PATH)))
+          ctx.config = merge(MergeStrategy.OVERWRITE, ctx.config, await this.cs.read(normalize(MOUNTED_CONFIG_PATH)))
 
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { services: omit, ...rest } = ctx.config
@@ -85,16 +84,8 @@ export default class Init extends Command {
 
       // extend configuration with environment variables
       {
-        task: (ctx): void => {
-          const envVars = config.getCustomEnvVars<DockerServicesConfig>(ctx.files.config, [ YAML_FILE_EXT ])
-
-          if (Object.keys(envVars).length > 0) {
-            ctx.config = merge(MergeStrategy.OVERWRITE, ctx.config, envVars)
-
-            this.logger.debug('Merged environment variables: %o', envVars, { context: 'environment' })
-
-            this.logger.info('Extended defaults with environment variables.', { context: 'environment' })
-          }
+        task: async (ctx): Promise<void> => {
+          ctx.config = await this.cs.env<DockerServicesConfig>(ctx.files.env, ctx.config)
         }
       },
 
@@ -104,7 +95,7 @@ export default class Init extends Command {
           const servicesFromEnvVars = this.getEnvVariablesForService(ctx.config)
 
           if (Object.keys(servicesFromEnvVars).length > 0) {
-            Object.entries(servicesFromEnvVars).forEach(([ i, value ]) => {
+            Object.entries(servicesFromEnvVars).forEach(([i, value]) => {
               ctx.config.services[i] = merge(MergeStrategy.OVERWRITE, ctx.config?.services?.[i], value)
 
               this.logger.debug('Merged environment for service %d: %o', i, ctx.config.services[i], { context: 'environment' })
@@ -144,7 +135,7 @@ export default class Init extends Command {
               }
 
               if (service.environment && Object.keys(service.environment).length > 0) {
-                service.parsed_environment = Object.entries(service.environment).reduce((o, [ envKey, envValue ]) => o + `export ${envKey}=${envValue}` + EOL, '')
+                service.parsed_environment = Object.entries(service.environment).reduce((o, [envKey, envValue]) => o + `export ${envKey}=${envValue}` + EOL, '')
               }
             })
           )
@@ -169,7 +160,7 @@ export default class Init extends Command {
           try {
             await pipeProcessToLogger(
               new Logger('fnm'),
-              execa('fnm', [ 'install', ctx.config.node_version ], {
+              execa('fnm', ['install', ctx.config.node_version], {
                 shell: '/bin/bash',
                 detached: false,
                 extendEnv: false
@@ -195,7 +186,7 @@ export default class Init extends Command {
           try {
             await pipeProcessToLogger(
               new Logger('fnm'),
-              execa('fnm', [ 'install' ], {
+              execa('fnm', ['install'], {
                 shell: '/bin/bash',
                 detached: false,
                 extendEnv: false,
@@ -246,7 +237,7 @@ export default class Init extends Command {
       {
         task: async (): Promise<void> => {
           try {
-            await Promise.all([ S6_FOLDERS.service, CONTAINER_ENV_FILE, CONTAINER_LOCK_FILE ].map((f) => this.fs.remove(f, { recursive: true })))
+            await Promise.all([S6_FOLDERS.service, CONTAINER_ENV_FILE, CONTAINER_LOCK_FILE].map((f) => this.fs.remove(f, { recursive: true })))
           } catch (e) {
             this.logger.debug(e.message)
           }
@@ -268,14 +259,14 @@ export default class Init extends Command {
             NODE_VERSION: ctx.config.node_version
           })
 
-          switch (this.cs.config.loglevel) {
-          case LogLevels.DEBUG:
-            await createEnvFile(CONTAINER_ENV_FILE, { LOG_LEVEL: 5 }, true)
+          switch (this.cs.logLevel) {
+            case LogLevels.DEBUG:
+              await createEnvFile(CONTAINER_ENV_FILE, { LOG_LEVEL: 5 }, true)
 
-            break
+              break
 
-          default:
-            await createEnvFile(CONTAINER_ENV_FILE, { LOG_LEVEL: 4 }, true)
+            default:
+              await createEnvFile(CONTAINER_ENV_FILE, { LOG_LEVEL: 4 }, true)
           }
         }
       },
@@ -375,7 +366,7 @@ export default class Init extends Command {
     ])
   }
 
-  private async createRunScriptForService (ctx: InitCtx, services: DockerService[]): Promise<void> {
+  private async createRunScriptForService(ctx: InitCtx, services: DockerService[]): Promise<void> {
     const runTemplatePath = join(ctx.files.templates, TEMPLATES.run)
     const runTemplate = await this.fs.read(runTemplatePath)
     const finishTemplatePath = join(ctx.files.templates, TEMPLATES.finish)
@@ -392,16 +383,16 @@ export default class Init extends Command {
 
         await this.fs.mkdir(serviceDir)
 
-        await Promise.all([ this.fs.write(runScriptPath, runScriptTemplate), this.fs.write(finishScriptPath, finishScriptTemplate) ])
+        await Promise.all([this.fs.write(runScriptPath, runScriptTemplate), this.fs.write(finishScriptPath, finishScriptTemplate)])
 
-        await Promise.all([ fs.chmod(runScriptPath, '0777'), fs.chmod(finishScriptPath, '0777') ])
+        await Promise.all([fs.chmod(runScriptPath, '0777'), fs.chmod(finishScriptPath, '0777')])
 
         this.logger.debug('Initiated service scripts for "%s" in directory: %s', service.cwd, serviceDir, { context: 'services' })
       })
     )
   }
 
-  private getEnvVariablesForService (base: DockerServicesConfig): Record<number, DockerService> {
+  private getEnvVariablesForService(base: DockerServicesConfig): Record<number, DockerService> {
     const timeout = 60000
     const startedAt = Date.now()
     const services: Record<number, DockerService> = {}

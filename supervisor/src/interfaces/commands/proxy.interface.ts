@@ -9,8 +9,9 @@ export declare class ProxyCtx {
 
   files: {
     config: string
+    env: string
   }
 
   @ValidateNested()
-    config: ProxyConfig
+  config: ProxyConfig
 }
