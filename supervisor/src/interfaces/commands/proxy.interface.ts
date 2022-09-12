@@ -13,5 +13,5 @@ export declare class ProxyCtx {
   }
 
   @ValidateNested()
-  config: ProxyConfig
+    config: ProxyConfig
 }

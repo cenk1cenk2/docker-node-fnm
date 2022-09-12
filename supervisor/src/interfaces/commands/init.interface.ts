@@ -10,5 +10,5 @@ export declare class InitCtx {
   }
 
   @ValidateNested()
-  config: DockerServicesConfig
+    config: DockerServicesConfig
 }
