@@ -31,7 +31,7 @@ $ npm install -g docker-node-fnm-init
 $ docker-node-fnm-init COMMAND
 running command...
 $ docker-node-fnm-init (--version)
-docker-node-fnm-init/1.0.0 linux-x64 node-v18.7.0
+docker-node-fnm-init/3.0.0 linux-x64 node-v18.7.0
 $ docker-node-fnm-init --help [COMMAND]
 USAGE
   $ docker-node-fnm-init COMMAND
@@ -67,7 +67,7 @@ DESCRIPTION
   This command initiates the container and creates the required variables.
 ```
 
-_See code: [dist/commands/init.ts](https://github.com/cenk1cenk2/boilerplate-oclif/blob/v1.0.0/dist/commands/init.ts)_
+_See code: [dist/commands/init.ts](https://github.com/cenk1cenk2/boilerplate-oclif/blob/v3.0.0/dist/commands/init.ts)_
 
 ## `docker-node-fnm-init proxy`
 
@@ -91,5 +91,5 @@ DESCRIPTION
   This command initiates the proxies commands to the underlying container and pipes the data.
 ```
 
-_See code: [dist/commands/proxy.ts](https://github.com/cenk1cenk2/boilerplate-oclif/blob/v1.0.0/dist/commands/proxy.ts)_
+_See code: [dist/commands/proxy.ts](https://github.com/cenk1cenk2/boilerplate-oclif/blob/v3.0.0/dist/commands/proxy.ts)_
 <!-- commandsstop -->

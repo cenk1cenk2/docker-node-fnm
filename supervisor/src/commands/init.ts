@@ -3,8 +3,7 @@ import { EOL } from 'os'
 import { join, normalize } from 'path'
 import { v4 as uuid } from 'uuid'
 
-import { Command, fs, Logger, LogLevels, merge, MergeStrategy, pipeProcessToLogger } from '@cenk1cenk2/oclif-common'
-import { SERVICE_EXTENSION_ENVIRONMENT_VARIABLES } from '@constants/environment-variables.constants'
+import { Command, fs, Logger, LogLevels, pipeProcessToLogger } from '@cenk1cenk2/oclif-common'
 import {
   CONFIG_FILES,
   CONTAINER_ENV_FILE,
@@ -32,7 +31,6 @@ export default class Init extends Command<InitCtx> {
 
   public async run (): Promise<void> {
     this.tasks.add([
-      // set defaults for context
       {
         task: async (ctx): Promise<void> => {
           ctx.files = {
@@ -64,14 +62,14 @@ export default class Init extends Command<InitCtx> {
         skip: (): boolean => {
           if (this.fs.exists(normalize(MOUNTED_CONFIG_PATH))) {
             return false
-          } else {
-            this.logger.verbose('Mounted configuration file not found at "%s", skipping merge.', MOUNTED_CONFIG_PATH, { context: 'config' })
-
-            return true
           }
+
+          this.logger.verbose('Mounted configuration file not found at "%s", skipping merge.', MOUNTED_CONFIG_PATH, { context: 'config' })
+
+          return true
         },
         task: async (ctx): Promise<void> => {
-          ctx.config = merge(MergeStrategy.OVERWRITE, ctx.config, await this.cs.read(normalize(MOUNTED_CONFIG_PATH)))
+          ctx.config = this.cs.merge([ ctx.config, await this.cs.read(normalize(MOUNTED_CONFIG_PATH)) ])
 
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { services: omit, ...rest } = ctx.config
@@ -86,32 +84,14 @@ export default class Init extends Command<InitCtx> {
       {
         task: async (ctx): Promise<void> => {
           ctx.config = await this.cs.env<DockerServicesConfig>(ctx.files.env, ctx.config)
-        }
-      },
-
-      // extend configuration with services environment variables
-      {
-        task: (ctx): void => {
-          const servicesFromEnvVars = this.getEnvVariablesForService(ctx.config)
-
-          if (Object.keys(servicesFromEnvVars).length > 0) {
-            Object.entries(servicesFromEnvVars).forEach(([ i, value ]) => {
-              ctx.config.services[i] = merge(MergeStrategy.OVERWRITE, ctx.config?.services?.[i], value)
-
-              this.logger.debug('Merged environment for service %d: %o', i, ctx.config.services[i], { context: 'environment' })
-            })
-
-            this.logger.info('Extended %d services from environment variables.', Object.keys(servicesFromEnvVars).length, { context: 'environment' })
-          } else {
-            this.logger.verbose('No environment variables with "SERVICE_*" found to extend the services from, skipping merge.', { context: 'environment' })
-          }
+          this.logger.debug('%o', ctx.config)
         }
       },
 
       {
         task: (ctx): void => {
           ctx.config.services = ctx.config.services.map((service) => {
-            return merge(MergeStrategy.OVERWRITE, ctx.config.defaults, service) as DockerService
+            return this.cs.merge([ ctx.config.defaults, service ]) as DockerService
           })
 
           this.logger.debug('Merged default configuration to all services: %o', ctx.config.defaults, { context: 'defaults' })
@@ -390,67 +370,5 @@ export default class Init extends Command<InitCtx> {
         this.logger.debug('Initiated service scripts for "%s" in directory: %s', service.cwd, serviceDir, { context: 'services' })
       })
     )
-  }
-
-  private getEnvVariablesForService (base: DockerServicesConfig): Record<number, DockerService> {
-    const timeout = 60000
-    const startedAt = Date.now()
-    const services: Record<number, DockerService> = {}
-
-    for (let i = 0; i < Infinity; i++) {
-      if (Date.now() - startedAt > timeout) {
-        this.logger.fatal('Creating new services through environment variables has timed-out.', { context: 'environment' })
-
-        throw new Error(`Timed-out in ${timeout}ms.`)
-      }
-
-      // check if variables required for a service exists
-      const required = SERVICE_EXTENSION_ENVIRONMENT_VARIABLES.filter((variable) => variable.required)
-
-      let shouldBreak: boolean
-
-      required.forEach((variable) => {
-        if (!process.env[`SERVICE_${i}_${variable.name}`] && !base.services?.[i]?.[variable.key]) {
-          this.logger.verbose(`Required environment variable not found for service ${i}: "${variable.name}" with config key "${variable.key}"`, { context: 'environment' })
-
-          shouldBreak = true
-        }
-      })
-
-      if (shouldBreak) {
-        break
-      }
-
-      const service = {}
-
-      SERVICE_EXTENSION_ENVIRONMENT_VARIABLES.forEach((variable) => {
-        const name = `SERVICE_${i}_${variable.name}`
-        const env = process.env[name]
-
-        if (env) {
-          if (variable.parser === 'json') {
-            try {
-              service[variable.key] = JSON.parse(env)
-            } catch (e) {
-              this.logger.fatal(`Given variable "${name}" was supposed to be a valid stringified JSON.`, { context: 'environment' })
-
-              throw e
-            }
-          } else if (typeof variable.parser === 'function') {
-            service[variable.key] = variable.parser(env, name)
-          } else {
-            service[variable.key] = String(env)
-          }
-        }
-      })
-
-      if (Object.keys(service).length > 0) {
-        this.logger.verbose(`Service ${i} extended with environment variables: %o`, service, { context: 'environment' })
-
-        services[i] = service as DockerService
-      }
-    }
-
-    return services
   }
 }

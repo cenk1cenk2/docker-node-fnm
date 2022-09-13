@@ -1,4 +1,5 @@
-import { IsBoolean, IsEnum, IsObject, IsPositive, IsString, IsUUID, ValidateNested } from 'class-validator'
+import { Transform } from 'class-transformer'
+import { IsBoolean, IsEnum, IsNotEmpty, IsObject, IsPositive, IsString, IsUUID, ValidateNested } from 'class-validator'
 
 import { IsFalseOrStringArray, IsSemverOrDefault } from '@utils/validator'
 
@@ -42,12 +43,20 @@ export class DockerService {
     name: string
 
   @IsString()
+  @IsNotEmpty()
     cwd: string
 
   @IsBoolean()
     enable?: boolean
 
   @IsEnum([ 'prefix', true, false, 'true', 'false' ])
+  @Transform((params) => {
+    if (params.value === 'true' || params.value === 'false') {
+      return JSON.parse(params.value)
+    }
+
+    return params.value
+  })
     logs?: 'prefix' | boolean
 
   @IsSemverOrDefault()
