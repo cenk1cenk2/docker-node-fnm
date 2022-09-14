@@ -55,15 +55,13 @@
     eslint-plugin-import "^2.26.0"
     load-tsconfig "^0.2.3"
 
-"@cenk1cenk2/oclif-common@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/oclif-common/-/oclif-common-3.1.1.tgz#df99f0cdb8800ad41a41983579b45571fadb1761"
-  integrity sha512-1jbIUhrkt8S4O7avY6WH12f8+sUNT+5U2tJ6cDvThKO/tJ7P3sg0OC6koS0JAReuG3/tz4m1NnDrY3JKumXOsw==
+"@cenk1cenk2/oclif-common@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/oclif-common/-/oclif-common-3.2.1.tgz#e5e75c544d0091b650ad404a7604ce1fb0cd5b1c"
+  integrity sha512-Df1KmUsaK+YY1NI+jU3y12axpvbztIZTzn2wCB84GRut1YGioFKMFVWZnSon2zKSrRdTPATqyQ3injyloIKxAg==
   dependencies:
-    "@types/fs-extra" "^9.0.13"
     colorette "^2.0.19"
     deepmerge "^4.2.2"
-    fs-extra "^10.1.0"
     object-path-immutable "^4.1.2"
     reflect-metadata "^0.1.13"
     through "^2.3.8"
@@ -1568,13 +1566,6 @@
   version "1.20.4"
   resolved "https://registry.yarnpkg.com/@types/expect/-/expect-1.20.4.tgz#8288e51737bf7e3ab5d7c77bfa695883745264e5"
   integrity sha512-Q5Vn3yjTDyCMV50TB6VRIbQNxSE4OmZR86VSbGaNpfUolm0iePBB4KdEEHmxoY5sT2+2DIvXW0rvMDP2nHZ4Mg==
-
-"@types/fs-extra@^9.0.13":
-  version "9.0.13"
-  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-9.0.13.tgz#7594fbae04fe7f1918ce8b3d213f74ff44ac1f45"
-  integrity sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==
-  dependencies:
-    "@types/node" "*"
 
 "@types/glob@^7.1.1":
   version "7.2.0"
