@@ -55,10 +55,10 @@
     eslint-plugin-import "^2.26.0"
     load-tsconfig "^0.2.3"
 
-"@cenk1cenk2/oclif-common@^3.7.2":
-  version "3.7.2"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/oclif-common/-/oclif-common-3.7.2.tgz#68125881ad2b25161103dce8bbf78eb2e035e679"
-  integrity sha512-IqbTnGjCzG3njc4OblN7s100V2z0QSh0sEI+cvDSUr86+I6SsBwzlPZcmSvCHe93SLCEym4QyUJtGM4//NsEag==
+"@cenk1cenk2/oclif-common@^3.8.0":
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/oclif-common/-/oclif-common-3.8.0.tgz#a85456f41a1743abab8e99235cdd79f9ca1519f2"
+  integrity sha512-Gi5hxMo78OybfEUU2IXRcVJ4d5/irn5Qxd3YtlyVHDF3AySvUu74lT+UnpxUx9mRTH2ACxf4+vWhB1dgxoALzg==
   dependencies:
     colorette "^2.0.19"
     deepmerge "^4.2.2"
