@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import { esbuildDecorators } from '@anatine/esbuild-decorators'
 import { defineConfig } from 'tsup'
 
 export default defineConfig((options) => ({
@@ -12,6 +14,8 @@ export default defineConfig((options) => ({
   format: [ 'cjs' ],
 
   sourcemap: false,
+
+  esbuildPlugins: [ esbuildDecorators() ],
 
   clean: true,
   minify: true

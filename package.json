@@ -19,6 +19,7 @@
     "prepare-commit-msg": "[ -t 1 ] && exec < /dev/tty && git cz --hook || true"
   },
   "devDependencies": {
+    "@anatine/esbuild-decorators": "^0.2.19",
     "@cenk1cenk2/cz-cc": "^1.5.3",
     "@cenk1cenk2/eslint-config": "^2.5.28",
     "commitizen": "^4.2.5",
