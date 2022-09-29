@@ -10,6 +10,7 @@ import type { ProxyConfig } from '@interfaces/configs/proxy.interface'
 
 export default class Proxy extends Command<ProxyCtx> {
   static description = 'This command initiates the proxies commands to the underlying container and pipes the data.'
+  static strict = false
 
   public async shouldRunBefore (): Promise<void> {
     this.tasks.options = {
