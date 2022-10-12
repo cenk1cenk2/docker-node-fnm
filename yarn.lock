@@ -1199,9 +1199,9 @@
     tslib "^2"
 
 "@oclif/core@^1", "@oclif/core@^1.16.4", "@oclif/core@^1.16.5":
-  version "1.16.5"
-  resolved "https://registry.yarnpkg.com/@oclif/core/-/core-1.16.5.tgz#248c3371b615462a6ee6826a3c316bdc54dc5193"
-  integrity sha512-Jb58K79AALkLmY0PNU1Jx4Z+/JIWtpgtRbei92PIIBx+TaAmYgVySNI1beInZFNOpGo2fhxVBp+yr3DZ38z3kQ==
+  version "1.16.6"
+  resolved "https://registry.yarnpkg.com/@oclif/core/-/core-1.16.6.tgz#b83704d03f9e420090f91e3c8708f2f74108a767"
+  integrity sha512-g6ILjfs9sbyZGEXV+CUBR22wfT2D7/SNW1QvUAR3K8l4Joe1Z/xD2e2Dk27EA8+mU+HcwiTZJKiTVq7BUtZe5g==
   dependencies:
     "@oclif/linewrap" "^1.0.0"
     "@oclif/screen" "^3.0.2"
@@ -1570,9 +1570,9 @@
   integrity sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==
 
 "@types/node@*", "@types/node@^18.7.3":
-  version "18.8.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.8.4.tgz#54be907698f40de8a45770b48486aa3cbd3adff7"
-  integrity sha512-WdlVphvfR/GJCLEMbNA8lJ0lhFNBj4SW3O+O5/cEGw9oYrv0al9zTwuQsq+myDUXgNx2jgBynoVgZ2MMJ6pbow==
+  version "18.8.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.8.5.tgz#6a31f820c1077c3f8ce44f9e203e68a176e8f59e"
+  integrity sha512-Bq7G3AErwe5A/Zki5fdD3O6+0zDChhg671NfPjtIcbtzDNZTv4NPKMRFr7gtYPG7y+B8uTiNK4Ngd9T0FTar6Q==
 
 "@types/node@^14.0.0":
   version "14.18.32"
@@ -1859,9 +1859,9 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0, ansi-styles@^4.2.1, ansi-styles@^4.3.0:
     color-convert "^2.0.1"
 
 ansi-styles@^6.0.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-6.2.0.tgz#24b0517e8156e12520f389a8ddf938f337f03143"
-  integrity sha512-3MWBO/XxbkDtc/qpECaUwDM0DQ++ujBjdjs0ElZvChUoPv/P7GOnl3x+R2RF2My5UJHEW5R87q556MiR8U3PLw==
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-6.2.1.tgz#0e62320cf99c21afff3b3012192546aacbfb05c5"
+  integrity sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==
 
 ansicolors@~0.3.2:
   version "0.3.2"
@@ -5039,9 +5039,9 @@ libnpmpublish@^6.0.4:
     ssri "^9.0.0"
 
 libphonenumber-js@^1.9.43:
-  version "1.10.13"
-  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.10.13.tgz#0b5833c7fdbf671140530d83531c6753f7e0ea3c"
-  integrity sha512-b74iyWmwb4GprAUPjPkJ11GTC7KX4Pd3onpJfKxYyY8y9Rbb4ERY47LvCMEDM09WD3thiLDMXtkfDK/AX+zT7Q==
+  version "1.10.14"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.10.14.tgz#e29da7f539751f724ac54017a098e3c7ca23de94"
+  integrity sha512-McGS7GV/WjJ2KjfOGhJU1oJn29RYeo7Q+RpANRbUNMQ9gj5XArpbjurSuyYPTejFwbaUojstQ4XyWCrAzGOUXw==
 
 lilconfig@2.0.5:
   version "2.0.5"
@@ -8249,9 +8249,9 @@ yargs@^17.3.1, yargs@^17.4.0:
     yargs-parser "^21.0.0"
 
 yeoman-environment@^3.11.1:
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/yeoman-environment/-/yeoman-environment-3.12.0.tgz#16bc51d318a780cc563633b1d44c5310bebfd06a"
-  integrity sha512-W+2gD6lLzS2GUs67QjnvBYgY0SdXN3g1viI01noI/OXEW0BZYspnvs+sl6V5x+qeUk4flnT1uph49b10fEVs4A==
+  version "3.12.1"
+  resolved "https://registry.yarnpkg.com/yeoman-environment/-/yeoman-environment-3.12.1.tgz#20fc0ab05d76f84c956ad03ed112e3a32e65e862"
+  integrity sha512-q5nC954SE4BEkWFXOwkifbelEZrza6z7vnXCC9bTWvfHjRiaG45eqzv/M6/u4l6PvB/KMmBPgMrACV2mBHE+PQ==
   dependencies:
     "@npmcli/arborist" "^4.0.4"
     are-we-there-yet "^2.0.0"
