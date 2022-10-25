@@ -1,5 +1,5 @@
 {
-  "packages": ["supervisor/*"],
+  "useNx": false,
   "npmClient": "yarn",
   "useWorkspaces": true,
   "command": {
