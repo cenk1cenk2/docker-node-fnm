@@ -1163,19 +1163,19 @@
     read-package-json-fast "^2.0.3"
     which "^2.0.2"
 
+"@nrwl/cli@15.0.10":
+  version "15.0.10"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-15.0.10.tgz#3a968a9520e0b8cafdd9b07b92ca0f9de2b0f673"
+  integrity sha512-+HtEyrSMcaNq1SNhOanKXX3oFntC0mdd5UNIkw8qipSv/7cysBch+3RUwqvnqUFRZhJejCZgFRzUp7rAD7SZ2Q==
+  dependencies:
+    nx "15.0.10"
+
 "@nrwl/cli@15.0.8":
   version "15.0.8"
   resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-15.0.8.tgz#80e718a50e2de5ded8a0537b26ed468c12688ffc"
   integrity sha512-3dy3VGcStWuZXUK91FNIoxIHO44DSuE3bPVLLPfYoOgn8pYjhykpdp6RZHoDkN2NhRypzM73q2GCrmBMfizRyA==
   dependencies:
     nx "15.0.8"
-
-"@nrwl/cli@15.0.9":
-  version "15.0.9"
-  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-15.0.9.tgz#d6c0b1a4e97093c1f46dd1acf35739bcb7b2fa55"
-  integrity sha512-MJe1vgSBNAfDtgwPIDNcMaxgK9s0CR11mASJhV9yGfn/INrFW73Mc4WPjFAI9QuLuhZjxszP7AHaoyGyYvBrvQ==
-  dependencies:
-    nx "15.0.9"
 
 "@nrwl/devkit@>=14.8.6 < 16":
   version "15.0.8"
@@ -1188,19 +1188,19 @@
     semver "7.3.4"
     tslib "^2.3.0"
 
+"@nrwl/tao@15.0.10":
+  version "15.0.10"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-15.0.10.tgz#fda69d32bc2996c8d1ccc0d4e9fd4e8e8204df3c"
+  integrity sha512-8MTx+eNxJSH826IOC0LplvVR2fxFz0+VOOUORk2gq75+3jCxmW7uxcTM5WvzgtCw7lFJCvWVZASoGCVEIns6Fg==
+  dependencies:
+    nx "15.0.10"
+
 "@nrwl/tao@15.0.8":
   version "15.0.8"
   resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-15.0.8.tgz#67167d5539d388cd297060aba2c27bbaef16baa1"
   integrity sha512-Xr1hq3ZCfdKS5XSf8non5eLVdGLEleKdqBhGzdOFssYaPsCDkbavX5mzySzxeLk+DM9rcOFhwwf0x7JCOiq0bQ==
   dependencies:
     nx "15.0.8"
-
-"@nrwl/tao@15.0.9":
-  version "15.0.9"
-  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-15.0.9.tgz#d038d6d8c1568fd3734133616470c2ea30e34be1"
-  integrity sha512-dwQnpPOaoVknmFbKpamOxiLivvYTrq8XhH3heZ5PcqvItSDHtCGr9R9LlXM+2M0ubchnWNxjwUMuWf1IJfd0dQ==
-  dependencies:
-    nx "15.0.9"
 
 "@oclif/color@^1.0.1":
   version "1.0.1"
@@ -5962,6 +5962,47 @@ nunjucks@^3.2.3:
     asap "^2.0.3"
     commander "^5.1.0"
 
+nx@15.0.10:
+  version "15.0.10"
+  resolved "https://registry.yarnpkg.com/nx/-/nx-15.0.10.tgz#9660d8e6294bc6bdfcceba036fd5313856390a6d"
+  integrity sha512-Uy6C/lj+gFjdNAKg2RNYEqMO7t2jxz5fYAEm6FnViDZ2Qz28l1L6V70MEvq6wgyDzSSRL0I+OPLb71tiaD9BiA==
+  dependencies:
+    "@nrwl/cli" "15.0.10"
+    "@nrwl/tao" "15.0.10"
+    "@parcel/watcher" "2.0.4"
+    "@yarnpkg/lockfile" "^1.1.0"
+    "@yarnpkg/parsers" "^3.0.0-rc.18"
+    "@zkochan/js-yaml" "0.0.6"
+    axios "^1.0.0"
+    chalk "4.1.0"
+    chokidar "^3.5.1"
+    cli-cursor "3.1.0"
+    cli-spinners "2.6.1"
+    cliui "^7.0.2"
+    dotenv "~10.0.0"
+    enquirer "~2.3.6"
+    fast-glob "3.2.7"
+    figures "3.2.0"
+    flat "^5.0.2"
+    fs-extra "^10.1.0"
+    glob "7.1.4"
+    ignore "^5.0.4"
+    js-yaml "4.1.0"
+    jsonc-parser "3.2.0"
+    minimatch "3.0.5"
+    npm-run-path "^4.0.1"
+    open "^8.4.0"
+    semver "7.3.4"
+    string-width "^4.2.3"
+    strong-log-transformer "^2.1.0"
+    tar-stream "~2.2.0"
+    tmp "~0.2.1"
+    tsconfig-paths "^3.9.0"
+    tslib "^2.3.0"
+    v8-compile-cache "2.3.0"
+    yargs "^17.6.2"
+    yargs-parser "21.1.1"
+
 nx@15.0.8, "nx@>=14.8.6 < 16":
   version "15.0.8"
   resolved "https://registry.yarnpkg.com/nx/-/nx-15.0.8.tgz#1e62f415685676839b94d395a464f2fa31744121"
@@ -6002,47 +6043,6 @@ nx@15.0.8, "nx@>=14.8.6 < 16":
     v8-compile-cache "2.3.0"
     yargs "^17.4.0"
     yargs-parser "21.0.1"
-
-nx@15.0.9:
-  version "15.0.9"
-  resolved "https://registry.yarnpkg.com/nx/-/nx-15.0.9.tgz#c080b4582c3252f3428e5fb768033247fa5d8a5e"
-  integrity sha512-NqMX+af7FAUvc20CjdbjP5QOU8l/TV4DTksmn5Gvxha2yuVYlC5luGXcvHM6hN+P8t6CfUCHEWC2BMoNTFsWqg==
-  dependencies:
-    "@nrwl/cli" "15.0.9"
-    "@nrwl/tao" "15.0.9"
-    "@parcel/watcher" "2.0.4"
-    "@yarnpkg/lockfile" "^1.1.0"
-    "@yarnpkg/parsers" "^3.0.0-rc.18"
-    "@zkochan/js-yaml" "0.0.6"
-    axios "^1.0.0"
-    chalk "4.1.0"
-    chokidar "^3.5.1"
-    cli-cursor "3.1.0"
-    cli-spinners "2.6.1"
-    cliui "^7.0.2"
-    dotenv "~10.0.0"
-    enquirer "~2.3.6"
-    fast-glob "3.2.7"
-    figures "3.2.0"
-    flat "^5.0.2"
-    fs-extra "^10.1.0"
-    glob "7.1.4"
-    ignore "^5.0.4"
-    js-yaml "4.1.0"
-    jsonc-parser "3.2.0"
-    minimatch "3.0.5"
-    npm-run-path "^4.0.1"
-    open "^8.4.0"
-    semver "7.3.4"
-    string-width "^4.2.3"
-    strong-log-transformer "^2.1.0"
-    tar-stream "~2.2.0"
-    tmp "~0.2.1"
-    tsconfig-paths "^3.9.0"
-    tslib "^2.3.0"
-    v8-compile-cache "2.3.0"
-    yargs "^17.6.2"
-    yargs-parser "21.1.1"
 
 object-assign@^4.0.1, object-assign@^4.1.1:
   version "4.1.1"
