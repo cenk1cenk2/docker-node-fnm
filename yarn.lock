@@ -1163,13 +1163,6 @@
     read-package-json-fast "^2.0.3"
     which "^2.0.2"
 
-"@nrwl/cli@15.1.1":
-  version "15.1.1"
-  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-15.1.1.tgz#9648732aaa7157ae4f833fe5994f47f5dc283ef6"
-  integrity sha512-rfpIi/zWpL6YyW7Z10oc65FwePvFP0uo7L1f32wMtC25dHh12YD3OS24VniCOrFYWjHNIu7X7hdHx2lcDXPRBg==
-  dependencies:
-    nx "15.1.1"
-
 "@nrwl/cli@15.2.0":
   version "15.2.0"
   resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-15.2.0.tgz#22d48ca942640e9d1bd336c20792cc876352caf4"
@@ -1178,22 +1171,15 @@
     nx "15.2.0"
 
 "@nrwl/devkit@>=14.8.6 < 16":
-  version "15.1.1"
-  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-15.1.1.tgz#b8748796e1dc401ebea5df933aeccaa421d4208e"
-  integrity sha512-Dh26LjMh/BMmoOja2WSSVSAaVDI59qIg46dZmfU7fcu+Y4FFMor3PMAAo5QVbfLasbx4HG6vrvQlhuwWnXm4hw==
+  version "15.2.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-15.2.0.tgz#bb62f65947457012e570583b1b645f196533e50b"
+  integrity sha512-njvwu5gWvV1GLlnLs50CIfKQ7piSw81DmlAtnHI/UD9DwzOrQwasd189X5dMrPMDwlif/WObvzcbdMS8M9wm/w==
   dependencies:
     "@phenomnomnominal/tsquery" "4.1.1"
     ejs "^3.1.7"
     ignore "^5.0.4"
     semver "7.3.4"
     tslib "^2.3.0"
-
-"@nrwl/tao@15.1.1":
-  version "15.1.1"
-  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-15.1.1.tgz#b35f320402fefa66e58c8329134a1c9541762a45"
-  integrity sha512-FCmR9Rq+Nza7G5lXYPzYgVfYz2nI/7yDhTaenwBOyoxYixppfWTEx25mpsPtF38x996b/wp6gREuC4OPov7NWQ==
-  dependencies:
-    nx "15.1.1"
 
 "@nrwl/tao@15.2.0":
   version "15.2.0"
@@ -2084,9 +2070,9 @@ available-typed-arrays@^1.0.5:
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
 aws-sdk@^2.1231.0:
-  version "2.1256.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1256.0.tgz#4cac62e8bbd1f8a363cd506328103b3498bfa767"
-  integrity sha512-/Dh81PZdjqyZwA3BMBUO2PMUakv0hqjxCReE59sskIFdQJdSOW+26EQ4LcV07YP6umz3n5TKC28bEfx6l2kTJQ==
+  version "2.1257.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1257.0.tgz#8ed8ca99f97dc642fce98dac7d5eb18e94ae9833"
+  integrity sha512-SNfKIVlJdLyBbUSGgvsBOuV4iOE1modoKOhnV/bIi2F7DJkq4SCPmrN1nwLNBnOQQvZRlPwFbHPVrJ3clTXLDQ==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -4190,9 +4176,9 @@ global-prefix@^1.0.1:
     which "^1.2.14"
 
 globals@^13.15.0:
-  version "13.17.0"
-  resolved "https://registry.yarnpkg.com/globals/-/globals-13.17.0.tgz#902eb1e680a41da93945adbdcb5a9f361ba69bd4"
-  integrity sha512-1C+6nQRb1GwGMKm2dH/E7enFAMxGTmGI7/dEdhy/DNelv85w9B72t3uc5frtMNXIbzrarJJ/lTCjcaZwbLJmyw==
+  version "13.18.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-13.18.0.tgz#fb224daeeb2bb7d254cd2c640f003528b8d0c1dc"
+  integrity sha512-/mR4KI8Ps2spmoc0Ulu9L7agOF0du1CZNQ3dke8yItYlyKNmGrkONemBbd6V8UTc1Wgcqn21t3WYB7dbRmh6/A==
   dependencies:
     type-fest "^0.20.2"
 
@@ -6017,48 +6003,7 @@ nunjucks@^3.2.3:
     asap "^2.0.3"
     commander "^5.1.0"
 
-nx@15.1.1, "nx@>=14.8.6 < 16":
-  version "15.1.1"
-  resolved "https://registry.yarnpkg.com/nx/-/nx-15.1.1.tgz#fbbc9cba25bdff42e890c0fe7d67f9f6858dd01d"
-  integrity sha512-afwLiY25+wCK7NR1lGVn2nIJRSqOmcJqJxWsz1A2FJJaHXogF4ja0USgjDksxXQGfKsbOyOq4Wvzel1YhtuaoQ==
-  dependencies:
-    "@nrwl/cli" "15.1.1"
-    "@nrwl/tao" "15.1.1"
-    "@parcel/watcher" "2.0.4"
-    "@yarnpkg/lockfile" "^1.1.0"
-    "@yarnpkg/parsers" "^3.0.0-rc.18"
-    "@zkochan/js-yaml" "0.0.6"
-    axios "^1.0.0"
-    chalk "4.1.0"
-    chokidar "^3.5.1"
-    cli-cursor "3.1.0"
-    cli-spinners "2.6.1"
-    cliui "^7.0.2"
-    dotenv "~10.0.0"
-    enquirer "~2.3.6"
-    fast-glob "3.2.7"
-    figures "3.2.0"
-    flat "^5.0.2"
-    fs-extra "^10.1.0"
-    glob "7.1.4"
-    ignore "^5.0.4"
-    js-yaml "4.1.0"
-    jsonc-parser "3.2.0"
-    minimatch "3.0.5"
-    npm-run-path "^4.0.1"
-    open "^8.4.0"
-    semver "7.3.4"
-    string-width "^4.2.3"
-    strong-log-transformer "^2.1.0"
-    tar-stream "~2.2.0"
-    tmp "~0.2.1"
-    tsconfig-paths "^3.9.0"
-    tslib "^2.3.0"
-    v8-compile-cache "2.3.0"
-    yargs "^17.6.2"
-    yargs-parser "21.1.1"
-
-nx@15.2.0:
+nx@15.2.0, "nx@>=14.8.6 < 16":
   version "15.2.0"
   resolved "https://registry.yarnpkg.com/nx/-/nx-15.2.0.tgz#f3ca1953aee7bd24e4606a5fd6ac322e19155fd4"
   integrity sha512-lNoI37FYsN11LiR/XiO0GJqlZDH/ANe/UR1cw2VDipJqbae9rWfi/Td6zjMlymSEraullsiB+Ur7kavId/904w==
