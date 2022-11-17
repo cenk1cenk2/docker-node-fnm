@@ -1,7 +1,7 @@
 {
   "name": "docker-node-fnm-init",
   "description": "Init controller for docker-node-fnm container.",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "private": true,
   "license": "MIT",
   "author": "Cenk Kilic <cenk@kilic.dev>",
@@ -74,7 +74,7 @@
     "@types/nunjucks": "^3.2.1",
     "@types/uuid": "^8.3.4",
     "eslint": "^8.27.0",
-    "globby": "^13",
+    "globby": "^11",
     "oclif": "^3",
     "prettier": "^2.7.1",
     "ts-node": "^10.9.1",
