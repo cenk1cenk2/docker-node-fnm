@@ -73,7 +73,7 @@
     "@types/node": "^18.11.9",
     "@types/nunjucks": "^3.2.1",
     "@types/uuid": "^8.3.4",
-    "eslint": "^8.27.0",
+    "eslint": "^8.28.0",
     "globby": "^11",
     "oclif": "^3",
     "prettier": "^2.7.1",
