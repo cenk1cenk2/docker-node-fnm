@@ -37,7 +37,7 @@ publish-node-fnm-latest:
   variables:
     DOCKERFILE_CONTEXT: .
     DOCKERFILE_NAME: Dockerfile
-    IMAGE_TAGS: latest
+    DOCKER_IMAGE_TAGS: latest
   only:
     refs:
       - master
@@ -48,7 +48,7 @@ publish-node-fnm-edge:
   variables:
     DOCKERFILE_CONTEXT: .
     DOCKERFILE_NAME: Dockerfile-edge
-    IMAGE_TAGS: edge
+    DOCKER_IMAGE_TAGS: edge
   only:
     refs:
       - master
