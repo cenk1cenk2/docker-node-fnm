@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import execa from 'execa'
 import { defineConfig } from 'tsup'
 
 export default defineConfig((options) => ({
@@ -16,5 +17,9 @@ export default defineConfig((options) => ({
 
   bundle: false,
   clean: true,
-  minify: true
+  minify: true,
+
+  onSuccess: async (): Promise<void> => {
+    await Promise.all([ execa.command('yarn exec tsconfig-replace-paths', { stdout: process.stdout, stderr: process.stderr }) ])
+  }
 }))

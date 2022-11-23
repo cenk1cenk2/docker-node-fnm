@@ -2651,6 +2651,11 @@ commander@7.1.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-7.1.0.tgz#f2eaecf131f10e36e07d894698226e36ae0eb5ff"
   integrity sha512-pRxBna3MJe6HKnBGsDyMv8ETbptw3axEdYHoqNh7gu5oDcew8fs0xnivZGm06Ogk8zGAJ9VX+OPEr2GXEQK4dg==
 
+commander@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-3.0.2.tgz#6837c3fb677ad9933d1cfba42dd14d5117d6b39e"
+  integrity sha512-Gar0ASD4BDyKC4hl4DwHqDrmvjoxWKZigVnAbn5H1owvm4CxCPdb0HQDehwNYMJpla5+M2tPmPARzhtYuwpHow==
+
 commander@^4.0.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
@@ -5013,6 +5018,11 @@ json5@^1.0.1:
   integrity sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==
   dependencies:
     minimist "^1.2.0"
+
+json5@^2.2.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.1.tgz#655d50ed1e6f95ad1a3caababd2b0efda10b395c"
+  integrity sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==
 
 jsonc-parser@3.2.0:
   version "3.2.0"
@@ -7735,6 +7745,15 @@ tsconfig-paths@^3.14.1, tsconfig-paths@^3.9.0:
     json5 "^1.0.1"
     minimist "^1.2.6"
     strip-bom "^3.0.0"
+
+tsconfig-replace-paths@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/tsconfig-replace-paths/-/tsconfig-replace-paths-0.0.11.tgz#0059a5ba5b6c156b00038ce46842e3d4d801a33b"
+  integrity sha512-BX10vOJL/kTZExQwj22FJgxCpneNYKfXvujBKGFpnvaKWl4/9Cpd678ZvKF+CX5NdxbKphscwtc8QzFA7zhVsA==
+  dependencies:
+    commander "^3.0.2"
+    globby "^10.0.1"
+    json5 "^2.2.0"
 
 tslib@^1.8.1:
   version "1.14.1"
