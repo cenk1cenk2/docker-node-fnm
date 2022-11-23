@@ -14,6 +14,7 @@ export default defineConfig((options) => ({
 
   sourcemap: false,
 
+  bundle: false,
   clean: true,
   minify: true
 }))
