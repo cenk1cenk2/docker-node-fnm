@@ -70,10 +70,10 @@
   },
   "devDependencies": {
     "@anatine/esbuild-decorators": "^0.2.19",
-    "@types/node": "^18.11.9",
+    "@types/node": "^18.11.10",
     "@types/nunjucks": "^3.2.1",
     "@types/uuid": "^8.3.4",
-    "eslint": "^8.28.0",
+    "eslint": "^8.29.0",
     "globby": "^11",
     "oclif": "^3",
     "prettier": "^2.8.0",
