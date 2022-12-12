@@ -1,4 +1,4 @@
-import { Transform } from 'class-transformer'
+import { Transform, Type } from 'class-transformer'
 import { IsBoolean, IsEnum, IsNotEmpty, IsObject, IsPositive, IsString, IsUUID, ValidateNested } from 'class-validator'
 
 import { IsFalseOrStringArray, IsSemverOrDefault } from '@utils/validator'
@@ -29,9 +29,11 @@ export class DockerServicesConfig {
     before_all?: false | string[]
 
   @ValidateNested()
+  @Type(() => DockerService)
     defaults: Pick<DockerService, 'enable' | 'logs' | 'load_dotenv' | 'before' | 'command' | 'sync' | 'run_once' | 'exit_on_error' | 'environment'>
 
   @ValidateNested({ each: true })
+  @Type(() => DockerService)
     services: DockerService[]
 }
 

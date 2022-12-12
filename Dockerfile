@@ -1,5 +1,7 @@
 FROM debian:stable-slim
 
+ARG BUILDARCH
+
 # Workdir for node package
 
 ENV FNM_VERSION 1.31.1
@@ -13,8 +15,8 @@ WORKDIR /tmp
 COPY ./rootfs /
 
 # Install s6 overlay
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-amd64.tar.gz /tmp/
-RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-${BUILDARCH}.tar.gz /tmp/
+RUN tar xzf "/tmp/s6-overlay-${BUILDARCH}.tar.gz" -C / && \
   # create directories
   mkdir -p /etc/services.d && mkdir -p /etc/cont-init.d && mkdir -p /s6-bin
 

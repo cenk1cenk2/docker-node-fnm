@@ -3,7 +3,7 @@ import { EOL } from 'os'
 import { join, normalize } from 'path'
 import { v4 as uuid } from 'uuid'
 
-import { Command, fs, Logger, LogLevels, pipeProcessToLogger } from '@cenk1cenk2/oclif-common'
+import { Command, fs } from '@cenk1cenk2/oclif-common'
 import {
   CONFIG_FILES,
   CONTAINER_ENV_FILE,
@@ -138,13 +138,13 @@ export default class Init extends Command<InitCtx> {
           this.logger.info('Installing node version given from variables: %s', ctx.config.node_version, { context: 'node' })
 
           try {
-            await pipeProcessToLogger(
-              new Logger('fnm'),
+            await this.pipeProcessToLogger(
               execa('fnm', [ 'install', ctx.config.node_version ], {
                 shell: '/bin/bash',
                 detached: false,
                 extendEnv: false
-              })
+              }),
+              { context: 'fnm' }
             )
           } catch (e) {
             this.logger.fatal('Can not use the given version with FNM.', { context: 'fnm' })
@@ -164,14 +164,14 @@ export default class Init extends Command<InitCtx> {
           this.logger.info('Found node version override file in the root directory of the data folder.', { context: 'node' })
 
           try {
-            await pipeProcessToLogger(
-              new Logger('fnm'),
+            await this.pipeProcessToLogger(
               execa('fnm', [ 'install' ], {
                 shell: '/bin/bash',
                 detached: false,
                 extendEnv: false,
                 cwd: MOUNTED_DATA_FOLDER
-              })
+              }),
+              { context: 'fnm' }
             )
           } catch (e) {
             this.logger.fatal('Can not use the workspace version with FNM.', { context: 'fnm' })
@@ -239,15 +239,11 @@ export default class Init extends Command<InitCtx> {
             NODE_VERSION: ctx.config.node_version
           })
 
-          switch (this.cs.logLevel) {
-          case LogLevels.DEBUG:
-            await createEnvFile(CONTAINER_ENV_FILE, { LOG_LEVEL: 5 }, true)
-
-            break
-
-          default:
-            await createEnvFile(CONTAINER_ENV_FILE, { LOG_LEVEL: 4 }, true)
+          if (this.cs.isDebug) {
+            return createEnvFile(CONTAINER_ENV_FILE, { LOG_LEVEL: 5 }, true)
           }
+
+          return createEnvFile(CONTAINER_ENV_FILE, { LOG_LEVEL: 4 }, true)
         }
       },
 
@@ -310,14 +306,14 @@ export default class Init extends Command<InitCtx> {
             command = 'fnm use && ' + command
           }
 
-          await pipeProcessToLogger(
-            new Logger('fnm'),
+          await this.pipeProcessToLogger(
             execa.command(`${command}`, {
               shell: '/bin/bash',
               detached: false,
               extendEnv: false,
               cwd: MOUNTED_DATA_FOLDER
-            })
+            }),
+            { context: 'fnm' }
           )
         }
       },
@@ -331,14 +327,14 @@ export default class Init extends Command<InitCtx> {
           for (const command of ctx.config.before_all as string[]) {
             this.logger.info(`$ ${command}`, { context: 'before-all' })
 
-            await pipeProcessToLogger(
-              new Logger('before-all'),
+            await this.pipeProcessToLogger(
               execa.command(command, {
                 shell: '/bin/bash',
                 detached: false,
                 extendEnv: false,
                 cwd: MOUNTED_DATA_FOLDER
-              })
+              }),
+              { context: 'before-all' }
             )
           }
         }

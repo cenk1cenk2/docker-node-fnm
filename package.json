@@ -15,21 +15,20 @@
     "supervisor/"
   ],
   "simple-git-hooks": {
-    "pre-commit": "yarn command --concurrency 1 lint:staged",
+    "pre-commit": "yarn exec lint-staged",
     "prepare-commit-msg": "[ -t 1 ] && exec < /dev/tty && git cz --hook || true"
   },
   "devDependencies": {
     "@cenk1cenk2/cz-cc": "^1.5.6",
     "@cenk1cenk2/eslint-config": "^2.5.39",
-    "@swc/core": "^1.3.22",
     "commitizen": "^4.2.6",
     "eslint": "^8.29.0",
+    "eslint-plugin-import": "^2.26.0",
     "lerna": "^6.1.0",
     "lint-staged": "^13.1.0",
-    "nx": "15.3.0",
+    "nx": "15.3.2",
     "rimraf": "^3.0.2",
-    "simple-git-hooks": "^2.8.1",
-    "tsconfig-replace-paths": "^0.0.11"
+    "simple-git-hooks": "^2.8.1"
   },
   "config": {
     "commitizen": {

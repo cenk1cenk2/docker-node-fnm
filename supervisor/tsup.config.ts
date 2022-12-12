@@ -8,7 +8,7 @@ export default defineConfig((options) => ({
   entryPoints: [ 'src/**/*.ts' ],
   tsconfig: options.watch ? 'tsconfig.json' : 'tsconfig.build.json',
 
-  dts: options.watch && true,
+  dts: options.watch ? true : false,
 
   target: 'es2021',
   format: [ 'cjs' ],
@@ -16,10 +16,15 @@ export default defineConfig((options) => ({
   sourcemap: false,
 
   bundle: false,
+  splitting: false,
   clean: true,
-  minify: true,
+  minify: options.watch ? true : false,
+  keepNames: true,
 
   onSuccess: async (): Promise<void> => {
-    await Promise.all([ execa.command('yarn exec tsconfig-replace-paths', { stdout: process.stdout, stderr: process.stderr }) ])
+    await Promise.all([
+      execa.command('yarn run manifest', { stdout: process.stdout, stderr: process.stderr }),
+      execa.command('yarn exec tsconfig-replace-paths', { stdout: process.stdout, stderr: process.stderr })
+    ])
   }
 }))

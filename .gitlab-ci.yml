@@ -1,20 +1,21 @@
 stages:
   - install
   - build
-  - publish
+  - docker
   - post
 
 variables:
   DOCKER_IMAGE_NAME: cenk1cenk2/node-fnm
-  README_DESCRIPTION: |
-    Monorepo aimed Node development container that hosts FNM in a container.
 
 include:
   - project: devops/pipes
     file: /templates/node.gitlab-ci.yml
 
   - project: devops/pipes
-    file: /templates/update-docker-hub-readme.gitlab-ci.yml
+    file: /templates/v2/docker-build-dockerhub.gitlab-ci.yml
+
+  - project: devops/pipes
+    file: /templates/v2/update-docker-hub-readme.gitlab-ci.yml
 
 build:
   variables:
@@ -24,32 +25,37 @@ build:
       - supervisor/dist/
       - supervisor/oclif.manifest.json
 
-.publish-docker-to-public:
-  stage: publish
-  trigger:
-    include:
-      - project: devops/pipes
-        file: /templates/docker-build-with-artifacts-dockerhub.gitlab-ci.yml
-    strategy: depend
-
-publish-node-fnm-latest:
-  extends: .publish-docker-to-public
-  variables:
-    DOCKERFILE_CONTEXT: .
-    DOCKERFILE_NAME: Dockerfile
-    DOCKER_IMAGE_TAGS: latest
+docker-build:
+  stage: docker
+  extends: .docker-build-dockerhub
+  parallel:
+    matrix:
+      - DOCKERFILE_NAME: Dockerfile
+        DOCKER_IMAGE_TAGS: latest-${GITLAB_CI_ARCH}
+        DOCKER_MANIFEST_TARGET: latest
+        GITLAB_CI_ARCH:
+          - amd64
+          - arm64
   only:
     refs:
+      - schedules
       - master
-      - tags
 
-publish-node-fnm-edge:
-  extends: .publish-docker-to-public
-  variables:
-    DOCKERFILE_CONTEXT: .
-    DOCKERFILE_NAME: Dockerfile-edge
-    DOCKER_IMAGE_TAGS: edge
+docker-manifest:
+  stage: post
+  extends: .docker-manifest-dockerhub
   only:
     refs:
+      - schedules
       - master
-      - tags
+
+update-docker-hub-readme:
+  stage: post
+  extends: .update-docker-hub-readme
+  variables:
+    README_DESCRIPTION: |
+      Monorepo aimed Node development container that hosts FNM in a container.
+  only:
+    refs:
+      - schedules
+      - master
