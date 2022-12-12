@@ -35,7 +35,7 @@ docker-build:
     - build
   parallel:
     matrix:
-      - DOCKERFILE_NAME: Dockerfile-${GITLAB_CI_ARCH}
+      - DOCKERFILE_NAME: Dockerfile
         DOCKER_IMAGE_TAGS: latest-${GITLAB_CI_ARCH}
         DOCKER_MANIFEST_TARGET: latest
         DOCKER_BUILD_ARGS: S6_OVERLAY_ARCH={{- if $.GITLAB_CI_ARCH eq "amd64" }}amd64{{- else if $.GITLAB_CI_ARCH eq "arm64" }}aarch64{{- end }}
