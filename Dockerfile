@@ -9,7 +9,7 @@ ENV FNM_VERSION 1.31.1
 ENV S6_VERSION 2.2.0.3
 ENV FNM_DIR /opt/fnm
 ENV FNM_INTERACTIVE_CLI false
-ENV FNM_INSTALL_VERSION 16
+ENV FNM_INSTALL_VERSION 18
 
 WORKDIR /tmp
 
@@ -32,7 +32,7 @@ RUN \
   curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "/opt/fnm" --skip-shell && \
   ln -s /opt/fnm/fnm /usr/bin/ && chmod +x /usr/bin/fnm && \
   # smoke test for fnm
-  /bin/bash -c "fnm -V" && \
+  fnm -V && \
   # install latest node version as default
   /bin/bash -c "source /etc/bash.bashrc && fnm install ${FNM_INSTALL_VERSION}" && \
   /bin/bash -c "source /etc/bash.bashrc && fnm alias default ${FNM_INSTALL_VERSION}" && \
@@ -42,26 +42,28 @@ RUN \
   /bin/bash -c 'source /etc/bash.bashrc && /bin/ln -s "/opt/fnm/aliases/default/bin/npm" /usr/bin/npm' && \
   /bin/bash -c 'source /etc/bash.bashrc && /bin/ln -s "/opt/fnm/aliases/default/bin/npx" /usr/bin/npx' && \
   # add yarn
-  /bin/bash -c "curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -" && \
-  /bin/bash -c 'echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list' && \
-  /bin/bash -c 'apt-get update && apt-get install -y --no-install-recommends yarn' && \
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+  apt-get update && apt-get install -y --no-install-recommends yarn && \
   echo -e 'export PATH="$PATH:$(yarn global bin)"' >> /etc/bash.bashrc && \
   # link our bashrc
   rm /root/.bashrc && \
   ln -s /etc/bash.bashrc /root/.bashrc && \
   # smoke test
-  /bin/bash -c "source /etc/bash.bashrc && node -v" && \
-  /bin/bash -c "source /etc/bash.bashrc && npm -v" && \
-  /bin/bash -c "source /etc/bash.bashrc && yarn -v" && \
+  node -v && \
+  npm -v && \
+  yarn -v && \
   # create directories
   mkdir -p /data && \
   # clean up build dependencies
-  # clean up tmp
-  rm -rf /tmp/* && \
   # clean up dependencies
-  apt-get remove -y curl unzip gnupg2 && apt-get autoremove -y && \
+  apt-get remove -y curl unzip gnupg2 &&  \
   # Add running dependencies
-  apt-get install -y git
+  apt-get install -y git && \
+  apt-get autoremove -y && \
+  rm -rf /var/lib/apt/lists/* && \
+  # clean up tmp
+  rm -rf /tmp/*
 
 # Copy the supervisor
 COPY ./supervisor /cli
@@ -70,9 +72,11 @@ COPY ./yarn.lock /cli
 # Link and install dependencies
 WORKDIR /cli
 RUN \
-  /bin/bash -c "source /etc/bash.bashrc && yarn --production --frozen-lockfile && yarn link" && \
+  NODE_ENV=production yarn install --production --link-duplicates --frozen-lockfile && \
+  yarn link && \
+  yarn cache clean && \
   # smoke test
-  /bin/bash -c "source /etc/bash.bashrc && docker-node-fnm-init --version"
+  docker-node-fnm-init --version
 
 WORKDIR /data
 
