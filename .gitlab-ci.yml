@@ -38,7 +38,7 @@ docker-build:
       - DOCKERFILE_NAME: Dockerfile
         DOCKER_IMAGE_TAGS: latest-${GITLAB_CI_ARCH}
         DOCKER_MANIFEST_TARGET: latest
-        DOCKER_IMAGE_BUILD_ARGS: S6_OVERLAY_ARCH={{- if $.GITLAB_CI_ARCH eq "amd64" }}amd64{{- else if $.GITLAB_CI_ARCH eq "arm64" }}aarch64{{- end }}
+        DOCKER_IMAGE_BUILD_ARGS: S6_OVERLAY_ARCH={{- if eq $.GITLAB_CI_ARCH "amd64" }}amd64{{- else if eq $.GITLAB_CI_ARCH "arm64" }}aarch64{{- end }}
         GITLAB_CI_ARCH:
           - amd64
           - arm64
