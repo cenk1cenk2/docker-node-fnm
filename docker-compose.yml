@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        S6_OVERLAY_ARCH: amd64
     environment:
       LOG_LEVEL: trace
       DEFAULTS_LOGS: 'true'

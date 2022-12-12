@@ -8,5 +8,4 @@
 !/supervisor/dist
 !/supervisor/oclif.manifest.json
 !/supervisor/package.json
-!/services.d/
 !/yarn.lock

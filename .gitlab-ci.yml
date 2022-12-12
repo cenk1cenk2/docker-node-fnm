@@ -31,11 +31,14 @@ build:
 docker-build:
   stage: docker
   extends: .docker-build-dockerhub
+  dependencies:
+    - build
   parallel:
     matrix:
       - DOCKERFILE_NAME: Dockerfile-${GITLAB_CI_ARCH}
         DOCKER_IMAGE_TAGS: latest-${GITLAB_CI_ARCH}
         DOCKER_MANIFEST_TARGET: latest
+        DOCKER_BUILD_ARGS: S6_OVERLAY_ARCH={{- if $.GITLAB_CI_ARCH eq "amd64" }}amd64{{- else if $.GITLAB_CI_ARCH eq "arm64" }}aarch64{{- end }}
         GITLAB_CI_ARCH:
           - amd64
           - arm64
@@ -47,6 +50,8 @@ docker-build:
 docker-manifest:
   stage: post
   extends: .docker-manifest-dockerhub
+  dependencies:
+    - docker-build
   only:
     refs:
       - schedules
@@ -55,6 +60,8 @@ docker-manifest:
 update-docker-hub-readme:
   stage: post
   extends: .update-docker-hub-readme
+  dependencies:
+    - build
   variables:
     README_DESCRIPTION: |
       Monorepo aimed Node development container that hosts FNM in a container.

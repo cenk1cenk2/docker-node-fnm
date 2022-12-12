@@ -1,6 +1,7 @@
+# syntax=docker/dockerfile-upstream:master-labs
 FROM debian:stable-slim
 
-ARG ARCH=aarch64
+ARG S6_OVERLAY_ARCH
 
 # Workdir for node package
 
@@ -15,10 +16,11 @@ WORKDIR /tmp
 COPY ./rootfs /
 
 # Install s6 overlay
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-${ARCH}.tar.gz /tmp/
-RUN tar xzf "/tmp/s6-overlay-${ARCH}.tar.gz" -C / && \
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-${S6_OVERLAY_ARCH}.tar.gz /tmp/
+RUN tar xzf "/tmp/s6-overlay-${S6_OVERLAY_ARCH}.tar.gz" -C / && \
   # create directories
-  mkdir -p /etc/services.d && mkdir -p /etc/cont-init.d && mkdir -p /s6-bin
+  mkdir -p /etc/services.d && mkdir -p /etc/cont-init.d && mkdir -p /s6-bin && \
+  rm -rf /tmp/*
 
 SHELL ["/bin/bash", "-c"]
 
