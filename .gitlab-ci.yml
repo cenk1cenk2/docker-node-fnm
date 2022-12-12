@@ -15,6 +15,9 @@ include:
     file: /templates/v2/docker-build-dockerhub.gitlab-ci.yml
 
   - project: devops/pipes
+    file: /templates/v2/docker-manifest-dockerhub.gitlab-ci.yml
+
+  - project: devops/pipes
     file: /templates/v2/update-docker-hub-readme.gitlab-ci.yml
 
 build:
