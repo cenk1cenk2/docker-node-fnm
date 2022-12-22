@@ -1167,6 +1167,13 @@
   dependencies:
     nx "15.3.3"
 
+"@nrwl/cli@15.4.0":
+  version "15.4.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-15.4.0.tgz#5d62e693c4f4ed70cc676e5854e056e6835ded04"
+  integrity sha512-19rP6GqlbLTLFJakhKcfHI8/TXTswnT4D6G4QgjbzKpSj4KRXTnOrv644bOouEsZJ7JIm+NaaJQCfEYpJ+7r1Q==
+  dependencies:
+    nx "15.4.0"
+
 "@nrwl/devkit@>=14.8.6 < 16":
   version "15.3.3"
   resolved "https://registry.yarnpkg.com/@nrwl/devkit/-/devkit-15.3.3.tgz#8a038334cf5b563befdad4b201e0b146dfd2969a"
@@ -1184,6 +1191,13 @@
   integrity sha512-f9+VwhlJ/7TWpjHSgoUOAA067uP9DmzABMY9HC5OREEDaCx+rzYEvbLAPv6cXzWw+6IYM6cyKw0zWSQrdEVrWg==
   dependencies:
     nx "15.3.3"
+
+"@nrwl/tao@15.4.0":
+  version "15.4.0"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-15.4.0.tgz#f8a7415866b7e11c729a3f40f900f4a39794a2fc"
+  integrity sha512-mwMmBYOCHe0yl8UrI8VRSplNxTPxrgOZA5OWRoRHLPLoHeyng2ZZxPnfxp3ZVLPFKCxwETHcBwNKKTlx+qUgFA==
+  dependencies:
+    nx "15.4.0"
 
 "@oclif/color@^1.0.2":
   version "1.0.2"
@@ -6096,6 +6110,47 @@ nx@15.3.3, "nx@>=14.8.6 < 16":
   dependencies:
     "@nrwl/cli" "15.3.3"
     "@nrwl/tao" "15.3.3"
+    "@parcel/watcher" "2.0.4"
+    "@yarnpkg/lockfile" "^1.1.0"
+    "@yarnpkg/parsers" "^3.0.0-rc.18"
+    "@zkochan/js-yaml" "0.0.6"
+    axios "^1.0.0"
+    chalk "4.1.0"
+    chokidar "^3.5.1"
+    cli-cursor "3.1.0"
+    cli-spinners "2.6.1"
+    cliui "^7.0.2"
+    dotenv "~10.0.0"
+    enquirer "~2.3.6"
+    fast-glob "3.2.7"
+    figures "3.2.0"
+    flat "^5.0.2"
+    fs-extra "^10.1.0"
+    glob "7.1.4"
+    ignore "^5.0.4"
+    js-yaml "4.1.0"
+    jsonc-parser "3.2.0"
+    minimatch "3.0.5"
+    npm-run-path "^4.0.1"
+    open "^8.4.0"
+    semver "7.3.4"
+    string-width "^4.2.3"
+    strong-log-transformer "^2.1.0"
+    tar-stream "~2.2.0"
+    tmp "~0.2.1"
+    tsconfig-paths "^3.9.0"
+    tslib "^2.3.0"
+    v8-compile-cache "2.3.0"
+    yargs "^17.6.2"
+    yargs-parser "21.1.1"
+
+nx@15.4.0:
+  version "15.4.0"
+  resolved "https://registry.yarnpkg.com/nx/-/nx-15.4.0.tgz#2e259f6851aaa109e7fcecfb56cf7e0fae483e2f"
+  integrity sha512-6sS6a8q3Vb8W6ElDbhtLuzZcyPgsHC8Yx46tgVALMLzfcJMuUfPT/WYHkhc2/5VPoTvwOOMsuUnKILrApOydhg==
+  dependencies:
+    "@nrwl/cli" "15.4.0"
+    "@nrwl/tao" "15.4.0"
     "@parcel/watcher" "2.0.4"
     "@yarnpkg/lockfile" "^1.1.0"
     "@yarnpkg/parsers" "^3.0.0-rc.18"
