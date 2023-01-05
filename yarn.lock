@@ -2108,9 +2108,9 @@ available-typed-arrays@^1.0.5:
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
 aws-sdk@^2.1231.0:
-  version "2.1288.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1288.0.tgz#7c5d90f0c3c942406f204aa72eb75fe715b52ebf"
-  integrity sha512-5ALCke6yp+QP5VEnotLw7tF3ipII2+j7+ZjJg7s5OFgqJ9p0XNOBb6V+0teOTpbQarkfefwOLHj5oir3i6OMsA==
+  version "2.1289.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1289.0.tgz#8efa68a738ce386667aeffbd8679491cfa6e458f"
+  integrity sha512-wT7SZ385NEm6X4VC1Bhf1loBZi2BDVqEET4G9I7E2tyuEdfeubPvZpCV/BgdId3qwqB4LjbMLBje18Op3zpgBA==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -3334,11 +3334,12 @@ es-abstract@^1.19.0, es-abstract@^1.20.4:
     which-typed-array "^1.1.9"
 
 es-set-tostringtag@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/es-set-tostringtag/-/es-set-tostringtag-2.0.0.tgz#b33fdef554fb35a264fe022c1f095f1f2022fa85"
-  integrity sha512-vZVAIWss0FcR/+a08s6e2/GjGjjYBCZJXDrOnj6l5kJCKhQvJs4cnVqUxkVepIhqHbKHm3uwOvPb8lRcqA3DSg==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/es-set-tostringtag/-/es-set-tostringtag-2.0.1.tgz#338d502f6f674301d710b80c8592de8a15f09cd8"
+  integrity sha512-g3OMbtlwY3QewlqAiMLI47KywjWZoEytKr8pf6iTC8uJq5bIAH52Z9pnQ8pVL6whrCto53JZDuUIsifGeLorTg==
   dependencies:
     get-intrinsic "^1.1.3"
+    has "^1.0.3"
     has-tostringtag "^1.0.0"
 
 es-shim-unscopables@^1.0.0:
@@ -4710,12 +4711,13 @@ is-arguments@^1.0.4:
     has-tostringtag "^1.0.0"
 
 is-array-buffer@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/is-array-buffer/-/is-array-buffer-3.0.0.tgz#d93aaf24dade5e5391e2992e884c378482f078c1"
-  integrity sha512-TI2hnvT6dPUnn/jARFCJBKL1eeabAfLnKZ2lmW5Uh317s1Ii2IMroL1yMciEk/G+OETykVzlsH6x/L4q/avhgw==
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/is-array-buffer/-/is-array-buffer-3.0.1.tgz#deb1db4fcae48308d54ef2442706c0393997052a"
+  integrity sha512-ASfLknmY8Xa2XtB4wmbz13Wu202baeA18cJBCeCy0wXUHZF0IPyVEXqKEcd+t2fNSLLL1vC6k7lxZEojNbISXQ==
   dependencies:
     call-bind "^1.0.2"
     get-intrinsic "^1.1.3"
+    is-typed-array "^1.1.10"
 
 is-arrayish@^0.2.1:
   version "0.2.1"
@@ -5857,9 +5859,9 @@ node-fetch@^2.6.1, node-fetch@^2.6.7:
     whatwg-url "^5.0.0"
 
 node-gyp-build@^4.3.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-4.5.0.tgz#7a64eefa0b21112f89f58379da128ac177f20e40"
-  integrity sha512-2iGbaQBV+ITgCz76ZEjmhUKAKVf7xfY1sRl4UiKQspfZMH2h06SyhNsnSVy50cwkFQDGLyif6m/6uFXHkOZ6rg==
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-4.6.0.tgz#0c52e4cbf54bbd28b709820ef7b6a3c2d6209055"
+  integrity sha512-NTZVKn9IylLwUzaKjkas1e4u2DLNcV4rdYagA4PWdPwW87Bi7z+BznyKSRwS/761tV/lzCGXplWsiaMjLqP2zQ==
 
 node-gyp@^8.2.0:
   version "8.4.1"
