@@ -1168,12 +1168,12 @@
   dependencies:
     nx "15.4.5"
 
-"@nrwl/cli@15.4.6":
-  version "15.4.6"
-  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-15.4.6.tgz#ccf582869f8ef96b91f20b86ceceb1af09dcf534"
-  integrity sha512-eyGrgMiENqb/fsWn0Dia9t6DOgoL5QXW4EDm8PwNn+u3qGq0tCKa7M93dm2wMNzzrU23dQGmKZdM7ou8Lj0heQ==
+"@nrwl/cli@15.4.8":
+  version "15.4.8"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-15.4.8.tgz#e02419af7871747be19f4acfc6a7d3a35c7e81b5"
+  integrity sha512-6QxrgGYvD5cxzYVH0hn6U0SzabeFdzBspdk8WcBYuOYNd57NUTbxDY9YnB9LQ1Rgs32EWtX3kg3mzYpub4Ra/w==
   dependencies:
-    nx "15.4.6"
+    nx "15.4.8"
 
 "@nrwl/devkit@>=15.4.2 < 16":
   version "15.4.5"
@@ -1193,12 +1193,12 @@
   dependencies:
     nx "15.4.5"
 
-"@nrwl/tao@15.4.6":
-  version "15.4.6"
-  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-15.4.6.tgz#3531e2b47c2d985cb075698a81fa62f7c2aaff03"
-  integrity sha512-+fftDsauLYJG9vbzBVWDcONJ0PSZvvxY6ft6ljXSWqZAvDFS2Al2Fo9uJGZSS6HuBreSpy1Q/QOs4mqv6EWb5w==
+"@nrwl/tao@15.4.8":
+  version "15.4.8"
+  resolved "https://registry.yarnpkg.com/@nrwl/tao/-/tao-15.4.8.tgz#47039c8d6b5da27de58924ff12d3a61863f02fad"
+  integrity sha512-XajgVKDWHW4NcMxpBg7hC9nMkyujnmVNLZvBfURFPNY2wetFWz8xpyvflq3oLm+veGm7M/TbnPLOLuHI2223nA==
   dependencies:
-    nx "15.4.6"
+    nx "15.4.8"
 
 "@oclif/color@^1.0.3":
   version "1.0.3"
@@ -3988,6 +3988,15 @@ fs-extra@^10.1.0:
     jsonfile "^6.0.1"
     universalify "^2.0.0"
 
+fs-extra@^11.1.0:
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-11.1.0.tgz#5784b102104433bb0e090f48bfc4a30742c357ed"
+  integrity sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==
+  dependencies:
+    graceful-fs "^4.2.0"
+    jsonfile "^6.0.1"
+    universalify "^2.0.0"
+
 fs-extra@^8.1:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-8.1.0.tgz#49d43c45a88cd9677668cb7be1b46efdb8d2e1c0"
@@ -6215,13 +6224,13 @@ nx@15.4.5, "nx@>=14.8.6 < 16", "nx@>=15.4.2 < 16":
     yargs "^17.6.2"
     yargs-parser "21.1.1"
 
-nx@15.4.6:
-  version "15.4.6"
-  resolved "https://registry.yarnpkg.com/nx/-/nx-15.4.6.tgz#0f0792f292e3236a43980b91f44ed9bd2747bcf2"
-  integrity sha512-jGkkN4boYcrWYXnl/tGpJy9ajWP5DAIruZn8jlEJ9E2wMCQIMJ8ebzGeFEe/XF3UdyrGD7QIH7UPe7F5lKPD1A==
+nx@15.4.8:
+  version "15.4.8"
+  resolved "https://registry.yarnpkg.com/nx/-/nx-15.4.8.tgz#37a0577fddbffbccbf7ba337ca915f16132167c1"
+  integrity sha512-uwb2EqI1LfCoDIE/YMTV8xdt+VyNirw952JjmMKx85mZiV2wAV9J+LqzC3PXkw5W8OGvWCkajB2uybCpxEdiBg==
   dependencies:
-    "@nrwl/cli" "15.4.6"
-    "@nrwl/tao" "15.4.6"
+    "@nrwl/cli" "15.4.8"
+    "@nrwl/tao" "15.4.8"
     "@parcel/watcher" "2.0.4"
     "@yarnpkg/lockfile" "^1.1.0"
     "@yarnpkg/parsers" "^3.0.0-rc.18"
@@ -6236,7 +6245,7 @@ nx@15.4.6:
     fast-glob "3.2.7"
     figures "3.2.0"
     flat "^5.0.2"
-    fs-extra "^10.1.0"
+    fs-extra "^11.1.0"
     glob "7.1.4"
     ignore "^5.0.4"
     js-yaml "4.1.0"
