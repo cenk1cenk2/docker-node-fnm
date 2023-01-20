@@ -23,13 +23,13 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@cenk1cenk2/cz-cc@^1.5.7":
-  version "1.5.7"
-  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.5.7.tgz#ff6cb1b79c14771c8fd223ebb292a54d8266c965"
-  integrity sha512-pxQ/bfF5rPHlBq45+PDz0+bBnsQ1M/z2be4RX1vEDUnbOq3Z+HVMYjY7+7ZSGyfnm4Ul/iqhW5J1IJ5HV4+SSA==
+"@cenk1cenk2/cz-cc@^1.5.8":
+  version "1.5.8"
+  resolved "https://registry.yarnpkg.com/@cenk1cenk2/cz-cc/-/cz-cc-1.5.8.tgz#b46add628a16e65793edf9567942e95c6cb3aa1a"
+  integrity sha512-3rLxhh61CdUxy/5IEN/FdebrMtVxISnh9agwFijppim1jB9sf3Syovn2nfGp8dmRM7VbL99s9IW4iMXgHgxtLA==
   dependencies:
     colorette "^2.0.19"
-    commitizen "^4.2.6"
+    commitizen "^4.3.0"
     conventional-commit-types "^3.0.0"
     enquirer "^2.3.6"
     enquirer-editor "^1.0.0"
@@ -2765,7 +2765,7 @@ commander@^9.4.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-9.5.0.tgz#bc08d1eb5cedf7ccb797a96199d41c7bc3e60d30"
   integrity sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==
 
-commitizen@^4.0.3, commitizen@^4.2.6:
+commitizen@^4.0.3:
   version "4.2.6"
   resolved "https://registry.yarnpkg.com/commitizen/-/commitizen-4.2.6.tgz#c35af39e1cb5fc2de88511df802da4344dc3ca80"
   integrity sha512-RyTM+EiD9GO01DJUn9MRRAet3XUHGfoUZoksLfr+1ym1Xt2q5EYJs9Fg2BtKSb5Mo53i0BtMBmWMHQXVlZ/L9w==
