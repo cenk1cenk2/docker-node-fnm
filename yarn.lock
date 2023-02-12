@@ -1286,7 +1286,7 @@
   dependencies:
     nx "15.6.3"
 
-"@oclif/color@^1.0.3":
+"@oclif/color@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@oclif/color/-/color-1.0.4.tgz#07e54e3bd76a29e77d6ad71aef33222fe4f728e7"
   integrity sha512-HEcVnSzpQkjskqWJyVN3tGgR0H0F8GrBmDjgQ1N0ZwwktYa4y9kfV07P/5vt5BjPXNyslXHc4KAO8Bt7gmErCA==
@@ -1378,21 +1378,21 @@
     "@oclif/core" "^2.0.8"
 
 "@oclif/plugin-not-found@^2.3.7":
-  version "2.3.19"
-  resolved "https://registry.yarnpkg.com/@oclif/plugin-not-found/-/plugin-not-found-2.3.19.tgz#34d10cd43695da44d3749cae973b8edb8abb7ce9"
-  integrity sha512-W0rY+txYSElPCP/DA4n5ffUDWQtk9EDRtL8oceP8vyXXPPjdCFk5vIXeisQGGTElD4L1+uHC4LriaFLNhysNYQ==
+  version "2.3.20"
+  resolved "https://registry.yarnpkg.com/@oclif/plugin-not-found/-/plugin-not-found-2.3.20.tgz#3ec2dc6f30e46aedb743a1856c9b87cb62bbe2c0"
+  integrity sha512-U93rjsL5Z2AWUtURx6R83tNottH6jAsUIGFBu+ZdM4p3bPOPCg9Kmofca6xudiV7ppWxbG5EejZOUGYcdKa/SA==
   dependencies:
-    "@oclif/color" "^1.0.3"
+    "@oclif/color" "^1.0.4"
     "@oclif/core" "^2.1.2"
     fast-levenshtein "^3.0.0"
     lodash "^4.17.21"
 
 "@oclif/plugin-warn-if-update-available@^2.0.14":
-  version "2.0.26"
-  resolved "https://registry.yarnpkg.com/@oclif/plugin-warn-if-update-available/-/plugin-warn-if-update-available-2.0.26.tgz#c7f727cdc3ee1db1054ffe83fe3795e4995c36a1"
-  integrity sha512-eMwDOzxPdN1X0y5G0W/GJXFRUvevT6gOrbbRLPoboTUwcFRqhFOJ7jCqGUTomeDfMRgAb3O+3bcD64lIb/y+FA==
+  version "2.0.27"
+  resolved "https://registry.yarnpkg.com/@oclif/plugin-warn-if-update-available/-/plugin-warn-if-update-available-2.0.27.tgz#abc7f627084da52a2cbbf51d9c2b6a63507a8af1"
+  integrity sha512-be6dnM3bhf7r6Jy1rzPjOt5qV5MZtqda4p1krbH9a5Ww6jAsYh6CIeKbIP2zPUFthoejG9wt7UFQt3J110DdMQ==
   dependencies:
-    "@oclif/core" "^2.0.8"
+    "@oclif/core" "^2.1.2"
     chalk "^4.1.0"
     debug "^4.1.0"
     fs-extra "^9.0.1"
