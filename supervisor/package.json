@@ -62,7 +62,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "dotenv": "^16.0.3",
-    "execa": "^5",
+    "execa": "^7",
     "listr2": "^5",
     "nunjucks": "^3.2.3",
     "uuid": "^9.0.0"
