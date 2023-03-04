@@ -27,7 +27,7 @@
     "lerna": "^6.5.1",
     "lint-staged": "^13.1.2",
     "nx": "15.8.4",
-    "rimraf": "^4.2.0",
+    "rimraf": "^4.3.0",
     "simple-git-hooks": "^2.8.1"
   },
   "config": {
