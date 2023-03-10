@@ -63,7 +63,7 @@
     "class-validator": "^0.14.0",
     "dotenv": "^16.0.3",
     "execa": "^5",
-    "listr2": "^5",
+    "listr2": "^5.0.7",
     "nunjucks": "^3.2.3",
     "uuid": "^9.0.0"
   },
