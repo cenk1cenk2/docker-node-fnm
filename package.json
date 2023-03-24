@@ -24,7 +24,7 @@
     "commitizen": "^4.3.0",
     "eslint": "^8.36.0",
     "eslint-plugin-import": "^2.27.5",
-    "lerna": "^6.6.0",
+    "lerna": "^6.6.1",
     "lint-staged": "^13.2.0",
     "nx": "15.8.9",
     "rimraf": "^4.4.1",
