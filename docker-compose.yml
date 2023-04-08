@@ -9,7 +9,9 @@ services:
         S6_OVERLAY_ARCH: amd64
     environment:
       LOG_LEVEL: trace
+      PACKAGE_MANAGER: pnpm
       DEFAULTS_LOGS: 'true'
+      DEFAULTS_COMMAND: pnpm run dev:start
       SERVICE_0_CWD: supervisor
     volumes:
       - .:/data

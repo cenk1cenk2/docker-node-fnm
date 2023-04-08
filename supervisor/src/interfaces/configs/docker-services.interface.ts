@@ -7,8 +7,8 @@ export class DockerServicesConfig {
   @IsSemverOrDefault()
     node_version: 'default' | string
 
-  @IsEnum([ 'yarn', 'npm' ])
-    package_manager: 'yarn' | 'npm'
+  @IsEnum([ 'yarn', 'npm', 'pnpm' ])
+    package_manager: 'yarn' | 'npm' | 'pnpm'
 
   @IsBoolean()
     dont_install: boolean

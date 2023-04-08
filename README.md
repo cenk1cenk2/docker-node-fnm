@@ -96,36 +96,36 @@ services:
 
 ### Container Settings
 
-| Environment Variable | Format                                                                     | description |
-| -------------------- | -------------------------------------------------------------------------- | ----------- |
-| LOG_LEVEL            | 'debug' \| 'verbose '\| 'module' \| 'info' \| 'warn' \| 'error' \| 'fatal' |
+| Environment Variable | Format                                                               | description |
+| -------------------- | -------------------------------------------------------------------- | ----------- |
+| LOG_LEVEL            | enum('debug', 'verbose , 'module', 'info', 'warn', 'error', 'fatal') |             |
 
 ### Global Settings
 
-| Environment Variable | Format          | description              |
-| -------------------- | --------------- | ------------------------ |
-| NODE_VERSION         | string          |
-| PACKAGE_MANAGER      | 'yarn' \| 'npm' |
-| DONT_INSTALL         | boolean         |
-| FORCE_INSTALL        | boolean         |
-| SYNC_WAIT            | number          | in seconds               |
-| RESTART_WAIT         | number          | in seconds               |
-| CHECK_DIRECTORIES    | boolean         |
-| BEFORE_ALL           | json            | array of commands to run |
+| Environment Variable | Format                      | description              |
+| -------------------- | --------------------------- | ------------------------ |
+| NODE_VERSION         | string                      |                          |
+| PACKAGE_MANAGER      | enum('yarn', 'npm', 'pnpm') |                          |
+| DONT_INSTALL         | boolean                     |                          |
+| FORCE_INSTALL        | boolean                     |                          |
+| SYNC_WAIT            | number                      | in seconds               |
+| RESTART_WAIT         | number                      | in seconds               |
+| CHECK_DIRECTORIES    | boolean                     |                          |
+| BEFORE_ALL           | json                        | array of commands to run |
 
 ### Defaults
 
-| Environment Variable   | Format                    | description    |
-| ---------------------- | ------------------------- | -------------- |
-| DEFAULTS_ENABLE        | boolean                   |
-| DEFAULTS_BEFORE        | json                      | in array form  |
-| DEFALTS_LOGS           | true \| false \| 'prefix' |
-| DEFAULTS_LOAD_DOTENV   | boolean                   |
-| DEFAULTS_COMMAND       | string                    |
-| DEFAULTS_SYNC          | boolean                   |
-| DEFAULTS_RUN_ONCE      | boolean                   |                |
-| DEFAULTS_EXIT_ON_ERROR | boolean                   |                |
-| DEFAULTS_ENVIRONMENT   | json                      | in object form |
+| Environment Variable   | Format                      | description    |
+| ---------------------- | --------------------------- | -------------- |
+| DEFAULTS_ENABLE        | boolean                     |                |
+| DEFAULTS_BEFORE        | json                        | in array form  |
+| DEFALTS_LOGS           | enum(true, false, 'prefix') |                |
+| DEFAULTS_LOAD_DOTENV   | boolean                     |                |
+| DEFAULTS_COMMAND       | string                      |                |
+| DEFAULTS_SYNC          | boolean                     |                |
+| DEFAULTS_RUN_ONCE      | boolean                     |                |
+| DEFAULTS_EXIT_ON_ERROR | boolean                     |                |
+| DEFAULTS_ENVIRONMENT   | json                        | in object form |
 
 ### Services
 
@@ -141,20 +141,20 @@ Service extension variables can be defined in the form of `SERVICE_${serviceNumb
 
 So if you want to modify a property from the 0th service in the services array it should be like `SERVICE_0_PROPERTY`.
 
-| Environment Variable         | Format                    | description    |
-| ---------------------------- | ------------------------- | -------------- |
-| SERVICE\_${i}\_CWD           | string                    | required       |
-| SERVICE\_${i}\_NAME          | string                    |
-| SERVICE\_${i}\_ENABLE        | boolean                   |
-| SERVICE\_${i}\_NODE_VERSION  | string                    |
-| SERVICE\_${i}\_BEFORE        | json                      | in array form  |
-| SERVICE\_${i}\_LOGS          | true \| false \| 'prefix' |
-| SERVICE\_${i}\_LOAD_DOTENV   | boolean                   |
-| SERVICE\_${i}\_COMMAND       | string                    |
-| SERVICE\_${i}\_SYNC          | boolean                   |
-| SERVICE\_${i}\_RUN_ONCE      | boolean                   |                |
-| SERVICE\_${i}\_EXIT_ON_ERROR | boolean                   |                |
-| SERVICE\_${i}\_ENVIRONMENT   | json                      | in object form |
+| Environment Variable         | Format                      | description    |
+| ---------------------------- | --------------------------- | -------------- |
+| SERVICE\_${i}\_CWD           | string                      | required       |
+| SERVICE\_${i}\_NAME          | string                      |                |
+| SERVICE\_${i}\_ENABLE        | boolean                     |                |
+| SERVICE\_${i}\_NODE_VERSION  | string                      |                |
+| SERVICE\_${i}\_BEFORE        | json                        | in array form  |
+| SERVICE\_${i}\_LOGS          | enum(true, false, 'prefix') |                |
+| SERVICE\_${i}\_LOAD_DOTENV   | boolean                     |                |
+| SERVICE\_${i}\_COMMAND       | string                      |                |
+| SERVICE\_${i}\_SYNC          | boolean                     |                |
+| SERVICE\_${i}\_RUN_ONCE      | boolean                     |                |
+| SERVICE\_${i}\_EXIT_ON_ERROR | boolean                     |                |
+| SERVICE\_${i}\_ENVIRONMENT   | json                        | in object form |
 
 # Deploy
 

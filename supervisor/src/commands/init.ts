@@ -1,7 +1,7 @@
+import { randomUUID } from 'crypto'
 import execa from 'execa'
 import { EOL } from 'os'
 import { join, normalize } from 'path'
-import { v4 as uuid } from 'uuid'
 
 import { Command, fs } from '@cenk1cenk2/oclif-common'
 import {
@@ -25,7 +25,7 @@ export default class Init extends Command<InitCtx> {
 
   public async shouldRunBefore (): Promise<void> {
     this.tasks.options = {
-      rendererSilent: true
+      silentRendererCondition: true
     }
   }
 
@@ -104,7 +104,7 @@ export default class Init extends Command<InitCtx> {
           // service names
           await Promise.all(
             ctx.config.services.map(async (service) => {
-              service.id = uuid()
+              service.id = randomUUID()
               service.name = service.name ?? service.cwd
 
               // we wrap this inside "" so have to escape it all
@@ -292,11 +292,23 @@ export default class Init extends Command<InitCtx> {
 
           let command: string
 
-          if (ctx.config.package_manager === 'yarn') {
+          switch (ctx.config.package_manager) {
+          case 'yarn':
             command = 'yarn install'
-          } else if (ctx.config.package_manager === 'npm') {
+
+            break
+
+          case 'npm':
             command = 'npm install'
-          } else {
+
+            break
+
+          case 'pnpm':
+            command = 'pnpm install'
+
+            break
+
+          default:
             this.logger.fatal('Package manager value is not known: %s', ctx.config.package_manager, { context: 'dependencies' })
           }
 

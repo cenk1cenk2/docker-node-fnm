@@ -14,7 +14,7 @@ export default class Proxy extends Command<ProxyCtx> {
 
   public async shouldRunBefore (): Promise<void> {
     this.tasks.options = {
-      rendererSilent: true
+      silentRendererCondition: true
     }
   }
 

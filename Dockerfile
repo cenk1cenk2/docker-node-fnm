@@ -46,6 +46,8 @@ RUN \
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
   apt-get update && apt-get install -y --no-install-recommends yarn && \
   echo -e 'export PATH="$PATH:$(yarn global bin)"' >> /etc/bash.bashrc && \
+  # add pnpm
+  yarn global add pnpm && \
   # link our bashrc
   rm /root/.bashrc && \
   ln -s /etc/bash.bashrc /root/.bashrc && \
@@ -53,6 +55,7 @@ RUN \
   node -v && \
   npm -v && \
   yarn -v && \
+  pnpm -v && \
   # create directories
   mkdir -p /data && \
   # clean up build dependencies
@@ -67,14 +70,15 @@ RUN \
 
 # Copy the supervisor
 COPY ./supervisor /cli
-COPY ./yarn.lock /cli
+COPY ./pnpm-lock.yaml /cli
 
 # Link and install dependencies
 WORKDIR /cli
 RUN \
-  NODE_ENV=production yarn install --production --link-duplicates --frozen-lockfile && \
+  NODE_ENV=production pnpm install -P --fix-lockfile && \
+  pnpm store prune && \
+  # https://github.com/pnpm/pnpm/issues/4761
   yarn link && \
-  yarn cache clean && \
   # smoke test
   docker-node-fnm-init --version
 

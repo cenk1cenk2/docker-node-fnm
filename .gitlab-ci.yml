@@ -6,6 +6,8 @@ stages:
 
 variables:
   DOCKER_IMAGE_NAME: cenk1cenk2/node-fnm
+  NODE_PACKAGE_MANAGER: pnpm
+  NODE_LINT_COMMAND: lint
 
 include:
   - project: devops/pipes
@@ -21,8 +23,6 @@ include:
     file: /templates/v2/update-docker-hub-readme.gitlab-ci.yml
 
 build:
-  variables:
-    NODE_BUILD_CWD: ./supervisor
   artifacts:
     paths:
       - supervisor/dist/

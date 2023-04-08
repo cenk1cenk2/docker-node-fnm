@@ -8,4 +8,4 @@
 !/supervisor/dist
 !/supervisor/oclif.manifest.json
 !/supervisor/package.json
-!/yarn.lock
+!/pnpm-lock.yaml
