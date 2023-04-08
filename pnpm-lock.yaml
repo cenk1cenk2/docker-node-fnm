@@ -54,7 +54,7 @@ importers:
     dependencies:
       '@cenk1cenk2/oclif-common':
         specifier: ^5.0.1
-        version: 5.0.1(@oclif/core@2.8.0)(class-transformer@0.5.1)(class-validator@0.14.0)(enquirer@2.3.6)(execa@5.1.1)(fs-extra@11.1.1)(listr2@6.0.3)
+        version: 5.0.1(@oclif/core@2.8.0)(class-transformer@0.5.1)(class-validator@0.14.0)(enquirer@2.3.6)(execa@5.1.1)(fs-extra@11.1.1)(listr2@6.0.4)
       '@oclif/core':
         specifier: ^2.8.0
         version: 2.8.0(@types/node@18.15.11)(typescript@5.0.4)
@@ -71,8 +71,8 @@ importers:
         specifier: ^5.1.1
         version: 5.1.1
       listr2:
-        specifier: ^6.0.3
-        version: 6.0.3(enquirer@2.3.6)
+        specifier: ^6.0.4
+        version: 6.0.4(enquirer@2.3.6)
       nunjucks:
         specifier: ^3.2.3
         version: 3.2.3
@@ -160,7 +160,7 @@ packages:
       - typescript
     dev: true
 
-  /@cenk1cenk2/oclif-common@5.0.1(@oclif/core@2.8.0)(class-transformer@0.5.1)(class-validator@0.14.0)(enquirer@2.3.6)(execa@5.1.1)(fs-extra@11.1.1)(listr2@6.0.3):
+  /@cenk1cenk2/oclif-common@5.0.1(@oclif/core@2.8.0)(class-transformer@0.5.1)(class-validator@0.14.0)(enquirer@2.3.6)(execa@5.1.1)(fs-extra@11.1.1)(listr2@6.0.4):
     resolution: {integrity: sha512-JgGARLsDtSj/4QGME7kwb5JL81nhb1HB49yfBGm3+kjO8NJPX3hSX5taSEiOeQyAzpo2lGYb7ci29sVSzhd3vg==}
     engines: {node: '>= 16'}
     peerDependencies:
@@ -186,7 +186,7 @@ packages:
       enquirer: 2.3.6
       execa: 5.1.1
       fs-extra: 11.1.1
-      listr2: 6.0.3(enquirer@2.3.6)
+      listr2: 6.0.4(enquirer@2.3.6)
       object-path-immutable: 4.1.2
       reflect-metadata: 0.1.13
       through: 2.3.8
@@ -3858,8 +3858,8 @@ packages:
       wrap-ansi: 7.0.0
     dev: true
 
-  /listr2@6.0.3(enquirer@2.3.6):
-    resolution: {integrity: sha512-RsYyAFm7uezP4uapWn5pdZlMkt1z3dUz1RTywm6Nst1enKfj57ISPb1gRxna7vAoeNiSlHpb+972SUPWwj6qQA==}
+  /listr2@6.0.4(enquirer@2.3.6):
+    resolution: {integrity: sha512-5mr1hfRsaQ68m1rfN3Glr0Km5nRt1TUrLbwXRPkTI2MnYwoY7mzy5PWfeJQjuJIryjdfGSxAhQ2eLLTyz0fOow==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       enquirer: '>= 2.3.0 < 3'
