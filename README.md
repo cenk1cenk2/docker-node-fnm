@@ -62,7 +62,7 @@ A yaml configuration file can be mounted to container at `/config/services.yml`.
 ```yaml
 # global settings
 node_version: default # set the node version, overwrites the nvmrc file in the root. version that can fnm or nvm can accept
-package_manager: yarn # valid values npm, yarn
+package_manager: pnpm # valid values npm, yarn, pnpm
 dont_install: false # disables the initial install process where node_modules is not found
 force_install: false # to add --force flag to the package manager for initial start
 sync_wait: 10 # wait between the services a pre-given time if sync is true
@@ -76,7 +76,7 @@ defaults:
   before: false # a command to run before the task, can be an array of commands or false
   logs: prefix # logs can be 'true' for logging the service, 'false' for disabling the logs and 'prefix' for prefixing all services with their cwd
   load_dotenv: true # if the flag is set, this will load the .env file in the service.cwd
-  command: yarn dev:start # default command to run
+  command: pnpm run dev:start # default command to run
   sync: false # this will run the sync flagged services first and one-by-one with the sync_wait and run the others afterwards
   run_once: false # run the service once and do not try to restart
   exit_on_error: false # exit the whole container when there is a error with a given service
@@ -89,7 +89,7 @@ services:
   - cwd: . # current working directory relative to /data
     # name: # you can give a friendly name to the service, if empty it will use the cwd
     logs: true # logs can be 'true' for logging the service, 'false' for disabling the logs and 'prefix' for prefixing all services with their cwd
-    command: yarn dev:start
+    command: pnpm run dev:start
 ```
 
 ## Environment Variables
@@ -164,7 +164,7 @@ Mount your application root to `/data` in the container. [Check configuration](#
 
 For example configurations:
 
-- [yarn workspaces monorepo](https://github.com/cenk1cenk2/nestjs-tools/blob/master/docker-compose.yml)
+- [pnpm workspaces monorepo](https://github.com/cenk1cenk2/nestjs-tools/blob/master/docker-compose.yml)
 
 # Proxy Script
 
@@ -186,7 +186,7 @@ Proxy works in two ways:
 
 ### `PROXY_WORKSPACE_ONLY` set to true
 
-- All the commands you give will be proxied to the container like: `./cli.sh yarn install` will run `yarn install` inside the container in the mounted directory of `/data`.
+- All the commands you give will be proxied to the container like: `./cli.sh pnpm install` will run `pnpm install` inside the container in the mounted directory of `/data`.
 
 ### `PROXY_WORKSPACE_ONLY` set to false
 
