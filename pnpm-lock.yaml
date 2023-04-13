@@ -1166,8 +1166,8 @@ packages:
     resolution: {integrity: sha512-txGIh+0eDFzKGC25zORnswy+br1Ha7hj5cMVwKIU7+s0U2AxxJru/jZSMU6OC9MJWP6+pc/hc6ZjyZShpsyY2g==}
     dev: false
 
-  /@types/validator@13.7.14:
-    resolution: {integrity: sha512-J6OAed6rhN6zyqL9Of6ZMamhlsOEU/poBVvbHr/dKOYKTeuYYMlDkMv+b6UUV0o2i0tw73cgyv/97WTWaUl0/g==}
+  /@types/validator@13.7.15:
+    resolution: {integrity: sha512-yeinDVQunb03AEP8luErFcyf/7Lf7AzKCD0NXfgVoGCCQDNpZET8Jgq74oBgqKld3hafLbfzt/3inUdQvaFeXQ==}
     dev: false
 
   /@types/vinyl@2.0.7:
@@ -1558,8 +1558,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /aws-sdk@2.1357.0:
-    resolution: {integrity: sha512-bSOfBCVPQ/0NWYpPl34MgqMbJf0eO6PsyVlmjbStlba+98hnE6X7z67tawBRot7S+qH3L49KW2u6dfJjvhDfdQ==}
+  /aws-sdk@2.1358.0:
+    resolution: {integrity: sha512-ZolqFlnm0mDNgub7FGrVi7r5A1rw+58zZziKhlis3IxOtIpHdx4BQU5pH4htAMuD0Ct557p/dC/wmnZH/1Rc9Q==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -1823,7 +1823,7 @@ packages:
   /class-validator@0.14.0:
     resolution: {integrity: sha512-ct3ltplN8I9fOwUd8GrP8UQixwff129BkEtuWDKL5W45cQuLd19xqmTLu5ge78YDm/fdje6FMt0hGOhl0lii3A==}
     dependencies:
-      '@types/validator': 13.7.14
+      '@types/validator': 13.7.15
       libphonenumber-js: 1.10.26
       validator: 13.9.0
     dev: false
@@ -2553,8 +2553,8 @@ packages:
       estraverse: 4.3.0
     dev: true
 
-  /eslint-scope@7.1.1:
-    resolution: {integrity: sha512-QKQM/UXpIiHcLqJ5AOyIW7XZmzjkzQXYE54n1++wb0u9V/abW3l9uQnxX8Z5Xd18xyKIMTUAyQ0k1e8pz6LUrw==}
+  /eslint-scope@7.2.0:
+    resolution: {integrity: sha512-DYj5deGlHBfMt15J7rdtyKNq/Nqlv5KfU4iodrQ019XESsRnwXH9KAE0y3cwtUHDo2ob7CypAnCqefh6vioWRw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       esrecurse: 4.3.0
@@ -2584,7 +2584,7 @@ packages:
       debug: 4.3.4(supports-color@8.1.1)
       doctrine: 3.0.0
       escape-string-regexp: 4.0.0
-      eslint-scope: 7.1.1
+      eslint-scope: 7.2.0
       eslint-visitor-keys: 3.4.0
       espree: 9.5.1
       esquery: 1.5.0
@@ -3994,8 +3994,8 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /lru-cache@9.0.1:
-    resolution: {integrity: sha512-C8QsKIN1UIXeOs3iWmiZ1lQY+EnKDojWd37fXy1aSbJvH4iSma1uy2OWuoB3m4SYRli5+CUjDv3Dij5DVoetmg==}
+  /lru-cache@9.0.2:
+    resolution: {integrity: sha512-7zYMKApzQ9qQE13xQUzbXVY3p2C5lh+9V+bs8M9fRf1TF59id+8jkljRWtIPfBfNP4yQAol5cqh/e8clxatdXw==}
     engines: {node: 14 || >=16.14}
     dev: true
 
@@ -4545,7 +4545,7 @@ packages:
       '@oclif/plugin-help': 5.2.9(@swc/core@1.3.50)(@types/node@18.15.11)(typescript@5.0.4)
       '@oclif/plugin-not-found': 2.3.23(@swc/core@1.3.50)(@types/node@18.15.11)(typescript@5.0.4)
       '@oclif/plugin-warn-if-update-available': 2.0.33(@swc/core@1.3.50)(@types/node@18.15.11)(typescript@5.0.4)
-      aws-sdk: 2.1357.0
+      aws-sdk: 2.1358.0
       concurrently: 7.6.0
       debug: 4.3.4(supports-color@8.1.1)
       find-yarn-workspace-root: 2.0.0
@@ -4813,7 +4813,7 @@ packages:
     resolution: {integrity: sha512-Qp/9IHkdNiXJ3/Kon++At2nVpnhRiPq/aSvQN+H3U1WZbvNRK0RIQK/o4HMqPoXjpuGJUEWpHSs6Mnjxqh3TQg==}
     engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
-      lru-cache: 9.0.1
+      lru-cache: 9.0.2
       minipass: 5.0.0
     dev: true
 
