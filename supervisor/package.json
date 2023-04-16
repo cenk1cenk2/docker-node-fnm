@@ -63,7 +63,7 @@
     "class-validator": "^0.14.0",
     "dotenv": "^16.0.3",
     "execa": "^5.1.1",
-    "listr2": "^6.2.0",
+    "listr2": "^6.3.0",
     "nunjucks": "^3.2.4"
   },
   "devDependencies": {
