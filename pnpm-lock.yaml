@@ -1564,8 +1564,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /aws-sdk@2.1362.0:
-    resolution: {integrity: sha512-Cqv0khSv13xBGKOdErArCdyT0/W3cxQ3Xr9Oa0Lwt43xb24gbad+9lvtNMkbQGQusX3PSk95o+gcAaWreYAlYg==}
+  /aws-sdk@2.1363.0:
+    resolution: {integrity: sha512-M2MZZXehgi/EMQv5GlzRkn3TlhoOYHg2cYdSAAqhjv67WaEG50MjaQy5vRvfN1i8XvB24aJFJ5pCrx69TaCaIg==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -4551,7 +4551,7 @@ packages:
       '@oclif/plugin-help': 5.2.9(@swc/core@1.3.53)(@types/node@18.15.11)(typescript@5.0.4)
       '@oclif/plugin-not-found': 2.3.23(@swc/core@1.3.53)(@types/node@18.15.11)(typescript@5.0.4)
       '@oclif/plugin-warn-if-update-available': 2.0.35(@swc/core@1.3.53)(@types/node@18.15.11)(typescript@5.0.4)
-      aws-sdk: 2.1362.0
+      aws-sdk: 2.1363.0
       concurrently: 7.6.0
       debug: 4.3.4(supports-color@8.1.1)
       find-yarn-workspace-root: 2.0.0
@@ -5160,8 +5160,8 @@ packages:
       glob: 9.3.5
     dev: true
 
-  /rollup@3.20.6:
-    resolution: {integrity: sha512-2yEB3nQXp/tBQDN0hJScJQheXdvU2wFhh6ld7K/aiZ1vYcak6N/BKjY1QrU6BvO2JWYS8bEs14FRaxXosxy2zw==}
+  /rollup@3.20.7:
+    resolution: {integrity: sha512-P7E2zezKSLhWnTz46XxjSmInrbOCiul1yf+kJccMxT56vxjHwCbDfoLbiqFgu+WQoo9ij2PkraYaBstgB2prBA==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
@@ -5786,7 +5786,7 @@ packages:
       joycon: 3.1.1
       postcss-load-config: 3.1.4(ts-node@10.9.1)
       resolve-from: 5.0.0
-      rollup: 3.20.6
+      rollup: 3.20.7
       source-map: 0.8.0-beta.0
       sucrase: 3.32.0
       tree-kill: 1.2.2
