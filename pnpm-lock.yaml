@@ -1564,8 +1564,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /aws-sdk@2.1367.0:
-    resolution: {integrity: sha512-ZlN3iXazEVPwjmQzC1TfkRUPOKruF6RkAFnVz4hOPjQQT91RYi2lCRWtipWk4ZoONBLX7gFLGUgIfiHjf/A+iA==}
+  /aws-sdk@2.1368.0:
+    resolution: {integrity: sha512-Yc3s8PqdcYG4wyCOpDj4TwXacGZGDgZBJ/XAtzMLKW2wN2c4uu7GwSosLxZ8ejzbAbcqjf080odPuD8P0819tw==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -1642,7 +1642,7 @@ packages:
     resolution: {integrity: sha512-xq+q3SRMOxGivLhBNaUdC64hDTQwejJ+H0T/NB1XMtTVEwNTrfFF3gAxiyW0Bu/xWEGhjVKgUcMhCrUy2+uCWg==}
     dependencies:
       base64-js: 1.5.1
-      ieee754: 1.2.1
+      ieee754: 1.1.13
       isarray: 1.0.0
     dev: true
 
@@ -4076,7 +4076,7 @@ packages:
       minimatch: 7.4.6
       multimatch: 5.0.0
       normalize-path: 3.0.0
-      textextensions: 5.15.0
+      textextensions: 5.16.0
     dev: true
 
   /mem-fs@2.3.0:
@@ -4549,7 +4549,7 @@ packages:
       '@oclif/plugin-help': 5.2.9(@swc/core@1.3.55)(@types/node@18.16.0)(typescript@5.0.4)
       '@oclif/plugin-not-found': 2.3.23(@swc/core@1.3.55)(@types/node@18.16.0)(typescript@5.0.4)
       '@oclif/plugin-warn-if-update-available': 2.0.36(@swc/core@1.3.55)(@types/node@18.16.0)(typescript@5.0.4)
-      aws-sdk: 2.1367.0
+      aws-sdk: 2.1368.0
       concurrently: 7.6.0
       debug: 4.3.4(supports-color@8.1.1)
       find-yarn-workspace-root: 2.0.0
@@ -5638,8 +5638,8 @@ packages:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
 
-  /textextensions@5.15.0:
-    resolution: {integrity: sha512-MeqZRHLuaGamUXGuVn2ivtU3LA3mLCCIO5kUGoohTCoGmCBg/+8yPhWVX9WSl9telvVd8erftjFk9Fwb2dD6rw==}
+  /textextensions@5.16.0:
+    resolution: {integrity: sha512-7D/r3s6uPZyU//MCYrX6I14nzauDwJ5CxazouuRGNuvSCihW87ufN6VLoROLCrHg6FblLuJrT6N2BVaPVzqElw==}
     engines: {node: '>=0.8'}
     dev: true
 
@@ -6297,7 +6297,7 @@ packages:
       slash: 3.0.0
       strip-ansi: 6.0.1
       text-table: 0.2.0
-      textextensions: 5.15.0
+      textextensions: 5.16.0
       untildify: 4.0.0
     transitivePeerDependencies:
       - bluebird
