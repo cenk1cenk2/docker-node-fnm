@@ -8,6 +8,7 @@ variables:
   DOCKER_IMAGE_NAME: cenk1cenk2/node-fnm
   NODE_PACKAGE_MANAGER: pnpm
   NODE_LINT_COMMAND: lint
+  NODE_VERSION: 18-alpine
 
 include:
   - project: devops/pipes
