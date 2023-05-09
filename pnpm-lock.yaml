@@ -953,7 +953,7 @@ packages:
       '@octokit/request-error': 2.1.0
       '@octokit/types': 6.41.0
       is-plain-object: 5.0.0
-      node-fetch: 2.6.10
+      node-fetch: 2.6.11
       universal-user-agent: 6.0.0
     transitivePeerDependencies:
       - encoding
@@ -1198,8 +1198,8 @@ packages:
     resolution: {integrity: sha512-txGIh+0eDFzKGC25zORnswy+br1Ha7hj5cMVwKIU7+s0U2AxxJru/jZSMU6OC9MJWP6+pc/hc6ZjyZShpsyY2g==}
     dev: false
 
-  /@types/validator@13.7.16:
-    resolution: {integrity: sha512-VyKmLktUHYLbrSbsRi241MSUlGYomQgK/tfCNpej3Gt5qDOM10AZ3nU2aR2s5JritClXuOBu4K7MkywVW/Y6Ow==}
+  /@types/validator@13.7.17:
+    resolution: {integrity: sha512-aqayTNmeWrZcvnG2MG9eGYI6b7S5fl+yKgPs6bAjOTwPS316R5SxBGKvtSExfyoJU7pIeHJfsHI0Ji41RVMkvQ==}
     dev: false
 
   /@types/vinyl@2.0.7:
@@ -1590,8 +1590,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /aws-sdk@2.1374.0:
-    resolution: {integrity: sha512-Q7TExvBskRM23GfE1iy0GRxpUF+d9LY7ggmdHvL+2gX/QTzxSYaHHRPa8MNzFtzZLz+BDcDIgAcMjYKsrm18Rw==}
+  /aws-sdk@2.1375.0:
+    resolution: {integrity: sha512-4JusqLa0+TJ4a2rfxuiPiaEHZVxVWDzREN8rAI4zhL+u4QbqGq95yfMh9v5QtSDkdNCAReA5DSSVXPOHbS80pA==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -1855,7 +1855,7 @@ packages:
   /class-validator@0.14.0:
     resolution: {integrity: sha512-ct3ltplN8I9fOwUd8GrP8UQixwff129BkEtuWDKL5W45cQuLd19xqmTLu5ge78YDm/fdje6FMt0hGOhl0lii3A==}
     dependencies:
-      '@types/validator': 13.7.16
+      '@types/validator': 13.7.17
       libphonenumber-js: 1.10.30
       validator: 13.9.0
     dev: false
@@ -4345,8 +4345,8 @@ packages:
   /nice-try@1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
 
-  /node-fetch@2.6.10:
-    resolution: {integrity: sha512-5YytjUVbwzjE/BX4N62vnPPkGNxlJPwdA9/ArUc4pcM6cYS4Hinuv4VazzwjMGgnWuiQqcemOanib/5PpcsGug==}
+  /node-fetch@2.6.11:
+    resolution: {integrity: sha512-4I6pdBY1EthSqDmJkiNk3JIT8cswwR9nfeW/cPdUagJYEQG7R95WRH74wpz7ma8Gh/9dI9FP+OU+0E4FvtA55w==}
     engines: {node: 4.x || >=6.0.0}
     peerDependencies:
       encoding: ^0.1.0
@@ -4591,7 +4591,7 @@ packages:
       '@oclif/plugin-help': 5.2.9(@swc/core@1.3.57)(@types/node@18.16.5)(typescript@5.0.4)
       '@oclif/plugin-not-found': 2.3.23(@swc/core@1.3.57)(@types/node@18.16.5)(typescript@5.0.4)
       '@oclif/plugin-warn-if-update-available': 2.0.36(@swc/core@1.3.57)(@types/node@18.16.5)(typescript@5.0.4)
-      aws-sdk: 2.1374.0
+      aws-sdk: 2.1375.0
       concurrently: 7.6.0
       debug: 4.3.4(supports-color@8.1.1)
       find-yarn-workspace-root: 2.0.0
@@ -4603,8 +4603,8 @@ packages:
       semver: 7.5.0
       shelljs: 0.8.5
       tslib: 2.5.0
-      yeoman-environment: 3.16.1
-      yeoman-generator: 5.8.0(yeoman-environment@3.16.1)
+      yeoman-environment: 3.16.2
+      yeoman-generator: 5.8.0(yeoman-environment@3.16.2)
       yosay: 2.0.2
     transitivePeerDependencies:
       - '@swc/core'
@@ -5201,8 +5201,8 @@ packages:
       glob: 10.2.2
     dev: true
 
-  /rollup@3.21.5:
-    resolution: {integrity: sha512-a4NTKS4u9PusbUJcfF4IMxuqjFzjm6ifj76P54a7cKnvVzJaG12BLVR+hgU2YDGHzyMMQNxLAZWuALsn8q2oQg==}
+  /rollup@3.21.6:
+    resolution: {integrity: sha512-SXIICxvxQxR3D4dp/3LDHZIJPC8a4anKMHd4E3Jiz2/JnY+2bEjqrOokAauc5ShGVNFHlEFjBXAXlaxkJqIqSg==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
@@ -5832,7 +5832,7 @@ packages:
       joycon: 3.1.1
       postcss-load-config: 3.1.4(ts-node@10.9.1)
       resolve-from: 5.0.0
-      rollup: 3.21.5
+      rollup: 3.21.6
       source-map: 0.8.0-beta.0
       sucrase: 3.32.0
       tree-kill: 1.2.2
@@ -6305,8 +6305,8 @@ packages:
       yargs-parser: 21.1.1
     dev: true
 
-  /yeoman-environment@3.16.1:
-    resolution: {integrity: sha512-imr+wDb7YdWrfy8lnesYnHTsv3oEsu3UWyq/dQ1fp9V/soZfLZJ5HqendQ2xu3Z27FQcZrxQcGR07nOVonj32Q==}
+  /yeoman-environment@3.16.2:
+    resolution: {integrity: sha512-QJuZhQmSBm0ZdTkk5TyafvJldZtFZWXj9/i+7yFpSxRGuQuTrJ1B8daXNCvQeVidVhcAxzGV9l57W/iWzP6+AQ==}
     engines: {node: '>=12.10.0'}
     hasBin: true
     dependencies:
@@ -6351,7 +6351,7 @@ packages:
       - supports-color
     dev: true
 
-  /yeoman-generator@5.8.0(yeoman-environment@3.16.1):
+  /yeoman-generator@5.8.0(yeoman-environment@3.16.2):
     resolution: {integrity: sha512-dsrwFn9/c2/MOe80sa2nKfbZd/GaPTgmmehdgkFifs1VN/I7qPsW2xcBfvSkHNGK+PZly7uHyH8kaVYSFNUDhQ==}
     engines: {node: '>=12.10.0'}
     peerDependencies:
@@ -6374,7 +6374,7 @@ packages:
       shelljs: 0.8.5
       sort-keys: 4.2.0
       text-table: 0.2.0
-      yeoman-environment: 3.16.1
+      yeoman-environment: 3.16.2
     transitivePeerDependencies:
       - encoding
       - mem-fs
