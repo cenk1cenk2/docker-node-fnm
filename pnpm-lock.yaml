@@ -5,8 +5,8 @@ importers:
   .:
     devDependencies:
       '@cenk1cenk2/cz-cc':
-        specifier: ^1.6.4
-        version: 1.6.4(@swc/core@1.3.57)
+        specifier: ^1.6.5
+        version: 1.6.5(@swc/core@1.3.57)
       '@cenk1cenk2/eslint-config':
         specifier: ^2.7.4
         version: 2.7.4(eslint@8.40.0)(typescript@5.0.4)
@@ -117,8 +117,8 @@ packages:
       regenerator-runtime: 0.13.11
     dev: true
 
-  /@cenk1cenk2/cz-cc@1.6.4(@swc/core@1.3.57):
-    resolution: {integrity: sha512-Wp8me0WaEYxXO9I3E6pTjPyRVJQkNq/w3wxjT6VBQrY9sf2LGs62ZOnul5K6Ys5GpDEh81bD/dgh4Vf7aQoBZQ==}
+  /@cenk1cenk2/cz-cc@1.6.5(@swc/core@1.3.57):
+    resolution: {integrity: sha512-/ZY2Dh2UQe7MDGat51wi/HlVbUJ1qZSnViB44DCBjocxELxEhperCgk/0Losstho+8C/09IBSbCqiZ/AxknRgQ==}
     engines: {node: '>= 16'}
     dependencies:
       commitizen: 4.3.0(@swc/core@1.3.57)
@@ -126,7 +126,7 @@ packages:
       enquirer: 2.3.6
       external-editor: 3.1.0
       find-git-root: 1.0.4
-      listr2: 6.4.2(enquirer@2.3.6)
+      listr2: 6.5.0(enquirer@2.3.6)
     optionalDependencies:
       '@commitlint/load': 17.5.0(@swc/core@1.3.57)
     transitivePeerDependencies:
@@ -3925,6 +3925,25 @@ packages:
       log-update: 5.0.1
       rfdc: 1.3.0
       wrap-ansi: 8.1.0
+    dev: false
+
+  /listr2@6.5.0(enquirer@2.3.6):
+    resolution: {integrity: sha512-eqoKu2VsiZS6rr+2tCjVbWNKdWD6g8qRCKWLJKbT+R1LwLWZaWggcNvvZgezMTecf8XVz5WLLwo4UFnEdNsvXA==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      enquirer: '>= 2.3.0 < 3'
+    peerDependenciesMeta:
+      enquirer:
+        optional: true
+    dependencies:
+      cli-truncate: 3.1.0
+      colorette: 2.0.20
+      enquirer: 2.3.6
+      eventemitter3: 5.0.1
+      log-update: 5.0.1
+      rfdc: 1.3.0
+      wrap-ansi: 8.1.0
+    dev: true
 
   /load-tsconfig@0.2.5:
     resolution: {integrity: sha512-IXO6OCs9yg8tMKzfPZ1YmheJbZCiEsnBdcB03l0OcfK9prKnJb96siuHCr5Fl37/yo9DnKU+TLpxzTUspw9shg==}
