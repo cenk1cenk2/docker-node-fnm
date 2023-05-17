@@ -24,7 +24,7 @@
     "eslint": "^8.40.0",
     "eslint-plugin-import": "^2.27.5",
     "lint-staged": "^13.2.2",
-    "rimraf": "^5.0.0",
+    "rimraf": "^5.0.1",
     "simple-git-hooks": "^2.8.1",
     "turbo": "^1.9.7",
     "ts-node": "^10.9.1",
