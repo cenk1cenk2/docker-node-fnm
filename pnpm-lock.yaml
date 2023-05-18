@@ -781,7 +781,7 @@ packages:
       chalk: 4.1.2
       strip-ansi: 6.0.1
       supports-color: 8.1.1
-      tslib: 2.5.0
+      tslib: 2.5.2
     dev: true
 
   /@oclif/core@2.8.5(@swc/core@1.3.58)(@types/node@18.16.9)(typescript@5.0.4):
@@ -813,7 +813,7 @@ packages:
       supports-color: 8.1.1
       supports-hyperlinks: 2.3.0
       ts-node: 10.9.1(@swc/core@1.3.58)(@types/node@18.16.9)(typescript@5.0.4)
-      tslib: 2.5.0
+      tslib: 2.5.2
       widest-line: 3.1.0
       wordwrap: 1.0.0
       wrap-ansi: 7.0.0
@@ -1590,8 +1590,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /aws-sdk@2.1379.0:
-    resolution: {integrity: sha512-kziOtAtJxdgYJwhzY+uhNi/AGPrDEMHd0dEz46YR1AB5bVqjS9/SjOZHemB88QfpW11IVB/FoiIusXlGEvgq9Q==}
+  /aws-sdk@2.1380.0:
+    resolution: {integrity: sha512-R7vhM3iqINbQVhkIBKB5UbRRKuMD1rwZWuImtDYM1WGpuwmacDhbqtefdwf9fng2n0LHgC81509TYT1xxgQoIQ==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -4618,7 +4618,7 @@ packages:
       '@oclif/plugin-help': 5.2.9(@swc/core@1.3.58)(@types/node@18.16.9)(typescript@5.0.4)
       '@oclif/plugin-not-found': 2.3.23(@swc/core@1.3.58)(@types/node@18.16.9)(typescript@5.0.4)
       '@oclif/plugin-warn-if-update-available': 2.0.37(@swc/core@1.3.58)(@types/node@18.16.9)(typescript@5.0.4)
-      aws-sdk: 2.1379.0
+      aws-sdk: 2.1380.0
       concurrently: 7.6.0
       debug: 4.3.4(supports-color@8.1.1)
       find-yarn-workspace-root: 2.0.0
@@ -4629,9 +4629,9 @@ packages:
       normalize-package-data: 3.0.3
       semver: 7.5.1
       shelljs: 0.8.5
-      tslib: 2.5.0
-      yeoman-environment: 3.17.0
-      yeoman-generator: 5.8.0(yeoman-environment@3.17.0)
+      tslib: 2.5.2
+      yeoman-environment: 3.18.1
+      yeoman-generator: 5.8.0(yeoman-environment@3.18.1)
       yosay: 2.0.2
     transitivePeerDependencies:
       - '@swc/core'
@@ -5251,7 +5251,7 @@ packages:
   /rxjs@7.8.1:
     resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.5.2
     dev: true
 
   /safe-buffer@5.1.2:
@@ -5831,8 +5831,8 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tslib@2.5.0:
-    resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
+  /tslib@2.5.2:
+    resolution: {integrity: sha512-5svOrSA2w3iGFDs1HibEVBGbDrAY82bFQ3HZ3ixB+88nsbsWQoKqDRb5UBYAUPEzbBn6dAp5gRNXglySbx1MlA==}
 
   /tsup@6.7.0(@swc/core@1.3.58)(ts-node@10.9.1)(typescript@5.0.4):
     resolution: {integrity: sha512-L3o8hGkaHnu5TdJns+mCqFsDBo83bJ44rlK7e6VdanIvpea4ArPcU3swWGsLVbXak1PqQx/V+SSmFPujBK+zEQ==}
@@ -6334,8 +6334,8 @@ packages:
       yargs-parser: 21.1.1
     dev: true
 
-  /yeoman-environment@3.17.0:
-    resolution: {integrity: sha512-aCETHGtOJfj/lPYhYzkJf4rOkef36NU/9mLmbceQi19KXhbSnqwF/TGiD5ov5g6jqS3gcXgy+DG1phUx2SfDAQ==}
+  /yeoman-environment@3.18.1:
+    resolution: {integrity: sha512-L13zu18yuyUIB7JoJpPwvP5Qo5ojsU57PDvmX41S0vfLbkzefWcaSmT67h8IhDvKOJQxNtjnD70wtDTcrza5hw==}
     engines: {node: '>=12.10.0'}
     hasBin: true
     dependencies:
@@ -6380,7 +6380,7 @@ packages:
       - supports-color
     dev: true
 
-  /yeoman-generator@5.8.0(yeoman-environment@3.17.0):
+  /yeoman-generator@5.8.0(yeoman-environment@3.18.1):
     resolution: {integrity: sha512-dsrwFn9/c2/MOe80sa2nKfbZd/GaPTgmmehdgkFifs1VN/I7qPsW2xcBfvSkHNGK+PZly7uHyH8kaVYSFNUDhQ==}
     engines: {node: '>=12.10.0'}
     peerDependencies:
@@ -6403,7 +6403,7 @@ packages:
       shelljs: 0.8.5
       sort-keys: 4.2.0
       text-table: 0.2.0
-      yeoman-environment: 3.17.0
+      yeoman-environment: 3.18.1
     transitivePeerDependencies:
       - encoding
       - mem-fs
