@@ -200,7 +200,7 @@ packages:
       reflect-metadata: 0.1.13
       through: 2.3.8
       winston: 3.8.2
-      yaml: 2.2.2
+      yaml: 2.3.0
     dev: false
 
   /@colors/colors@1.5.0:
@@ -1666,8 +1666,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /aws-sdk@2.1382.0:
-    resolution: {integrity: sha512-WAe8bqD4kLdyZwRLHn16bt1kT1Ijdx2MWjWHpWR6krLxQKSA5WKXCdO4JoR/ywzbi0k5covQIAgl/ZSNtCvA4Q==}
+  /aws-sdk@2.1383.0:
+    resolution: {integrity: sha512-A8sdfcrlGYXqu5x8dpwh1lg9/o354leCx08N/irwH3U4sAwQin0vHsI9DHmaJ0PLNo/TuzeLE3s4dLpI3mWtww==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -4011,7 +4011,7 @@ packages:
       object-inspect: 1.12.3
       pidtree: 0.6.0
       string-argv: 0.3.2
-      yaml: 2.2.2
+      yaml: 2.3.0
     transitivePeerDependencies:
       - enquirer
       - supports-color
@@ -4876,7 +4876,7 @@ packages:
       '@oclif/plugin-help': 5.2.9(@swc/core@1.3.59)(@types/node@18.16.14)(typescript@5.0.4)
       '@oclif/plugin-not-found': 2.3.23(@swc/core@1.3.59)(@types/node@18.16.14)(typescript@5.0.4)
       '@oclif/plugin-warn-if-update-available': 2.0.37(@swc/core@1.3.59)(@types/node@18.16.14)(typescript@5.0.4)
-      aws-sdk: 2.1382.0
+      aws-sdk: 2.1383.0
       concurrently: 7.6.0
       debug: 4.3.4(supports-color@8.1.1)
       find-yarn-workspace-root: 2.0.0
@@ -6680,9 +6680,9 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /yaml@2.2.2:
-    resolution: {integrity: sha512-CBKFWExMn46Foo4cldiChEzn7S7SRV+wqiluAb6xmueD/fGyRHIhX8m14vVGgeFWjN540nKCNVj6P21eQjgTuA==}
-    engines: {node: '>= 14'}
+  /yaml@2.3.0:
+    resolution: {integrity: sha512-8/1wgzdKc7bc9E6my5wZjmdavHLvO/QOmLG1FBugblEvY4IXrLjlViIOmL24HthU042lWTDRO90Fz1Yp66UnMw==}
+    engines: {node: '>= 14', npm: '>= 7'}
 
   /yargs-parser@21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
