@@ -1666,8 +1666,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /aws-sdk@2.1383.0:
-    resolution: {integrity: sha512-A8sdfcrlGYXqu5x8dpwh1lg9/o354leCx08N/irwH3U4sAwQin0vHsI9DHmaJ0PLNo/TuzeLE3s4dLpI3mWtww==}
+  /aws-sdk@2.1384.0:
+    resolution: {integrity: sha512-5b1ShZ8508yamZKjpRJJlMcztH2EBxnuH8KZObEH4FY/+pHqGIfUtrSVO0IaPNj7RmOnQJ93zCzBc7dhTnEK4A==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -4876,7 +4876,7 @@ packages:
       '@oclif/plugin-help': 5.2.9(@swc/core@1.3.59)(@types/node@18.16.14)(typescript@5.0.4)
       '@oclif/plugin-not-found': 2.3.23(@swc/core@1.3.59)(@types/node@18.16.14)(typescript@5.0.4)
       '@oclif/plugin-warn-if-update-available': 2.0.37(@swc/core@1.3.59)(@types/node@18.16.14)(typescript@5.0.4)
-      aws-sdk: 2.1383.0
+      aws-sdk: 2.1384.0
       concurrently: 7.6.0
       debug: 4.3.4(supports-color@8.1.1)
       find-yarn-workspace-root: 2.0.0
@@ -4888,8 +4888,8 @@ packages:
       semver: 7.5.1
       shelljs: 0.8.5
       tslib: 2.5.2
-      yeoman-environment: 3.18.3
-      yeoman-generator: 5.9.0(yeoman-environment@3.18.3)
+      yeoman-environment: 3.18.4
+      yeoman-generator: 5.9.0(yeoman-environment@3.18.4)
       yosay: 2.0.2
     transitivePeerDependencies:
       - '@swc/core'
@@ -6702,8 +6702,8 @@ packages:
       yargs-parser: 21.1.1
     dev: true
 
-  /yeoman-environment@3.18.3:
-    resolution: {integrity: sha512-OF5C87D7QUDOe4Lo2QucPnqFz0V3dNvC7D5Up6kVxUZKrY3LtNM7JIFAb/rhfEp/lKlZ28Olrb/BYFTDHcJ2og==}
+  /yeoman-environment@3.18.4:
+    resolution: {integrity: sha512-/BN8fR3XJOJ6blcO+jKfcCKGq9gACWS8EiMFj/I6khRz73CcTsrrmqvCBtyQ6ym8BnS5cy+YKch0pBo8KWVtLQ==}
     engines: {node: '>=12.10.0'}
     hasBin: true
     dependencies:
@@ -6748,7 +6748,7 @@ packages:
       - supports-color
     dev: true
 
-  /yeoman-generator@5.9.0(yeoman-environment@3.18.3):
+  /yeoman-generator@5.9.0(yeoman-environment@3.18.4):
     resolution: {integrity: sha512-sN1e01Db4fdd8P/n/yYvizfy77HdbwzvXmPxps9Gwz2D24slegrkSn+qyj+0nmZhtFwGX2i/cH29QDrvAFT9Aw==}
     engines: {node: '>=12.10.0'}
     peerDependencies:
@@ -6772,7 +6772,7 @@ packages:
       shelljs: 0.8.5
       sort-keys: 4.2.0
       text-table: 0.2.0
-      yeoman-environment: 3.18.3
+      yeoman-environment: 3.18.4
     transitivePeerDependencies:
       - bluebird
       - encoding
