@@ -16,7 +16,7 @@
     "prepare-commit-msg": "[ -t 1 ] && exec < /dev/tty && git cz --hook || true"
   },
   "devDependencies": {
-    "@swc/core": "^1.3.59",
+    "@swc/core": "^1.3.60",
     "@types/node": "^18.16.14",
     "@cenk1cenk2/cz-cc": "^1.6.6",
     "@cenk1cenk2/eslint-config": "^2.7.5",
