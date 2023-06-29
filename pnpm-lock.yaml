@@ -1018,7 +1018,7 @@ packages:
       '@octokit/request-error': 2.1.0
       '@octokit/types': 6.41.0
       is-plain-object: 5.0.0
-      node-fetch: 2.6.11
+      node-fetch: 2.6.12
       universal-user-agent: 6.0.0
     transitivePeerDependencies:
       - encoding
@@ -1691,8 +1691,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /aws-sdk@2.1407.0:
-    resolution: {integrity: sha512-J02Cjciw+5p9zR7923rfH+UGDEmbg72YRAZISEahzuWPf/DwMAyIrC5B1cMMq3KrV+KVsRtEY5LujVCFKwB8Yw==}
+  /aws-sdk@2.1408.0:
+    resolution: {integrity: sha512-goz0xgpRVm4pH89CSUvw2S4ed+XTnGF9/2x/nE3Rl6JEHiiz9wz430RhESTo6AbDTXrONUOUcwwG+U0G2ev7ow==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -4556,8 +4556,8 @@ packages:
   /nice-try@1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
 
-  /node-fetch@2.6.11:
-    resolution: {integrity: sha512-4I6pdBY1EthSqDmJkiNk3JIT8cswwR9nfeW/cPdUagJYEQG7R95WRH74wpz7ma8Gh/9dI9FP+OU+0E4FvtA55w==}
+  /node-fetch@2.6.12:
+    resolution: {integrity: sha512-C/fGU2E8ToujUivIO0H+tpQ6HWo4eEmchoPIoXtxCrVghxdKq+QOHqEZW7tuP3KlV3bC8FRMO5nMCC7Zm1VP6g==}
     engines: {node: 4.x || >=6.0.0}
     peerDependencies:
       encoding: ^0.1.0
@@ -4901,7 +4901,7 @@ packages:
       '@oclif/plugin-help': 5.2.10(@swc/core@1.3.67)(@types/node@18.16.18)(typescript@5.1.6)
       '@oclif/plugin-not-found': 2.3.26(@swc/core@1.3.67)(@types/node@18.16.18)(typescript@5.1.6)
       '@oclif/plugin-warn-if-update-available': 2.0.40(@swc/core@1.3.67)(@types/node@18.16.18)(typescript@5.1.6)
-      aws-sdk: 2.1407.0
+      aws-sdk: 2.1408.0
       concurrently: 7.6.0
       debug: 4.3.4(supports-color@8.1.1)
       find-yarn-workspace-root: 2.0.0
@@ -5414,8 +5414,8 @@ packages:
       string_decoder: 1.3.0
       util-deprecate: 1.0.2
 
-  /readable-stream@4.4.0:
-    resolution: {integrity: sha512-kDMOq0qLtxV9f/SQv522h8cxZBqNZXuXNyjyezmfAAuribMyVXziljpQ/uQhfE1XLg2/TLTW2DsnoE4VAi/krg==}
+  /readable-stream@4.4.1:
+    resolution: {integrity: sha512-llAHX9QC25bz5RPIoTeJxPaA/hgryaldValRhVZ2fK9bzbmFiscpz8fw6iBTvJfAk1w4FC1KXQme/nO7fbKyKg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       abort-controller: 3.0.0
@@ -6776,7 +6776,7 @@ packages:
       pacote: 12.0.3
       preferred-pm: 3.0.3
       pretty-bytes: 5.6.0
-      readable-stream: 4.4.0
+      readable-stream: 4.4.1
       semver: 7.5.3
       slash: 3.0.0
       strip-ansi: 6.0.1
