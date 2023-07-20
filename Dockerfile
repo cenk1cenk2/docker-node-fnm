@@ -1,11 +1,11 @@
 # syntax=docker/dockerfile-upstream:master-labs
-FROM debian:stable-slim
+FROM debian:bullseye-slim
 
 ARG S6_OVERLAY_ARCH
 
 # Workdir for node package
 
-ENV FNM_VERSION 1.31.1
+ENV FNM_VERSION 1.35.0
 ENV S6_VERSION 2.2.0.3
 ENV FNM_DIR /opt/fnm
 ENV FNM_INTERACTIVE_CLI false
@@ -20,9 +20,9 @@ ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSIO
 RUN tar xzf "/tmp/s6-overlay-${S6_OVERLAY_ARCH}.tar.gz" -C / && \
   # create directories
   mkdir -p /etc/services.d && mkdir -p /etc/cont-init.d && mkdir -p /s6-bin && \
-  rm -rf /tmp/*
+  rm -rf /tmp/s6-overlay*
 
-SHELL ["/bin/bash", "-c"]
+SHELL [ "bash", "-c" ]
 
 # Install fnm and initiate it
 RUN \
