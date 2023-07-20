@@ -9,7 +9,7 @@ ENV FNM_VERSION 1.31.1
 ENV S6_VERSION 2.2.0.3
 ENV FNM_DIR /opt/fnm
 ENV FNM_INTERACTIVE_CLI false
-ENV FNM_INSTALL_VERSION 18
+ENV FNM_INSTALL_VERSION 20
 
 WORKDIR /tmp
 
@@ -62,7 +62,7 @@ RUN \
   # clean up dependencies
   apt-get remove -y curl unzip gnupg2 &&  \
   # Add running dependencies
-  apt-get install -y git && \
+  apt-get install -y git procps && \
   apt-get autoremove -y && \
   rm -rf /var/lib/apt/lists/* && \
   # clean up tmp

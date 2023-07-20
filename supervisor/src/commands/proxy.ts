@@ -1,5 +1,4 @@
 import dotenv from 'dotenv'
-import execa from 'execa'
 import { dirname, join } from 'path'
 
 import { Command, fs } from '@cenk1cenk2/oclif-common'
@@ -19,6 +18,8 @@ export default class Proxy extends Command<ProxyCtx> {
   }
 
   public async run (): Promise<void> {
+    const { execaCommand } = await import('execa')
+
     this.tasks.add([
       // set defaults for context
       {
@@ -133,7 +134,7 @@ export default class Proxy extends Command<ProxyCtx> {
           command = this.cs.isDebug ? command + ' ' + '--debug' : command
 
           try {
-            await execa.command(`source /etc/bash.bashrc && fnm use --install-if-missing && cd ${ctx.root} && ${command}`, {
+            await execaCommand(`source /etc/bash.bashrc && fnm use --install-if-missing && cd ${ctx.root} && ${command}`, {
               shell: '/bin/bash',
               stdio: 'inherit',
               env: environment,

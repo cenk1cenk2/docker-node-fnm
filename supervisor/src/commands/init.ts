@@ -1,5 +1,4 @@
 import { randomUUID } from 'crypto'
-import execa from 'execa'
 import { EOL } from 'os'
 import { join, normalize } from 'path'
 
@@ -30,6 +29,8 @@ export default class Init extends Command<InitCtx> {
   }
 
   public async run (): Promise<void> {
+    const { execa, execaCommand } = await import('execa')
+
     this.tasks.add([
       {
         task: async (ctx): Promise<void> => {
@@ -319,7 +320,7 @@ export default class Init extends Command<InitCtx> {
           }
 
           await this.pipeProcessToLogger(
-            execa.command(`${command}`, {
+            execaCommand(`${command}`, {
               shell: '/bin/bash',
               detached: false,
               extendEnv: false,
@@ -340,7 +341,7 @@ export default class Init extends Command<InitCtx> {
             this.logger.info(`$ ${command}`, { context: 'before-all' })
 
             await this.pipeProcessToLogger(
-              execa.command(command, {
+              execaCommand(command, {
                 shell: '/bin/bash',
                 detached: false,
                 extendEnv: false,
