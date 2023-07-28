@@ -12,8 +12,8 @@ importers:
         specifier: ^1.6.6
         version: 1.6.6(@swc/core@1.3.71)
       '@cenk1cenk2/eslint-config':
-        specifier: ^2.7.11
-        version: 2.7.11(eslint@8.45.0)(typescript@5.1.6)
+        specifier: ^2.7.12
+        version: 2.7.12(eslint@8.45.0)(typescript@5.1.6)
       '@swc/core':
         specifier: ^1.3.71
         version: 1.3.71
@@ -143,8 +143,8 @@ packages:
       - '@swc/wasm'
     dev: true
 
-  /@cenk1cenk2/eslint-config@2.7.11(eslint@8.45.0)(typescript@5.1.6):
-    resolution: {integrity: sha512-pBafcrbvns9/QwujfKu2Y3TB3C/7ZYd1ZW4S93YhSlXS4wr3Bt0Id8oPvfZH7QV43tdA/YAKydyafSzB/Kd17A==}
+  /@cenk1cenk2/eslint-config@2.7.12(eslint@8.45.0)(typescript@5.1.6):
+    resolution: {integrity: sha512-uv8clkrs0FTqyNmw/v9ITQ0hhMzP+8D6MdZrEodoTy0yt7ktUKhGDmviSeYw7HfklSPS4fkCetefMzQs3PkE9g==}
     peerDependencies:
       '@nuxtjs/eslint-config': '>= 7'
       '@nuxtjs/eslint-config-typescript': '>= 7'
