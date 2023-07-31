@@ -88,8 +88,8 @@ importers:
         specifier: ^13.2.2
         version: 13.2.2
       oclif:
-        specifier: ^3.10.0
-        version: 3.10.0(@swc/core@1.3.72)(@types/node@20.4.5)(typescript@5.1.6)
+        specifier: ^3.11.0
+        version: 3.11.0(@swc/core@1.3.72)(@types/node@20.4.5)(typescript@5.1.6)
 
 packages:
 
@@ -1801,7 +1801,7 @@ packages:
     resolution: {integrity: sha512-xq+q3SRMOxGivLhBNaUdC64hDTQwejJ+H0T/NB1XMtTVEwNTrfFF3gAxiyW0Bu/xWEGhjVKgUcMhCrUy2+uCWg==}
     dependencies:
       base64-js: 1.5.1
-      ieee754: 1.1.13
+      ieee754: 1.2.1
       isarray: 1.0.0
     dev: true
 
@@ -4939,8 +4939,8 @@ packages:
       es-abstract: 1.22.1
     dev: true
 
-  /oclif@3.10.0(@swc/core@1.3.72)(@types/node@20.4.5)(typescript@5.1.6):
-    resolution: {integrity: sha512-Kf/nL7GrfezePsZGQytbPJG1EGNFRAG+lC6NhYqPOgeBIGppLuQDg6vO9wz0QRoijSJv/Yf4wCe2URMoCFtBNw==}
+  /oclif@3.11.0(@swc/core@1.3.72)(@types/node@20.4.5)(typescript@5.1.6):
+    resolution: {integrity: sha512-72/ewMfqCDPlhx5Ceo3NYDqmL//jE8jK4pEHtK6Ad+o1yP2uIw0EUvL3aXcwp58GMygmIYSjcXEKKKmWQTvG+w==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
