@@ -69,7 +69,7 @@
   "devDependencies": {
     "@types/nunjucks": "^3.2.3",
     "globby": "^13.2.2",
-    "oclif": "^3.11.0"
+    "oclif": "^3.11.1"
   },
   "config": {
     "commitizen": {
