@@ -835,8 +835,8 @@ packages:
       - supports-color
     dev: true
 
-  /@oclif/color@1.0.10:
-    resolution: {integrity: sha512-INWEDAL3SzzR3pIhkrqk22HV6JravLUeRZXAIpoQqIeLReauaibCVcNTzOlt0z0S8YrqRhksc54ZxZC4Oa8xBw==}
+  /@oclif/color@1.0.11:
+    resolution: {integrity: sha512-2hOJFJoaJdeEH/0D9Ek5B7Q3bV6jFVRIc7AUimqV8HiA6HGynvCcV0jb1kDK7O2h+WT3j6MO6S4IdjipwqOP4Q==}
     engines: {node: '>=12.0.0'}
     dependencies:
       ansi-styles: 4.3.0
@@ -902,7 +902,7 @@ packages:
     resolution: {integrity: sha512-P3D56ElnJQeztmkCmMqdr9QWyOlF/C/+Dl8QNFX+agGnGdumdyr28n4xDyFHsw7hm3o9TMYpLDLThKy95lXFsw==}
     engines: {node: '>=12.0.0'}
     dependencies:
-      '@oclif/color': 1.0.10
+      '@oclif/color': 1.0.11
       '@oclif/core': 2.11.8(@swc/core@1.3.78)(@types/node@20.5.1)(typescript@5.1.6)
       fast-levenshtein: 3.0.0
     transitivePeerDependencies:
