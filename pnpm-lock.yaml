@@ -88,8 +88,8 @@ importers:
         specifier: ^13.2.2
         version: 13.2.2
       oclif:
-        specifier: ^3.13.0
-        version: 3.13.0(@swc/core@1.3.81)(@types/node@20.5.7)(typescript@5.2.2)
+        specifier: ^3.13.1
+        version: 3.13.1(@swc/core@1.3.81)(@types/node@20.5.7)(typescript@5.2.2)
 
 packages:
 
@@ -873,45 +873,6 @@ packages:
       - '@swc/wasm'
       - '@types/node'
       - typescript
-
-  /@oclif/core@3.0.0-beta.9(@swc/core@1.3.81)(@types/node@20.5.7)(typescript@5.2.2):
-    resolution: {integrity: sha512-UfC0VjjjBZbH7EYFinyG7/QdnrQrrVdTTZgDuLVQF7AJW7WLXM5vuyFntMn2bnqP3BcQ2HLZbcpQ5zI7f9mdOg==}
-    engines: {node: '>=16.0.0'}
-    dependencies:
-      '@types/cli-progress': 3.11.0
-      ansi-escapes: 4.3.2
-      ansi-styles: 4.3.0
-      cardinal: 2.1.1
-      chalk: 4.1.2
-      clean-stack: 3.0.1
-      cli-progress: 3.12.0
-      debug: 4.3.4(supports-color@8.1.1)
-      ejs: 3.1.9
-      get-package-type: 0.1.0
-      globby: 11.1.0
-      hyperlinker: 1.0.0
-      indent-string: 4.0.0
-      is-wsl: 2.2.0
-      js-yaml: 3.14.1
-      natural-orderby: 2.0.3
-      object-treeify: 1.1.33
-      password-prompt: 1.1.3
-      slice-ansi: 4.0.0
-      string-width: 4.2.3
-      strip-ansi: 6.0.1
-      supports-color: 8.1.1
-      supports-hyperlinks: 2.3.0
-      ts-node: 10.9.1(@swc/core@1.3.81)(@types/node@20.5.7)(typescript@5.2.2)
-      tslib: 2.6.2
-      widest-line: 3.1.0
-      wordwrap: 1.0.0
-      wrap-ansi: 7.0.0
-    transitivePeerDependencies:
-      - '@swc/core'
-      - '@swc/wasm'
-      - '@types/node'
-      - typescript
-    dev: true
 
   /@oclif/plugin-help@5.2.18(@swc/core@1.3.81)(@types/node@20.5.7)(typescript@5.2.2):
     resolution: {integrity: sha512-0JjupXUuDzlI0Ojj7/YL42btfUNuvSgZxdi8ZfeYt/uhC1/zvsSkO29KjffPxKEnbhr6jrkjOgy/Vly5JquYLg==}
@@ -1823,7 +1784,7 @@ packages:
     resolution: {integrity: sha512-xq+q3SRMOxGivLhBNaUdC64hDTQwejJ+H0T/NB1XMtTVEwNTrfFF3gAxiyW0Bu/xWEGhjVKgUcMhCrUy2+uCWg==}
     dependencies:
       base64-js: 1.5.1
-      ieee754: 1.1.13
+      ieee754: 1.2.1
       isarray: 1.0.0
     dev: true
 
@@ -4884,12 +4845,12 @@ packages:
       es-abstract: 1.22.1
     dev: true
 
-  /oclif@3.13.0(@swc/core@1.3.81)(@types/node@20.5.7)(typescript@5.2.2):
-    resolution: {integrity: sha512-4MU3fFQmEcr001XRfHoAZjKWEBWvnYqvV6NKlJcU8b1HLxl13cXkeOSh+dC/PFydgfQ0m9jk2WikOtIvRwge+A==}
+  /oclif@3.13.1(@swc/core@1.3.81)(@types/node@20.5.7)(typescript@5.2.2):
+    resolution: {integrity: sha512-t4OqJjLK/xP3J1BlmQgkQVDn99F3CnN/RY/X6QbJXn7GfCdZ0LdJXt2zjYP+rQ1cxy9ejbNiwdo/TxVfXSYa6A==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
-      '@oclif/core': 3.0.0-beta.9(@swc/core@1.3.81)(@types/node@20.5.7)(typescript@5.2.2)
+      '@oclif/core': 2.14.0(@swc/core@1.3.81)(@types/node@20.5.7)(typescript@5.2.2)
       '@oclif/plugin-help': 5.2.18(@swc/core@1.3.81)(@types/node@20.5.7)(typescript@5.2.2)
       '@oclif/plugin-not-found': 2.4.0(@swc/core@1.3.81)(@types/node@20.5.7)(typescript@5.2.2)
       '@oclif/plugin-warn-if-update-available': 2.0.49(@swc/core@1.3.81)(@types/node@20.5.7)(typescript@5.2.2)
