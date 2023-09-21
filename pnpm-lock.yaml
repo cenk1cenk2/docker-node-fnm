@@ -88,8 +88,8 @@ importers:
         specifier: ^13.2.2
         version: 13.2.2
       oclif:
-        specifier: ^3.17.0
-        version: 3.17.0(@swc/core@1.3.86)(@types/node@20.6.3)(typescript@5.2.2)
+        specifier: ^3.17.1
+        version: 3.17.1(@swc/core@1.3.86)(@types/node@20.6.3)(typescript@5.2.2)
 
 packages:
 
@@ -101,6 +101,7 @@ packages:
   /@babel/code-frame@7.22.13:
     resolution: {integrity: sha512-XktuhWlJ5g+3TJXc5upd9Ks1HutSArik6jf2eAjYFyIOf4ej3RN+184cZbzDvbPnuTJIUhPKKJE3cIsYTiAT3w==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dependencies:
       '@babel/highlight': 7.22.20
       chalk: 2.4.2
@@ -4938,8 +4939,8 @@ packages:
       es-abstract: 1.22.2
     dev: true
 
-  /oclif@3.17.0(@swc/core@1.3.86)(@types/node@20.6.3)(typescript@5.2.2):
-    resolution: {integrity: sha512-kgEZ1UKS5QKIZyrsyVv91rPXM6yKIQqPVIpP3c5ziY/mS+sOw7LIzJfDVxiNnBnVCeqzMVdu7LUM5bnO655x0g==}
+  /oclif@3.17.1(@swc/core@1.3.86)(@types/node@20.6.3)(typescript@5.2.2):
+    resolution: {integrity: sha512-qwop0W9s5nJJ9tTdLsYXxxvGSNc9xKjXccEAGCXM+x8NmGtZ4P89FwqDY4PIG7IeV9VNpYhZKQArpZNwPGn0CQ==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
