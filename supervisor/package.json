@@ -67,7 +67,7 @@
     "nunjucks": "^3.2.4"
   },
   "devDependencies": {
-    "@types/nunjucks": "^3.2.3",
+    "@types/nunjucks": "^3.2.4",
     "globby": "^13.2.2",
     "oclif": "^3.17.1"
   },
