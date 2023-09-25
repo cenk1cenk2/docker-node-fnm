@@ -33,8 +33,8 @@ importers:
         specifier: ^14.0.1
         version: 14.0.1(enquirer@2.4.1)
       rimraf:
-        specifier: ^5.0.2
-        version: 5.0.3
+        specifier: ^5.0.4
+        version: 5.0.4
       simple-git-hooks:
         specifier: ^2.9.0
         version: 2.9.0
@@ -5630,8 +5630,8 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rimraf@5.0.3:
-    resolution: {integrity: sha512-8BvsxqiTk8MEW6egd3oshF0e31BpiON1m/drw6nnn5AsRTAXDapBMENd2pf4ehjLJBlf9saQ+uMeBUfrRIHxvw==}
+  /rimraf@5.0.4:
+    resolution: {integrity: sha512-rizQI/o/YAMM1us0Zyax0uRfIK39XR52EAjjOi0fzMolpGp0onj6CWzBAXuOx6+6Xi9Rgi0d9tUZojhJerLUmQ==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
@@ -6096,7 +6096,7 @@ packages:
       glob: 10.3.7
       mkdirp: 3.0.1
       path-scurry: 1.10.1
-      rimraf: 5.0.3
+      rimraf: 5.0.4
     dev: true
 
   /tar@6.2.0:
@@ -6281,7 +6281,7 @@ packages:
       foreground-child: 3.1.1
       mkdirp: 3.0.1
       resolve-import: 1.4.1
-      rimraf: 5.0.3
+      rimraf: 5.0.4
       sync-content: 1.0.2
       typescript: 5.2.2
       walk-up-path: 3.0.1
