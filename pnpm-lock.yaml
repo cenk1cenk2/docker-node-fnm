@@ -139,7 +139,7 @@ packages:
       find-git-root: 1.0.4
       listr2: 7.0.1
     optionalDependencies:
-      '@commitlint/load': 17.7.2(@swc/core@1.3.93)
+      '@commitlint/load': 17.8.0(@swc/core@1.3.93)
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
@@ -211,7 +211,7 @@ packages:
       reflect-metadata: 0.1.13
       through: 2.3.8
       winston: 3.11.0
-      yaml: 2.3.2
+      yaml: 2.3.3
     dev: false
 
   /@colors/colors@1.6.0:
@@ -236,8 +236,8 @@ packages:
     dev: true
     optional: true
 
-  /@commitlint/load@17.7.2(@swc/core@1.3.93):
-    resolution: {integrity: sha512-XA7WTnsjHZ4YH6ZYsrnxgLdXzriwMMq+utZUET6spbOEEIPBCDLdOQXS26P+v3TTO4hUHOEhzUquaBv3jbBixw==}
+  /@commitlint/load@17.8.0(@swc/core@1.3.93):
+    resolution: {integrity: sha512-9VnGXYJCP4tXmR4YrwP8n5oX6T5ZsHfPQq6WuUQOvAI+QsDQMaTGgTRXr7us+xsjz+b+mMBSagogqfUx2aixyw==}
     engines: {node: '>=v14'}
     requiresBuild: true
     dependencies:
@@ -2320,7 +2320,7 @@ packages:
       longest: 2.0.1
       word-wrap: 1.2.5
     optionalDependencies:
-      '@commitlint/load': 17.7.2(@swc/core@1.3.93)
+      '@commitlint/load': 17.8.0(@swc/core@1.3.93)
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
@@ -5287,7 +5287,7 @@ packages:
     dependencies:
       lilconfig: 2.1.0
       ts-node: 10.9.1(@swc/core@1.3.93)(@types/node@20.8.6)(typescript@5.2.2)
-      yaml: 2.3.2
+      yaml: 2.3.3
     dev: true
 
   /preferred-pm@3.1.2:
@@ -6783,8 +6783,8 @@ packages:
     engines: {node: '>= 14'}
     dev: true
 
-  /yaml@2.3.2:
-    resolution: {integrity: sha512-N/lyzTPaJasoDmfV7YTrYCI0G/3ivm/9wdG0aHuheKowWQwGTsK0Eoiw6utmzAnI6pkJa0DUVygvp3spqqEKXg==}
+  /yaml@2.3.3:
+    resolution: {integrity: sha512-zw0VAJxgeZ6+++/su5AFoqBbZbrEakwu+X0M5HmcwUiBL7AzcuPKjj5we4xfQLp78LkEMpD0cOnUhmgOVy3KdQ==}
     engines: {node: '>= 14'}
 
   /yargs-parser@21.1.1:
