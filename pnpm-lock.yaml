@@ -82,8 +82,8 @@ importers:
         version: 3.2.4
     devDependencies:
       '@types/nunjucks':
-        specifier: ^3.2.4
-        version: 3.2.4
+        specifier: ^3.2.5
+        version: 3.2.5
       globby:
         specifier: ^13.2.2
         version: 13.2.2
@@ -1301,8 +1301,8 @@ packages:
     resolution: {integrity: sha512-lqa4UEhhv/2sjjIQgjX8B+RBjj47eo0mzGasklVJ78UKGQY1r0VpB9XHDaZZO9qzEFDdy4MrXLuEaSmPrPSe/A==}
     dev: true
 
-  /@types/nunjucks@3.2.4:
-    resolution: {integrity: sha512-Ro2d3CROK+QNreS9MgFloCuRyHaLHyxkoiDax97uUWHQQwtKckH11ZvJfRVEuYGcTgJPY7JFwrjK3jRCTRLXwQ==}
+  /@types/nunjucks@3.2.5:
+    resolution: {integrity: sha512-P9EakWGTqHpziLO9FMRm98LrVnPoipXGR/iAVF55xYa9SKQq7Brob/JTxGESwkhoNkL7fFvROdUOWNwTceELfw==}
     dev: true
 
   /@types/responselike@1.0.1:
