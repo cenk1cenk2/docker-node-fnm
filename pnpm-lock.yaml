@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@cenk1cenk2/cz-cc':
-        specifier: ^1.7.1
-        version: 1.7.1(@swc/core@1.3.93)
+        specifier: ^1.7.2
+        version: 1.7.2(@swc/core@1.3.93)
       '@cenk1cenk2/eslint-config':
         specifier: ^2.7.23
         version: 2.7.23(eslint@8.51.0)(typescript@5.2.2)
@@ -109,11 +109,13 @@ packages:
   /@babel/helper-validator-identifier@7.22.20:
     resolution: {integrity: sha512-Y4OZ+ytlatR8AI+8KZfKuL5urKp7qey08ha31L8b3BwewJAoJamTzyvxPR/5D+KkdJCGPq/+8TukHBlY10FX9A==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dev: true
 
   /@babel/highlight@7.22.20:
     resolution: {integrity: sha512-dkdMCN3py0+ksCgYmGG8jKeGA/8Tk+gJwSYYlFGxG5lmhfKNoAy004YpLxpS1W2J8m/EK2Ew+yOs9pVRwO89mg==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dependencies:
       '@babel/helper-validator-identifier': 7.22.20
       chalk: 2.4.2
@@ -127,17 +129,17 @@ packages:
       regenerator-runtime: 0.14.0
     dev: true
 
-  /@cenk1cenk2/cz-cc@1.7.1(@swc/core@1.3.93):
-    resolution: {integrity: sha512-v4/vT83yWiUFYbiau35v5feTvmZ/dvQyNJTWIe9YKfyvO0Th/xCwtYG/gFoUQV598QGvBdgfIhd0L9EtsVGKWA==}
+  /@cenk1cenk2/cz-cc@1.7.2(@swc/core@1.3.93):
+    resolution: {integrity: sha512-345p2T9LlhWIDGgk966cyjwbVhDsdzuFMiHpV7RhwQBUPASQTaF1bZ2c08BQYHLA/lQ5Ux7NXw88pBxfY+k7Cw==}
     engines: {node: '>= 16'}
     dependencies:
-      '@listr2/prompt-adapter-enquirer': 1.0.1(enquirer@2.4.1)
+      '@listr2/prompt-adapter-enquirer': 1.0.2(enquirer@2.4.1)
       commitizen: 4.3.0(@swc/core@1.3.93)
       conventional-commit-types: 3.0.0
       enquirer: 2.4.1
       external-editor: 3.1.0
       find-git-root: 1.0.4
-      listr2: 7.0.1
+      listr2: 7.0.2
     optionalDependencies:
       '@commitlint/load': 17.8.0(@swc/core@1.3.93)
     transitivePeerDependencies:
@@ -607,8 +609,8 @@ packages:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  /@listr2/prompt-adapter-enquirer@1.0.1(enquirer@2.4.1):
-    resolution: {integrity: sha512-gC+0QFhX9ysk0n40036Fvt8U7ZIu805gSO4vVQBlOw2syPr60vWWgNI9hONPq47XOOqAMdax8fEcwlYsB7KtSg==}
+  /@listr2/prompt-adapter-enquirer@1.0.2(enquirer@2.4.1):
+    resolution: {integrity: sha512-+hFHGKuACQ/0FRMmnwRe8QpdXlYJG8LhkKC0/ftf6LptWAZDBuziWnqilWHCcInnQTtUsYXD2Sra1Oxjb5q0Dg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       enquirer: '>= 2.3.0 < 3'
@@ -3957,6 +3959,7 @@ packages:
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
+    requiresBuild: true
     dev: true
 
   /js-yaml@3.14.1:
@@ -4115,8 +4118,8 @@ packages:
       rfdc: 1.3.0
       wrap-ansi: 8.1.0
 
-  /listr2@7.0.1:
-    resolution: {integrity: sha512-nz+7hwgbDp8eWNoDgzdl4hA/xDSLrNRzPu1TLgOYs6l5Y+Ma6zVWWy9Oyt9TQFONwKoSPoka3H50D3vD5EuNwg==}
+  /listr2@7.0.2:
+    resolution: {integrity: sha512-rJysbR9GKIalhTbVL2tYbF2hVyDnrf7pFUZBwjPaMIdadYHmeT+EVi/Bu3qd7ETQPahTotg2WRCatXwRBW554g==}
     engines: {node: '>=16.0.0'}
     dependencies:
       cli-truncate: 3.1.0
