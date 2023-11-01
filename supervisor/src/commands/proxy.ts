@@ -90,9 +90,8 @@ export default class Proxy extends Command<typeof Proxy, ProxyCtx> implements Sh
           let stat: fs.Stats
 
           try {
-            /* eslint-disable-next-line prefer-const */
             stat = this.fs.stats(ctx.root)
-          } finally {
+          } catch (e) {
             if (!stat || !stat.isDirectory()) {
               this.logger.fatal(`Specified root "${ctx.root}" is not a directory.`)
 
@@ -104,7 +103,7 @@ export default class Proxy extends Command<typeof Proxy, ProxyCtx> implements Sh
 
               this.logger.fatal(`Available directories are: ${directories}`)
 
-              throw new Error('Not a directory!')
+              throw new Error(e)
             }
           }
         }

@@ -32,7 +32,7 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
   private locker: LockerService<Record<string, any>>
   private jinja: Jinja
 
-  async register (cli: DynamicModule): Promise<DynamicModule> {
+  public async register (cli: DynamicModule): Promise<DynamicModule> {
     cli.imports.push(ValidatorModule)
     cli.imports.push(LockerModule.forFeature({ file: CONTAINER_ENV_FILE, parser: EnvironmentVariableParser }))
 
