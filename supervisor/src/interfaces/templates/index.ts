@@ -1,1 +1,1 @@
-export * from './run-script.interface'
+export * from './run-script.interface.js'

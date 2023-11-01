@@ -1,6 +1,6 @@
 import { ValidateNested } from 'class-validator'
 
-import { DockerServicesConfig } from '@interfaces'
+import { DockerServicesConfig } from '../configs/docker-services.interface.js'
 
 export class InitCtx {
   files: {

@@ -5,7 +5,7 @@ import { defineConfig } from 'tsup'
 export default defineConfig((options) => ({
   name: !options.watch ? 'production' : undefined,
 
-  entryPoints: { 'commands/init': './src/commands/init.ts', 'commands/proxy': './src/commands/proxy.ts', 'hooks/not-found.hook': './src/hooks/not-found.hook.ts' },
+  entryPoints: ['./src/**'],
   tsconfig: options.watch ? 'tsconfig.json' : 'tsconfig.build.json',
 
   dts: options.watch ? true : false,
@@ -15,14 +15,14 @@ export default defineConfig((options) => ({
 
   sourcemap: false,
 
-  bundle: true,
+  bundle: false,
   splitting: false,
   clean: true,
-  minify: options.watch ? true : false,
+  minify: options.watch ? false : true,
   keepNames: true,
 
   onSuccess: async (): Promise<void> => {
-    // await execaCommand('pnpm exec tsconfig-replace-paths', { stdout: process.stdout, stderr: process.stderr })
+    await execaCommand('pnpm exec tsconfig-replace-paths', { stdout: process.stdout, stderr: process.stderr })
     await execaCommand('pnpm run manifest', { stdout: process.stdout, stderr: process.stderr })
   }
 }))

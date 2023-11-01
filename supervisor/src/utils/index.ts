@@ -1,3 +1,3 @@
-export * from './jinja'
-export * from './jinja.interface'
-export * from './validator'
+export * from './jinja.js'
+export * from './jinja.interface.js'
+export * from './validator.js'

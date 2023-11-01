@@ -1,3 +1,3 @@
-export * from './commands'
-export * from './configs'
-export * from './templates'
+export * from './commands/index.js'
+export * from './configs/index.js'
+export * from './templates/index.js'

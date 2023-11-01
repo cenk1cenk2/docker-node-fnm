@@ -5,13 +5,13 @@
     "rootDir": "src",
     "baseUrl": "src",
     "paths": {
-      "@commands": ["commands/index"],
-      "@helpers": ["helpers/index"],
-      "@constants": ["constants/index"],
-      "@interfaces": ["interfaces/index"],
-      "@context": ["interfaces/commands/index"],
-      "@templates": ["templates/index"],
-      "@utils": ["utils/index"]
+      "@commands": ["commands/index.js"],
+      "@helpers": ["helpers/index.js"],
+      "@constants": ["constants/index.js"],
+      "@interfaces": ["interfaces/index.js"],
+      "@context": ["interfaces/commands/index.js"],
+      "@templates": ["templates/index.js"],
+      "@utils": ["utils/index.js"]
     }
   },
   "include": ["src"],

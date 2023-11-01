@@ -1,2 +1,2 @@
-export * from './file-system.constants'
-export * from './keywords.constants'
+export * from './file-system.constants.js'
+export * from './keywords.constants.js'

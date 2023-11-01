@@ -1,7 +1,7 @@
 import Nunjucks from 'nunjucks'
 import { dirname, isAbsolute, join } from 'path'
 
-import type { Jinja } from './jinja.interface'
+import type { Jinja } from './jinja.interface.js'
 import type { FileSystemService, ParserService } from '@cenk1cenk2/oclif-common'
 import { YamlParser } from '@cenk1cenk2/oclif-common'
 

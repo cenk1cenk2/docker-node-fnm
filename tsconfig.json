@@ -3,7 +3,7 @@
     "lib": ["ES2023"],
     "module": "Node16",
     "target": "ES2022",
-    "moduleResolution": "Node",
+    "moduleResolution": "Node16",
     "resolveJsonModule": true,
     "declaration": true,
     "sourceMap": true,

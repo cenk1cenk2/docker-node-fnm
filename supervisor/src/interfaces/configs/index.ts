@@ -1,2 +1,2 @@
-export * from './docker-services.interface'
-export * from './proxy.interface'
+export * from './docker-services.interface.js'
+export * from './proxy.interface.js'
