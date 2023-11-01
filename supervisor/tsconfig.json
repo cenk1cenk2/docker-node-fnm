@@ -6,8 +6,8 @@
     "baseUrl": "src",
     "paths": {
       "@commands": ["commands/index.js"],
-      "@helpers": ["helpers/index.js"],
       "@constants": ["constants/index.js"],
+      "@helpers": ["helpers/index.js"],
       "@interfaces": ["interfaces/index.js"],
       "@context": ["interfaces/commands/index.js"],
       "@templates": ["templates/index.js"],

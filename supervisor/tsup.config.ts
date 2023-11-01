@@ -13,12 +13,12 @@ export default defineConfig((options) => ({
   target: 'es2022',
   format: ['esm'],
 
-  sourcemap: false,
+  sourcemap: true,
 
   bundle: false,
   splitting: false,
   clean: true,
-  minify: options.watch ? false : true,
+  minify: false,
   keepNames: true,
 
   onSuccess: async (): Promise<void> => {
