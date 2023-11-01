@@ -1,8 +1,8 @@
 import { ValidateNested } from 'class-validator'
 
-import type { DockerServicesConfig } from '@interfaces/configs/docker-services.interface'
+import { DockerServicesConfig } from '@interfaces'
 
-export declare class InitCtx {
+export class InitCtx {
   files: {
     config: string
     env: string

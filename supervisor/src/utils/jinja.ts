@@ -1,10 +1,12 @@
 import Nunjucks from 'nunjucks'
 import { dirname, isAbsolute, join } from 'path'
 
-import { FileSystemService, YamlParser } from '@cenk1cenk2/oclif-common'
+import type { Jinja } from './jinja.interface'
+import type { FileSystemService, ParserService } from '@cenk1cenk2/oclif-common'
+import { YamlParser } from '@cenk1cenk2/oclif-common'
 
-export function jinja (path: string): Nunjucks.Environment {
-  const fs = new FileSystemService()
+export function jinja (fs: FileSystemService, parser: ParserService, path: string): Jinja {
+  const yaml = parser.fetch(YamlParser)
 
   // some trickery because of the types of nunjucks
   Nunjucks.installJinjaCompat()
@@ -35,11 +37,9 @@ export function jinja (path: string): Nunjucks.Environment {
     }
   )
 
-  const Yaml = new YamlParser()
-
   // add filters
   env.addFilter('to_nice_yaml', (data: string | string[] | Record<string, any>) => {
-    return Yaml.stringify(data).trim()
+    return yaml.stringify(data).trim()
   })
 
   // add extensions

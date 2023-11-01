@@ -1,8 +1,8 @@
 import { ValidateNested } from 'class-validator'
 
-import type { ProxyConfig } from '../configs/proxy.interface'
+import { ProxyConfig } from '../configs/proxy.interface'
 
-export declare class ProxyCtx {
+export class ProxyCtx {
   root: string
 
   package: string

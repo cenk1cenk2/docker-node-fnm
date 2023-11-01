@@ -5,14 +5,13 @@
     "rootDir": "src",
     "baseUrl": "src",
     "paths": {
-      "@src/*": ["*"],
-      "@commands/*": ["commands/*"],
-      "@helpers/*": ["helpers/*"],
-      "@constants/*": ["constants/*"],
-      "@interfaces/*": ["interfaces/*"],
-      "@context/*": ["interfaces/commands/*"],
-      "@templates/*": ["templates/*"],
-      "@utils/*": ["utils/*"]
+      "@commands": ["commands/index"],
+      "@helpers": ["helpers/index"],
+      "@constants": ["constants/index"],
+      "@interfaces": ["interfaces/index"],
+      "@context": ["interfaces/commands/index"],
+      "@templates": ["templates/index"],
+      "@utils": ["utils/index"]
     }
   },
   "include": ["src"],

@@ -1,25 +1,31 @@
-import dotenv from 'dotenv'
+import { execaCommand } from 'execa'
 import { dirname, join } from 'path'
 
-import { Command, fs } from '@cenk1cenk2/oclif-common'
-import { CONFIG_FILES, MOUNTED_DATA_FOLDER } from '@constants/file-system.constants'
-import { PACKAGE_ROOT_DEFINITIONS } from '@constants/keywords.constants'
-import type { ProxyCtx } from '@interfaces/commands/proxy.interface'
-import type { ProxyConfig } from '@interfaces/configs/proxy.interface'
+import type { ShouldRunBeforeHook, fs } from '@cenk1cenk2/oclif-common'
+import { ConfigService, FileSystemService, Command, EnvironmentVariableParser, ParserService, YamlParser } from '@cenk1cenk2/oclif-common'
+import { CONFIG_FILES, MOUNTED_DATA_FOLDER, PACKAGE_ROOT_DEFINITIONS } from '@constants'
+import type { ProxyConfig, ProxyCtx } from '@interfaces'
 
-export default class Proxy extends Command<ProxyCtx> {
+export default class Proxy extends Command<typeof Proxy, ProxyCtx> implements ShouldRunBeforeHook {
   static description = 'This command initiates the proxies commands to the underlying container and pipes the data.'
   static strict = false
 
+  private cs: ConfigService
+  private fs: FileSystemService
+  private parser: ParserService
+
   public async shouldRunBefore (): Promise<void> {
+    this.cs = this.app.get(ConfigService)
+    this.fs = this.app.get(FileSystemService)
+    this.parser = this.app.get(ParserService)
+
+    await this.parser.register(YamlParser, EnvironmentVariableParser)
     this.tasks.options = {
       silentRendererCondition: true
     }
   }
 
   public async run (): Promise<void> {
-    const { execaCommand } = await import('execa')
-
     this.tasks.add([
       // set defaults for context
       {
@@ -56,17 +62,13 @@ export default class Proxy extends Command<ProxyCtx> {
         task: (ctx): void => {
           if (ctx.config.workspace_only) {
             if (this.argv.length < 1) {
-              this.logger.fatal('At least a command should be given to run in the workspace.')
-
-              this.exit(115)
+              throw new Error('At least a command should be given to run in the workspace.')
             }
 
             ctx.root = MOUNTED_DATA_FOLDER
           } else {
             if (this.argv.length < 2) {
-              this.logger.fatal('Root directory should be given as the first argument and the command as the rest.')
-
-              this.exit(115)
+              throw new Error('Root directory should be given as the first argument and the command as the rest.')
             }
 
             ctx.package = this.argv.shift()
@@ -94,7 +96,7 @@ export default class Proxy extends Command<ProxyCtx> {
             if (!stat || !stat.isDirectory()) {
               this.logger.fatal(`Specified root "${ctx.root}" is not a directory.`)
 
-              const directories = fs
+              const directories = this.fs.extra
                 .readdirSync(dirname(ctx.root), { withFileTypes: true })
                 .filter((dir) => dir.isDirectory())
                 .map((dir) => dir.name)
@@ -102,7 +104,7 @@ export default class Proxy extends Command<ProxyCtx> {
 
               this.logger.fatal(`Available directories are: ${directories}`)
 
-              this.exit(110)
+              throw new Error('Not a directory!')
             }
           }
         }
@@ -118,9 +120,9 @@ export default class Proxy extends Command<ProxyCtx> {
           let environment: Record<string, any> = {}
           const envPath = join(ctx.root, '.env')
 
-          if (ctx.config.load_dotenv && fs.existsSync(envPath)) {
+          if (ctx.config.load_dotenv && this.fs.exists(envPath)) {
             try {
-              environment = dotenv.parse(fs.readFileSync(envPath))
+              environment = this.parser.fetch(EnvironmentVariableParser).parse(await this.fs.read(envPath))
 
               this.logger.info('Environment file imported.', { context: 'environment' })
             } catch {
@@ -145,7 +147,7 @@ export default class Proxy extends Command<ProxyCtx> {
 
             this.logger.debug(e)
 
-            this.exit(127)
+            throw e
           }
         }
       }

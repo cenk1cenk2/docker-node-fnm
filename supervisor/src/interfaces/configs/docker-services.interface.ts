@@ -1,7 +1,7 @@
 import { Transform, Type } from 'class-transformer'
 import { IsBoolean, IsEnum, IsNotEmpty, IsObject, IsPositive, IsString, IsUUID, ValidateNested } from 'class-validator'
 
-import { IsFalseOrStringArray, IsSemverOrDefault } from '@utils/validator'
+import { IsFalseOrStringArray, IsSemverOrDefault } from '@utils'
 
 export class DockerServicesConfig {
   @IsSemverOrDefault()

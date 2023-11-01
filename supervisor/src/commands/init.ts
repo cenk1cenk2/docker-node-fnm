@@ -1,36 +1,62 @@
 import { randomUUID } from 'crypto'
+import { execa, execaCommand } from 'execa'
 import { EOL } from 'os'
 import { join, normalize } from 'path'
 
-import { Command, fs } from '@cenk1cenk2/oclif-common'
+import type { DynamicModule, RegisterHook, ShouldRunAfterHook, ShouldRunBeforeHook } from '@cenk1cenk2/oclif-common'
 import {
-  CONFIG_FILES,
-  CONTAINER_ENV_FILE,
-  CONTAINER_LOCK_FILE,
-  MOUNTED_CONFIG_PATH,
-  MOUNTED_DATA_FOLDER,
-  S6_FOLDERS,
-  TEMPLATES,
-  TEMPLATE_FOLDER
-} from '@constants/file-system.constants'
-import type { InitCtx } from '@interfaces/commands/init.interface'
-import type { DockerService } from '@interfaces/configs/docker-services.interface'
-import { DockerServicesConfig } from '@interfaces/configs/docker-services.interface'
-import { createEnvFile } from '@utils/env-file'
-import { jinja } from '@utils/jinja'
+  Command,
+  ConfigService,
+  EnvironmentVariableParser,
+  FileSystemService,
+  LockerModule,
+  LockerService,
+  ParserService,
+  ValidatorModule,
+  ValidatorService,
+  YamlParser
+} from '@cenk1cenk2/oclif-common'
+import { CONFIG_FILES, CONTAINER_ENV_FILE, CONTAINER_LOCK_FILE, MOUNTED_CONFIG_PATH, MOUNTED_DATA_FOLDER, S6_FOLDERS, TEMPLATES, TEMPLATE_FOLDER } from '@constants'
+import type { DockerService, InitCtx } from '@interfaces'
+import { DockerServicesConfig } from '@interfaces'
+import type { Jinja } from '@utils'
+import { jinja } from '@utils'
 
-export default class Init extends Command<InitCtx> {
+export default class Init extends Command<typeof Init, InitCtx> implements ShouldRunBeforeHook, ShouldRunAfterHook<InitCtx>, RegisterHook {
   static description = 'This command initiates the container and creates the required variables.'
 
+  private cs: ConfigService
+  private fs: FileSystemService
+  private validator: ValidatorService
+  private parser: ParserService
+  private locker: LockerService<Record<string, any>>
+  private jinja: Jinja
+
+  async register (cli: DynamicModule): Promise<DynamicModule> {
+    cli.imports.push(ValidatorModule)
+    cli.imports.push(LockerModule.forFeature({ file: CONTAINER_ENV_FILE, parser: EnvironmentVariableParser }))
+
+    return cli
+  }
+
   public async shouldRunBefore (): Promise<void> {
+    this.cs = this.app.get(ConfigService)
+    this.fs = this.app.get(FileSystemService)
+    this.validator = this.app.get(ValidatorService)
+    this.parser = this.app.get(ParserService)
+    this.locker = this.app.get(LockerService)
+
+    await this.parser.register(YamlParser, EnvironmentVariableParser)
     this.tasks.options = {
       silentRendererCondition: true
     }
   }
 
-  public async run (): Promise<void> {
-    const { execa, execaCommand } = await import('execa')
+  public async shouldRunAfter (): Promise<void> {
+    await this.locker.all()
+  }
 
+  public async run (): Promise<void> {
     this.tasks.add([
       {
         task: async (ctx): Promise<void> => {
@@ -39,6 +65,8 @@ export default class Init extends Command<InitCtx> {
             env: join(this.cs.defaults, CONFIG_FILES.INIT_ENV),
             templates: join(this.cs.oclif.root, TEMPLATE_FOLDER)
           }
+
+          this.jinja = jinja(this.fs, this.parser, ctx.files.templates)
 
           this.logger.debug('Set defaults for context: %o', ctx, { context: 'context' })
         }
@@ -152,7 +180,7 @@ export default class Init extends Command<InitCtx> {
 
             this.logger.error('%o', e, { context: 'fnm' })
 
-            this.exit(120)
+            throw e
           }
         }
       },
@@ -179,7 +207,7 @@ export default class Init extends Command<InitCtx> {
 
             this.logger.error('%o', e, { context: 'fnm' })
 
-            this.exit(120)
+            throw e
           }
         }
       },
@@ -209,7 +237,7 @@ export default class Init extends Command<InitCtx> {
           if (errors.length > 0) {
             errors.forEach((error) => this.logger.fatal(error, { context: 'services' }))
 
-            this.exit(120)
+            throw new Error(errors.join(', '))
           }
         }
       },
@@ -234,17 +262,14 @@ export default class Init extends Command<InitCtx> {
       // init variables for s6
       {
         task: async (ctx): Promise<void> => {
-          await createEnvFile(CONTAINER_ENV_FILE, {
-            PACKAGE_MANAGER: ctx.config.package_manager,
-            FORCE_INSTALL: ctx.config.force_install,
-            NODE_VERSION: ctx.config.node_version
+          this.locker.addLock({
+            data: {
+              PACKAGE_MANAGER: ctx.config.package_manager,
+              FORCE_INSTALL: ctx.config.force_install,
+              NODE_VERSION: ctx.config.node_version,
+              LOG_LEVEL: this.cs.isDebug ? 5 : 4
+            }
           })
-
-          if (this.cs.isDebug) {
-            return createEnvFile(CONTAINER_ENV_FILE, { LOG_LEVEL: 5 }, true)
-          }
-
-          return createEnvFile(CONTAINER_ENV_FILE, { LOG_LEVEL: 4 }, true)
         }
       },
 
@@ -260,15 +285,13 @@ export default class Init extends Command<InitCtx> {
           }
 
           if (preliminary.length > 0) {
-            await createEnvFile(CONTAINER_LOCK_FILE, { PRELIMINARY_SERVICES: `(${preliminary.map((s) => s.id).join(' ')})`, FIRST_SERVICE: true })
+            this.locker.addLock({ data: { PRELIMINARY_SERVICES: `(${preliminary.map((s) => s.id).join(' ')})`, FIRST_SERVICE: true } })
 
             this.logger.debug('Wrote lock file for preliminary services.', { context: 'preliminary-services' })
           }
 
           if (enabled.length < 1) {
-            this.logger.fatal('No service is enabled at the moment. Please check the configuration.')
-
-            this.exit(120)
+            throw new Error('No service is enabled at the moment. Please check the configuration.')
           }
 
           await this.createRunScriptForService(ctx, enabled)
@@ -363,8 +386,8 @@ export default class Init extends Command<InitCtx> {
 
     await Promise.all(
       services.map(async (service) => {
-        const runScriptTemplate = jinja(ctx.files.templates).renderString(runTemplate, { service, config: ctx.config })
-        const finishScriptTemplate = jinja(ctx.files.templates).renderString(finishTemplate, { service, config: ctx.config })
+        const runScriptTemplate = this.jinja.renderString(runTemplate, { service, config: ctx.config })
+        const finishScriptTemplate = this.jinja.renderString(finishTemplate, { service, config: ctx.config })
 
         const serviceDir = join(S6_FOLDERS.service, service.id)
         const runScriptPath = join(serviceDir, S6_FOLDERS.runScriptName)
@@ -374,7 +397,7 @@ export default class Init extends Command<InitCtx> {
 
         await Promise.all([ this.fs.write(runScriptPath, runScriptTemplate), this.fs.write(finishScriptPath, finishScriptTemplate) ])
 
-        await Promise.all([ fs.chmod(runScriptPath, '0777'), fs.chmod(finishScriptPath, '0777') ])
+        await Promise.all([ this.fs.extra.chmod(runScriptPath, '0777'), this.fs.extra.chmod(finishScriptPath, '0777') ])
 
         this.logger.debug('Initiated service scripts for "%s" in directory: %s', service.cwd, serviceDir, { context: 'services' })
       })

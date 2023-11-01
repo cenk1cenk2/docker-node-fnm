@@ -43,7 +43,7 @@ RUN \
   /bin/bash -c 'source /etc/bash.bashrc && /bin/ln -s "/opt/fnm/aliases/default/bin/npx" /usr/bin/npx' && \
   # add yarn
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+  echo "deb [trusted=yes] https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
   apt-get update && apt-get install -y --no-install-recommends yarn && \
   echo -e 'export PATH="$PATH:$(yarn global bin)"' >> /etc/bash.bashrc && \
   # add pnpm
