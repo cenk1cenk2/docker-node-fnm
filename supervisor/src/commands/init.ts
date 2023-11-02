@@ -9,6 +9,7 @@ import {
   ConfigService,
   EnvironmentVariableParser,
   FileSystemService,
+  JsonParser,
   LockerModule,
   LockerService,
   ParserService,
@@ -46,7 +47,7 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
     this.parser = this.app.get(ParserService)
     this.locker = this.app.get(LockerService)
 
-    await this.parser.register(YamlParser, EnvironmentVariableParser)
+    await this.parser.register(YamlParser, JsonParser, EnvironmentVariableParser)
     this.tasks.options = {
       silentRendererCondition: true
     }

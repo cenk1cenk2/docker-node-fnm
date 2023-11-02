@@ -2,7 +2,7 @@ import { execaCommand } from 'execa'
 import { dirname, join } from 'path'
 
 import type { ShouldRunBeforeHook, fs } from '@cenk1cenk2/oclif-common'
-import { ConfigService, FileSystemService, Command, EnvironmentVariableParser, ParserService, YamlParser } from '@cenk1cenk2/oclif-common'
+import { ConfigService, FileSystemService, Command, EnvironmentVariableParser, ParserService, YamlParser, JsonParser } from '@cenk1cenk2/oclif-common'
 import { CONFIG_FILES, MOUNTED_DATA_FOLDER, PACKAGE_ROOT_DEFINITIONS } from '@constants'
 import type { ProxyConfig, ProxyCtx } from '@interfaces'
 
@@ -19,7 +19,7 @@ export default class Proxy extends Command<typeof Proxy, ProxyCtx> implements Sh
     this.fs = this.app.get(FileSystemService)
     this.parser = this.app.get(ParserService)
 
-    await this.parser.register(YamlParser, EnvironmentVariableParser)
+    await this.parser.register(YamlParser, JsonParser, EnvironmentVariableParser)
     this.tasks.options = {
       silentRendererCondition: true
     }
