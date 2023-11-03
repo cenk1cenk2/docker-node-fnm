@@ -63,7 +63,7 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       '@oclif/core':
-        specifier: ^3.10.0
+        specifier: ^3.10.1
         version: 3.10.1(typescript@5.2.2)
       class-transformer:
         specifier: ^0.5.1
@@ -87,7 +87,7 @@ importers:
         specifier: ^0.5.21
         version: 0.5.21
       yaml:
-        specifier: ^2.3.3
+        specifier: ^2.3.4
         version: 2.3.4
     devDependencies:
       '@types/fs-extra':
