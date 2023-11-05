@@ -38,7 +38,7 @@ export function jinja (fs: FileSystemService, parser: ParserService, path: strin
   )
 
   // add filters
-  env.addFilter('to_nice_yaml', (data: string | string[] | Record<string, any>) => {
+  env.addFilter('to_nice_yaml', (data: any) => {
     return yaml.stringify(data).trim()
   })
 

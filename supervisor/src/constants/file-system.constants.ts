@@ -8,19 +8,10 @@ export const MOUNTED_CONFIG_PATH = join(MOUNTED_CONFIG_FOLDER, 'services.yml')
 
 export const TEMPLATE_FOLDER = 'templates'
 
-export const TEMPLATES = {
-  run: 'run.sh.j2',
-  finish: 'finish.sh.j2'
-}
+export const VIZIER_FOLDER = '/etc/vizier'
+export const VIZIER_CONFIG_FILE = join(VIZIER_FOLDER, 'config.json')
 
-export const CONTAINER_ENV_FILE = '/.env'
-export const CONTAINER_LOCK_FILE = '/.lock'
-
-export const S6_FOLDERS = {
-  service: '/etc/services.d',
-  runScriptName: 'run',
-  finishScriptName: 'finish'
-}
+export const TEMPLATE_RUN = 'run.sh.j2'
 
 export const CONFIG_FILES = {
   INIT: 'init.yml',

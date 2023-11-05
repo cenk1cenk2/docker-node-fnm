@@ -1,117 +1,34 @@
 #!/bin/bash
 
 source /etc/bash.bashrc
-source /.env
 source /scripts/logger.sh
 
 set -eo pipefail
 
-SERVICE_ID="{{ service.id }}"
-
-# If execution order is set
-while [[ -f /.lock ]]; do
-  source /.lock
-
-  if [ -z "${FIRST_SERVICE}" ]; then
-    log_wait "{{ service.name }} for {{ config.sync_wait }} seconds."
-    s6-sleep {{ config.sync_wait }}
-  fi
-
-  if [[ "${PRELIMINARY_SERVICES[0]}" == "${SERVICE_ID}" ]]; then
-    log_debug "This service with id ${SERVICE_ID} and cwd {{ service.cwd }} is next."
-
-    # next in line is this service
-    if [[ {% raw %}"${#PRELIMINARY_SERVICES[@]}"{% endraw %} -eq 1 ]]; then
-      # this is the last service, so remove the lock file
-      s6-sleep 2
-
-      rm /.lock
-
-      log_debug "Removing lock file. Queue is empty."
-    else
-      # there is still services to go so just remove this service from the queue
-
-      log_debug "Remaining preliminary services: ${PRELIMINARY_SERVICES[@]:1}"
-
-      echo "PRELIMINARY_SERVICES=(${PRELIMINARY_SERVICES[@]:1})" >/.lock
-
-      log_debug "Lock file modified: $(cat /.lock)"
-
-      break
-    fi
-  else
-    log_wait "{{ service.name }} for {{ config.sync_wait }} seconds."
-    s6-sleep {{ config.sync_wait }}
-  fi
-done
-
-# show start message
-log_start "{{ service.name }}"
-
-{% if service.node_version %}
-log_this "Service node version is set: {{ service.node_version }}" "${CYAN}{{ service.name }}${RESET}" "WARN"
+{% if service.node_version != 'default' %}
+log_warn "Service node version is set: {{ service.node_version }}" "${CYAN}{{ service.name }}${RESET}"
 fnm use {{ service.node_version }} --install-if-missing &> /dev/null
-{% elif config.node_version != 'default' %}
-log_this "Config node version is not set to default: {{ config.node_version }}" "${CYAN}{{ service.name }}${RESET}" "WARN"
-fnm use {{ config.node_version }} --install-if-missing &> /dev/null
-
-USER_NODE_VERSION="{{ config.node_version }}"
-
-log_debug "Using default node version for service with ${SERVICE_ID} and {{ service.cwd }}."
 {% else %}
 if [ -f /data/.nvmrc ] || [ -f /data/.node-version ]; then
-  cd /data
-
-  fnm use --install-if-missing &> /dev/null
-
-
-  if [ -f /data/.nvmrc ];  then
-    USER_NODE_VERSION="$(cat /data/.nvmrc)"
-  elif [ -f /data/.node-version ]; then
-    USER_NODE_VERSION="$(cat /data/.node-version)"
-  fi
-
-  log_debug "Using nvmrc node version for service with ${SERVICE_ID} and {{ service.cwd }}."
+  (cd /data && fnm use --install-if-missing) &> /dev/null
 fi
 {% endif %}
-
-# Change directory to package
-cd /data/{{ service.cwd }}
-
-WHERE_IS=$(whereis node)
-NODE_VERSION=$(node -v)
-
-log_debug "${SERVICE_ID} and {{ service.cwd }} where: ${WHERE_IS}"
-log_debug "${SERVICE_ID} and {{ service.cwd }} node version: ${NODE_VERSION}"
 
 {% if service.load_dotenv %}
 # Get directory env variables if exists
 if [[ -f .env ]]; then
-  log_this "{{ service.cwd }}/.env for given service \"{{ service.name }}\"." "${CYAN}SOURCE${RESET}" "INFO"
+  log_this "{{ service.cwd }}/.env" "${CYAN}SOURCE${RESET}" "INFO"
   source .env
 fi
-{% endif %}
-
-{% if service.parsed_environment is defined %}
-log_debug "Environment variables are defined for \"{{ service.name }}\": \n{{ service.parsed_environment }}"
-{{ service.parsed_environment }}
 {% endif %}
 
 {% if service.before is iterable and service.before | length > 0 %}
 # before tasks
 {% for command in service.before %}
-log_this "Running before task: $ {{ command }}" "${CYAN}{{ service.name }}${RESET}" "INFO"
-eval "{{ command }}"
+log_info "Running before task: $ {{ command }}"
+{{ command }}
 
 {% endfor %}
 {% endif %}
 # Package start command
-log_debug "Running in \"{{ service.cwd }}\" for \"{{ service.name }}\": $ {{ service.parsed_command }}"
-{% if service.logs == false or service.logs == 'false' %}
-log_this "${YELLOW}Logging is disabled by configuration parameters.${RESET}" "${CYAN}{{ service.name }}${RESET}" "WARN"
-eval "{{ service.parsed_command }}" &> /dev/null
-{% elif service.logs == true or service.logs == 'true' %}
-eval "{{ service.parsed_command }}"
-{% else %}
-fdmove -c 2 1 /bin/bash -c "{{ service.parsed_command }}" | eval "/usr/bin/mawk -W interactive '{print \"[${GREEN}{{ service.name }}${RESET}]\",\$0}'"
-{% endif %}
+{{ service.command }}

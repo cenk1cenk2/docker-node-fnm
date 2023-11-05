@@ -1,6 +1,7 @@
 import { ValidateNested } from 'class-validator'
 
 import { DockerServicesConfig } from '../configs/docker-services.interface.js'
+import type { VizierConfig } from '@interfaces'
 
 export class InitCtx {
   files: {
@@ -8,6 +9,8 @@ export class InitCtx {
     env: string
     templates: string
   }
+
+  vizier: VizierConfig
 
   @ValidateNested()
     config: DockerServicesConfig

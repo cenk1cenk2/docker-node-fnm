@@ -1,12 +1,11 @@
 # syntax=docker/dockerfile-upstream:master-labs
-FROM debian:bullseye-slim
+FROM cenk1cenk2/vizier:latest AS vizier
 
-ARG S6_OVERLAY_ARCH
+FROM debian:bullseye-slim
 
 # Workdir for node package
 
-ENV FNM_VERSION 1.35.0
-ENV S6_VERSION 2.2.0.3
+ENV FNM_VERSION 1.35.1
 ENV FNM_DIR /opt/fnm
 ENV FNM_INTERACTIVE_CLI false
 ENV FNM_INSTALL_VERSION 20
@@ -15,19 +14,14 @@ WORKDIR /tmp
 
 COPY ./rootfs /
 
-# Install s6 overlay
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-${S6_OVERLAY_ARCH}.tar.gz /tmp/
-RUN tar xzf "/tmp/s6-overlay-${S6_OVERLAY_ARCH}.tar.gz" -C / && \
-  # create directories
-  mkdir -p /etc/services.d && mkdir -p /etc/cont-init.d && mkdir -p /s6-bin && \
-  rm -rf /tmp/s6-overlay*
+COPY --from=vizier /usr/bin/vizier /usr/bin/vizier
 
 SHELL [ "bash", "-c" ]
 
 # Install fnm and initiate it
 RUN \
   apt-get update && \
-  apt-get install -y curl unzip gnupg2 && \
+  apt-get install -y curl unzip gnupg2 tini && \
   # install fnm
   curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "/opt/fnm" --skip-shell && \
   ln -s /opt/fnm/fnm /usr/bin/ && chmod +x /usr/bin/fnm && \
@@ -85,16 +79,11 @@ RUN \
 WORKDIR /data
 
 # Create default configuration folders
-RUN mkdir -p /scripts
+RUN \
+  mkdir -p /scripts && \
+  mkdir -p /etc/vizier
 
 # Copy scripts
 ADD https://gist.githubusercontent.com/cenk1cenk2/e03d8610534a9c78f755c1c1ed93a293/raw/logger.sh /scripts/logger.sh
-RUN chmod +x /scripts/*.sh && \
-  chmod +x /etc/cont-init.d/*.sh
 
-# s6 behaviour, https://github.com/just-containers/s6-overlay
-ENV S6_KEEP_ENV 1
-ENV S6_BEHAVIOUR_IF_STAGE2_FAILS 2
-ENV S6_FIX_ATTRS_HIDDEN 1
-
-ENTRYPOINT ["/init"]
+ENTRYPOINT ["tini", "/entrypoint.sh"]

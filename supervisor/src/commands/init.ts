@@ -1,6 +1,4 @@
 import { randomUUID } from 'crypto'
-import { execa, execaCommand } from 'execa'
-import { EOL } from 'os'
 import { join, normalize } from 'path'
 
 import type { DynamicModule, RegisterHook, ShouldRunAfterHook, ShouldRunBeforeHook } from '@cenk1cenk2/oclif-common'
@@ -12,13 +10,14 @@ import {
   JsonParser,
   LockerModule,
   LockerService,
+  MergeStrategy,
   ParserService,
   ValidatorModule,
   ValidatorService,
   YamlParser
 } from '@cenk1cenk2/oclif-common'
-import { CONFIG_FILES, CONTAINER_ENV_FILE, CONTAINER_LOCK_FILE, MOUNTED_CONFIG_PATH, MOUNTED_DATA_FOLDER, S6_FOLDERS, TEMPLATES, TEMPLATE_FOLDER } from '@constants'
-import type { DockerService, InitCtx } from '@interfaces'
+import { CONFIG_FILES, MOUNTED_CONFIG_PATH, MOUNTED_DATA_FOLDER, TEMPLATE_FOLDER, TEMPLATE_RUN, VIZIER_CONFIG_FILE, VIZIER_FOLDER } from '@constants'
+import type { DockerService, InitCtx, VizierConfig, VizierStep } from '@interfaces'
 import { DockerServicesConfig } from '@interfaces'
 import type { Jinja } from '@utils'
 import { jinja } from '@utils'
@@ -30,12 +29,12 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
   private fs: FileSystemService
   private validator: ValidatorService
   private parser: ParserService
-  private locker: LockerService<Record<string, any>>
+  private locker: LockerService<VizierConfig>
   private jinja: Jinja
 
   public async register (cli: DynamicModule): Promise<DynamicModule> {
     cli.imports.push(ValidatorModule)
-    cli.imports.push(LockerModule.forFeature({ file: CONTAINER_ENV_FILE, parser: EnvironmentVariableParser }))
+    cli.imports.push(LockerModule.forFeature({ file: VIZIER_CONFIG_FILE, parser: JsonParser }))
 
     return cli
   }
@@ -68,8 +67,6 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
           }
 
           this.jinja = jinja(this.fs, this.parser, ctx.files.templates)
-
-          this.logger.debug('Set defaults for context: %o', ctx, { context: 'context' })
         }
       },
 
@@ -90,7 +87,7 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
       // check if configuration loaded to the expected directory
       {
         skip: (): boolean => {
-          if (this.fs.exists(normalize(MOUNTED_CONFIG_PATH))) {
+          if (this.fs.exists(MOUNTED_CONFIG_PATH)) {
             return false
           }
 
@@ -114,41 +111,14 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
       {
         task: async (ctx): Promise<void> => {
           ctx.config = await this.cs.env<DockerServicesConfig>(ctx.files.env, ctx.config)
-          this.logger.debug('%o', ctx.config)
         }
       },
 
-      {
-        task: (ctx): void => {
-          ctx.config.services = ctx.config.services.map((service) => {
-            return this.cs.merge([ ctx.config.defaults, service ]) as DockerService
-          })
-
-          this.logger.debug('Merged default configuration to all services: %o', ctx.config.defaults, { context: 'defaults' })
-        }
-      },
-
-      // normalize variables
       {
         task: async (ctx): Promise<void> => {
-          // service names
-          await Promise.all(
-            ctx.config.services.map(async (service) => {
-              service.id = randomUUID()
-              service.name = service.name ?? service.cwd
-
-              // we wrap this inside "" so have to escape it all
-              service.parsed_command = service.command.replaceAll('"', '\\"')
-
-              if (Array.isArray(service.before) && service.before.length > 0) {
-                service.before = service.before.map((b) => b.replaceAll('"', '\\"'))
-              }
-
-              if (service.environment && Object.keys(service.environment).length > 0) {
-                service.parsed_environment = Object.entries(service.environment).reduce((o, [ envKey, envValue ]) => o + `export ${envKey}=${envValue}` + EOL, '')
-              }
-            })
-          )
+          ctx.config.services = ctx.config.services.map((service) => {
+            return this.cs.merge<DockerService>([ ctx.config.defaults, service, { id: randomUUID() } ])
+          })
 
           this.logger.debug('Services discovered: %o', ctx.config.services, { context: 'services' })
         }
@@ -157,145 +127,53 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
       // validate all variables
       {
         task: async (ctx): Promise<void> => {
-          await this.validator.validate(DockerServicesConfig, ctx.config)
+          ctx.config = await this.validator.validate(DockerServicesConfig, ctx.config)
         }
       },
 
       // initiate fnm version
       {
-        skip: (ctx): boolean => ctx.config.node_version === 'default',
+        skip: (ctx): boolean => ctx.config.defaults.node_version === 'default',
         task: async (ctx): Promise<void> => {
-          this.logger.info('Installing node version given from variables: %s', ctx.config.node_version, { context: 'node' })
+          this.logger.info('Installing node version given from variables: %s', ctx.config.defaults.node_version, { context: 'node' })
 
-          try {
-            await this.pipeProcessToLogger(
-              execa('fnm', [ 'install', ctx.config.node_version ], {
-                shell: '/bin/bash',
-                detached: false,
-                extendEnv: false
-              }),
-              { context: 'fnm' }
-            )
-          } catch (e) {
-            this.logger.fatal('Can not use the given version with FNM.', { context: 'fnm' })
-
-            this.logger.error('%o', e, { context: 'fnm' })
-
-            throw e
-          }
+          this.locker.addLock<VizierConfig>({
+            data: [
+              [
+                {
+                  name: 'fnm',
+                  cwd: MOUNTED_DATA_FOLDER,
+                  commands: [ `fnm install ${ctx.config.defaults.node_version}` ]
+                }
+              ]
+            ],
+            merge: MergeStrategy.EXTEND
+          })
         }
       },
 
       // load fnm version from the root of the thingy
       {
-        skip: (ctx): boolean =>
-          ctx.config.node_version === 'default' && !this.fs.exists(join(MOUNTED_DATA_FOLDER, '.nvmrc')) && !this.fs.exists(join(MOUNTED_DATA_FOLDER, '.node-version')),
+        skip: (ctx): boolean => {
+          return (
+            ctx.config.defaults.node_version === 'default' && !this.fs.exists(join(MOUNTED_DATA_FOLDER, '.nvmrc')) && !this.fs.exists(join(MOUNTED_DATA_FOLDER, '.node-version'))
+          )
+        },
         task: async (): Promise<void> => {
           this.logger.info('Found node version override file in the root directory of the data folder.', { context: 'node' })
 
-          try {
-            await this.pipeProcessToLogger(
-              execa('fnm', [ 'install' ], {
-                shell: '/bin/bash',
-                detached: false,
-                extendEnv: false,
-                cwd: MOUNTED_DATA_FOLDER
-              }),
-              { context: 'fnm' }
-            )
-          } catch (e) {
-            this.logger.fatal('Can not use the workspace version with FNM.', { context: 'fnm' })
-
-            this.logger.error('%o', e, { context: 'fnm' })
-
-            throw e
-          }
-        }
-      },
-
-      // check all the given cwds exists
-      {
-        skip: (ctx): boolean => !ctx.config.check_directories,
-        task: async (ctx): Promise<void> => {
-          const errors: string[] = []
-
-          await Promise.all(
-            ctx.config.services.map(async (service, i) => {
-              const dir = join(MOUNTED_DATA_FOLDER, service.cwd)
-
-              try {
-                const stat = this.fs.stats(dir)
-
-                if (!stat.isDirectory()) {
-                  errors.push(`Specified directory "${dir}" is not a directory for service ${i}.`)
+          this.locker.addLock<VizierConfig>({
+            data: [
+              [
+                {
+                  name: 'fnm',
+                  cwd: MOUNTED_DATA_FOLDER,
+                  commands: [ 'fnm install' ]
                 }
-              } catch {
-                errors.push(`Specified directory "${dir}" does not exists for service ${i}.`)
-              }
-            })
-          )
-
-          if (errors.length > 0) {
-            errors.forEach((error) => this.logger.fatal(error, { context: 'services' }))
-
-            throw new Error(errors.join(', '))
-          }
-        }
-      },
-
-      // clean prior instance
-      {
-        task: async (): Promise<void> => {
-          try {
-            await Promise.all([ S6_FOLDERS.service, CONTAINER_ENV_FILE, CONTAINER_LOCK_FILE ].map((f) => this.fs.remove(f, { recursive: true })))
-          } catch (e) {
-            this.logger.debug(e.message)
-          }
-
-          try {
-            await this.fs.mkdir(S6_FOLDERS.service)
-          } catch (e) {
-            this.logger.debug(e.message)
-          }
-        }
-      },
-
-      // init variables for s6
-      {
-        task: async (ctx): Promise<void> => {
-          this.locker.addLock({
-            data: {
-              PACKAGE_MANAGER: ctx.config.package_manager,
-              FORCE_INSTALL: ctx.config.force_install,
-              NODE_VERSION: ctx.config.node_version,
-              LOG_LEVEL: this.cs.isDebug ? 5 : 4
-            }
+              ]
+            ],
+            merge: MergeStrategy.EXTEND
           })
-        }
-      },
-
-      // init services for s6 supervisor
-      {
-        task: async (ctx): Promise<void> => {
-          const enabled = ctx.config.services.filter((service) => service.enable === true)
-          const disabled = ctx.config.services.filter((service) => service.enable === false)
-          const preliminary = enabled.filter((service) => service.sync === true)
-
-          if (disabled.length > 0) {
-            this.logger.warn('Some services are disabled by configuration: %s', disabled.map((d) => d.cwd).join(', '), { context: 'services' })
-          }
-
-          if (preliminary.length > 0) {
-            this.locker.addLock({ data: { PRELIMINARY_SERVICES: `(${preliminary.map((s) => s.id).join(' ')})`, FIRST_SERVICE: true } })
-
-            this.logger.debug('Wrote lock file for preliminary services.', { context: 'preliminary-services' })
-          }
-
-          if (enabled.length < 1) {
-            throw new Error('No service is enabled at the moment. Please check the configuration.')
-          }
-
-          await this.createRunScriptForService(ctx, enabled)
         }
       },
 
@@ -343,15 +221,18 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
             command = 'fnm use && ' + command
           }
 
-          await this.pipeProcessToLogger(
-            execaCommand(`${command}`, {
-              shell: '/bin/bash',
-              detached: false,
-              extendEnv: false,
-              cwd: MOUNTED_DATA_FOLDER
-            }),
-            { context: 'fnm' }
-          )
+          this.locker.addLock<VizierConfig>({
+            data: [
+              [
+                {
+                  name: 'dependencies',
+                  commands: [ command ],
+                  cwd: MOUNTED_DATA_FOLDER
+                }
+              ]
+            ],
+            merge: MergeStrategy.EXTEND
+          })
         }
       },
 
@@ -359,48 +240,94 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
       {
         skip: (ctx): boolean => !ctx.config.before_all,
         task: async (ctx): Promise<void> => {
-          this.logger.info('before_all is defined, running commands before starting services.', { context: 'before-all' })
+          this.locker.addLock<VizierConfig>({
+            data: [
+              [
+                {
+                  name: 'before-all',
+                  commands: ctx.config.before_all as string[],
+                  cwd: MOUNTED_DATA_FOLDER
+                }
+              ]
+            ],
+            merge: MergeStrategy.EXTEND
+          })
+        }
+      },
 
-          for (const command of ctx.config.before_all as string[]) {
-            this.logger.info(`$ ${command}`, { context: 'before-all' })
+      // clean prior instance
+      {
+        task: async (): Promise<void> => {
+          try {
+            await this.fs.remove(VIZIER_FOLDER, { recursive: true })
+          } catch (e) {
+            this.logger.debug(e.message)
+          }
 
-            await this.pipeProcessToLogger(
-              execaCommand(command, {
-                shell: '/bin/bash',
-                detached: false,
-                extendEnv: false,
-                cwd: MOUNTED_DATA_FOLDER
-              }),
-              { context: 'before-all' }
+          await this.fs.mkdir(VIZIER_FOLDER)
+        }
+      },
+
+      {
+        task: async (ctx): Promise<void> => {
+          const enabled = ctx.config.services.filter((service) => service.enable === true)
+          const disabled = ctx.config.services.filter((service) => service.enable === false)
+
+          if (disabled.length > 0) {
+            this.logger.warn(
+              'Some services are disabled by configuration: %o',
+              disabled.map((d) => d.name),
+              { context: 'services' }
             )
           }
+
+          this.locker.addLock<VizierConfig>({
+            data: [ enabled.map((s) => this.generateLockForService(s, enabled.find((service) => service.sync) && !s.sync && s.sync_wait)) ],
+            merge: MergeStrategy.EXTEND
+          })
+
+          if (enabled.length < 1) {
+            throw new Error('No service is enabled at the moment. Please check the configuration.')
+          }
+
+          await this.createRunScriptForService(ctx, enabled)
         }
       }
     ])
   }
 
+  private generateLockForService (service: DockerService, delay?: number): VizierStep {
+    return {
+      name: service.name,
+      cwd: service.cwd,
+      commands: [ join(VIZIER_FOLDER, service.id) ],
+      environment: service.environment,
+      delay: delay ? delay.toString() + 's' : undefined,
+      log: service.log,
+      ignore_error: !service.exit_on_error,
+      retry: {
+        retries: service.run_once ? 1 : 0,
+        always: !service.run_once,
+        delay: service.restart_wait.toString() + 's'
+      }
+    }
+  }
+
   private async createRunScriptForService (ctx: InitCtx, services: DockerService[]): Promise<void> {
-    const runTemplatePath = join(ctx.files.templates, TEMPLATES.run)
-    const runTemplate = await this.fs.read(runTemplatePath)
-    const finishTemplatePath = join(ctx.files.templates, TEMPLATES.finish)
-    const finishTemplate = await this.fs.read(finishTemplatePath)
+    const templatePath = join(ctx.files.templates, TEMPLATE_RUN)
+    const template = await this.fs.read(templatePath)
 
     await Promise.all(
       services.map(async (service) => {
-        const runScriptTemplate = this.jinja.renderString(runTemplate, { service, config: ctx.config })
-        const finishScriptTemplate = this.jinja.renderString(finishTemplate, { service, config: ctx.config })
+        const script = this.jinja.renderString(template, { service, config: ctx.config })
 
-        const serviceDir = join(S6_FOLDERS.service, service.id)
-        const runScriptPath = join(serviceDir, S6_FOLDERS.runScriptName)
-        const finishScriptPath = join(serviceDir, S6_FOLDERS.finishScriptName)
+        const scriptPath = join(VIZIER_FOLDER, service.id)
 
-        await this.fs.mkdir(serviceDir)
+        await this.fs.write(scriptPath, script)
 
-        await Promise.all([ this.fs.write(runScriptPath, runScriptTemplate), this.fs.write(finishScriptPath, finishScriptTemplate) ])
+        await this.fs.extra.chmod(scriptPath, '0777')
 
-        await Promise.all([ this.fs.extra.chmod(runScriptPath, '0777'), this.fs.extra.chmod(finishScriptPath, '0777') ])
-
-        this.logger.debug('Initiated service scripts for "%s" in directory: %s', service.cwd, serviceDir, { context: 'services' })
+        this.logger.debug('Initiated service scripts for "%s" in directory: %s', service.cwd, VIZIER_FOLDER, { context: 'services' })
       })
     )
   }
