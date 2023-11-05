@@ -24,7 +24,7 @@ importers:
         specifier: ^4.3.0
         version: 4.3.0(typescript@5.2.2)
       eslint:
-        specifier: ^8.52.0
+        specifier: ^8.53.0
         version: 8.53.0
       eslint-plugin-import:
         specifier: ^2.29.0
