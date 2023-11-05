@@ -58,7 +58,7 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
-    "@cenk1cenk2/oclif-common": "^6.2.3",
+    "@cenk1cenk2/oclif-common": "^6.2.4",
     "@listr2/manager": "^1.0.2",
     "@oclif/core": "^3.10.1",
     "class-transformer": "^0.5.1",
