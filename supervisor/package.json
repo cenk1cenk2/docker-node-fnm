@@ -72,7 +72,7 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.3",
-    "@types/nunjucks": "^3.2.5",
+    "@types/nunjucks": "^3.2.6",
     "globby": "^13.2.2",
     "oclif": "^4.0.3"
   },
