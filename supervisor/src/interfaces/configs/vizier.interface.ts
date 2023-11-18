@@ -1,24 +1,14 @@
-import { Transform } from 'class-transformer'
 import { IsEnum } from 'class-validator'
 
 import { VizierLogLevels } from '@constants'
 
 export class VizierLogger {
   @IsEnum(VizierLogLevels)
-  @Transform(({ value }) => {
-    return typeof value === 'number' ? value : Object.values(VizierLogLevels).findIndex((level) => value === level)
-  })
-    stdout?: number
+    stdout?: VizierLogLevels
 
   @IsEnum(VizierLogLevels)
-  @Transform(({ value }) => {
-    return typeof value === 'number' ? value : Object.values(VizierLogLevels).findIndex((level) => value === level)
-  })
-    stderr?: number
+    stderr?: VizierLogLevels
 
   @IsEnum(VizierLogLevels)
-  @Transform(({ value }) => {
-    return typeof value === 'number' ? value : Object.values(VizierLogLevels).findIndex((level) => value === level)
-  })
-    lifetime?: number
+    lifetime?: VizierLogLevels
 }

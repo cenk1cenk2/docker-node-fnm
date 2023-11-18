@@ -53,7 +53,7 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
   }
 
   public async shouldRunAfter (): Promise<void> {
-    await this.locker.all()
+    await this.locker.lockAll()
   }
 
   public async run (): Promise<void> {
@@ -139,13 +139,15 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
 
           this.locker.addLock<VizierConfig>({
             data: [
-              [
-                {
-                  name: 'fnm',
-                  cwd: MOUNTED_DATA_FOLDER,
-                  commands: [ `fnm install ${ctx.config.defaults.node_version}` ]
-                }
-              ]
+              {
+                name: 'fnm',
+                commands: [
+                  {
+                    cwd: MOUNTED_DATA_FOLDER,
+                    command: `fnm install ${ctx.config.defaults.node_version}`
+                  }
+                ]
+              }
             ],
             merge: MergeStrategy.EXTEND
           })
@@ -164,13 +166,15 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
 
           this.locker.addLock<VizierConfig>({
             data: [
-              [
-                {
-                  name: 'fnm',
-                  cwd: MOUNTED_DATA_FOLDER,
-                  commands: [ 'fnm install' ]
-                }
-              ]
+              {
+                name: 'fnm',
+                commands: [
+                  {
+                    cwd: MOUNTED_DATA_FOLDER,
+                    command: 'fnm install'
+                  }
+                ]
+              }
             ],
             merge: MergeStrategy.EXTEND
           })
@@ -223,13 +227,15 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
 
           this.locker.addLock<VizierConfig>({
             data: [
-              [
-                {
-                  name: 'dependencies',
-                  commands: [ command ],
-                  cwd: MOUNTED_DATA_FOLDER
-                }
-              ]
+              {
+                name: 'dependencies',
+                commands: [
+                  {
+                    cwd: MOUNTED_DATA_FOLDER,
+                    command
+                  }
+                ]
+              }
             ],
             merge: MergeStrategy.EXTEND
           })
@@ -242,13 +248,13 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
         task: async (ctx): Promise<void> => {
           this.locker.addLock<VizierConfig>({
             data: [
-              [
-                {
-                  name: 'before-all',
-                  commands: ctx.config.before_all as string[],
-                  cwd: MOUNTED_DATA_FOLDER
-                }
-              ]
+              {
+                name: 'before-all',
+                commands: (ctx.config.before_all as string[]).map((command) => ({
+                  cwd: MOUNTED_DATA_FOLDER,
+                  command
+                }))
+              }
             ],
             merge: MergeStrategy.EXTEND
           })
@@ -282,7 +288,7 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
           }
 
           this.locker.addLock<VizierConfig>({
-            data: [ enabled.map((s) => this.generateLockForService(s, enabled.find((service) => service.sync) && !s.sync && s.sync_wait)) ],
+            data: [ ...enabled.map((s) => this.generateLockForService(s, enabled.find((service) => service.sync) && !s.sync && s.sync_wait)) ],
             merge: MergeStrategy.EXTEND
           })
 
@@ -299,17 +305,22 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
   private generateLockForService (service: DockerService, delay?: number): VizierStep {
     return {
       name: service.name,
-      cwd: service.cwd,
-      commands: [ join(VIZIER_FOLDER, service.id) ],
-      environment: service.environment,
+      commands: [
+        {
+          cwd: service.cwd,
+          command: join(VIZIER_FOLDER, service.id),
+          log: service.log,
+          environment: service.environment,
+          ignore_error: !service.exit_on_error,
+          retry: {
+            retries: service.run_once ? 1 : undefined,
+            always: !service.run_once,
+            delay: service.restart_wait.toString() + 's'
+          }
+        }
+      ],
       delay: delay ? delay.toString() + 's' : undefined,
-      log: service.log,
-      ignore_error: !service.exit_on_error,
-      retry: {
-        retries: service.run_once ? 1 : 0,
-        always: !service.run_once,
-        delay: service.restart_wait.toString() + 's'
-      }
+      background: true
     }
   }
 

@@ -1,5 +1,5 @@
 export enum VizierLogLevels {
-  DEFAULT = 'default',
+  DEFAULT = 0,
   FATAL = 'fatal',
   ERROR = 'error',
   WARN = 'warn',
