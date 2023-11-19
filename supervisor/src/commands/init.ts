@@ -217,7 +217,7 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
           if (this.fs.exists(join(MOUNTED_DATA_FOLDER, '.nvmrc')) || this.fs.exists(join(MOUNTED_DATA_FOLDER, '.node-version'))) {
             this.logger.debug('Node version file is found. appending to command.')
 
-            command = 'fnm use && ' + command
+            command = 'fnm exec -- ' + command
           }
 
           this.locker.addLock<VizierConfig>({
@@ -314,7 +314,9 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
           command: join(VIZIER_FOLDER, service.id),
           log: service.log,
           environment: service.environment,
-          ignore_error: !service.exit_on_error,
+          health: {
+            ignore_error: !service.exit_on_error
+          },
           retry: {
             retries: service.run_once ? 1 : undefined,
             always: !service.run_once,

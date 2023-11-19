@@ -36,6 +36,7 @@ export interface VizierStepCommand {
   log?: VizierStepCommandLogLevel
   environment?: Record<string, string>
   run_as?: VizierStepCommandRunAs
+  health?: VizierStepHealth
 }
 
 export interface VizierStepPermission {
