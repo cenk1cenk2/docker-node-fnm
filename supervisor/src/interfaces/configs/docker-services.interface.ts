@@ -1,7 +1,8 @@
 import { Type } from 'class-transformer'
 import { Allow, IsBoolean, IsEnum, IsObject, IsPositive, IsString, IsUUID, ValidateNested } from 'class-validator'
 
-import { VizierLogger } from './vizier.interface.js'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { VizierStepCommandLogLevel } from '@interfaces'
 import { IsFalseOrStringArray, IsSemverOrDefault } from '@utils'
 
 export class DockerServiceDefaults {
@@ -11,10 +12,8 @@ export class DockerServiceDefaults {
   @IsBoolean()
     enable?: boolean
 
-  // BUG: can not validate this properly
   @Allow()
-  @Type(() => VizierLogger)
-    log?: VizierLogger
+    log?: VizierStepCommandLogLevel
 
   @IsBoolean()
     load_dotenv?: boolean

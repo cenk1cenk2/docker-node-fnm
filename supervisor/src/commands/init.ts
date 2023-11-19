@@ -133,17 +133,19 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
           this.logger.info('Installing node version given from variables: %s', ctx.config.defaults.node_version, { context: 'node' })
 
           this.locker.addLock<VizierConfig>({
-            data: [
-              {
-                name: 'fnm',
-                commands: [
-                  {
-                    cwd: MOUNTED_DATA_FOLDER,
-                    command: `fnm install ${ctx.config.defaults.node_version}`
-                  }
-                ]
-              }
-            ],
+            data: {
+              steps: [
+                {
+                  name: 'fnm',
+                  commands: [
+                    {
+                      cwd: MOUNTED_DATA_FOLDER,
+                      command: `fnm install ${ctx.config.defaults.node_version}`
+                    }
+                  ]
+                }
+              ]
+            },
             merge: MergeStrategy.EXTEND
           })
         }
@@ -160,17 +162,19 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
           this.logger.info('Found node version override file in the root directory of the data folder.', { context: 'node' })
 
           this.locker.addLock<VizierConfig>({
-            data: [
-              {
-                name: 'fnm',
-                commands: [
-                  {
-                    cwd: MOUNTED_DATA_FOLDER,
-                    command: 'fnm install'
-                  }
-                ]
-              }
-            ],
+            data: {
+              steps: [
+                {
+                  name: 'fnm',
+                  commands: [
+                    {
+                      cwd: MOUNTED_DATA_FOLDER,
+                      command: 'fnm install'
+                    }
+                  ]
+                }
+              ]
+            },
             merge: MergeStrategy.EXTEND
           })
         }
@@ -221,17 +225,19 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
           }
 
           this.locker.addLock<VizierConfig>({
-            data: [
-              {
-                name: 'dependencies',
-                commands: [
-                  {
-                    cwd: MOUNTED_DATA_FOLDER,
-                    command
-                  }
-                ]
-              }
-            ],
+            data: {
+              steps: [
+                {
+                  name: 'dependencies',
+                  commands: [
+                    {
+                      cwd: MOUNTED_DATA_FOLDER,
+                      command
+                    }
+                  ]
+                }
+              ]
+            },
             merge: MergeStrategy.EXTEND
           })
         }
@@ -242,15 +248,17 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
         skip: (ctx): boolean => !ctx.config.before_all,
         task: async (ctx): Promise<void> => {
           this.locker.addLock<VizierConfig>({
-            data: [
-              {
-                name: 'before-all',
-                commands: (ctx.config.before_all as string[]).map((command) => ({
-                  cwd: MOUNTED_DATA_FOLDER,
-                  command
-                }))
-              }
-            ],
+            data: {
+              steps: [
+                {
+                  name: 'before-all',
+                  commands: (ctx.config.before_all as string[]).map((command) => ({
+                    cwd: MOUNTED_DATA_FOLDER,
+                    command
+                  }))
+                }
+              ]
+            },
             merge: MergeStrategy.EXTEND
           })
         }
@@ -283,7 +291,7 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
           }
 
           this.locker.addLock<VizierConfig>({
-            data: enabled.map((s) => this.generateLockForService(ctx, s, enabled.find((service) => service.sync) && !s.sync && s.sync_wait)),
+            data: { steps: enabled.map((s) => this.generateLockForService(ctx, s, enabled.find((service) => service.sync) && !s.sync && s.sync_wait)) },
             merge: MergeStrategy.EXTEND
           })
 
@@ -305,6 +313,10 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
           ctx: service satisfies RunScriptTemplate,
           chmod: {
             file: '0777'
+          },
+          log: {
+            generation: 'debug',
+            chmod: 'debug'
           }
         }
       ],

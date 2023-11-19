@@ -1,7 +1,7 @@
 {
   "name": "docker-node-fnm-init",
   "description": "Init controller for docker-node-fnm container.",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "private": true,
   "license": "MIT",
   "type": "module",
