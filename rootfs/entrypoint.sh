@@ -5,4 +5,4 @@ set -eo pipefail
 source /etc/bash.bashrc
 
 docker-node-fnm-init init
-vizier --config /etc/vizier/config.json
+vizier --config /etc/vizier.json

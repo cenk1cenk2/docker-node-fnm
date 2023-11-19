@@ -10,6 +10,7 @@ export const TEMPLATE_FOLDER = 'templates'
 
 export const VIZIER_CONFIG_FILE = join('/etc', 'vizier.json')
 
+export const TEMPLATE_SERVICE = 'service.sh.tpl'
 export const TEMPLATE_RUN = 'run.sh.tpl'
 
 export const CONFIG_FILES = {

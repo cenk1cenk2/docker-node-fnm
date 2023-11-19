@@ -72,14 +72,13 @@ RUN \
   NODE_ENV=production pnpm install -P --fix-lockfile && \
   pnpm store prune && \
   # https://github.com/pnpm/pnpm/issues/4761
-  yarn link && \
+  yarn link
+
+RUN \
   # smoke test
-  docker-node-fnm-init --version
+  docker-node-fnm-init --version && \
+  vizier --version
 
 WORKDIR /data
-
-# Create default configuration folders
-RUN \
-  mkdir -p /etc/vizier
 
 ENTRYPOINT ["tini", "/entrypoint.sh"]

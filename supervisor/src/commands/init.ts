@@ -16,8 +16,8 @@ import {
   ValidatorService,
   YamlParser
 } from '@cenk1cenk2/oclif-common'
-import { CONFIG_FILES, MOUNTED_CONFIG_PATH, MOUNTED_DATA_FOLDER, TEMPLATE_FOLDER, TEMPLATE_RUN, VIZIER_CONFIG_FILE } from '@constants'
-import type { DockerService, InitCtx, RunScriptTemplate, VizierConfig, VizierStep } from '@interfaces'
+import { CONFIG_FILES, MOUNTED_CONFIG_PATH, MOUNTED_DATA_FOLDER, TEMPLATE_FOLDER, TEMPLATE_RUN, TEMPLATE_SERVICE, VIZIER_CONFIG_FILE } from '@constants'
+import type { DockerService, InitCtx, RunScriptTemplate, ServiceScriptTemplate, VizierConfig, VizierStep } from '@interfaces'
 import { DockerServicesConfig } from '@interfaces'
 
 export default class Init extends Command<typeof Init, InitCtx> implements ShouldRunBeforeHook, ShouldRunAfterHook<InitCtx>, RegisterHook {
@@ -196,6 +196,7 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
             this.logger.info('node_modules is not found in the root of the mounted folder, running dependency installation.', { context: 'dependencies' })
           }
 
+          const commands: string[] = []
           let command: string
 
           switch (ctx.config.package_manager) {
@@ -221,8 +222,10 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
           if (this.fs.exists(join(MOUNTED_DATA_FOLDER, '.nvmrc')) || this.fs.exists(join(MOUNTED_DATA_FOLDER, '.node-version'))) {
             this.logger.debug('Node version file is found. appending to command.')
 
-            command = 'fnm exec -- ' + command
+            commands.push('fnm use')
           }
+
+          commands.push(command)
 
           this.locker.addLock<VizierConfig>({
             data: {
@@ -232,7 +235,11 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
                   commands: [
                     {
                       cwd: MOUNTED_DATA_FOLDER,
-                      command
+                      command: '/usr/bin/env bash',
+                      script: {
+                        file: join(ctx.files.templates, TEMPLATE_RUN),
+                        ctx: { commands } satisfies RunScriptTemplate
+                      }
                     }
                   ]
                 }
@@ -252,10 +259,16 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
               steps: [
                 {
                   name: 'before-all',
-                  commands: (ctx.config.before_all as string[]).map((command) => ({
-                    cwd: MOUNTED_DATA_FOLDER,
-                    command
-                  }))
+                  commands: [
+                    {
+                      cwd: MOUNTED_DATA_FOLDER,
+                      command: '/usr/bin/env bash',
+                      script: {
+                        file: join(ctx.files.templates, TEMPLATE_RUN),
+                        ctx: { commands: ctx.config.before_all as string[] } satisfies RunScriptTemplate
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -309,8 +322,8 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
           cwd: service.cwd,
           command: '/usr/bin/env bash',
           script: {
-            file: join(ctx.files.templates, TEMPLATE_RUN),
-            ctx: service satisfies RunScriptTemplate
+            file: join(ctx.files.templates, TEMPLATE_SERVICE),
+            ctx: service satisfies ServiceScriptTemplate
           },
           log: service.log,
           environment: service.environment,
