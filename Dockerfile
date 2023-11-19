@@ -80,10 +80,6 @@ WORKDIR /data
 
 # Create default configuration folders
 RUN \
-  mkdir -p /scripts && \
   mkdir -p /etc/vizier
-
-# Copy scripts
-ADD https://gist.githubusercontent.com/cenk1cenk2/e03d8610534a9c78f755c1c1ed93a293/raw/logger.sh /scripts/logger.sh
 
 ENTRYPOINT ["tini", "/entrypoint.sh"]

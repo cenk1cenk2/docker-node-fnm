@@ -24,15 +24,18 @@ export interface VizierStepCommandLogLevel {
 
 export interface VizierStepCommandRunAs extends VizierChown {}
 
+export interface VizierStepHealth {
+  ignore_error?: boolean
+  ensure_is_alive?: boolean
+}
+
 export interface VizierStepCommand {
   cwd?: string
   command: string
   retry?: VizierStepCommandRetry
-  ignore_error?: boolean
   log?: VizierStepCommandLogLevel
   environment?: Record<string, string>
   run_as?: VizierStepCommandRunAs
-  ensure_is_alive?: boolean
 }
 
 export interface VizierStepPermission {
