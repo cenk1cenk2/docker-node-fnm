@@ -73,11 +73,10 @@ defaults:
   restart_wait: 3 # wait before restarting the service, if crashed
   enable: true # enables or disables a service
   before: false # a command to run before the task, can be an array of commands or false
-  log: # logs can be an enum of default, fatal, error, warn, info, debug, trace
-    stdout: default
-    stderr: default
+  log: # logs can be an enum of 0, fatal, error, warn, info, debug, trace
+    stdout: info
+    stderr: warn
     lifetime: debug
-  load_dotenv: true # if the flag is set, this will load the .env file in the service.cwd
   command: pnpm run dev:start # default command to run
   sync: false # this will run the sync flagged services first and one-by-one with the sync_wait and run the others afterwards
   run_once: false # run the service once and do not try to restart
@@ -120,7 +119,6 @@ services:
 | DEFAULTS_ENABLE        | boolean                     |                |
 | DEFAULTS_BEFORE        | json                        | in array form  |
 | DEFALTS_LOGS           | enum(true, false, 'prefix') |                |
-| DEFAULTS_LOAD_DOTENV   | boolean                     |                |
 | DEFAULTS_COMMAND       | string                      |                |
 | DEFAULTS_SYNC          | boolean                     |                |
 | DEFAULTS_RUN_ONCE      | boolean                     |                |
@@ -152,7 +150,6 @@ So if you want to modify a property from the 0th service in the services array i
 | SERVICE\_${i}\_NODE_VERSION  | string                      |                |
 | SERVICE\_${i}\_BEFORE        | json                        | in array form  |
 | SERVICE\_${i}\_LOGS          | enum(true, false, 'prefix') |                |
-| SERVICE\_${i}\_LOAD_DOTENV   | boolean                     |                |
 | SERVICE\_${i}\_COMMAND       | string                      |                |
 | SERVICE\_${i}\_SYNC          | boolean                     |                |
 | SERVICE\_${i}\_RUN_ONCE      | boolean                     |                |
@@ -183,25 +180,22 @@ docker-compose exec "${CONTAINER_NAME}" /bin/bash -c "docker-node-fnm-init proxy
 
 There is also a gist available [here](https://gist.github.com/cenk1cenk2/0446f3be22a39c9f5fe5ee1cfb3cca63#file-cli-fnm-sh).
 
-## Usage
+## Default Configuration
 
-Proxy works in two ways:
-
-### `PROXY_WORKSPACE_ONLY` set to true
-
-- All the commands you give will be proxied to the container like: `./cli.sh pnpm install` will run `pnpm install` inside the container in the mounted directory of `/data`.
-
-### `PROXY_WORKSPACE_ONLY` set to false
-
-- First argument should be your relative path to `/data`, so imagine where you have a package called `some-package` and you have set `PROXY_PACKAGES_FOLDER` to `packages`, it will proxy the command to the `/data/packages/some-package`.
-- If you want to run anything outside of the package folder and in the root directory of `/data`, you can use the package keywords for it `root`, `.`, `ws`. So if you say `./cli.sh . ls`, it will just `ls` the `/data`.
+```yaml
+before_all: false # runs something before running anything else, can be an array of command or false
+```
 
 ## Environment Variables
 
-Proxy script has its own sets of environment variables for configuration but you can append those to your docker-compose file.
+### Container Settings
 
-| Environment Variable  | Format  | default |
-| --------------------- | ------- | ------- |
-| PROXY_WORKSPACE_ONLY  | boolean | false   |
-| PROXY_PACKAGES_FOLDER | string  | .       |
-| PROXY_LOAD_DOT_ENV    | boolean | true    |
+| Environment Variable | Format                                                               | description |
+| -------------------- | -------------------------------------------------------------------- | ----------- |
+| LOG_LEVEL            | enum('debug', 'verbose , 'module', 'info', 'warn', 'error', 'fatal') |             |
+
+### Global Settings
+
+| Environment Variable | Format | description              |
+| -------------------- | ------ | ------------------------ |
+| BEFORE_ALL           | json   | array of commands to run |

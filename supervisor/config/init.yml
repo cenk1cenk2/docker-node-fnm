@@ -15,7 +15,6 @@ defaults:
     stdout: info
     stderr: warn
     lifetime: debug
-  load_dotenv: true # if the flag is set, this will load the .env file in the service.cwd
   command: pnpm run dev:start # default command to run
   sync: false # this will run the sync flagged services first and one-by-one with the sync_wait and run the others afterwards
   run_once: false # run the service once and do not try to restart

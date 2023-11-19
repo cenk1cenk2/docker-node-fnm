@@ -5,11 +5,10 @@ import { ProxyConfig } from '../configs/proxy.interface.js'
 export class ProxyCtx {
   root: string
 
-  package: string
-
   files: {
     config: string
     env: string
+    templates: string
   }
 
   @ValidateNested()

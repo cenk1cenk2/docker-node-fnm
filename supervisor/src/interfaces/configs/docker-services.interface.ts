@@ -15,9 +15,6 @@ export class DockerServiceDefaults {
   @Allow()
     log?: VizierStepCommandLogLevel
 
-  @IsBoolean()
-    load_dotenv?: boolean
-
   @IsFalseOrStringArray()
     before?: false | string[]
 

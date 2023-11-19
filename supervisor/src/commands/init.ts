@@ -114,8 +114,6 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
           ctx.config.services = ctx.config.services.map((service) => {
             return this.cs.merge<DockerService>([ ctx.config.defaults, service, { id: randomUUID() } ])
           })
-
-          this.logger.debug('Services discovered: %o', ctx.config.services, { context: 'services' })
         }
       },
 
@@ -158,8 +156,20 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
             ctx.config.defaults.node_version === 'default' && !this.fs.exists(join(MOUNTED_DATA_FOLDER, '.nvmrc')) && !this.fs.exists(join(MOUNTED_DATA_FOLDER, '.node-version'))
           )
         },
-        task: async (): Promise<void> => {
-          this.logger.info('Found node version override file in the root directory of the data folder.', { context: 'node' })
+        task: async (ctx): Promise<void> => {
+          ctx.config.defaults.node_version =
+            this.fs.exists(join(MOUNTED_DATA_FOLDER, '.nvmrc')) && await this.fs.read(join(MOUNTED_DATA_FOLDER, '.nvmrc')) ||
+            this.fs.exists(join(MOUNTED_DATA_FOLDER, '.node-version')) && await this.fs.read(join(MOUNTED_DATA_FOLDER, '.node-version'))
+
+          ctx.config.defaults.node_version = ctx.config.defaults.node_version.trim()
+
+          ctx.config.services.forEach((service) => {
+            if (service.node_version === 'default') {
+              service.node_version = ctx.config.defaults.node_version
+            }
+          })
+
+          this.logger.info('Found node version override file in the root directory of the data folder: using %s', ctx.config.defaults.node_version)
 
           this.locker.addLock<VizierConfig>({
             data: {
@@ -292,6 +302,8 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
         task: async (ctx): Promise<void> => {
           const enabled = ctx.config.services.filter((service) => service.enable === true)
           const disabled = ctx.config.services.filter((service) => service.enable === false)
+
+          this.logger.debug('Services discovered: %o', ctx.config.services, { context: 'services' })
 
           if (disabled.length > 0) {
             this.logger.warn(

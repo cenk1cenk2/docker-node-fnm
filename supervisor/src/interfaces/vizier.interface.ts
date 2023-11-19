@@ -33,6 +33,7 @@ export interface VizierStepCommand {
   health?: VizierStepCommandHealth
   parallel?: boolean
   log?: VizierStepCommandLogLevel
+  pipe?: VizierStepCommandPipe
 }
 export interface VizierStepCommandScript {
   inline?: string
@@ -58,6 +59,9 @@ export interface VizierStepCommandLogLevel {
   lifetime?: 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace'
   permissions?: 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace'
 }
+export interface VizierStepCommandPipe {
+  stdin?: boolean
+}
 export interface VizierStepPermission {
   path: string
   chown?: VizierChown
@@ -79,7 +83,8 @@ export interface VizierStepPermissionLogLevel {
   chmod?: 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace'
 }
 export interface VizierStepTemplate {
-  input: string
+  inline?: string
+  input?: string
   output: string
   ctx?: unknown
   chmod?: VizierChmod
