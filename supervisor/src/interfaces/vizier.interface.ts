@@ -25,8 +25,8 @@ export interface VizierStepCommandLogLevel {
 export interface VizierStepCommandRunAs extends VizierChown {}
 
 export interface VizierStepHealth {
-  ignore_error?: boolean
-  ensure_is_alive?: boolean
+  ignoreError?: boolean
+  ensureIsAlive?: boolean
 }
 
 export interface VizierStepCommand {
@@ -35,7 +35,7 @@ export interface VizierStepCommand {
   retry?: VizierStepCommandRetry
   log?: VizierStepCommandLogLevel
   environment?: Record<string, string>
-  run_as?: VizierStepCommandRunAs
+  runAs?: VizierStepCommandRunAs
   health?: VizierStepHealth
 }
 

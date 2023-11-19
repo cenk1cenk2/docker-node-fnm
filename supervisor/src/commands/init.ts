@@ -315,7 +315,7 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
           log: service.log,
           environment: service.environment,
           health: {
-            ignore_error: !service.exit_on_error
+            ignoreError: !service.exit_on_error
           },
           retry: {
             retries: service.run_once ? 1 : undefined,
