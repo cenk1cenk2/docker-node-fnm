@@ -1,6 +1,6 @@
 import type { VizierLogLevels } from '@constants'
 
-export interface VizierPermission {
+export interface VizierChown {
   user?: string
   group?: string
 }
@@ -22,7 +22,7 @@ export interface VizierStepCommandLogLevel {
   lifetime?: VizierLogLevels
 }
 
-export interface VizierStepCommandRunAs extends VizierPermission {}
+export interface VizierStepCommandRunAs extends VizierChown {}
 
 export interface VizierStepCommand {
   cwd?: string
@@ -32,19 +32,29 @@ export interface VizierStepCommand {
   log?: VizierStepCommandLogLevel
   environment?: Record<string, string>
   run_as?: VizierStepCommandRunAs
+  ensure_is_alive?: boolean
 }
 
 export interface VizierStepPermission {
   path: string
-  chown?: VizierPermission
+  chown?: VizierChown
   chmod?: VizierChmod
   recursive?: boolean
+}
+
+export interface VizierStepTemplate {
+  input: string
+  output: string
+  ctx?: any
+  chmod?: VizierChmod
+  chown?: VizierChown
 }
 
 export interface VizierStep {
   name?: string
   commands?: VizierStepCommand[]
   permissions?: VizierStepPermission[]
+  templates?: VizierStepTemplate[]
   delay?: string
   background?: boolean
   parallel?: boolean

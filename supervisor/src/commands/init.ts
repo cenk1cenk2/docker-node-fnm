@@ -17,10 +17,8 @@ import {
   YamlParser
 } from '@cenk1cenk2/oclif-common'
 import { CONFIG_FILES, MOUNTED_CONFIG_PATH, MOUNTED_DATA_FOLDER, TEMPLATE_FOLDER, TEMPLATE_RUN, VIZIER_CONFIG_FILE, VIZIER_FOLDER } from '@constants'
-import type { DockerService, InitCtx, VizierConfig, VizierStep } from '@interfaces'
+import type { DockerService, InitCtx, RunScriptTemplate, VizierConfig, VizierStep } from '@interfaces'
 import { DockerServicesConfig } from '@interfaces'
-import type { Jinja } from '@utils'
-import { jinja } from '@utils'
 
 export default class Init extends Command<typeof Init, InitCtx> implements ShouldRunBeforeHook, ShouldRunAfterHook<InitCtx>, RegisterHook {
   static description = 'This command initiates the container and creates the required variables.'
@@ -30,7 +28,6 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
   private validator: ValidatorService
   private parser: ParserService
   private locker: LockerService<VizierConfig>
-  private jinja: Jinja
 
   public async register (cli: DynamicModule): Promise<DynamicModule> {
     cli.imports.push(ValidatorModule)
@@ -65,8 +62,6 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
             env: join(this.cs.defaults, CONFIG_FILES.INIT_ENV),
             templates: join(this.cs.oclif.root, TEMPLATE_FOLDER)
           }
-
-          this.jinja = jinja(this.fs, this.parser, ctx.files.templates)
         }
       },
 
@@ -288,23 +283,31 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
           }
 
           this.locker.addLock<VizierConfig>({
-            data: [ ...enabled.map((s) => this.generateLockForService(s, enabled.find((service) => service.sync) && !s.sync && s.sync_wait)) ],
+            data: enabled.map((s) => this.generateLockForService(ctx, s, enabled.find((service) => service.sync) && !s.sync && s.sync_wait)),
             merge: MergeStrategy.EXTEND
           })
 
           if (enabled.length < 1) {
             throw new Error('No service is enabled at the moment. Please check the configuration.')
           }
-
-          await this.createRunScriptForService(ctx, enabled)
         }
       }
     ])
   }
 
-  private generateLockForService (service: DockerService, delay?: number): VizierStep {
+  private generateLockForService (ctx: InitCtx, service: DockerService, delay?: number): VizierStep {
     return {
       name: service.name,
+      templates: [
+        {
+          input: join(ctx.files.templates, TEMPLATE_RUN),
+          output: join(VIZIER_FOLDER, service.id),
+          ctx: service satisfies RunScriptTemplate,
+          chmod: {
+            file: '0777'
+          }
+        }
+      ],
       commands: [
         {
           cwd: service.cwd,
@@ -322,24 +325,5 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
       delay: delay ? delay.toString() + 's' : undefined,
       background: true
     }
-  }
-
-  private async createRunScriptForService (ctx: InitCtx, services: DockerService[]): Promise<void> {
-    const templatePath = join(ctx.files.templates, TEMPLATE_RUN)
-    const template = await this.fs.read(templatePath)
-
-    await Promise.all(
-      services.map(async (service) => {
-        const script = this.jinja.renderString(template, { service, config: ctx.config })
-
-        const scriptPath = join(VIZIER_FOLDER, service.id)
-
-        await this.fs.write(scriptPath, script)
-
-        await this.fs.extra.chmod(scriptPath, '0777')
-
-        this.logger.debug('Initiated service scripts for "%s" in directory: %s', service.cwd, VIZIER_FOLDER, { context: 'services' })
-      })
-    )
   }
 }

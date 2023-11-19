@@ -1,6 +1,3 @@
-import type { DockerService, DockerServicesConfig } from '../configs/docker-services.interface.js'
+import type { DockerService } from '../configs/docker-services.interface.js'
 
-export interface RunScriptTemplate {
-  config: DockerServicesConfig
-  service: DockerService
-}
+export interface RunScriptTemplate extends DockerService {}
