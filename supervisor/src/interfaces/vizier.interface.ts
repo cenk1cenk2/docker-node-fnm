@@ -24,6 +24,7 @@ export interface VizierStepCommand {
   name?: string
   cwd?: string
   command: string
+  script?: VizierStepCommandScript
   retry?: VizierStepCommandRetry
   environment?: {
     [k: string]: string
@@ -32,6 +33,11 @@ export interface VizierStepCommand {
   health?: VizierStepCommandHealth
   parallel?: boolean
   log?: VizierStepCommandLogLevel
+}
+export interface VizierStepCommandScript {
+  inline?: string
+  file?: string
+  ctx?: unknown
 }
 export interface VizierStepCommandRetry {
   retries?: number

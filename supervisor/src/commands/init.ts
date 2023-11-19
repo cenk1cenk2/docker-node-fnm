@@ -16,7 +16,7 @@ import {
   ValidatorService,
   YamlParser
 } from '@cenk1cenk2/oclif-common'
-import { CONFIG_FILES, MOUNTED_CONFIG_PATH, MOUNTED_DATA_FOLDER, TEMPLATE_FOLDER, TEMPLATE_RUN, VIZIER_CONFIG_FILE, VIZIER_FOLDER } from '@constants'
+import { CONFIG_FILES, MOUNTED_CONFIG_PATH, MOUNTED_DATA_FOLDER, TEMPLATE_FOLDER, TEMPLATE_RUN, VIZIER_CONFIG_FILE } from '@constants'
 import type { DockerService, InitCtx, RunScriptTemplate, VizierConfig, VizierStep } from '@interfaces'
 import { DockerServicesConfig } from '@interfaces'
 
@@ -268,12 +268,10 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
       {
         task: async (): Promise<void> => {
           try {
-            await this.fs.remove(VIZIER_FOLDER, { recursive: true })
+            await this.fs.remove(VIZIER_CONFIG_FILE, { recursive: true })
           } catch (e) {
             this.logger.debug(e.message)
           }
-
-          await this.fs.mkdir(VIZIER_FOLDER)
         }
       },
 
@@ -306,24 +304,14 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
   private generateLockForService (ctx: InitCtx, service: DockerService, delay?: number): VizierStep {
     return {
       name: service.name,
-      templates: [
-        {
-          input: join(ctx.files.templates, TEMPLATE_RUN),
-          output: join(VIZIER_FOLDER, service.id),
-          ctx: service satisfies RunScriptTemplate,
-          chmod: {
-            file: '0777'
-          },
-          log: {
-            generation: 'debug',
-            chmod: 'debug'
-          }
-        }
-      ],
       commands: [
         {
           cwd: service.cwd,
-          command: join(VIZIER_FOLDER, service.id),
+          command: '/usr/bin/env bash',
+          script: {
+            file: join(ctx.files.templates, TEMPLATE_RUN),
+            ctx: service satisfies RunScriptTemplate
+          },
           log: service.log,
           environment: service.environment,
           health: {

@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 source /etc/bash.bashrc
 
 set -eo pipefail
@@ -30,3 +28,5 @@ echo "Running before task: $ {{ . }}"
 
 # Package start command
 {{ .command }}
+
+exit
