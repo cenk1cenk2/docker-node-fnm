@@ -198,4 +198,4 @@ before_all: false # runs something before running anything else, can be an array
 
 | Environment Variable | Format | description              |
 | -------------------- | ------ | ------------------------ |
-| BEFORE_ALL           | json   | array of commands to run |
+| PROXY_BEFORE_ALL     | json   | array of commands to run |
