@@ -15,6 +15,7 @@ export interface VizierStep {
   commands?: VizierStepCommand[]
   permissions?: VizierStepPermission[]
   templates?: VizierStepTemplate[]
+  shouldDisable?: string | boolean
   delay?: string
   background?: boolean
   parallel?: boolean
@@ -31,7 +32,10 @@ export interface VizierStepCommand {
   }
   runAs?: VizierStepCommandRunAs
   health?: VizierStepCommandHealth
+  shouldDisable?: string | boolean
   parallel?: boolean
+  delay?: string
+  background?: boolean
   log?: VizierStepCommandLogLevel
   pipe?: VizierStepCommandPipe
 }
@@ -58,6 +62,8 @@ export interface VizierStepCommandLogLevel {
   stderr?: 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace'
   lifetime?: 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace'
   permissions?: 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace'
+  delay?: 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace'
+  background?: 'fatal' | 'error' | 'warn' | 'info' | 'debug' | 'trace'
 }
 export interface VizierStepCommandPipe {
   stdin?: boolean
@@ -67,6 +73,7 @@ export interface VizierStepPermission {
   chown?: VizierChown
   chmod?: VizierChmod
   recursive?: boolean
+  shouldDisable?: string | boolean
   parallel?: boolean
   log?: VizierStepPermissionLogLevel
 }
@@ -89,6 +96,7 @@ export interface VizierStepTemplate {
   ctx?: unknown
   chmod?: VizierChmod
   chown?: VizierChown
+  shouldDisable?: string | boolean
   parallel?: boolean
   log?: VizierStepTemplateLogLevel
 }

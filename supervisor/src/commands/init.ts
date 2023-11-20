@@ -300,57 +300,48 @@ export default class Init extends Command<typeof Init, InitCtx> implements Shoul
 
       {
         task: async (ctx): Promise<void> => {
-          const enabled = ctx.config.services.filter((service) => service.enable === true)
-          const disabled = ctx.config.services.filter((service) => service.enable === false)
-
           this.logger.debug('Services discovered: %o', ctx.config.services, { context: 'services' })
 
-          if (disabled.length > 0) {
-            this.logger.warn(
-              'Some services are disabled by configuration: %o',
-              disabled.map((d) => d.name),
-              { context: 'services' }
-            )
-          }
-
           this.locker.addLock<VizierConfig>({
-            data: { steps: enabled.map((s) => this.generateLockForService(ctx, s, enabled.find((service) => service.sync) && !s.sync && s.sync_wait)) },
+            data: {
+              steps: [
+                ctx.config.services.reduce<VizierStep>(
+                  (o, service) => {
+                    const delay = ctx.config.services.filter((service) => service.sync).length > 0 && !service.sync && service.sync_wait
+
+                    o.commands.push({
+                      parallel: true,
+                      shouldDisable: !service.enable,
+                      name: service.name,
+                      cwd: service.cwd,
+                      command: '/usr/bin/env bash',
+                      script: {
+                        file: join(ctx.files.templates, TEMPLATE_SERVICE),
+                        ctx: service satisfies ServiceScriptTemplate
+                      },
+                      log: service.log,
+                      environment: service.environment,
+                      health: {
+                        ignoreError: !service.exit_on_error
+                      },
+                      retry: {
+                        retries: service.run_once ? 1 : undefined,
+                        always: !service.run_once,
+                        delay: service.restart_wait.toString() + 's'
+                      },
+                      delay: delay ? delay.toString() + 's' : undefined
+                    })
+
+                    return o
+                  },
+                  { commands: [] }
+                )
+              ]
+            },
             merge: MergeStrategy.EXTEND
           })
-
-          if (enabled.length < 1) {
-            throw new Error('No service is enabled at the moment. Please check the configuration.')
-          }
         }
       }
     ])
-  }
-
-  private generateLockForService (ctx: InitCtx, service: DockerService, delay?: number): VizierStep {
-    return {
-      name: service.name,
-      commands: [
-        {
-          cwd: service.cwd,
-          command: '/usr/bin/env bash',
-          script: {
-            file: join(ctx.files.templates, TEMPLATE_SERVICE),
-            ctx: service satisfies ServiceScriptTemplate
-          },
-          log: service.log,
-          environment: service.environment,
-          health: {
-            ignoreError: !service.exit_on_error
-          },
-          retry: {
-            retries: service.run_once ? 1 : undefined,
-            always: !service.run_once,
-            delay: service.restart_wait.toString() + 's'
-          }
-        }
-      ],
-      delay: delay ? delay.toString() + 's' : undefined,
-      background: true
-    }
   }
 }
