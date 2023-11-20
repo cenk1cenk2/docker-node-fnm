@@ -2,7 +2,7 @@ import { execaCommand } from 'execa'
 import { join } from 'path'
 
 import type { DynamicModule, ShouldRunBeforeHook } from '@cenk1cenk2/oclif-common'
-import { Command, ConfigService, ParserService, ValidatorModule, ValidatorService, YamlParser } from '@cenk1cenk2/oclif-common'
+import { Command, ConfigService, EnvironmentVariableParser, JsonParser, ParserService, ValidatorModule, ValidatorService, YamlParser } from '@cenk1cenk2/oclif-common'
 import { CONFIG_FILES, MOUNTED_DATA_FOLDER, TEMPLATE_FOLDER } from '@constants'
 import type { ProxyCtx } from '@interfaces'
 import { ProxyConfig } from '@interfaces'
@@ -26,7 +26,7 @@ export default class Proxy extends Command<typeof Proxy, ProxyCtx> implements Sh
     this.cs = this.app.get(ConfigService)
     this.validator = this.app.get(ValidatorService)
 
-    await this.parser.register(YamlParser)
+    await this.parser.register(YamlParser, JsonParser, EnvironmentVariableParser)
     this.tasks.options = {
       silentRendererCondition: true
     }
