@@ -55,7 +55,7 @@
     "topicSeparator": ":"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=20.10.0"
   },
   "dependencies": {
     "@cenk1cenk2/oclif-common": "^6.2.7",
