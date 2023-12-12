@@ -1978,8 +1978,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /aws-sdk@2.1516.0:
-    resolution: {integrity: sha512-RgTRRQR77NDYjnpCwA8/fv9bKTrbcugP6PaLduYtlMZa78fws/vROTe6bL6K+BRZ/lrWz6kW6xJJdN9KkkrOMw==}
+  /aws-sdk@2.1517.0:
+    resolution: {integrity: sha512-k8TXd7t6BFUheOoGXpBRVOCwU4nmmWn1LFRS5WLRR0MUxbkvvJqeNArn+ktiod/t7p4hDSmd48cVLGi3eoyX9g==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       buffer: 4.9.2
@@ -5238,7 +5238,7 @@ packages:
       '@oclif/plugin-not-found': 2.4.3(@swc/core@1.3.100)(@types/node@20.10.4)(typescript@5.3.3)
       '@oclif/plugin-warn-if-update-available': 3.0.6(typescript@5.3.3)
       async-retry: 1.3.3
-      aws-sdk: 2.1516.0
+      aws-sdk: 2.1517.0
       change-case: 4.1.2
       debug: 4.3.4(supports-color@8.1.1)
       eslint-plugin-perfectionist: 2.5.0(eslint@8.55.0)(typescript@5.3.3)
