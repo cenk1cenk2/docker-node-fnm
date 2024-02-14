@@ -30,7 +30,7 @@
     "ts-node": "^10.9.2",
     "tsconfig-replace-paths": "^0.0.14",
     "tsup": "^8.0.2",
-    "turbo": "^1.12.3",
+    "turbo": "^1.12.4",
     "typescript": "^5.3.3"
   },
   "config": {
