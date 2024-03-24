@@ -94,8 +94,8 @@ importers:
         specifier: ^14.0.1
         version: 14.0.1
       oclif:
-        specifier: ^4.6.1
-        version: 4.6.1
+        specifier: ^4.6.2
+        version: 4.6.2
 
 packages:
 
@@ -4372,6 +4372,7 @@ packages:
 
   /is-arrayish@0.2.1:
     resolution: {integrity: sha512-zz06S8t0ozoDXMG+ube26zeCTNXcKIPJZJi8hBrF4idCLms4CG9QtK7qBl1boi5ODzFpjswb5JPmHCbMpjaYzg==}
+    requiresBuild: true
     dev: true
 
   /is-arrayish@0.3.2:
@@ -5100,8 +5101,8 @@ packages:
       es-object-atoms: 1.0.0
     dev: true
 
-  /oclif@4.6.1:
-    resolution: {integrity: sha512-PImUoF6NiWVjaZ1GHeqD6aUUsWLot/7wey1WxOzei/dn4lK1nGH3/UXRSAGG6OciSlzuwNClPKfqNwKAVPm3OQ==}
+  /oclif@4.6.2:
+    resolution: {integrity: sha512-k0QUbKBYhG+iam1wL5AJ8AimLemPTX8DhxnRnhrSJnuVn6BciFwrJ19MYKPmt3w47d2MZtyOfKfyZFBlvfr1gA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:
