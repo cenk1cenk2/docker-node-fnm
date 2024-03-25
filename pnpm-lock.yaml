@@ -1557,8 +1557,8 @@ packages:
       wordwrap: 1.0.0
       wrap-ansi: 7.0.0
 
-  /@oclif/plugin-help@6.0.19:
-    resolution: {integrity: sha512-ib9wjiWi8afTIQrdDPDgUkKaC4R+78wnKWpzybMH0yG1dd3krVHu0zHYEJUtC3Ples/cRv7f4EHBkO3lQpnZcA==}
+  /@oclif/plugin-help@6.0.20:
+    resolution: {integrity: sha512-4UG/5q7O3dhUsC0JMqcUV0NU7jybkXkAXLnsRt+KVzDtZWwNOeBECimIFWOmwna5BaneTn8b0+lqO4JvUgeiqA==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@oclif/core': 3.26.0
@@ -2928,7 +2928,7 @@ packages:
     resolution: {integrity: sha512-2VEG9JICxIqTpoK1eMzZqaV+u/EiwEJkMGzTrZf6sU/fwsnOITVgYJ8yojSy6CaXtO9V0Cc6ZQZ8h8m4UBuLwQ==}
     dependencies:
       '@types/validator': 13.11.9
-      libphonenumber-js: 1.10.58
+      libphonenumber-js: 1.10.59
       validator: 13.11.0
     dev: false
 
@@ -4696,8 +4696,8 @@ packages:
       type-check: 0.4.0
     dev: true
 
-  /libphonenumber-js@1.10.58:
-    resolution: {integrity: sha512-53A0IpJFL9LdHbpeatwizf8KSwPICrqn9H0g3Y7WQ+Jgeu9cQ4Ew3WrRtrLBu/CX2lXd5+rgT01/tGlkbkzOjw==}
+  /libphonenumber-js@1.10.59:
+    resolution: {integrity: sha512-HeTsOrDF/hWhEiKqZVwg9Cqlep5x2T+IYDENvT2VRj3iX8JQ7Y+omENv+AIn0vC8m6GYhivfCed5Cgfw27r5SA==}
     dev: false
 
   /lilconfig@3.0.0:
@@ -5109,7 +5109,7 @@ packages:
       '@inquirer/input': 2.1.0
       '@inquirer/select': 2.2.0
       '@oclif/core': 3.26.0
-      '@oclif/plugin-help': 6.0.19
+      '@oclif/plugin-help': 6.0.20
       '@oclif/plugin-not-found': 3.1.1
       '@oclif/plugin-warn-if-update-available': 3.0.15
       async-retry: 1.3.3
