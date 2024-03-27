@@ -58,10 +58,10 @@ importers:
     dependencies:
       '@cenk1cenk2/oclif-common':
         specifier: ^6.3.11
-        version: 6.3.11(@listr2/manager@2.0.2)(@oclif/core@3.26.0)(class-transformer@0.5.1)(class-validator@0.14.1)(enquirer@2.4.1)(execa@8.0.1)(fs-extra@11.2.0)(listr2@8.0.2)(rxjs@7.8.1)(yaml@2.4.1)
+        version: 6.3.11(@listr2/manager@2.0.4)(@oclif/core@3.26.0)(class-transformer@0.5.1)(class-validator@0.14.1)(enquirer@2.4.1)(execa@8.0.1)(fs-extra@11.2.0)(listr2@8.1.1)(rxjs@7.8.1)(yaml@2.4.1)
       '@listr2/manager':
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^2.0.4
+        version: 2.0.4
       '@oclif/core':
         specifier: ^3.26.0
         version: 3.26.0
@@ -78,8 +78,8 @@ importers:
         specifier: ^11.2.0
         version: 11.2.0
       listr2:
-        specifier: ^8.0.2
-        version: 8.0.2
+        specifier: ^8.1.1
+        version: 8.1.1
       source-map-support:
         specifier: ^0.5.21
         version: 0.5.21
@@ -824,7 +824,7 @@ packages:
       enquirer: 2.4.1
       external-editor: 3.1.0
       find-git-root: 1.0.4
-      listr2: 8.0.2
+      listr2: 8.1.1
     optionalDependencies:
       '@commitlint/load': 18.6.1(@types/node@20.11.30)(typescript@5.4.3)
     transitivePeerDependencies:
@@ -868,7 +868,7 @@ packages:
       - typescript
     dev: true
 
-  /@cenk1cenk2/oclif-common@6.3.11(@listr2/manager@2.0.2)(@oclif/core@3.26.0)(class-transformer@0.5.1)(class-validator@0.14.1)(enquirer@2.4.1)(execa@8.0.1)(fs-extra@11.2.0)(listr2@8.0.2)(rxjs@7.8.1)(yaml@2.4.1):
+  /@cenk1cenk2/oclif-common@6.3.11(@listr2/manager@2.0.4)(@oclif/core@3.26.0)(class-transformer@0.5.1)(class-validator@0.14.1)(enquirer@2.4.1)(execa@8.0.1)(fs-extra@11.2.0)(listr2@8.1.1)(rxjs@7.8.1)(yaml@2.4.1):
     resolution: {integrity: sha512-cfjPzUkL/TfwT4P0L548jfRt6zN+X9koB9vE3llSWE0qkWRVGx97nlrFRCMle+WuRro9XkPvsm/u6sIBDjZ04A==}
     engines: {node: '>= 16'}
     peerDependencies:
@@ -890,7 +890,7 @@ packages:
       yaml:
         optional: true
     dependencies:
-      '@listr2/manager': 2.0.2
+      '@listr2/manager': 2.0.4
       '@nestjs/common': 10.3.5(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.1)(rxjs@7.8.1)
       '@nestjs/core': 10.3.5(@nestjs/common@10.3.5)(reflect-metadata@0.2.1)(rxjs@7.8.1)
       '@oclif/core': 3.26.0
@@ -900,7 +900,7 @@ packages:
       enquirer: 2.4.1
       execa: 8.0.1
       fs-extra: 11.2.0
-      listr2: 8.0.2
+      listr2: 8.1.1
       object-path-immutable: 4.1.2
       reflect-metadata: 0.2.1
       winston: 3.13.0
@@ -1422,8 +1422,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@listr2/manager@2.0.2:
-    resolution: {integrity: sha512-euTFvKxwzcoApbXLV5KA+hJf6/oYmyFLeaGNGfdOoU0FWogdNRDr/upckJ+OACqufojsIJnCcOfZTrb9iUFJRA==}
+  /@listr2/manager@2.0.4:
+    resolution: {integrity: sha512-74nfAWVVQMlu6JMuEP/i5ziQ4fUsdaIZqOMA8XF/41lw4EVTKOooEUK/GfPQXhFLZp4V7kCbRbrtk/TZMjfrhw==}
     engines: {node: '>=18.0.0'}
     dev: false
 
@@ -4745,8 +4745,8 @@ packages:
       wrap-ansi: 9.0.0
     dev: true
 
-  /listr2@8.0.2:
-    resolution: {integrity: sha512-v5jEMOeEJUpRjSXSB4U3w5A3YPmURYMUO/86f1PA4GGYcdbUQYpkbvKYT7Xaq1iu4Zjn51Rv1UeD1zsBXRijiQ==}
+  /listr2@8.1.1:
+    resolution: {integrity: sha512-w//D3d/sogqVYtz3EXRJAAiblnSoklftUbIlvWMN7AwJlqVEqjrJ9X2LM4NWOtfPWPxxPop2jS+vU1+kpA01bg==}
     engines: {node: '>=18.0.0'}
     dependencies:
       cli-truncate: 4.0.0
