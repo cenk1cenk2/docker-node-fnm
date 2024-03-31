@@ -818,7 +818,7 @@ packages:
     resolution: {integrity: sha512-LEa/CTobqRDmF4XXmVbCdXB1rMQySxyIBRzQC8SXegW533jd4lAed8nABuv1OUOLD9MqnZ/sOt8mE9Km6tT6Pg==}
     engines: {node: '>= 16'}
     dependencies:
-      '@listr2/prompt-adapter-enquirer': 2.0.5(enquirer@2.4.1)
+      '@listr2/prompt-adapter-enquirer': 2.0.6(enquirer@2.4.1)
       commitizen: 4.3.0(@types/node@20.12.2)(typescript@5.4.3)
       conventional-commit-types: 3.0.0
       enquirer: 2.4.1
@@ -1426,8 +1426,8 @@ packages:
     engines: {node: '>=18.0.0'}
     dev: false
 
-  /@listr2/prompt-adapter-enquirer@2.0.5(enquirer@2.4.1):
-    resolution: {integrity: sha512-XdvqaL/nKq++lJlsB7LNnzQL3BCAFDokqhpyhtUhnvNz1ep7iKldtTLH5/12oLB987JVpoF44n/O4fsTyvU0TQ==}
+  /@listr2/prompt-adapter-enquirer@2.0.6(enquirer@2.4.1):
+    resolution: {integrity: sha512-Y/ogzBD787tiGPk00pHiprB/gY3BQ1W7cw9ofNMaZUpcb0WG/q2wd7Ipw46p3ueWZzOVlJxFvdHkpqapzRYNFw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       enquirer: '>= 2.3.0 < 3'
@@ -4385,7 +4385,6 @@ packages:
 
   /is-arrayish@0.2.1:
     resolution: {integrity: sha512-zz06S8t0ozoDXMG+ube26zeCTNXcKIPJZJi8hBrF4idCLms4CG9QtK7qBl1boi5ODzFpjswb5JPmHCbMpjaYzg==}
-    requiresBuild: true
     dev: true
 
   /is-arrayish@0.3.2:
