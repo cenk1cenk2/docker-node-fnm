@@ -94,8 +94,8 @@ importers:
         specifier: ^14.0.1
         version: 14.0.1
       oclif:
-        specifier: ^4.8.0
-        version: 4.8.0
+        specifier: ^4.8.1
+        version: 4.8.1
 
 packages:
 
@@ -5279,8 +5279,8 @@ packages:
       es-object-atoms: 1.0.0
     dev: true
 
-  /oclif@4.8.0:
-    resolution: {integrity: sha512-sSaAy8m7EVrkgkM9mXE+b33hDUI9lhAz28JhX13EVmV6eJRRqpnBqQSymdIoKDCyJoQeAY/JHqnMXvyuObMZBg==}
+  /oclif@4.8.1:
+    resolution: {integrity: sha512-2UcxQFQOTRC6OsBHR1DnrnCZRfxsER3IfJY2SeA/mVbfYoLCH3l6JohjoTL6HTjpZG8ojZ/igZ3bv1xvYDDy8w==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:
