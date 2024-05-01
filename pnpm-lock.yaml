@@ -94,8 +94,8 @@ importers:
         specifier: ^14.0.1
         version: 14.0.1
       oclif:
-        specifier: ^4.9.3
-        version: 4.9.3(@aws-sdk/client-sso-oidc@3.565.0(@aws-sdk/client-sts@3.565.0))(@aws-sdk/client-sts@3.565.0(@aws-sdk/client-sso-oidc@3.565.0))
+        specifier: ^4.10.1
+        version: 4.10.1(@aws-sdk/client-sso-oidc@3.565.0(@aws-sdk/client-sts@3.565.0))(@aws-sdk/client-sts@3.565.0(@aws-sdk/client-sso-oidc@3.565.0))
 
 packages:
 
@@ -2531,8 +2531,8 @@ packages:
     resolution: {integrity: sha512-yBYjY9QX2hnRmZHAjG/f13MzmBzxzYgQhFrke06TTyKY5zSTEqkOeukBzIdVA3j3ulu8Qa3MbVFShV7T2RmGtQ==}
     engines: {node: '>= 0.4'}
 
-  oclif@4.9.3:
-    resolution: {integrity: sha512-5xdnBR1rl6ZlKm2+5NNScCav8pxvcyGDwEnHk2WW/Yy2Kc0tCahWuBjxh262m9mJ31lBaIE/vat0JeO1b2uYGw==}
+  oclif@4.10.1:
+    resolution: {integrity: sha512-q1b0NeGDsfadjEGZBGsR+ExDbXux95/ylnztb8u00VuxLJU13Q5N/LcxfrCTax9CpbK20mHkdoTMD6taAYvILA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -6390,7 +6390,7 @@ snapshots:
       define-properties: 1.2.1
       es-object-atoms: 1.0.0
 
-  oclif@4.9.3(@aws-sdk/client-sso-oidc@3.565.0(@aws-sdk/client-sts@3.565.0))(@aws-sdk/client-sts@3.565.0(@aws-sdk/client-sso-oidc@3.565.0)):
+  oclif@4.10.1(@aws-sdk/client-sso-oidc@3.565.0(@aws-sdk/client-sts@3.565.0))(@aws-sdk/client-sts@3.565.0(@aws-sdk/client-sso-oidc@3.565.0)):
     dependencies:
       '@aws-sdk/client-cloudfront': 3.565.0(@aws-sdk/client-sso-oidc@3.565.0(@aws-sdk/client-sts@3.565.0))(@aws-sdk/client-sts@3.565.0(@aws-sdk/client-sso-oidc@3.565.0))
       '@aws-sdk/client-s3': 3.565.0(@aws-sdk/client-sso-oidc@3.565.0(@aws-sdk/client-sts@3.565.0))(@aws-sdk/client-sts@3.565.0(@aws-sdk/client-sso-oidc@3.565.0))
