@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@cenk1cenk2/cz-cc':
-        specifier: ^1.7.8
-        version: 1.7.8(@types/node@20.14.7)(typescript@5.5.2)
+        specifier: ^1.7.9
+        version: 1.7.9(@types/node@20.14.7)(typescript@5.5.2)
       '@cenk1cenk2/eslint-config':
         specifier: ^2.7.51
         version: 2.7.51(eslint@8.57.0)(typescript@5.5.2)
@@ -280,8 +280,8 @@ packages:
     resolution: {integrity: sha512-EStJpq4OuY8xYfhGVXngigBJRWxftKX9ksiGDnmlY3o7B/V7KIAc9X4oiK87uPJSc/vs5L869bem5fhZa8caZw==}
     engines: {node: '>=6.9.0'}
 
-  '@cenk1cenk2/cz-cc@1.7.8':
-    resolution: {integrity: sha512-VVMnkVL2k/kG00tPTJaVAyw82BME4Zb4TTYxZMvoKiLpJhG2ayxe1jSh3OQeyUza5zMa7nwucyrHNxX1br5bVw==}
+  '@cenk1cenk2/cz-cc@1.7.9':
+    resolution: {integrity: sha512-OjCHZHn6TD+cgsWahdZhlwUt+8zaEVyb5llh+Rprz1EGAbYOUmz7BUqD8C/sZbFayI788VhdNWjoihkQ7eO01A==}
     engines: {node: '>= 16'}
 
   '@cenk1cenk2/eslint-config@2.7.51':
@@ -580,8 +580,8 @@ packages:
     resolution: {integrity: sha512-me1IUFwBq8QmaQIBOkaWNY6h0y/FlBM4zgJhS7agDIwdeKlqy2YnQGHpJwnOOFIAsUXa8gXYx34ux6MP60F+cw==}
     engines: {node: '>=18.0.0'}
 
-  '@listr2/prompt-adapter-enquirer@2.0.9':
-    resolution: {integrity: sha512-A40KuRK3g92E3ulJxXatDs7mi/oLscVP3X8U3P8ScAZgFo771MPbxptcb/vfiARQfqjJf1GTArjM6j5v1GTMdA==}
+  '@listr2/prompt-adapter-enquirer@2.0.10':
+    resolution: {integrity: sha512-+bmGlfMP7KERmrURMU4JZQ7jh07KA3p/KWe6HPCO8eXkmm0EItwOs8o9VZtFlTEKRp9kt8DqG8em0malpnnAAg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       enquirer: '>= 2.3.0 < 3'
@@ -2307,6 +2307,10 @@ packages:
     resolution: {integrity: sha512-sy0dq+JPS+RAFiFk2K8Nbub7khNmeeoFALNUJ4Wzk34wZKAzaOhEXqGWs4RA5aui0RaM6Hgn7VEKhCj0mlKNLA==}
     engines: {node: '>=18.0.0'}
 
+  listr2@8.2.3:
+    resolution: {integrity: sha512-Lllokma2mtoniUOS94CcOErHWAug5iu7HOmDrvWgpw8jyQH2fomgB+7lZS4HWZxytUuQwkGOwe49FvwVaA85Xw==}
+    engines: {node: '>=18.0.0'}
+
   load-tsconfig@0.2.5:
     resolution: {integrity: sha512-IXO6OCs9yg8tMKzfPZ1YmheJbZCiEsnBdcB03l0OcfK9prKnJb96siuHCr5Fl37/yo9DnKU+TLpxzTUspw9shg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -3822,15 +3826,15 @@ snapshots:
       picocolors: 1.0.1
     optional: true
 
-  '@cenk1cenk2/cz-cc@1.7.8(@types/node@20.14.7)(typescript@5.5.2)':
+  '@cenk1cenk2/cz-cc@1.7.9(@types/node@20.14.7)(typescript@5.5.2)':
     dependencies:
-      '@listr2/prompt-adapter-enquirer': 2.0.9(enquirer@2.4.1)
+      '@listr2/prompt-adapter-enquirer': 2.0.10(enquirer@2.4.1)
       commitizen: 4.3.0(@types/node@20.14.7)(typescript@5.5.2)
       conventional-commit-types: 3.0.0
       enquirer: 2.4.1
       external-editor: 3.1.0
       find-git-root: 1.0.4
-      listr2: 8.2.2
+      listr2: 8.2.3
     optionalDependencies:
       '@commitlint/load': 19.2.0(@types/node@20.14.7)(typescript@5.5.2)
     transitivePeerDependencies:
@@ -4103,7 +4107,7 @@ snapshots:
 
   '@listr2/manager@2.0.9': {}
 
-  '@listr2/prompt-adapter-enquirer@2.0.9(enquirer@2.4.1)':
+  '@listr2/prompt-adapter-enquirer@2.0.10(enquirer@2.4.1)':
     dependencies:
       enquirer: 2.4.1
 
@@ -6131,6 +6135,15 @@ snapshots:
       - supports-color
 
   listr2@8.2.2:
+    dependencies:
+      cli-truncate: 4.0.0
+      colorette: 2.0.20
+      eventemitter3: 5.0.1
+      log-update: 6.0.0
+      rfdc: 1.4.1
+      wrap-ansi: 9.0.0
+
+  listr2@8.2.3:
     dependencies:
       cli-truncate: 4.0.0
       colorette: 2.0.20
