@@ -951,8 +951,8 @@ packages:
     resolution: {integrity: sha512-rUeT12bxFnplYDe815GXbq/oixEGHfRFFtcTF3YdDi/JaENIM6aSYYLJydG83UNzLXeRI5K8abYd/8Sp/QM0kA==}
     engines: {node: '>=16.0.0'}
 
-  '@smithy/util-waiter@3.1.0':
-    resolution: {integrity: sha512-5OVcC5ZcmmutY208ADY/l2eB4H4DVXs+hPUo/M1spF4/YEmF9DdLkfwBvohej2dIeVJayKY7hMlD0X8j3F3/Uw==}
+  '@smithy/util-waiter@3.1.1':
+    resolution: {integrity: sha512-xT+Bbpe5sSrC7cCWSElOreDdWzqovR1V+7xrp+fmwGAA+TPYBb78iasaXjO1pa+65sY6JjW5GtGeIoJwCK9B1g==}
     engines: {node: '>=16.0.0'}
 
   '@swc/core-darwin-arm64@1.6.3':
@@ -3352,7 +3352,7 @@ snapshots:
       '@smithy/util-retry': 3.0.2
       '@smithy/util-stream': 3.0.4
       '@smithy/util-utf8': 3.0.0
-      '@smithy/util-waiter': 3.1.0
+      '@smithy/util-waiter': 3.1.1
       tslib: 2.6.3
     transitivePeerDependencies:
       - aws-crt
@@ -3415,7 +3415,7 @@ snapshots:
       '@smithy/util-retry': 3.0.2
       '@smithy/util-stream': 3.0.4
       '@smithy/util-utf8': 3.0.0
-      '@smithy/util-waiter': 3.1.0
+      '@smithy/util-waiter': 3.1.1
       tslib: 2.6.3
     transitivePeerDependencies:
       - aws-crt
@@ -4576,7 +4576,7 @@ snapshots:
       '@smithy/util-buffer-from': 3.0.0
       tslib: 2.6.3
 
-  '@smithy/util-waiter@3.1.0':
+  '@smithy/util-waiter@3.1.1':
     dependencies:
       '@smithy/abort-controller': 3.1.0
       '@smithy/types': 3.2.0
