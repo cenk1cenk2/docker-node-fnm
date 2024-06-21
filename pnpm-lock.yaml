@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@cenk1cenk2/cz-cc':
-        specifier: ^1.7.7
-        version: 1.7.7(@types/node@20.14.7)(typescript@5.5.2)
+        specifier: ^1.7.8
+        version: 1.7.8(@types/node@20.14.7)(typescript@5.5.2)
       '@cenk1cenk2/eslint-config':
         specifier: ^2.7.51
         version: 2.7.51(eslint@8.57.0)(typescript@5.5.2)
@@ -280,8 +280,8 @@ packages:
     resolution: {integrity: sha512-EStJpq4OuY8xYfhGVXngigBJRWxftKX9ksiGDnmlY3o7B/V7KIAc9X4oiK87uPJSc/vs5L869bem5fhZa8caZw==}
     engines: {node: '>=6.9.0'}
 
-  '@cenk1cenk2/cz-cc@1.7.7':
-    resolution: {integrity: sha512-FOu62seiO4+90lFRBgues2Bx18p+uH31JE2n4pZyqXk9caoHPBy0x1cyvKdd5GCwZ4XmPbH4pWbiZTbbguRCIQ==}
+  '@cenk1cenk2/cz-cc@1.7.8':
+    resolution: {integrity: sha512-VVMnkVL2k/kG00tPTJaVAyw82BME4Zb4TTYxZMvoKiLpJhG2ayxe1jSh3OQeyUza5zMa7nwucyrHNxX1br5bVw==}
     engines: {node: '>= 16'}
 
   '@cenk1cenk2/eslint-config@2.7.51':
@@ -3822,7 +3822,7 @@ snapshots:
       picocolors: 1.0.1
     optional: true
 
-  '@cenk1cenk2/cz-cc@1.7.7(@types/node@20.14.7)(typescript@5.5.2)':
+  '@cenk1cenk2/cz-cc@1.7.8(@types/node@20.14.7)(typescript@5.5.2)':
     dependencies:
       '@listr2/prompt-adapter-enquirer': 2.0.9(enquirer@2.4.1)
       commitizen: 4.3.0(@types/node@20.14.7)(typescript@5.5.2)
