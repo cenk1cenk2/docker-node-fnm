@@ -647,8 +647,8 @@ packages:
     resolution: {integrity: sha512-0UrLxHseBuwh3JVRluJFe1eT1OT5dBvbwcbAYVO8uNi/ctmaWCAw4j737l8BFnf01GpDsloSAWyEX4dtG0P1zg==}
     engines: {node: '>=18.0.0'}
 
-  '@oclif/plugin-not-found@3.2.8':
-    resolution: {integrity: sha512-C2Iu/oZRNnGJct5DgB3Tg4DowNxpLugLb4hd/PQ18/UxQ/wz9mo0OYY6aFncn7If4gCsKiRUKSQA+3XXxMQi9w==}
+  '@oclif/plugin-not-found@3.2.9':
+    resolution: {integrity: sha512-HkNqEJgUgBPOyq85W9ff48bQIRDnqc9WqmgL/72lnbN7xw43ZlPHXkcyav5eHtjHt7mXsEf0Eu0vhyzUau+NsA==}
     engines: {node: '>=18.0.0'}
 
   '@oclif/plugin-warn-if-update-available@3.1.7':
@@ -1895,9 +1895,9 @@ packages:
     resolution: {integrity: sha512-XxwI8EOhVQgWp6iDL+3b0r86f4d6AX6zSU55HfB4ydCEuXLXc5FcYeOu+nnGftS4TEju/11rt4KJPTMgbfmv4A==}
     engines: {node: '>=10.13.0'}
 
-  glob@10.4.2:
-    resolution: {integrity: sha512-GwMlUF6PkPo3Gk21UxkCohOv0PLcIXVtKyLlpEI28R/cO/4eNOdmLk3CMW1wROV/WR/EsZOWAfBbBOqYvs88/w==}
-    engines: {node: '>=16 || 14 >=14.18'}
+  glob@10.4.3:
+    resolution: {integrity: sha512-Q38SGlYRpVtDBPSWEylRyctn7uDeTp4NQERTLiCT1FqA9JXPYWqAVmQU6qh4r/zMM5ehxTcbaO8EjhWnvEhmyg==}
+    engines: {node: '>=18'}
     hasBin: true
 
   glob@7.2.3:
@@ -2223,9 +2223,9 @@ packages:
     resolution: {integrity: sha512-RKYVTCjAnRthyJes037NX/IiqeidgN1xc3j1RjFfECFp28A1GVwK9nA+i0rJPaHqSZwygLzRnFlzUuHFoWWy+Q==}
     engines: {node: '>=6'}
 
-  jackspeak@3.4.0:
-    resolution: {integrity: sha512-JVYhQnN59LVPFCEcVa2C3CrEKYacvjRfqIQl+h8oi91aLYQVWRYbxjPcv1bUiUy/kLmQaANrYfNMCO3kuEDHfw==}
-    engines: {node: '>=14'}
+  jackspeak@3.4.1:
+    resolution: {integrity: sha512-U23pQPDnmYybVkYjObcuYMk43VRlMLLqLI+RdZy8s8WV8WsxO9SnqSroKaluuvcNOdCAlauKszDwd+umbot5Mg==}
+    engines: {node: '>=18'}
 
   jake@10.9.1:
     resolution: {integrity: sha512-61btcOHNnLnsOdtLgA5efqQWjnSi/vow5HbI7HMdKKWqvrKR1bLK3BPlJn9gcSaP2ewuamUSMB5XEy76KUIS2w==}
@@ -2361,9 +2361,9 @@ packages:
     resolution: {integrity: sha512-ozCC6gdQ+glXOQsveKD0YsDy8DSQFjDTz4zyzEHNV5+JP5D62LmfDZ6o1cycFx9ouG940M5dE8C8CTewdj2YWQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  lru-cache@10.3.0:
-    resolution: {integrity: sha512-CQl19J/g+Hbjbv4Y3mFNNXFEL/5t/KCg8POCuUqd4rMKjGG+j1ybER83hxV58zL+dFI1PTkt3GNFSHRt+d8qEQ==}
-    engines: {node: 14 || >=16.14}
+  lru-cache@10.3.1:
+    resolution: {integrity: sha512-9/8QXrtbGeMB6LxwQd4x1tIMnsmUxMvIH/qWGsccz6bt9Uln3S+sgAaqfQNhbGA8ufzs2fHuP/yqapGgP9Hh2g==}
+    engines: {node: '>=18'}
 
   make-error@1.3.6:
     resolution: {integrity: sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==}
@@ -4183,7 +4183,7 @@ snapshots:
     dependencies:
       '@oclif/core': 4.0.8
 
-  '@oclif/plugin-not-found@3.2.8':
+  '@oclif/plugin-not-found@3.2.9':
     dependencies:
       '@inquirer/confirm': 3.1.14
       '@oclif/core': 4.0.8
@@ -5709,10 +5709,10 @@ snapshots:
     dependencies:
       is-glob: 4.0.3
 
-  glob@10.4.2:
+  glob@10.4.3:
     dependencies:
       foreground-child: 3.2.1
-      jackspeak: 3.4.0
+      jackspeak: 3.4.1
       minimatch: 9.0.5
       minipass: 7.1.2
       package-json-from-dist: 1.0.0
@@ -5847,7 +5847,7 @@ snapshots:
 
   hosted-git-info@7.0.2:
     dependencies:
-      lru-cache: 10.3.0
+      lru-cache: 10.3.1
 
   http-cache-semantics@4.1.1: {}
 
@@ -6048,7 +6048,7 @@ snapshots:
 
   iterare@1.2.1: {}
 
-  jackspeak@3.4.0:
+  jackspeak@3.4.1:
     dependencies:
       '@isaacs/cliui': 8.0.2
     optionalDependencies:
@@ -6197,7 +6197,7 @@ snapshots:
 
   lowercase-keys@3.0.0: {}
 
-  lru-cache@10.3.0: {}
+  lru-cache@10.3.1: {}
 
   make-error@1.3.6: {}
 
@@ -6329,7 +6329,7 @@ snapshots:
       '@inquirer/select': 2.3.10
       '@oclif/core': 4.0.8
       '@oclif/plugin-help': 6.2.4
-      '@oclif/plugin-not-found': 3.2.8
+      '@oclif/plugin-not-found': 3.2.9
       '@oclif/plugin-warn-if-update-available': 3.1.7
       async-retry: 1.3.3
       chalk: 4.1.2
@@ -6449,7 +6449,7 @@ snapshots:
 
   path-scurry@1.11.1:
     dependencies:
-      lru-cache: 10.3.0
+      lru-cache: 10.3.1
       minipass: 7.1.2
 
   path-to-regexp@3.2.0: {}
@@ -6553,7 +6553,7 @@ snapshots:
 
   rimraf@5.0.8:
     dependencies:
-      glob: 10.4.2
+      glob: 10.4.3
 
   rollup@4.18.0:
     dependencies:
@@ -6785,7 +6785,7 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
       commander: 4.1.1
-      glob: 10.4.2
+      glob: 10.4.3
       lines-and-columns: 1.2.4
       mz: 2.7.0
       pirates: 4.0.6
