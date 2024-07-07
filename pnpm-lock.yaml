@@ -643,16 +643,16 @@ packages:
     resolution: {integrity: sha512-9AzNoRlKfIeuqOin+HK9cyouELeup7sX+MGIFc5dR+bnG0sSzFnV1A/Z57E7KWrY5NdWULHYT5NhiL1YpEhG2w==}
     engines: {node: '>=18.0.0'}
 
-  '@oclif/plugin-help@6.2.4':
-    resolution: {integrity: sha512-0UrLxHseBuwh3JVRluJFe1eT1OT5dBvbwcbAYVO8uNi/ctmaWCAw4j737l8BFnf01GpDsloSAWyEX4dtG0P1zg==}
+  '@oclif/plugin-help@6.2.5':
+    resolution: {integrity: sha512-/NgP6j5THCWDxQj3Mba+IIidf8fBtOT5Wh6ygb2WdWLSxcsRXSQUiJKKOXu8e/N5+KQeuG2Yko2hFxd2cZUzMQ==}
     engines: {node: '>=18.0.0'}
 
-  '@oclif/plugin-not-found@3.2.9':
-    resolution: {integrity: sha512-HkNqEJgUgBPOyq85W9ff48bQIRDnqc9WqmgL/72lnbN7xw43ZlPHXkcyav5eHtjHt7mXsEf0Eu0vhyzUau+NsA==}
+  '@oclif/plugin-not-found@3.2.10':
+    resolution: {integrity: sha512-Bevp3hcv1IhNgljugIhxL5ARcwxsQmiR9yGOozURuZBX3IjsHBPhI2I92wKA2KM5zRgh4zOm6gvoP8gcHlhLJA==}
     engines: {node: '>=18.0.0'}
 
-  '@oclif/plugin-warn-if-update-available@3.1.7':
-    resolution: {integrity: sha512-kQYwlSWNLqoT91H2NBKmj5HPyNcAiatJn4lAIGWbVgk08t+lMD7zOSAoRSN7gc2chelpAfmk4e5Mz4ANL8c7IQ==}
+  '@oclif/plugin-warn-if-update-available@3.1.8':
+    resolution: {integrity: sha512-8MVaQGnvUq/mBYOVLVC1ZniwGHckRULS75s2PVT/9A4MRPzLmtNpaV8Ncra+X4cvxMJQB7KhbJN3v1itWyHnHg==}
     engines: {node: '>=18.0.0'}
 
   '@pkgjs/parseargs@0.11.0':
@@ -4179,18 +4179,18 @@ snapshots:
       wordwrap: 1.0.0
       wrap-ansi: 7.0.0
 
-  '@oclif/plugin-help@6.2.4':
+  '@oclif/plugin-help@6.2.5':
     dependencies:
       '@oclif/core': 4.0.8
 
-  '@oclif/plugin-not-found@3.2.9':
+  '@oclif/plugin-not-found@3.2.10':
     dependencies:
       '@inquirer/confirm': 3.1.14
       '@oclif/core': 4.0.8
       ansis: 3.2.0
       fast-levenshtein: 3.0.0
 
-  '@oclif/plugin-warn-if-update-available@3.1.7':
+  '@oclif/plugin-warn-if-update-available@3.1.8':
     dependencies:
       '@oclif/core': 4.0.8
       ansis: 3.2.0
@@ -6328,9 +6328,9 @@ snapshots:
       '@inquirer/input': 2.2.1
       '@inquirer/select': 2.3.10
       '@oclif/core': 4.0.8
-      '@oclif/plugin-help': 6.2.4
-      '@oclif/plugin-not-found': 3.2.9
-      '@oclif/plugin-warn-if-update-available': 3.1.7
+      '@oclif/plugin-help': 6.2.5
+      '@oclif/plugin-not-found': 3.2.10
+      '@oclif/plugin-warn-if-update-available': 3.1.8
       async-retry: 1.3.3
       chalk: 4.1.2
       change-case: 4.1.2
