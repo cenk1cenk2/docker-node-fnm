@@ -33,7 +33,7 @@ importers:
         specifier: ^15.2.7
         version: 15.2.7
       rimraf:
-        specifier: ^5.0.8
+        specifier: ^5.0.9
         version: 5.0.9
       simple-git-hooks:
         specifier: ^2.11.1
