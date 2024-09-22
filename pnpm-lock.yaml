@@ -649,16 +649,16 @@ packages:
     resolution: {integrity: sha512-aXM2O4g7f+kPNzhhOfqGOVRVYDxTVrH7Y720MuH0Twq5WHMxI4XwntnyBaRscoCPG6FWhItZLtiZxsvaUdupGg==}
     engines: {node: '>=18.0.0'}
 
-  '@oclif/plugin-help@6.2.11':
-    resolution: {integrity: sha512-Vo854dALtNhA34g6m4T9uWIrYfm/JFM82LWa5gLrsJGwpUGgeBwBX4P64HLo5ro59LF3YO2xPWViLaoK6gkm3g==}
+  '@oclif/plugin-help@6.2.12':
+    resolution: {integrity: sha512-yLWIIQScGpr5YJzREXeRHRa0TYvTAZC+joHw/wCLw2diVOBkAlDGO67bYvfMN279YU00UJ46Yy22GEO2trtPug==}
     engines: {node: '>=18.0.0'}
 
   '@oclif/plugin-not-found@3.2.21':
     resolution: {integrity: sha512-1v5MkECOH+mkubpk5RgyVK1qEHn3hr2wX1qsx5hawTyssd10WEFIkH258M9CjyiG42M6ZCQhOS3Wo2wteLo/vg==}
     engines: {node: '>=18.0.0'}
 
-  '@oclif/plugin-warn-if-update-available@3.1.16':
-    resolution: {integrity: sha512-QGQF1kL+aUj/cTtXdV0GT1n7HNf3HX1ZnCwL86Y9rlZgQbBU9gl8/01/6P/uPj0E+WWExZMVF6+fmktTqwYVQw==}
+  '@oclif/plugin-warn-if-update-available@3.1.17':
+    resolution: {integrity: sha512-i59VZlGQdiK1sHfb+fVH72H+o1FX+TlPNWI1xlo1CQcDPgjVzCUpnbynKW9GJz2MmIoOSbBzx1qhOcgqyoJJsA==}
     engines: {node: '>=18.0.0'}
 
   '@pkgjs/parseargs@0.11.0':
@@ -2346,8 +2346,8 @@ packages:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
 
-  libphonenumber-js@1.11.8:
-    resolution: {integrity: sha512-0fv/YKpJBAgXKy0kaS3fnqoUVN8901vUYAKIGD/MWZaDfhJt1nZjPL3ZzdZBt/G8G8Hw2J1xOIrXWdNHFHPAvg==}
+  libphonenumber-js@1.11.9:
+    resolution: {integrity: sha512-Zs5wf5HaWzW2/inlupe2tstl0I/Tbqo7lH20ZLr6Is58u7Dz2n+gRFGNlj9/gWxFvNfp9+YyDsiegjNhdixB9A==}
 
   lilconfig@3.1.2:
     resolution: {integrity: sha512-eop+wDAvpItUys0FWkHIKeC9ybYrTGbU41U5K7+bttZZeohvnY7M9dZ5kB21GNWiFT2q1OoPTvncPCgSOVO5ow==}
@@ -4286,7 +4286,7 @@ snapshots:
       wordwrap: 1.0.0
       wrap-ansi: 7.0.0
 
-  '@oclif/plugin-help@6.2.11':
+  '@oclif/plugin-help@6.2.12':
     dependencies:
       '@oclif/core': 4.0.22
 
@@ -4297,7 +4297,7 @@ snapshots:
       ansis: 3.3.2
       fast-levenshtein: 3.0.0
 
-  '@oclif/plugin-warn-if-update-available@3.1.16':
+  '@oclif/plugin-warn-if-update-available@3.1.17':
     dependencies:
       '@oclif/core': 4.0.22
       ansis: 3.3.2
@@ -5151,7 +5151,7 @@ snapshots:
   class-validator@0.14.1:
     dependencies:
       '@types/validator': 13.12.2
-      libphonenumber-js: 1.11.8
+      libphonenumber-js: 1.11.9
       validator: 13.12.0
 
   clean-stack@3.0.1:
@@ -6280,7 +6280,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  libphonenumber-js@1.11.8: {}
+  libphonenumber-js@1.11.9: {}
 
   lilconfig@3.1.2: {}
 
@@ -6505,9 +6505,9 @@ snapshots:
       '@inquirer/input': 2.3.0
       '@inquirer/select': 2.5.0
       '@oclif/core': 4.0.22
-      '@oclif/plugin-help': 6.2.11
+      '@oclif/plugin-help': 6.2.12
       '@oclif/plugin-not-found': 3.2.21
-      '@oclif/plugin-warn-if-update-available': 3.1.16
+      '@oclif/plugin-warn-if-update-available': 3.1.17
       async-retry: 1.3.3
       chalk: 4.1.2
       change-case: 4.1.2
