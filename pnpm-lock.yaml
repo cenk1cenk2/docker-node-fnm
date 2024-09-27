@@ -21,8 +21,8 @@ importers:
         specifier: ^20.16.9
         version: 20.16.9
       commitizen:
-        specifier: ^4.3.0
-        version: 4.3.0(@types/node@20.16.9)(typescript@5.6.2)
+        specifier: ^4.3.1
+        version: 4.3.1(@types/node@20.16.9)(typescript@5.6.2)
       eslint:
         specifier: ^8.57.1
         version: 8.57.1
@@ -1447,8 +1447,8 @@ packages:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
     engines: {node: '>= 6'}
 
-  commitizen@4.3.0:
-    resolution: {integrity: sha512-H0iNtClNEhT0fotHvGV3E9tDejDeS04sN1veIebsKYGMuGscFaswRoYJKmT3eW85eIJAs0F28bG2+a/9wCOfPw==}
+  commitizen@4.3.1:
+    resolution: {integrity: sha512-gwAPAVTy/j5YcOOebcCRIijn+mSjWJC+IYKivTu6aG8Ei/scoXgfsMRnuAk6b0GRste2J4NGxVdMN3ZpfNaVaw==}
     engines: {node: '>= 12'}
     hasBin: true
 
@@ -3929,7 +3929,7 @@ snapshots:
   '@cenk1cenk2/cz-cc@1.7.10(@types/node@20.16.9)(typescript@5.6.2)':
     dependencies:
       '@listr2/prompt-adapter-enquirer': 2.0.11(enquirer@2.4.1)
-      commitizen: 4.3.0(@types/node@20.16.9)(typescript@5.6.2)
+      commitizen: 4.3.1(@types/node@20.16.9)(typescript@5.6.2)
       conventional-commit-types: 3.0.0
       enquirer: 2.4.1
       external-editor: 3.1.0
@@ -5215,7 +5215,7 @@ snapshots:
 
   commander@4.1.1: {}
 
-  commitizen@4.3.0(@types/node@20.16.9)(typescript@5.6.2):
+  commitizen@4.3.1(@types/node@20.16.9)(typescript@5.6.2):
     dependencies:
       cachedir: 2.3.0
       cz-conventional-changelog: 3.3.0(@types/node@20.16.9)(typescript@5.6.2)
@@ -5285,7 +5285,7 @@ snapshots:
   cz-conventional-changelog@3.3.0(@types/node@20.16.9)(typescript@5.6.2):
     dependencies:
       chalk: 2.4.2
-      commitizen: 4.3.0(@types/node@20.16.9)(typescript@5.6.2)
+      commitizen: 4.3.1(@types/node@20.16.9)(typescript@5.6.2)
       conventional-commit-types: 3.0.0
       lodash.map: 4.6.0
       longest: 2.0.1
