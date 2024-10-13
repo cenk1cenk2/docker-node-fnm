@@ -67,7 +67,7 @@
     "fs-extra": "^11.2.0",
     "listr2": "^8.2.5",
     "source-map-support": "^0.5.21",
-    "yaml": "^2.5.1"
+    "yaml": "^2.6.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
