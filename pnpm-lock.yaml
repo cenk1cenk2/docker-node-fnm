@@ -84,7 +84,7 @@ importers:
         specifier: ^0.5.21
         version: 0.5.21
       yaml:
-        specifier: ^2.5.1
+        specifier: ^2.6.0
         version: 2.6.0
     devDependencies:
       '@types/fs-extra':
