@@ -60,10 +60,10 @@
   "dependencies": {
     "@cenk1cenk2/oclif-common": "^6.3.21",
     "@listr2/manager": "^2.0.13",
-    "@oclif/core": "^4.0.30",
+    "@oclif/core": "^4.0.31",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
-    "execa": "^9.4.1",
+    "execa": "^9.5.1",
     "fs-extra": "^11.2.0",
     "listr2": "^8.2.5",
     "source-map-support": "^0.5.21",
