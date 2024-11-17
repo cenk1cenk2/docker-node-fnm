@@ -725,16 +725,16 @@ packages:
     resolution: {integrity: sha512-O3jfIAhqaJxXI2dzF81PLTMhKpFFA0Nyz8kfBnc9WYDJnvdmXK0fVAOSpwpi2mHTow/9FXxY6Kww8+Kbe7/sag==}
     engines: {node: '>=18.0.0'}
 
-  '@oclif/plugin-help@6.2.17':
-    resolution: {integrity: sha512-+Z+xC11h+f4SHX1pW5lhoCT+aC0bQABfnRsIs/02gf7dZ1XSfi1I17ZMrrzYCcUNcDJA33guKUQeUK740hXPlw==}
+  '@oclif/plugin-help@6.2.18':
+    resolution: {integrity: sha512-mDYOl8RmldLkOg9i9YKgyBlpcyi/bNySoIVHJ2EJd2qCmZaXRKQKRW2Zkx92bwjik8jfs/A3EFI+p4DsrXi57g==}
     engines: {node: '>=18.0.0'}
 
-  '@oclif/plugin-not-found@3.2.26':
-    resolution: {integrity: sha512-f2kVzS/AQqYelSMEv/2sbVR8cIPpJo/AtFCNsLgmeJrETUExLy0RoOqIfk3DMlZYKBmWImwjLVhvQF13IBVTkg==}
+  '@oclif/plugin-not-found@3.2.28':
+    resolution: {integrity: sha512-ObkesXE8F4Hj/AzOCQGI39hqDqm+MfaqY5ByG77uhSkMI4dMaDcPjXZSj1Ftn2mkhZiRk70YN3wTCG4HO/8gqw==}
     engines: {node: '>=18.0.0'}
 
-  '@oclif/plugin-warn-if-update-available@3.1.21':
-    resolution: {integrity: sha512-yG03rR6Z795lSlkuS+6A9JBSq/VQZ40XspTsKdXa/PUJl52RTeZeOHlaecuv4TddAE6T8VsPdWvry68q5TPE4w==}
+  '@oclif/plugin-warn-if-update-available@3.1.23':
+    resolution: {integrity: sha512-0R15OCkpWktUsEdfVNvOIY078rE92Dkor2mB/F2/xW0/VEe3NQEVtiXMatpwYsjc4KKIiWtAVm2P0oQhEbodkg==}
     engines: {node: '>=18.0.0'}
 
   '@pkgjs/parseargs@0.11.0':
@@ -4484,11 +4484,11 @@ snapshots:
       wordwrap: 1.0.0
       wrap-ansi: 7.0.0
 
-  '@oclif/plugin-help@6.2.17':
+  '@oclif/plugin-help@6.2.18':
     dependencies:
       '@oclif/core': 4.0.32
 
-  '@oclif/plugin-not-found@3.2.26(@types/node@22.9.0)':
+  '@oclif/plugin-not-found@3.2.28(@types/node@22.9.0)':
     dependencies:
       '@inquirer/prompts': 7.1.0(@types/node@22.9.0)
       '@oclif/core': 4.0.32
@@ -4497,7 +4497,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@oclif/plugin-warn-if-update-available@3.1.21':
+  '@oclif/plugin-warn-if-update-available@3.1.23':
     dependencies:
       '@oclif/core': 4.0.32
       ansis: 3.3.2
@@ -6693,9 +6693,9 @@ snapshots:
       '@inquirer/input': 2.3.0
       '@inquirer/select': 2.5.0
       '@oclif/core': 4.0.32
-      '@oclif/plugin-help': 6.2.17
-      '@oclif/plugin-not-found': 3.2.26(@types/node@22.9.0)
-      '@oclif/plugin-warn-if-update-available': 3.1.21
+      '@oclif/plugin-help': 6.2.18
+      '@oclif/plugin-not-found': 3.2.28(@types/node@22.9.0)
+      '@oclif/plugin-warn-if-update-available': 3.1.23
       async-retry: 1.3.3
       chalk: 4.1.2
       change-case: 4.1.2
