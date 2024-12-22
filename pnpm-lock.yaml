@@ -94,8 +94,8 @@ importers:
         specifier: ^14.0.2
         version: 14.0.2
       oclif:
-        specifier: ^4.17.0
-        version: 4.17.0(@types/node@22.10.2)
+        specifier: ^4.17.1
+        version: 4.17.1(@types/node@22.10.2)
 
 packages:
 
@@ -723,6 +723,10 @@ packages:
 
   '@oclif/core@4.1.0':
     resolution: {integrity: sha512-+LeOq0KK9ruVYjhnDRyfUmEMB68ZXxBP1usj29tVOjewwHInNIctvR7ghH1ls6S3/ZbeCk/Z/JoiE68i8vU6FQ==}
+    engines: {node: '>=18.0.0'}
+
+  '@oclif/core@4.2.0':
+    resolution: {integrity: sha512-ETM2N/GL7W37Kv1Afv1j1Gh77CynS2ubEPP+p+MnjUXEjghNe7+bKAWhPkHnBuFAVFAqdv0qMpUAjxKLbsmbJw==}
     engines: {node: '>=18.0.0'}
 
   '@oclif/plugin-help@6.2.19':
@@ -2688,8 +2692,8 @@ packages:
     resolution: {integrity: sha512-yBYjY9QX2hnRmZHAjG/f13MzmBzxzYgQhFrke06TTyKY5zSTEqkOeukBzIdVA3j3ulu8Qa3MbVFShV7T2RmGtQ==}
     engines: {node: '>= 0.4'}
 
-  oclif@4.17.0:
-    resolution: {integrity: sha512-fRj4J4uIzvRmqSTKGYmYuioG6im29niMBL499wcAIOyRM2UHJslrKi8MCxpzNgqUr6ekkdvyQ13HyzgdPlhytQ==}
+  oclif@4.17.1:
+    resolution: {integrity: sha512-hxOTY63vH2W+yW5ecBviF++ZX0GLKyRB2D0g8kA+0Q+1AEtwYM5UQ+xwO7lksVLkhPUDBgbN3tAwcL2aBSnGNQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -4537,14 +4541,35 @@ snapshots:
       wordwrap: 1.0.0
       wrap-ansi: 7.0.0
 
+  '@oclif/core@4.2.0':
+    dependencies:
+      ansi-escapes: 4.3.2
+      ansis: 3.4.0
+      clean-stack: 3.0.1
+      cli-spinners: 2.9.2
+      debug: 4.4.0(supports-color@8.1.1)
+      ejs: 3.1.10
+      get-package-type: 0.1.0
+      globby: 11.1.0
+      indent-string: 4.0.0
+      is-wsl: 2.2.0
+      lilconfig: 3.1.3
+      minimatch: 9.0.5
+      semver: 7.6.3
+      string-width: 4.2.3
+      supports-color: 8.1.1
+      widest-line: 3.1.0
+      wordwrap: 1.0.0
+      wrap-ansi: 7.0.0
+
   '@oclif/plugin-help@6.2.19':
     dependencies:
-      '@oclif/core': 4.1.0
+      '@oclif/core': 4.2.0
 
   '@oclif/plugin-not-found@3.2.31(@types/node@22.10.2)':
     dependencies:
       '@inquirer/prompts': 7.2.0(@types/node@22.10.2)
-      '@oclif/core': 4.1.0
+      '@oclif/core': 4.2.0
       ansis: 3.4.0
       fast-levenshtein: 3.0.0
     transitivePeerDependencies:
@@ -4552,7 +4577,7 @@ snapshots:
 
   '@oclif/plugin-warn-if-update-available@3.1.28':
     dependencies:
-      '@oclif/core': 4.1.0
+      '@oclif/core': 4.2.0
       ansis: 3.4.0
       debug: 4.4.0(supports-color@8.1.1)
       http-call: 5.3.0
@@ -6781,14 +6806,14 @@ snapshots:
       define-properties: 1.2.1
       es-object-atoms: 1.0.0
 
-  oclif@4.17.0(@types/node@22.10.2):
+  oclif@4.17.1(@types/node@22.10.2):
     dependencies:
       '@aws-sdk/client-cloudfront': 3.712.0
       '@aws-sdk/client-s3': 3.712.0
       '@inquirer/confirm': 3.2.0
       '@inquirer/input': 2.3.0
       '@inquirer/select': 2.5.0
-      '@oclif/core': 4.1.0
+      '@oclif/core': 4.2.0
       '@oclif/plugin-help': 6.2.19
       '@oclif/plugin-not-found': 3.2.31(@types/node@22.10.2)
       '@oclif/plugin-warn-if-update-available': 3.1.28
