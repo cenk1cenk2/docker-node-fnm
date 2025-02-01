@@ -60,14 +60,14 @@
   "dependencies": {
     "@cenk1cenk2/oclif-common": "^6.3.29",
     "@listr2/manager": "^2.0.13",
-    "@oclif/core": "^4.1.0",
+    "@oclif/core": "^4.2.5",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "execa": "^9.5.2",
-    "fs-extra": "^11.2.0",
+    "fs-extra": "^11.3.0",
     "listr2": "^8.2.5",
     "source-map-support": "^0.5.21",
-    "yaml": "^2.6.1"
+    "yaml": "^2.7.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
