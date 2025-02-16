@@ -72,7 +72,7 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "globby": "^14.1.0",
-    "oclif": "^4.17.27"
+    "oclif": "^4.17.28"
   },
   "config": {
     "commitizen": {
