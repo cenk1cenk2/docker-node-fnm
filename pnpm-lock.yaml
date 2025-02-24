@@ -94,8 +94,8 @@ importers:
         specifier: ^14.1.0
         version: 14.1.0
       oclif:
-        specifier: ^4.17.31
-        version: 4.17.31(@types/node@22.13.1)
+        specifier: ^4.17.32
+        version: 4.17.32(@types/node@22.13.1)
 
 packages:
 
@@ -2753,8 +2753,8 @@ packages:
     resolution: {integrity: sha512-gXah6aZrcUxjWg2zR2MwouP2eHlCBzdV4pygudehaKXSGW4v2AsRQUK+lwwXhii6KFZcunEnmSUoYp5CXibxtA==}
     engines: {node: '>= 0.4'}
 
-  oclif@4.17.31:
-    resolution: {integrity: sha512-V58OPd6f9GBndCGC4jAEFEl3zJitsjEns+B/GabpqvJ2ZEIj6swOzsJB4U+quSKVizDtVywJ1hCwgYygOjo4Eg==}
+  oclif@4.17.32:
+    resolution: {integrity: sha512-OKdEMhDNSHn/4NYdyM4b8VfVEbnB4VuzZwvDc24AuoyhZFQBTfQaE+mqoPOGh5wb4eF74cWBlSKOLsrLCPbN0w==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -4603,7 +4603,7 @@ snapshots:
     dependencies:
       '@inquirer/prompts': 7.3.1(@types/node@22.13.1)
       '@oclif/core': 4.2.8
-      ansis: 3.10.0
+      ansis: 3.16.0
       fast-levenshtein: 3.0.0
     transitivePeerDependencies:
       - '@types/node'
@@ -4611,7 +4611,7 @@ snapshots:
   '@oclif/plugin-warn-if-update-available@3.1.32':
     dependencies:
       '@oclif/core': 4.2.8
-      ansis: 3.10.0
+      ansis: 3.16.0
       debug: 4.4.0(supports-color@8.1.1)
       http-call: 5.3.0
       lodash: 4.17.21
@@ -6871,7 +6871,7 @@ snapshots:
       define-properties: 1.2.1
       es-object-atoms: 1.1.1
 
-  oclif@4.17.31(@types/node@22.13.1):
+  oclif@4.17.32(@types/node@22.13.1):
     dependencies:
       '@aws-sdk/client-cloudfront': 3.749.0
       '@aws-sdk/client-s3': 3.749.0
