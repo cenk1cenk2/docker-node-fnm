@@ -60,7 +60,7 @@
   "dependencies": {
     "@cenk1cenk2/oclif-common": "^6.3.29",
     "@listr2/manager": "^2.0.13",
-    "@oclif/core": "^4.2.5",
+    "@oclif/core": "^4.2.10",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "execa": "^9.5.2",
