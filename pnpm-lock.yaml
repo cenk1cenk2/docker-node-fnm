@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@cenk1cenk2/cz-cc':
-        specifier: ^1.8.0
-        version: 1.8.0(@types/node@20.17.30)(typescript@5.8.3)
+        specifier: ^1.8.1
+        version: 1.8.1(@types/node@20.17.30)(typescript@5.8.3)
       '@cenk1cenk2/eslint-config':
         specifier: ^2.7.60
         version: 2.7.60(eslint@8.57.1)(typescript@5.8.3)
@@ -262,8 +262,8 @@ packages:
     resolution: {integrity: sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==}
     engines: {node: '>=6.9.0'}
 
-  '@cenk1cenk2/cz-cc@1.8.0':
-    resolution: {integrity: sha512-BNCK1mWSoKCsiHIqx251KE+rrCOr36y+d6pEOCayNB690g9Tk7L/eJhfAdZg1dI0KNSfBA/dzS7bcVgo+EEP+A==}
+  '@cenk1cenk2/cz-cc@1.8.1':
+    resolution: {integrity: sha512-OXigQ4AtdZ2+WN3Ogdnwq4pmv68cQWFJujXI1fMJ1UdRPI0G978EOisAO/zFAo0DwMbFOyRqKUj+A4K5dcnbMA==}
     engines: {node: '>= 16'}
 
   '@cenk1cenk2/eslint-config@2.7.60':
@@ -4089,7 +4089,7 @@ snapshots:
   '@babel/helper-validator-identifier@7.25.9':
     optional: true
 
-  '@cenk1cenk2/cz-cc@1.8.0(@types/node@20.17.30)(typescript@5.8.3)':
+  '@cenk1cenk2/cz-cc@1.8.1(@types/node@20.17.30)(typescript@5.8.3)':
     dependencies:
       '@listr2/prompt-adapter-enquirer': 2.0.15(enquirer@2.4.1)
       commitizen: 4.3.1(@types/node@20.17.30)(typescript@5.8.3)
