@@ -15,7 +15,7 @@ importers:
         specifier: ^2.7.60
         version: 2.7.60(eslint@8.57.1)(typescript@5.8.3)
       '@swc/core':
-        specifier: ^1.11.18
+        specifier: ^1.11.29
         version: 1.11.29
       '@types/node':
         specifier: ^20.17.57
@@ -45,7 +45,7 @@ importers:
         specifier: ^0.0.14
         version: 0.0.14
       tsup:
-        specifier: ^8.4.0
+        specifier: ^8.5.0
         version: 8.5.0(@swc/core@1.11.29)(jiti@2.4.2)(typescript@5.8.3)(yaml@2.8.0)
       turbo:
         specifier: ^1.13.4
