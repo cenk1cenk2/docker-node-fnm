@@ -15,7 +15,7 @@ importers:
         specifier: ^2.7.60
         version: 2.7.60(eslint@8.57.1)(typescript@5.8.3)
       '@swc/core':
-        specifier: ^1.12.0
+        specifier: ^1.12.4
         version: 1.12.4
       '@types/node':
         specifier: ^20.19.1
@@ -27,7 +27,7 @@ importers:
         specifier: ^8.57.1
         version: 8.57.1
       eslint-plugin-import:
-        specifier: ^2.31.0
+        specifier: ^2.32.0
         version: 2.32.0(@typescript-eslint/parser@8.34.1(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
       lint-staged:
         specifier: ^15.5.2
