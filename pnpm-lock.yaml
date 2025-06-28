@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@cenk1cenk2/cz-cc':
         specifier: ^1.8.1
-        version: 1.8.1(@types/node@20.19.1)(typescript@5.8.3)
+        version: 1.8.1(@types/node@20.19.2)(typescript@5.8.3)
       '@cenk1cenk2/eslint-config':
         specifier: ^2.7.60
         version: 2.7.60(eslint@8.57.1)(typescript@5.8.3)
@@ -18,11 +18,11 @@ importers:
         specifier: ^1.12.7
         version: 1.12.7
       '@types/node':
-        specifier: ^20.19.1
-        version: 20.19.1
+        specifier: ^20.19.2
+        version: 20.19.2
       commitizen:
         specifier: ^4.3.1
-        version: 4.3.1(@types/node@20.19.1)(typescript@5.8.3)
+        version: 4.3.1(@types/node@20.19.2)(typescript@5.8.3)
       eslint:
         specifier: ^8.57.1
         version: 8.57.1
@@ -40,7 +40,7 @@ importers:
         version: 2.13.0
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@swc/core@1.12.7)(@types/node@20.19.1)(typescript@5.8.3)
+        version: 10.9.2(@swc/core@1.12.7)(@types/node@20.19.2)(typescript@5.8.3)
       tsconfig-replace-paths:
         specifier: ^0.0.14
         version: 0.0.14
@@ -1257,8 +1257,8 @@ packages:
   '@types/mute-stream@0.0.4':
     resolution: {integrity: sha512-CPM9nzrCPPJHQNA9keH9CVkVI+WR5kMa+7XEs5jcGQ0VoAGnLv242w8lIVgwAEfmE4oufJRaTc9PNLQl0ioAow==}
 
-  '@types/node@20.19.1':
-    resolution: {integrity: sha512-jJD50LtlD2dodAEO653i3YF04NWak6jN3ky+Ri3Em3mGR39/glWiboM/IePaRbgwSfqM1TpGXfAg8ohn/4dTgA==}
+  '@types/node@20.19.2':
+    resolution: {integrity: sha512-9pLGGwdzOUBDYi0GNjM97FIA+f92fqSke6joWeBjWXllfNxZBs7qeMF7tvtOIsbY45xkWkxrdwUfUf3MnQa9gA==}
 
   '@types/node@22.15.33':
     resolution: {integrity: sha512-wzoocdnnpSxZ+6CjW4ADCK1jVmd1S/J3ArNWfn8FDDQtRm8dkDg7TA+mvek2wNrfCgwuZxqEOiB9B1XCJ6+dbw==}
@@ -4167,10 +4167,10 @@ snapshots:
   '@babel/helper-validator-identifier@7.27.1':
     optional: true
 
-  '@cenk1cenk2/cz-cc@1.8.1(@types/node@20.19.1)(typescript@5.8.3)':
+  '@cenk1cenk2/cz-cc@1.8.1(@types/node@20.19.2)(typescript@5.8.3)':
     dependencies:
       '@listr2/prompt-adapter-enquirer': 2.0.16(enquirer@2.4.1)
-      commitizen: 4.3.1(@types/node@20.19.1)(typescript@5.8.3)
+      commitizen: 4.3.1(@types/node@20.19.2)(typescript@5.8.3)
       conventional-commit-types: 3.0.0
       enquirer: 2.4.1
       external-editor: 3.1.0
@@ -4231,7 +4231,7 @@ snapshots:
   '@commitlint/execute-rule@19.8.1':
     optional: true
 
-  '@commitlint/load@19.8.1(@types/node@20.19.1)(typescript@5.8.3)':
+  '@commitlint/load@19.8.1(@types/node@20.19.2)(typescript@5.8.3)':
     dependencies:
       '@commitlint/config-validator': 19.8.1
       '@commitlint/execute-rule': 19.8.1
@@ -4239,7 +4239,7 @@ snapshots:
       '@commitlint/types': 19.8.1
       chalk: 5.4.1
       cosmiconfig: 9.0.0(typescript@5.8.3)
-      cosmiconfig-typescript-loader: 6.1.0(@types/node@20.19.1)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3)
+      cosmiconfig-typescript-loader: 6.1.0(@types/node@20.19.2)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -5187,7 +5187,7 @@ snapshots:
 
   '@types/conventional-commits-parser@5.0.1':
     dependencies:
-      '@types/node': 20.19.1
+      '@types/node': 20.19.2
     optional: true
 
   '@types/estree@1.0.8': {}
@@ -5195,12 +5195,12 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 20.19.1
+      '@types/node': 20.19.2
 
   '@types/glob@7.2.0':
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 20.19.1
+      '@types/node': 20.19.2
 
   '@types/http-cache-semantics@4.0.4': {}
 
@@ -5208,15 +5208,15 @@ snapshots:
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 20.19.1
+      '@types/node': 20.19.2
 
   '@types/minimatch@5.1.2': {}
 
   '@types/mute-stream@0.0.4':
     dependencies:
-      '@types/node': 20.19.1
+      '@types/node': 20.19.2
 
-  '@types/node@20.19.1':
+  '@types/node@20.19.2':
     dependencies:
       undici-types: 6.21.0
 
@@ -5634,10 +5634,10 @@ snapshots:
 
   commander@4.1.1: {}
 
-  commitizen@4.3.1(@types/node@20.19.1)(typescript@5.8.3):
+  commitizen@4.3.1(@types/node@20.19.2)(typescript@5.8.3):
     dependencies:
       cachedir: 2.3.0
-      cz-conventional-changelog: 3.3.0(@types/node@20.19.1)(typescript@5.8.3)
+      cz-conventional-changelog: 3.3.0(@types/node@20.19.2)(typescript@5.8.3)
       dedent: 0.7.0
       detect-indent: 6.1.0
       find-node-modules: 2.1.3
@@ -5677,9 +5677,9 @@ snapshots:
 
   conventional-commit-types@3.0.0: {}
 
-  cosmiconfig-typescript-loader@6.1.0(@types/node@20.19.1)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3):
+  cosmiconfig-typescript-loader@6.1.0(@types/node@20.19.2)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3):
     dependencies:
-      '@types/node': 20.19.1
+      '@types/node': 20.19.2
       cosmiconfig: 9.0.0(typescript@5.8.3)
       jiti: 2.4.2
       typescript: 5.8.3
@@ -5703,16 +5703,16 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  cz-conventional-changelog@3.3.0(@types/node@20.19.1)(typescript@5.8.3):
+  cz-conventional-changelog@3.3.0(@types/node@20.19.2)(typescript@5.8.3):
     dependencies:
       chalk: 2.4.2
-      commitizen: 4.3.1(@types/node@20.19.1)(typescript@5.8.3)
+      commitizen: 4.3.1(@types/node@20.19.2)(typescript@5.8.3)
       conventional-commit-types: 3.0.0
       lodash.map: 4.6.0
       longest: 2.0.1
       word-wrap: 1.2.5
     optionalDependencies:
-      '@commitlint/load': 19.8.1(@types/node@20.19.1)(typescript@5.8.3)
+      '@commitlint/load': 19.8.1(@types/node@20.19.2)(typescript@5.8.3)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -7614,14 +7614,14 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  ts-node@10.9.2(@swc/core@1.12.7)(@types/node@20.19.1)(typescript@5.8.3):
+  ts-node@10.9.2(@swc/core@1.12.7)(@types/node@20.19.2)(typescript@5.8.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.19.1
+      '@types/node': 20.19.2
       acorn: 8.15.0
       acorn-walk: 8.3.4
       arg: 4.1.3
