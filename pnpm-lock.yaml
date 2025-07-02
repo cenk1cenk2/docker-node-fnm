@@ -126,8 +126,8 @@ packages:
     resolution: {integrity: sha512-EjEK8Y4wp5v6UEfXIaRS44CITlGXo/m6ljJ6Aq+1/+wKJRJUudVMYvXelc7WS1gL3nX+mJTJdbXBkhqeRwcQyw==}
     engines: {node: '>=18.0.0'}
 
-  '@aws-sdk/client-s3@3.840.0':
-    resolution: {integrity: sha512-dRuo03EqGBbl9+PTogpwY9bYmGWIjn8nB82HN5Qj20otgjUvhLOdEkkip9mroYsrvqNoKbMedWdCudIcB/YY1w==}
+  '@aws-sdk/client-s3@3.842.0':
+    resolution: {integrity: sha512-T5Rh72Rcq1xIaM8KkTr1Wpr7/WPCYO++KrM+/Em0rq2jxpjMMhj77ITpgH7eEmNxWmwIndTwqpgfmbpNfk7Gbw==}
     engines: {node: '>=18.0.0'}
 
   '@aws-sdk/client-sso@3.840.0':
@@ -3735,7 +3735,7 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
 
-  '@aws-sdk/client-s3@3.840.0':
+  '@aws-sdk/client-s3@3.842.0':
     dependencies:
       '@aws-crypto/sha1-browser': 5.2.0
       '@aws-crypto/sha256-browser': 5.2.0
@@ -6986,7 +6986,7 @@ snapshots:
   oclif@4.20.1(@types/node@22.16.0):
     dependencies:
       '@aws-sdk/client-cloudfront': 3.840.0
-      '@aws-sdk/client-s3': 3.840.0
+      '@aws-sdk/client-s3': 3.842.0
       '@inquirer/confirm': 3.2.0
       '@inquirer/input': 2.3.0
       '@inquirer/select': 2.5.0
