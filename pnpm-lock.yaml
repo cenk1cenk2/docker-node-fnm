@@ -94,8 +94,8 @@ importers:
         specifier: ^14.1.0
         version: 14.1.0
       oclif:
-        specifier: ^4.20.8
-        version: 4.20.8(@types/node@22.16.3)
+        specifier: ^4.21.0
+        version: 4.21.0(@types/node@22.16.3)
 
 packages:
 
@@ -1002,6 +1002,7 @@ packages:
   '@smithy/middleware-endpoint@4.1.14':
     resolution: {integrity: sha512-+BGLpK5D93gCcSEceaaYhUD/+OCGXM1IDaq/jKUQ+ujB0PTWlWN85noodKw/IPFZhIKFCNEe19PGd/reUMeLSQ==}
     engines: {node: '>=18.0.0'}
+    deprecated: Please upgrade to @smithy/middleware-endpoint@4.1.15 or higher to fix a bug preventing the resolution of ENV and config file custom endpoints https://github.com/smithy-lang/smithy-typescript/issues/1645
 
   '@smithy/middleware-retry@4.1.15':
     resolution: {integrity: sha512-iKYUJpiyTQ33U2KlOZeUb0GwtzWR3C0soYcKuCnTmJrvt6XwTPQZhMfsjJZNw7PpQ3TU4Ati1qLSrkSJxnnSMQ==}
@@ -2803,8 +2804,8 @@ packages:
     resolution: {integrity: sha512-gXah6aZrcUxjWg2zR2MwouP2eHlCBzdV4pygudehaKXSGW4v2AsRQUK+lwwXhii6KFZcunEnmSUoYp5CXibxtA==}
     engines: {node: '>= 0.4'}
 
-  oclif@4.20.8:
-    resolution: {integrity: sha512-hT+3HB/1ZZTetyV7/LpE9NPYJSSmOBqmTcWzebdjF0anBx7tAX++UH4iigvp8gIGLG3BZaBOQclTf/6dVTzM8Q==}
+  oclif@4.21.0:
+    resolution: {integrity: sha512-UPrfDEnslTM0Ore6qjhAl1wrdwU+QUggLGjRuHKnYmwvfh/K0Zvu7lDD2rdD5Yn7dTvZjlxvQPfLvBA90fdO1A==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -7019,7 +7020,7 @@ snapshots:
       define-properties: 1.2.1
       es-object-atoms: 1.1.1
 
-  oclif@4.20.8(@types/node@22.16.3):
+  oclif@4.21.0(@types/node@22.16.3):
     dependencies:
       '@aws-sdk/client-cloudfront': 3.844.0
       '@aws-sdk/client-s3': 3.844.0
