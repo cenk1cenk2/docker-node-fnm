@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@cenk1cenk2/cz-cc':
-        specifier: ^1.8.1
-        version: 1.8.1(@types/node@20.19.9)(typescript@5.8.3)
+        specifier: ^2.1.1
+        version: 2.1.1(@types/node@20.19.9)(typescript@5.8.3)
       '@cenk1cenk2/eslint-config':
         specifier: ^2.7.60
         version: 2.7.60(eslint@8.57.1)(typescript@5.8.3)
@@ -262,8 +262,8 @@ packages:
     resolution: {integrity: sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==}
     engines: {node: '>=6.9.0'}
 
-  '@cenk1cenk2/cz-cc@1.8.1':
-    resolution: {integrity: sha512-OXigQ4AtdZ2+WN3Ogdnwq4pmv68cQWFJujXI1fMJ1UdRPI0G978EOisAO/zFAo0DwMbFOyRqKUj+A4K5dcnbMA==}
+  '@cenk1cenk2/cz-cc@2.1.1':
+    resolution: {integrity: sha512-KTyR2Q55Ea7SEL9j5TBE7IeX7dq+BVHcOUrB4wYz5S279XkRecetytcV67D94FrX8R9b7aqqQlWvvxf0UY2DEQ==}
     engines: {node: '>= 16'}
 
   '@cenk1cenk2/eslint-config@2.7.60':
@@ -711,11 +711,12 @@ packages:
     resolution: {integrity: sha512-T4v38ym7FItHLkOVa+LHyvRZ8091nVABYPb1PMP5MNSJRXnSWS6QGCHH1Uditw/1ExKdMuspNo0ylITQB0Uq6Q==}
     engines: {node: '>=18.0.0'}
 
-  '@listr2/prompt-adapter-enquirer@2.0.16':
-    resolution: {integrity: sha512-CNhdBXWi+HWJCyjYwOSgEmK0rrUnwZrG9h0bKUrwxSqpz5A6unMTxvN254k+3TbDZRtzu+21mcb4KNT/6vxIzg==}
-    engines: {node: '>=18.0.0'}
+  '@listr2/prompt-adapter-inquirer@3.0.1':
+    resolution: {integrity: sha512-3XFmGwm3u6ioREG+ynAQB7FoxfajgQnMhIu8wC5eo/Lsih4aKDg0VuIMGaOsYn7hJSJagSeaD4K8yfpkEoDEmA==}
+    engines: {node: '>=20.0.0'}
     peerDependencies:
-      enquirer: '>= 2.3.0 < 3'
+      '@inquirer/prompts': '>= 3 < 8'
+      listr2: 9.0.1
 
   '@lukeed/csprng@1.1.0':
     resolution: {integrity: sha512-Z7C/xXCiGWsg0KuKsHTKJxbWhpI3Vs5GwLfOean7MGyVFGqdRgBbAjOCh6u4bbjPc/8MJ2pZmK/0DLdCbivLDA==}
@@ -2589,6 +2590,10 @@ packages:
     resolution: {integrity: sha512-LWzX2KsqcB1wqQ4AHgYb4RsDXauQiqhjLk+6hjbaeHG4zpjjVAB6wC/gz6X0l+Du1cN3pUB5ZlrvTbhGSNnUQQ==}
     engines: {node: '>=18.0.0'}
 
+  listr2@9.0.1:
+    resolution: {integrity: sha512-SL0JY3DaxylDuo/MecFeiC+7pedM0zia33zl0vcjgwcq1q1FWWF1To9EIauPbl8GbMCU0R2e0uJ8bZunhYKD2g==}
+    engines: {node: '>=20.0.0'}
+
   load-esm@1.0.2:
     resolution: {integrity: sha512-nVAvWk/jeyrWyXEAs84mpQCYccxRqgKY4OznLuJhJCa0XsPSfdOIr2zvBZEj3IHEHbX97jjscKRRV539bW0Gpw==}
     engines: {node: '>=13.2.0'}
@@ -4163,15 +4168,14 @@ snapshots:
   '@babel/helper-validator-identifier@7.27.1':
     optional: true
 
-  '@cenk1cenk2/cz-cc@1.8.1(@types/node@20.19.9)(typescript@5.8.3)':
+  '@cenk1cenk2/cz-cc@2.1.1(@types/node@20.19.9)(typescript@5.8.3)':
     dependencies:
-      '@listr2/prompt-adapter-enquirer': 2.0.16(enquirer@2.4.1)
+      '@inquirer/prompts': 7.8.0(@types/node@20.19.9)
+      '@listr2/prompt-adapter-inquirer': 3.0.1(@inquirer/prompts@7.8.0(@types/node@20.19.9))(@types/node@20.19.9)(listr2@9.0.1)
       commitizen: 4.3.1(@types/node@20.19.9)(typescript@5.8.3)
       conventional-commit-types: 3.0.0
-      enquirer: 2.4.1
-      external-editor: 3.1.0
       find-git-root: 1.0.4
-      listr2: 8.3.3
+      listr2: 9.0.1
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -4386,6 +4390,16 @@ snapshots:
 
   '@humanwhocodes/object-schema@2.0.3': {}
 
+  '@inquirer/checkbox@4.2.0(@types/node@20.19.9)':
+    dependencies:
+      '@inquirer/core': 10.1.15(@types/node@20.19.9)
+      '@inquirer/figures': 1.0.13
+      '@inquirer/type': 3.0.8(@types/node@20.19.9)
+      ansi-escapes: 4.3.2
+      yoctocolors-cjs: 2.1.2
+    optionalDependencies:
+      '@types/node': 20.19.9
+
   '@inquirer/checkbox@4.2.0(@types/node@22.17.0)':
     dependencies:
       '@inquirer/core': 10.1.15(@types/node@22.17.0)
@@ -4401,12 +4415,32 @@ snapshots:
       '@inquirer/core': 9.2.1
       '@inquirer/type': 1.5.5
 
+  '@inquirer/confirm@5.1.14(@types/node@20.19.9)':
+    dependencies:
+      '@inquirer/core': 10.1.15(@types/node@20.19.9)
+      '@inquirer/type': 3.0.8(@types/node@20.19.9)
+    optionalDependencies:
+      '@types/node': 20.19.9
+
   '@inquirer/confirm@5.1.14(@types/node@22.17.0)':
     dependencies:
       '@inquirer/core': 10.1.15(@types/node@22.17.0)
       '@inquirer/type': 3.0.8(@types/node@22.17.0)
     optionalDependencies:
       '@types/node': 22.17.0
+
+  '@inquirer/core@10.1.15(@types/node@20.19.9)':
+    dependencies:
+      '@inquirer/figures': 1.0.13
+      '@inquirer/type': 3.0.8(@types/node@20.19.9)
+      ansi-escapes: 4.3.2
+      cli-width: 4.1.0
+      mute-stream: 2.0.0
+      signal-exit: 4.1.0
+      wrap-ansi: 6.2.0
+      yoctocolors-cjs: 2.1.2
+    optionalDependencies:
+      '@types/node': 20.19.9
 
   '@inquirer/core@10.1.15(@types/node@22.17.0)':
     dependencies:
@@ -4436,6 +4470,14 @@ snapshots:
       wrap-ansi: 6.2.0
       yoctocolors-cjs: 2.1.2
 
+  '@inquirer/editor@4.2.15(@types/node@20.19.9)':
+    dependencies:
+      '@inquirer/core': 10.1.15(@types/node@20.19.9)
+      '@inquirer/type': 3.0.8(@types/node@20.19.9)
+      external-editor: 3.1.0
+    optionalDependencies:
+      '@types/node': 20.19.9
+
   '@inquirer/editor@4.2.15(@types/node@22.17.0)':
     dependencies:
       '@inquirer/core': 10.1.15(@types/node@22.17.0)
@@ -4443,6 +4485,14 @@ snapshots:
       external-editor: 3.1.0
     optionalDependencies:
       '@types/node': 22.17.0
+
+  '@inquirer/expand@4.0.17(@types/node@20.19.9)':
+    dependencies:
+      '@inquirer/core': 10.1.15(@types/node@20.19.9)
+      '@inquirer/type': 3.0.8(@types/node@20.19.9)
+      yoctocolors-cjs: 2.1.2
+    optionalDependencies:
+      '@types/node': 20.19.9
 
   '@inquirer/expand@4.0.17(@types/node@22.17.0)':
     dependencies:
@@ -4459,12 +4509,26 @@ snapshots:
       '@inquirer/core': 9.2.1
       '@inquirer/type': 1.5.5
 
+  '@inquirer/input@4.2.1(@types/node@20.19.9)':
+    dependencies:
+      '@inquirer/core': 10.1.15(@types/node@20.19.9)
+      '@inquirer/type': 3.0.8(@types/node@20.19.9)
+    optionalDependencies:
+      '@types/node': 20.19.9
+
   '@inquirer/input@4.2.1(@types/node@22.17.0)':
     dependencies:
       '@inquirer/core': 10.1.15(@types/node@22.17.0)
       '@inquirer/type': 3.0.8(@types/node@22.17.0)
     optionalDependencies:
       '@types/node': 22.17.0
+
+  '@inquirer/number@3.0.17(@types/node@20.19.9)':
+    dependencies:
+      '@inquirer/core': 10.1.15(@types/node@20.19.9)
+      '@inquirer/type': 3.0.8(@types/node@20.19.9)
+    optionalDependencies:
+      '@types/node': 20.19.9
 
   '@inquirer/number@3.0.17(@types/node@22.17.0)':
     dependencies:
@@ -4473,6 +4537,14 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.17.0
 
+  '@inquirer/password@4.0.17(@types/node@20.19.9)':
+    dependencies:
+      '@inquirer/core': 10.1.15(@types/node@20.19.9)
+      '@inquirer/type': 3.0.8(@types/node@20.19.9)
+      ansi-escapes: 4.3.2
+    optionalDependencies:
+      '@types/node': 20.19.9
+
   '@inquirer/password@4.0.17(@types/node@22.17.0)':
     dependencies:
       '@inquirer/core': 10.1.15(@types/node@22.17.0)
@@ -4480,6 +4552,21 @@ snapshots:
       ansi-escapes: 4.3.2
     optionalDependencies:
       '@types/node': 22.17.0
+
+  '@inquirer/prompts@7.8.0(@types/node@20.19.9)':
+    dependencies:
+      '@inquirer/checkbox': 4.2.0(@types/node@20.19.9)
+      '@inquirer/confirm': 5.1.14(@types/node@20.19.9)
+      '@inquirer/editor': 4.2.15(@types/node@20.19.9)
+      '@inquirer/expand': 4.0.17(@types/node@20.19.9)
+      '@inquirer/input': 4.2.1(@types/node@20.19.9)
+      '@inquirer/number': 3.0.17(@types/node@20.19.9)
+      '@inquirer/password': 4.0.17(@types/node@20.19.9)
+      '@inquirer/rawlist': 4.1.5(@types/node@20.19.9)
+      '@inquirer/search': 3.1.0(@types/node@20.19.9)
+      '@inquirer/select': 4.3.1(@types/node@20.19.9)
+    optionalDependencies:
+      '@types/node': 20.19.9
 
   '@inquirer/prompts@7.8.0(@types/node@22.17.0)':
     dependencies:
@@ -4496,6 +4583,14 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.17.0
 
+  '@inquirer/rawlist@4.1.5(@types/node@20.19.9)':
+    dependencies:
+      '@inquirer/core': 10.1.15(@types/node@20.19.9)
+      '@inquirer/type': 3.0.8(@types/node@20.19.9)
+      yoctocolors-cjs: 2.1.2
+    optionalDependencies:
+      '@types/node': 20.19.9
+
   '@inquirer/rawlist@4.1.5(@types/node@22.17.0)':
     dependencies:
       '@inquirer/core': 10.1.15(@types/node@22.17.0)
@@ -4503,6 +4598,15 @@ snapshots:
       yoctocolors-cjs: 2.1.2
     optionalDependencies:
       '@types/node': 22.17.0
+
+  '@inquirer/search@3.1.0(@types/node@20.19.9)':
+    dependencies:
+      '@inquirer/core': 10.1.15(@types/node@20.19.9)
+      '@inquirer/figures': 1.0.13
+      '@inquirer/type': 3.0.8(@types/node@20.19.9)
+      yoctocolors-cjs: 2.1.2
+    optionalDependencies:
+      '@types/node': 20.19.9
 
   '@inquirer/search@3.1.0(@types/node@22.17.0)':
     dependencies:
@@ -4521,6 +4625,16 @@ snapshots:
       ansi-escapes: 4.3.2
       yoctocolors-cjs: 2.1.2
 
+  '@inquirer/select@4.3.1(@types/node@20.19.9)':
+    dependencies:
+      '@inquirer/core': 10.1.15(@types/node@20.19.9)
+      '@inquirer/figures': 1.0.13
+      '@inquirer/type': 3.0.8(@types/node@20.19.9)
+      ansi-escapes: 4.3.2
+      yoctocolors-cjs: 2.1.2
+    optionalDependencies:
+      '@types/node': 20.19.9
+
   '@inquirer/select@4.3.1(@types/node@22.17.0)':
     dependencies:
       '@inquirer/core': 10.1.15(@types/node@22.17.0)
@@ -4538,6 +4652,10 @@ snapshots:
   '@inquirer/type@2.0.0':
     dependencies:
       mute-stream: 1.0.0
+
+  '@inquirer/type@3.0.8(@types/node@20.19.9)':
+    optionalDependencies:
+      '@types/node': 20.19.9
 
   '@inquirer/type@3.0.8(@types/node@22.17.0)':
     optionalDependencies:
@@ -4579,9 +4697,13 @@ snapshots:
 
   '@listr2/manager@2.0.17': {}
 
-  '@listr2/prompt-adapter-enquirer@2.0.16(enquirer@2.4.1)':
+  '@listr2/prompt-adapter-inquirer@3.0.1(@inquirer/prompts@7.8.0(@types/node@20.19.9))(@types/node@20.19.9)(listr2@9.0.1)':
     dependencies:
-      enquirer: 2.4.1
+      '@inquirer/prompts': 7.8.0(@types/node@20.19.9)
+      '@inquirer/type': 3.0.8(@types/node@20.19.9)
+      listr2: 9.0.1
+    transitivePeerDependencies:
+      - '@types/node'
 
   '@lukeed/csprng@1.1.0': {}
 
@@ -6777,6 +6899,15 @@ snapshots:
       - supports-color
 
   listr2@8.3.3:
+    dependencies:
+      cli-truncate: 4.0.0
+      colorette: 2.0.20
+      eventemitter3: 5.0.1
+      log-update: 6.1.0
+      rfdc: 1.4.1
+      wrap-ansi: 9.0.0
+
+  listr2@9.0.1:
     dependencies:
       cli-truncate: 4.0.0
       colorette: 2.0.20
