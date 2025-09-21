@@ -58,7 +58,7 @@ importers:
     dependencies:
       '@cenk1cenk2/oclif-common':
         specifier: ^6.4.12
-        version: 6.4.15(@listr2/manager@2.0.17)(@oclif/core@4.5.4)(class-transformer@0.5.1)(class-validator@0.14.2)(enquirer@2.4.1)(fs-extra@11.3.2)(listr2@8.3.3)(rxjs@7.8.2)(source-map-support@0.5.21)(yaml@2.8.1)
+        version: 6.4.16(@listr2/manager@2.0.17)(@oclif/core@4.5.4)(class-transformer@0.5.1)(class-validator@0.14.2)(enquirer@2.4.1)(fs-extra@11.3.2)(listr2@8.3.3)(rxjs@7.8.2)(source-map-support@0.5.21)(yaml@2.8.1)
       '@listr2/manager':
         specifier: ^2.0.17
         version: 2.0.17
@@ -297,8 +297,8 @@ packages:
       svelte-eslint-parser:
         optional: true
 
-  '@cenk1cenk2/oclif-common@6.4.15':
-    resolution: {integrity: sha512-+O/rPXHDifjnWAPdeWynXrFE8s4V6rF4TyinJkzZ0j+96v/tG5YkVV0QNRervMyVnQObQUbZ6WVuJKm5pYjLyw==}
+  '@cenk1cenk2/oclif-common@6.4.16':
+    resolution: {integrity: sha512-MIh1cGt7F39qjJI1CQFPaiFUtqL7O/rNncY2FDjOaEnlMDyT5x3sdI9Ng6+eVZi8lgLcumPBNWH5eXxKPucCEA==}
     engines: {node: '>= 18'}
     peerDependencies:
       '@listr2/manager': '>= 1'
@@ -806,8 +806,8 @@ packages:
     resolution: {integrity: sha512-jZESAAHqJuGcvnyLX0/2WAVDu/WAk1iMth5/o8oviDPzS3a4Ajsd5slxwFb/tg4hbswY9aFoob9wYP4tnP6d8w==}
     engines: {node: '>=18.0.0'}
 
-  '@oxc-project/runtime@0.90.0':
-    resolution: {integrity: sha512-TfWn2tT97Weq1/1kTc+6ZeQ3TTj8350HoovtWaUYkX1nie7ONBqeMvudpluj4rmt2jc+l1QsBV/U70Oqsv1S4A==}
+  '@oxc-project/runtime@0.91.0':
+    resolution: {integrity: sha512-QJ35AX6dSA4v9iXl0AaqZeLA85UiwTWpqJSzcJVATmfDSIENa9/7NRD/coojbvJxM1qLoQY0NrIM2pEPrDWrMg==}
     engines: {node: ^20.19.0 || >=22.12.0}
 
   '@pkgjs/parseargs@0.11.0':
@@ -4247,13 +4247,13 @@ snapshots:
       - supports-color
       - typescript
 
-  '@cenk1cenk2/oclif-common@6.4.15(@listr2/manager@2.0.17)(@oclif/core@4.5.4)(class-transformer@0.5.1)(class-validator@0.14.2)(enquirer@2.4.1)(fs-extra@11.3.2)(listr2@8.3.3)(rxjs@7.8.2)(source-map-support@0.5.21)(yaml@2.8.1)':
+  '@cenk1cenk2/oclif-common@6.4.16(@listr2/manager@2.0.17)(@oclif/core@4.5.4)(class-transformer@0.5.1)(class-validator@0.14.2)(enquirer@2.4.1)(fs-extra@11.3.2)(listr2@8.3.3)(rxjs@7.8.2)(source-map-support@0.5.21)(yaml@2.8.1)':
     dependencies:
       '@listr2/manager': 2.0.17
       '@nestjs/common': 11.1.6(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/core': 11.1.6(@nestjs/common@11.1.6(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@oclif/core': 4.5.4
-      '@oxc-project/runtime': 0.90.0
+      '@oxc-project/runtime': 0.91.0
       class-transformer: 0.5.1
       class-validator: 0.14.2
       deepmerge: 4.3.1
@@ -4863,7 +4863,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@oxc-project/runtime@0.90.0': {}
+  '@oxc-project/runtime@0.91.0': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
