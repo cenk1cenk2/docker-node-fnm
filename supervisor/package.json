@@ -71,7 +71,7 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "globby": "^14.1.0",
+    "globby": "^15.0.0",
     "oclif": "^4.22.18"
   },
   "config": {
