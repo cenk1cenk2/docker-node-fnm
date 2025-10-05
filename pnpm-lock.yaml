@@ -5413,7 +5413,7 @@ snapshots:
 
   '@types/mute-stream@0.0.4':
     dependencies:
-      '@types/node': 22.18.8
+      '@types/node': 20.19.19
 
   '@types/node@20.19.19':
     dependencies:
