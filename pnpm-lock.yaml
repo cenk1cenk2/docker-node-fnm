@@ -798,12 +798,12 @@ packages:
     resolution: {integrity: sha512-9L07S61R0tuXrURdLcVtjF79Nbyv3qGplJ88DVskJBxShbROZl3hBG7W/CNltAK3cnMPlXV8K3kKh+C0N0p4xw==}
     engines: {node: '>=18.0.0'}
 
-  '@oclif/plugin-not-found@3.2.69':
-    resolution: {integrity: sha512-XUnQqdBm0goYhH+nvj2UxtipSgwTVWCEGB0Iky2Op4wwRnF2DhW8DdT2v5yIgXZdNZRy2jnIRrZAE0rEjBDGuw==}
+  '@oclif/plugin-not-found@3.2.70':
+    resolution: {integrity: sha512-pFU32i0hpOrpb2k+HXTp2MuGB/FaaTDrbCkbcoA+0uxjGAqhifxCJlDLZI/BCjsjd0nKJ0pZEDbiIAA6+2oKoA==}
     engines: {node: '>=18.0.0'}
 
-  '@oclif/plugin-warn-if-update-available@3.1.49':
-    resolution: {integrity: sha512-QIA+Jgb6AiJTeRmblm4YmcVH8cqTjTDcTt3GhRnpi+CeEPhWPdnuN3xrqbmWXvG9e0EnT2OegRNZRg3CSwt2vA==}
+  '@oclif/plugin-warn-if-update-available@3.1.50':
+    resolution: {integrity: sha512-JAN0qm5z4FrgZ5i1K1vDGCglOTYrdHtSwSi0R6EAqv0SlrlY5ZKDqpRFklT0i2KGr4M6XPoDr1QiDsZbpN62EQ==}
     engines: {node: '>=18.0.0'}
 
   '@oxc-project/runtime@0.95.0':
@@ -4842,7 +4842,7 @@ snapshots:
     dependencies:
       '@oclif/core': 4.5.6
 
-  '@oclif/plugin-not-found@3.2.69(@types/node@22.18.11)':
+  '@oclif/plugin-not-found@3.2.70(@types/node@22.18.11)':
     dependencies:
       '@inquirer/prompts': 7.9.0(@types/node@22.18.11)
       '@oclif/core': 4.5.6
@@ -4851,7 +4851,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@oclif/plugin-warn-if-update-available@3.1.49':
+  '@oclif/plugin-warn-if-update-available@3.1.50':
     dependencies:
       '@oclif/core': 4.5.6
       ansis: 3.17.0
@@ -7211,8 +7211,8 @@ snapshots:
       '@inquirer/select': 2.5.0
       '@oclif/core': 4.5.6
       '@oclif/plugin-help': 6.2.33
-      '@oclif/plugin-not-found': 3.2.69(@types/node@22.18.11)
-      '@oclif/plugin-warn-if-update-available': 3.1.49
+      '@oclif/plugin-not-found': 3.2.70(@types/node@22.18.11)
+      '@oclif/plugin-warn-if-update-available': 3.1.50
       ansis: 3.17.0
       async-retry: 1.3.3
       change-case: 4.1.2
